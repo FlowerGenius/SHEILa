@@ -1,18 +1,18 @@
-//============================================================================
+//SHEILa======================================================================
 // Name        : SHEILa_runtime.cpp
-// Author      : Erin Penelope Lee
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//
-//
-//
+// Author      : FlowerGenius<justanortherngirl58@gmail.com>
+// Version     : 0.0.0
+// Copyright   :
+// Description : Client runtime for an instance of SHEILa
+// Module	   : SHEILa_runtime
+// Created     : March 19, 2018
+// Modified    : March 19, 2018
 //============================================================================
 
-#include <iostream>
+#include "headers.h"
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	clog << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 	return 0;
 }

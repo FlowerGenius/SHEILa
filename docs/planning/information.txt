@@ -1,25 +1,44 @@
-##SHEILa#######################################################
-#
-#
-#
-#
-#
-#
-#
-#
-###############################################################
+//SHEILa======================================================================
+// Name        : SHEILa_runtime.cpp
+// Author      : Erin Penelope Lee
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+// Module	   :
+// Created     :
+// Modified    :
+//============================================================================
 SHEILa has a central memory storage, hosted on a linux server.
 
-SHEILa maintains one personality, though any number of instances of this personality may be active simultaneously
+SHEILa maintains one personality, though any number of instances of this 
+personality may be active simultaneously
 
-An active SHEILa must include an active data bank, and one or more active SHEILa runtimes.
+An active SHEILa must include an active data bank, and one or more active 
+SHEILa runtimes.
 
 Any instance of the SHEILa runtime must have full access to this data bank.
 
 Every instance of the SHEILa runtime must have full access to this data bank.
-
+//============================================================================
 EMOTIONALITY:
+
   Sheila has three levels of emotionality.
-  1. The GLOBAL MOOD  is the collective conditions of all running instances of the runtime 
-  2. The INSTANCE MOOD  is the current condition of a single running instance of the runtime 
+  
+  1. The GLOBAL MOOD  is the collective conditions of all running 
+  instances of the runtime 
+  
+  2. The INSTANCE MOOD  is the current condition of a single running instance 
+  of the runtime 
+  
   3. THE MEMORY MOOD is the emotion data hardcoded into a memory binary
+
+//============================================================================
+The duties of a SHEILa instance are:
+
+	1. To constantly be aware of the devices on it's platform and attempt to 
+	connect to them.
+	
+	2. To constantly listen to the devices it has access to and record the
+	information it captures in a standardized format.
+	
+	3. 
