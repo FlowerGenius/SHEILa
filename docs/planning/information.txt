@@ -1,1 +1,25 @@
+##SHEILa#######################################################
+#
+#
+#
+#
+#
+#
+#
+#
+###############################################################
+SHEILa has a central memory storage, hosted on a linux server.
 
+SHEILa maintains one personality, though any number of instances of this personality may be active simultaneously
+
+An active SHEILa must include an active data bank, and one or more active SHEILa runtimes.
+
+Any instance of the SHEILa runtime must have full access to this data bank.
+
+Every instance of the SHEILa runtime must have full access to this data bank.
+
+EMOTIONALITY:
+  Sheila has three levels of emotionality.
+  1. The GLOBAL MOOD  is the collective conditions of all running instances of the runtime 
+  2. The INSTANCE MOOD  is the current condition of a single running instance of the runtime 
+  3. THE MEMORY MOOD is the emotion data hardcoded into a memory binary
