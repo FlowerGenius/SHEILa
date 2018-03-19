@@ -32,6 +32,9 @@ EMOTIONALITY:
   
   3. THE MEMORY MOOD is the emotion data hardcoded into a memory binary
 
+  SHEILa understands her emotions in terms of 8 primary values, the relation
+  of these values between their extremes and one another determine the
+  exact feeling she has.
 //============================================================================
 The duties of a SHEILa instance are:
 
