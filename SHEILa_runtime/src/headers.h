@@ -12,18 +12,20 @@
 #ifndef HEADERS_H_
 #define HEADERS_H_
 
-#ifdef __STDC__
-	#ifdef __cplusplus
-		#include <iostream>
-	#endif
+
+#ifdef __cplusplus
+	#include <iostream>
 #endif
 
-#ifdef _WIN32
 
-#elif  _WIN64
-
+#ifdef _WIN32 || _WIN64
+	// This block contains code to be included only when being compiled
+	// for Microsoft Windows
+	#include "windows_headers.h"
 #elif unix || __unix || __unix__
-
+	// This block contains code to be included only when being compiled
+	// for a UNIX system
+	#include "unix_headers.h"
 #endif
 
 #endif /* HEADERS_H_ */

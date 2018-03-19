@@ -41,4 +41,14 @@ The duties of a SHEILa instance are:
 	2. To constantly listen to the devices it has access to and record the
 	information it captures in a standardized format.
 	
-	3. 
+	3. To use the output devices it has access to for communicating with the
+	world beyond it's local platform.
+	
+	4. To register it's existence with the central server
+	
+	5. To register it's destruction with the central server
+	
+	6. To open and maintain a communication socket with the central server
+	
+	7. To Query the central server for program updates and implement them as
+	soon as possible.

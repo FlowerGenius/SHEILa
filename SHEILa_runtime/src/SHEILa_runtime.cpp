@@ -12,6 +12,22 @@
 #include "headers.h"
 using namespace std;
 
+int find_video_input_devices(){
+	return 0;
+}
+
+int find_audio_input_devices(){
+	return 0;
+}
+
+int find_video_output_devices(){
+	return 0;
+}
+
+int find_audio_output_devices(){
+	return 0;
+}
+
 int main() {
 	clog << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 	return 0;

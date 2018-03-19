@@ -12,12 +12,14 @@
 #ifndef UNIX_HEADERS_H_
 #define UNIX_HEADERS_H_
 
-#ifdef __x86_64 || __amd64 || __x86_64__ || __amd64__
 
-#endif
-
-#ifdef linux || __linux || __linux__
-
+#ifdef __ANDROID__
+	// This block contains code only to be included when being compiled for a
+	// Android device
+#elif linux || __linux || __linux__
+	// This block contains code only to be included when being compiled for a
+	// Linux system
+	#include "linux_headers.h"
 #elif __APPLE__ || __MACH__
 
 #endif
