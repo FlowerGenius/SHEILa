@@ -35,7 +35,7 @@ protected:
 	std::string HIGH_FEELING;
 };
 
-class Anger : public Emotion {
+class Anger: public Emotion {
 public:
 	Anger();
 	Anger(uintmax_t strength);
@@ -44,7 +44,7 @@ protected:
 
 };
 
-class Disgust : public Emotion {
+class Disgust: public Emotion {
 public:
 	Disgust();
 	Disgust(uintmax_t strength);
@@ -53,7 +53,7 @@ protected:
 
 };
 
-class Sadness : public Emotion {
+class Sadness: public Emotion {
 public:
 	Sadness();
 	Sadness(uintmax_t strength);
@@ -62,7 +62,7 @@ protected:
 
 };
 
-class Surprise : public Emotion {
+class Surprise: public Emotion {
 public:
 	Surprise();
 	Surprise(uintmax_t strength);
@@ -71,7 +71,7 @@ protected:
 
 };
 
-class Fear : public Emotion {
+class Fear: public Emotion {
 public:
 	Fear();
 	Fear(uintmax_t strength);
@@ -80,7 +80,7 @@ protected:
 
 };
 
-class Trust : public Emotion {
+class Trust: public Emotion {
 public:
 	Trust();
 	Trust(uintmax_t strength);
@@ -89,7 +89,7 @@ protected:
 
 };
 
-class Joy : public Emotion {
+class Joy: public Emotion {
 public:
 	Joy();
 	Joy(uintmax_t strength);
@@ -98,7 +98,7 @@ protected:
 
 };
 
-class Anticipation : public Emotion {
+class Anticipation: public Emotion {
 public:
 	Anticipation();
 	Anticipation(uintmax_t strength);

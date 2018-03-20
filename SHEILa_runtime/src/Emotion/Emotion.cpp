@@ -21,22 +21,22 @@ Emotion::Emotion(uintmax_t strength) {
 	this->strength = strength;
 }
 
-void Emotion::setStrength(uintmax_t strength){
+void Emotion::setStrength(uintmax_t strength) {
 	this->strength = strength;
 }
 
-uintmax_t Emotion::getStrength(void){
+uintmax_t Emotion::getStrength(void) {
 	return strength;
 }
 
-std::string Emotion::getFeeling(void){
-	if ( ((this->strength) >= 0) && ((this->strength) < (UINTMAX_MAX / 3)) ){
+std::string Emotion::getFeeling(void) {
+	if (((this->strength) >= 0) && ((this->strength) < (UINTMAX_MAX / 3))) {
 		return this->LOW_FEELING;
-	} else if (((this->strength) >= (UINTMAX_MAX/3)) &&
-			((this->strength) < (UINTMAX_MAX - (UINTMAX_MAX / 3)))){
+	} else if (((this->strength) >= (UINTMAX_MAX / 3))
+			&& ((this->strength) < (UINTMAX_MAX - (UINTMAX_MAX / 3)))) {
 		return this->MID_FEELING;
-	} else if ( ((this->strength) <= UINTMAX_MAX) &&
-			((this->strength) >= (UINTMAX_MAX - (UINTMAX_MAX / 3))) ){
+	} else if (((this->strength) <= UINTMAX_MAX)
+			&& ((this->strength) >= (UINTMAX_MAX - (UINTMAX_MAX / 3)))) {
 		return this->HIGH_FEELING;
 	} else {
 		return "nothing";
