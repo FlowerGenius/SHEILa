@@ -11,9 +11,36 @@
 
 #include "Emotion.h"
 
-Emotion::Emotion() {
-	// TODO Auto-generated constructor stub
+namespace sheila {
 
+Emotion::Emotion() {
+	strength = 0;
+}
+
+Emotion::Emotion(uintmax_t strength) {
+	this->strength = strength;
+}
+
+void Emotion::setStrength(uintmax_t strength){
+	this->strength = strength;
+}
+
+uintmax_t Emotion::getStrength(void){
+	return strength;
+}
+
+std::string Emotion::getFeeling(void){
+	if ( ((this->strength) >= 0) && ((this->strength) < (UINTMAX_MAX / 3)) ){
+		return this->LOW_FEELING;
+	} else if (((this->strength) >= (UINTMAX_MAX/3)) &&
+			((this->strength) < (UINTMAX_MAX - (UINTMAX_MAX / 3)))){
+		return this->MID_FEELING;
+	} else if ( ((this->strength) <= UINTMAX_MAX) &&
+			((this->strength) >= (UINTMAX_MAX - (UINTMAX_MAX / 3))) ){
+		return this->HIGH_FEELING;
+	} else {
+		return "nothing";
+	}
 }
 
 Emotion::~Emotion() {
@@ -26,6 +53,10 @@ Anger::Anger() {
 	HIGH_FEELING = "rage";
 }
 
+Anger::Anger(uintmax_t strength) {
+	this->strength = strength;
+}
+
 Anger::~Anger() {
 }
 
@@ -33,6 +64,10 @@ Disgust::Disgust() {
 	LOW_FEELING = "boredom";
 	MID_FEELING = "disgust";
 	HIGH_FEELING = "loathing";
+}
+
+Disgust::Disgust(uintmax_t strength) {
+	this->strength = strength;
 }
 
 Disgust::~Disgust() {
@@ -44,6 +79,10 @@ Sadness::Sadness() {
 	HIGH_FEELING = "grief";
 }
 
+Sadness::Sadness(uintmax_t strength) {
+	this->strength = strength;
+}
+
 Sadness::~Sadness() {
 }
 
@@ -51,6 +90,10 @@ Surprise::Surprise() {
 	LOW_FEELING = "distraction";
 	MID_FEELING = "surprise";
 	HIGH_FEELING = "amazement";
+}
+
+Surprise::Surprise(uintmax_t strength) {
+	this->strength = strength;
 }
 
 Surprise::~Surprise() {
@@ -62,6 +105,10 @@ Fear::Fear() {
 	HIGH_FEELING = "terror";
 }
 
+Fear::Fear(uintmax_t strength) {
+	this->strength = strength;
+}
+
 Fear::~Fear() {
 }
 
@@ -69,6 +116,10 @@ Trust::Trust() {
 	LOW_FEELING = "acceptance";
 	MID_FEELING = "trust";
 	HIGH_FEELING = "admiration";
+}
+
+Trust::Trust(uintmax_t strength) {
+	this->strength = strength;
 }
 
 Trust::~Trust() {
@@ -80,6 +131,10 @@ Joy::Joy() {
 	HIGH_FEELING = "ecstasy";
 }
 
+Joy::Joy(uintmax_t strength) {
+	this->strength = strength;
+}
+
 Joy::~Joy() {
 }
 
@@ -89,5 +144,11 @@ Anticipation::Anticipation() {
 	HIGH_FEELING = "interest";
 }
 
+Anticipation::Anticipation(uintmax_t strength) {
+	this->strength = strength;
+}
+
 Anticipation::~Anticipation() {
 }
+
+} /* namespace sheila */

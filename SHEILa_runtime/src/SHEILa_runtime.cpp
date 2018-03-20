@@ -13,6 +13,9 @@
 #include "Mood/Mood.h"
 
 
+namespace sheila {
+
+
 //Information about the central server this runtime will interface with
 namespace server {
 	bool active = false;
@@ -25,11 +28,29 @@ namespace server {
 
 	Mood mood;
 
+	std::vector<Feeling> feelings;
 
 	/*
 	 * Query the server for all active runtimes.
 	 */
 	int find_active_runtimes(){
+		return 0;
+	}
+
+	/*
+	 * Load all known possible feelings into a vector
+	 */
+	int load_feelings(){
+		feelings.push_back(Feeling("Anger","",
+									(UINTMAX_MAX / 3), (UINTMAX_MAX / 3) * 2,0,0,0,0,0,0,
+									0,0,0,0,0,0,0,0));
+		feelings.push_back(Feeling("Joy","",
+											0,0,0,0,0,0,0,0,
+											0,0,0,0,(UINTMAX_MAX / 3), (UINTMAX_MAX / 3) * 2,0,0));
+
+
+
+
 		return 0;
 	}
 
@@ -128,12 +149,15 @@ namespace runtime {
 	Mood mood;
 
 }
+}
 
 int main() {
-	runtime::mood.setAnger(UINTMAX_MAX);
-	std::cout << runtime::mood.anger->getFeeling() << std::endl;
-	while (runtime::active && platform::active){
-		runtime::active = false;
+	sheila::server::load_feelings();
+
+	sheila::runtime::mood.setJoy(UINTMAX_MAX / 2);
+	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
+	while (sheila::runtime::active && sheila::platform::active){
+		sheila::runtime::active = false;
 	}
 	return 0;
 }

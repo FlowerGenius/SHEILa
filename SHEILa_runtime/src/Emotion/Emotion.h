@@ -15,32 +15,18 @@
 #include <stdint.h>
 #include <string>
 
+namespace sheila {
+
 class Emotion {
 public:
 	Emotion();
+	Emotion(uintmax_t strength);
 	virtual ~Emotion();
 
-	void setStrength(uintmax_t s){
-		strength = s;
-	}
+	void setStrength(uintmax_t strength);
+	uintmax_t getStrength(void);
 
-	uintmax_t getStrength(void){
-		return strength;
-	}
-
-	std::string getFeeling(void){
-		if ( ((this->strength) >= 0) && ((this->strength) < (UINTMAX_MAX / 3)) ){
-			return this->LOW_FEELING;
-		} else if (((this->strength) >= (UINTMAX_MAX/3)) &&
-				((this->strength) < (UINTMAX_MAX - (UINTMAX_MAX / 3)))){
-			return this->MID_FEELING;
-		} else if ( ((this->strength) <= UINTMAX_MAX) &&
-				((this->strength) >= (UINTMAX_MAX - (UINTMAX_MAX / 3))) ){
-			return this->HIGH_FEELING;
-		} else {
-			return "nothing";
-		}
-	}
+	std::string getFeeling(void);
 
 protected:
 	uintmax_t strength;
@@ -52,6 +38,7 @@ protected:
 class Anger : public Emotion {
 public:
 	Anger();
+	Anger(uintmax_t strength);
 	virtual ~Anger();
 protected:
 
@@ -60,6 +47,7 @@ protected:
 class Disgust : public Emotion {
 public:
 	Disgust();
+	Disgust(uintmax_t strength);
 	virtual ~Disgust();
 protected:
 
@@ -68,6 +56,7 @@ protected:
 class Sadness : public Emotion {
 public:
 	Sadness();
+	Sadness(uintmax_t strength);
 	virtual ~Sadness();
 protected:
 
@@ -76,6 +65,7 @@ protected:
 class Surprise : public Emotion {
 public:
 	Surprise();
+	Surprise(uintmax_t strength);
 	virtual ~Surprise();
 protected:
 
@@ -84,6 +74,7 @@ protected:
 class Fear : public Emotion {
 public:
 	Fear();
+	Fear(uintmax_t strength);
 	virtual ~Fear();
 protected:
 
@@ -92,6 +83,7 @@ protected:
 class Trust : public Emotion {
 public:
 	Trust();
+	Trust(uintmax_t strength);
 	virtual ~Trust();
 protected:
 
@@ -100,6 +92,7 @@ protected:
 class Joy : public Emotion {
 public:
 	Joy();
+	Joy(uintmax_t strength);
 	virtual ~Joy();
 protected:
 
@@ -108,9 +101,12 @@ protected:
 class Anticipation : public Emotion {
 public:
 	Anticipation();
+	Anticipation(uintmax_t strength);
 	virtual ~Anticipation();
 protected:
 
 };
+
+} /* namespace sheila */
 
 #endif /* EMOTION_EMOTION_H_ */
