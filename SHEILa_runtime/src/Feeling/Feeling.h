@@ -21,28 +21,28 @@ class Feeling {
 public:
 	Feeling();
 	Feeling(std::string name, std::string desc, uintmax_t anger_low,
-			uintmax_t anger_hi, signed char a1, signed char b1, signed char c1,
-			signed char d1, signed char e1, signed char f1, signed char g1,
-			signed char h1, uintmax_t disgust_low, uintmax_t disgust_hi,
-			signed char a2, signed char b2, signed char c2, signed char d2,
-			signed char e2, signed char f2, signed char g2, signed char h2,
-			uintmax_t sadness_low, uintmax_t sadness_hi, signed char a3,
-			signed char b3, signed char c3, signed char d3, signed char e3,
-			signed char f3, signed char g3, signed char h3,
-			uintmax_t surprise_low, uintmax_t surprise_hi, signed char a4,
-			signed char b4, signed char c4, signed char d4, signed char e4,
-			signed char f4, signed char g4, signed char h4, uintmax_t fear_low,
-			uintmax_t fear_hi, signed char a5, signed char b5, signed char c5,
-			signed char d5, signed char e5, signed char f5, signed char g5,
-			signed char h5, uintmax_t trust_low, uintmax_t trust_hi,
-			signed char a6, signed char b6, signed char c6, signed char d6,
-			signed char e6, signed char f6, signed char g6, signed char h6,
-			uintmax_t joy_low, uintmax_t joy_hi, signed char a7, signed char b7,
-			signed char c7, signed char d7, signed char e7, signed char f7,
-			signed char g7, signed char h7, uintmax_t anticpation_low,
-			uintmax_t anticipation_hi, signed char a8, signed char b8,
-			signed char c8, signed char d8, signed char e8, signed char f8,
-			signed char g8, signed char h8);
+			uintmax_t anger_hi, double a1, double b1, double c1,
+			double d1, double e1, double f1, double g1,
+			double h1, uintmax_t disgust_low, uintmax_t disgust_hi,
+			double a2, double b2, double c2, double d2,
+			double e2, double f2, double g2, double h2,
+			uintmax_t sadness_low, uintmax_t sadness_hi, double a3,
+			double b3, double c3, double d3, double e3,
+			double f3, double g3, double h3,
+			uintmax_t surprise_low, uintmax_t surprise_hi, double a4,
+			double b4, double c4, double d4, double e4,
+			double f4, double g4, double h4, uintmax_t fear_low,
+			uintmax_t fear_hi, double a5, double b5, double c5,
+			double d5, double e5, double f5, double g5,
+			double h5, uintmax_t trust_low, uintmax_t trust_hi,
+			double a6, double b6, double c6, double d6,
+			double e6, double f6, double g6, double h6,
+			uintmax_t joy_low, uintmax_t joy_hi, double a7, double b7,
+			double c7, double d7, double e7, double f7,
+			double g7, double h7, uintmax_t anticpation_low,
+			uintmax_t anticipation_hi, double a8, double b8,
+			double c8, double d8, double e8, double f8,
+			double g8, double h8);
 	virtual ~Feeling();
 	const std::string& getDescription() const;
 	const std::string& getName() const;
@@ -56,14 +56,14 @@ public:
 	Range joy_range;
 	Range anticipation_range;
 
-	signed char a1, a2, a3, a4, a5, a6, a7, a8;
-	signed char b1, b2, b3, b4, b5, b6, b7, b8;
-	signed char c1, c2, c3, c4, c5, c6, c7, c8;
-	signed char d1, d2, d3, d4, d5, d6, d7, d8;
-	signed char e1, e2, e3, e4, e5, e6, e7, e8;
-	signed char f1, f2, f3, f4, f5, f6, f7, f8;
-	signed char g1, g2, g3, g4, g5, g6, g7, g8;
-	signed char h1, h2, h3, h4, h5, h6, h7, h8;
+	double a1, a2, a3, a4, a5, a6, a7, a8;
+	double b1, b2, b3, b4, b5, b6, b7, b8;
+	double c1, c2, c3, c4, c5, c6, c7, c8;
+	double d1, d2, d3, d4, d5, d6, d7, d8;
+	double e1, e2, e3, e4, e5, e6, e7, e8;
+	double f1, f2, f3, f4, f5, f6, f7, f8;
+	double g1, g2, g3, g4, g5, g6, g7, g8;
+	double h1, h2, h3, h4, h5, h6, h7, h8;
 protected:
 	std::string name;
 	std::string description;

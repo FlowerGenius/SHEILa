@@ -15,6 +15,7 @@
 
 #ifdef __cplusplus
 	#include <iostream>
+	#include <sstream>
 	#include <vector>
 #endif
 

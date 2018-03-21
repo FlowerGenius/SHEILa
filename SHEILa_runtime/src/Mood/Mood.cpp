@@ -102,6 +102,15 @@ void Mood::setAnticipation(uintmax_t anticipation) {
 // then SHEILa is experiencing that feeling
 std::string Mood::getFeeling() {
 
+	uintmax_t temp_anger = getAngerStrength();
+	uintmax_t temp_disgust = getDisgustStrength();
+	uintmax_t temp_sadness = getSadnessStrength();
+	uintmax_t temp_surprise = getSurpriseStrength();
+	uintmax_t temp_fear = getFearStrength();
+	uintmax_t temp_trust = getTrustStrength();
+	uintmax_t temp_joy = getJoyStrength();
+	uintmax_t temp_anticipation = getAnticipationStrength();
+
 	std::vector<Feeling> allfeelings;
 	for (std::vector<Feeling>::iterator it = server::feelings.begin();
 			it != server::feelings.end(); ++it) {
