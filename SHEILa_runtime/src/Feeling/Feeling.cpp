@@ -13,114 +13,96 @@
 
 namespace sheila {
 
+std::vector<Feeling> Feeling::feelings;
+
 Feeling::Feeling() {
 
 }
 
-Feeling::Feeling(std::string name, std::string desc, uintmax_t anger_low,
-		uintmax_t anger_hi, double a1, double b1, double c1,
-		double d1, double e1, double f1, double g1,
-		double h1, uintmax_t disgust_low, uintmax_t disgust_hi,
-		double a2, double b2, double c2, double d2,
-		double e2, double f2, double g2, double h2,
-		uintmax_t sadness_low, uintmax_t sadness_hi, double a3,
-		double b3, double c3, double d3, double e3,
-		double f3, double g3, double h3, uintmax_t surprise_low,
-		uintmax_t surprise_hi, double a4, double b4, double c4,
-		double d4, double e4, double f4, double g4,
-		double h4, uintmax_t fear_low, uintmax_t fear_hi, double a5,
-		double b5, double c5, double d5, double e5,
-		double f5, double g5, double h5, uintmax_t trust_low,
-		uintmax_t trust_hi, double a6, double b6, double c6,
-		double d6, double e6, double f6, double g6,
-		double h6, uintmax_t joy_low, uintmax_t joy_hi, double a7,
-		double b7, double c7, double d7, double e7,
-		double f7, double g7, double h7,
-		uintmax_t anticpation_low, uintmax_t anticipation_hi, double a8,
-		double b8, double c8, double d8, double e8,
-		double f8, double g8, double h8) {
-	this->name = name;
-	this->description = desc;
-	this->anger_range = Range(anger_low, anger_hi);
-	this->disgust_range = Range(disgust_low, disgust_hi);
-	this->sadness_range = Range(sadness_low, sadness_hi);
-	this->surprise_range = Range(surprise_low, surprise_hi);
-	this->fear_range = Range(fear_low, fear_hi);
-	this->trust_range = Range(trust_low, trust_hi);
-	this->joy_range = Range(joy_low, joy_hi);
-	this->anticipation_range = Range(anticpation_low, anticipation_hi);
+Feeling::Feeling(std::string name, std::string desc,
+		uintmax_t ang_low, uintmax_t ang_hi,
+		uintmax_t dis_low, uintmax_t dis_hi,
+		uintmax_t sad_low, uintmax_t sad_hi,
+		uintmax_t sur_low, uintmax_t sur_hi,
+		uintmax_t fea_low, uintmax_t fea_hi,
+		uintmax_t tru_low, uintmax_t tru_hi,
+		uintmax_t joy_low, uintmax_t joy_hi,
+		uintmax_t ant_low, uintmax_t ant_hi,
+		double min_diff_ang_dis, double max_diff_ang_dis,
+		double min_diff_ang_sad, double max_diff_ang_sad,
+		double min_diff_ang_sur, double max_diff_ang_sur,
+		double min_diff_ang_fea, double max_diff_ang_fea,
+		double min_diff_ang_tru, double max_diff_ang_tru,
+		double min_diff_ang_joy, double max_diff_ang_joy,
+		double min_diff_ang_ant, double max_diff_ang_ant,
+		double min_diff_dis_sad, double max_diff_dis_sad,
+		double min_diff_dis_sur, double max_diff_dis_sur,
+		double min_diff_dis_fea, double max_diff_dis_fea,
+		double min_diff_dis_tru, double max_diff_dis_tru,
+		double min_diff_dis_joy, double max_diff_dis_joy,
+		double min_diff_dis_ant, double max_diff_dis_ant,
+		double min_diff_sad_sur, double max_diff_sad_sur,
+		double min_diff_sad_fea, double max_diff_sad_fea,
+		double min_diff_sad_tru, double max_diff_sad_tru,
+		double min_diff_sad_joy, double max_diff_sad_joy,
+		double min_diff_sad_ant, double max_diff_sad_ant,
+		double min_diff_sur_fea, double max_diff_sur_fea,
+		double min_diff_sur_tru, double max_diff_sur_tru,
+		double min_diff_sur_joy, double max_diff_sur_joy,
+		double min_diff_sur_ant, double max_diff_sur_ant,
+		double min_diff_fea_tru, double max_diff_fea_tru,
+		double min_diff_fea_joy, double max_diff_fea_joy,
+		double min_diff_fea_ant, double max_diff_fea_ant,
+		double min_diff_tru_joy, double max_diff_tru_joy,
+		double min_diff_tru_ant, double max_diff_tru_ant,
+		double min_diff_joy_ant, double max_diff_joy_ant) {
 
-	this->a1 = a1;
-	this->a2 = a2;
-	this->a3 = a3;
-	this->a4 = a4;
-	this->a5 = a5;
-	this->a6 = a6;
-	this->a7 = a7;
-	this->a8 = a8;
+	this->name 			= name;
+	this->description 	= desc;
+	this->ang_range 	= Range(ang_low, ang_hi);
+	this->dis_range 	= Range(dis_low, dis_hi);
+	this->sad_range 	= Range(sad_low, sad_hi);
+	this->sur_range 	= Range(sur_low, sur_hi);
+	this->fea_range 	= Range(fea_low, fea_hi);
+	this->tru_range 	= Range(tru_low, tru_hi);
+	this->joy_range 	= Range(joy_low, joy_hi);
+	this->ant_range 	= Range(ant_low, ant_hi);
 
-	this->b1 = b1;
-	this->b2 = b2;
-	this->b3 = b3;
-	this->b4 = b4;
-	this->b5 = b5;
-	this->b6 = b6;
-	this->b7 = b7;
-	this->b8 = b8;
+	this->min_diff_ang_dis = min_diff_ang_dis; this->max_diff_ang_dis = max_diff_ang_dis;
+	this->min_diff_ang_sad = min_diff_ang_sad; this->max_diff_ang_sad = max_diff_ang_sad;
+	this->min_diff_ang_sur = min_diff_ang_sur; this->max_diff_ang_sur = max_diff_ang_sur;
+	this->min_diff_ang_fea = min_diff_ang_fea; this->max_diff_ang_fea = max_diff_ang_fea;
+	this->min_diff_ang_tru = min_diff_ang_tru; this->max_diff_ang_tru = max_diff_ang_tru;
+	this->min_diff_ang_joy = min_diff_ang_joy; this->max_diff_ang_joy = max_diff_ang_joy;
+	this->min_diff_ang_ant = min_diff_ang_ant; this->max_diff_ang_ant = max_diff_ang_ant;
 
-	this->c1 = c1;
-	this->c2 = c2;
-	this->c3 = c3;
-	this->c4 = c4;
-	this->c5 = c5;
-	this->c6 = c6;
-	this->c7 = c7;
-	this->c8 = c8;
+	this->min_diff_dis_sad = min_diff_dis_sad; this->max_diff_dis_sad = max_diff_dis_sad;
+	this->min_diff_dis_sur = min_diff_dis_sur; this->max_diff_dis_sur = max_diff_dis_sur;
+	this->min_diff_dis_fea = min_diff_dis_fea; this->max_diff_dis_fea = max_diff_dis_fea;
+	this->min_diff_dis_tru = min_diff_dis_tru; this->max_diff_dis_tru = max_diff_dis_tru;
+	this->min_diff_dis_joy = min_diff_dis_joy; this->max_diff_dis_joy = max_diff_dis_joy;
+	this->min_diff_dis_ant = min_diff_dis_ant; this->max_diff_dis_ant = max_diff_dis_ant;
 
-	this->d1 = d1;
-	this->d2 = d2;
-	this->d3 = d3;
-	this->d4 = d4;
-	this->d5 = d5;
-	this->d6 = d6;
-	this->d7 = d7;
-	this->d8 = d8;
+	this->min_diff_sad_sur = min_diff_sad_sur; this->max_diff_sad_sur = max_diff_sad_sur;
+	this->min_diff_sad_fea = min_diff_sad_fea; this->max_diff_sad_fea = max_diff_sad_fea;
+	this->min_diff_sad_tru = min_diff_sad_tru; this->max_diff_sad_tru = max_diff_sad_tru;
+	this->min_diff_sad_joy = min_diff_sad_joy; this->max_diff_sad_joy = max_diff_sad_joy;
+	this->min_diff_sad_ant = min_diff_sad_ant; this->max_diff_sad_ant = max_diff_sad_ant;
 
-	this->e1 = e1;
-	this->e2 = e2;
-	this->e3 = e3;
-	this->e4 = e4;
-	this->e5 = e5;
-	this->e6 = e6;
-	this->e7 = e7;
-	this->e8 = e8;
+	this->min_diff_sur_fea = min_diff_sur_fea; this->max_diff_sur_fea = max_diff_sur_fea;
+	this->min_diff_sur_tru = min_diff_sur_tru; this->max_diff_sur_tru = max_diff_sur_tru;
+	this->min_diff_sur_joy = min_diff_sur_joy; this->max_diff_sur_joy = max_diff_sur_joy;
+	this->min_diff_sur_ant = min_diff_sur_ant; this->max_diff_sur_ant = max_diff_sur_ant;
 
-	this->f1 = f1;
-	this->f2 = f2;
-	this->f3 = f3;
-	this->f4 = f4;
-	this->f5 = f5;
-	this->f6 = f6;
-	this->f7 = f7;
-	this->f8 = f8;
+	this->min_diff_fea_tru = min_diff_fea_tru; this->max_diff_fea_tru = max_diff_fea_tru;
+	this->min_diff_fea_joy = min_diff_fea_joy; this->max_diff_fea_joy = max_diff_fea_joy;
+	this->min_diff_fea_ant = min_diff_fea_ant; this->max_diff_fea_ant = max_diff_fea_ant;
 
-	this->g1 = g1;
-	this->g2 = g2;
-	this->g3 = g3;
-	this->g4 = g4;
-	this->g5 = g5;
-	this->g6 = g6;
-	this->g7 = g7;
-	this->g8 = g8;
+	this->min_diff_tru_joy = min_diff_tru_joy; this->max_diff_tru_joy = max_diff_tru_joy;
+	this->min_diff_tru_ant = min_diff_tru_ant; this->max_diff_tru_ant = max_diff_tru_ant;
 
-	this->h1 = h1;
-	this->h2 = h2;
-	this->h3 = h3;
-	this->h4 = h4;
-	this->h5 = h5;
-	this->h6 = h6;
-	this->h7 = h7;
-	this->h8 = h8;
+	this->min_diff_joy_ant = min_diff_joy_ant; this->max_diff_joy_ant = max_diff_joy_ant;
+
 
 }
 
@@ -134,6 +116,165 @@ const std::string& Feeling::getDescription() const {
 
 const std::string& Feeling::getName() const {
 	return name;
+}
+
+/*
+ * Get the minimum and maximum percentage difference from a to b
+ *
+ * A positive difference means that a > b
+ * Negative difference means that b > a
+ */
+std::pair<double,double> Feeling::getDiff(char a, char b)
+{
+	switch(a){
+	case ANGER:
+		switch(b){
+		case DISGUST:
+			return std::pair<double,double>(min_diff_ang_dis, max_diff_ang_dis);
+		case SADNESS:
+			return std::pair<double,double>(min_diff_ang_sad, max_diff_ang_sad);
+		case SURPRISE:
+			return std::pair<double,double>(min_diff_ang_sur, max_diff_ang_sur);
+		case FEAR:
+			return std::pair<double,double>(min_diff_ang_fea, max_diff_ang_fea);
+		case TRUST:
+			return std::pair<double,double>(min_diff_ang_tru, max_diff_ang_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_ang_joy, max_diff_ang_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_ang_ant, max_diff_ang_ant);
+		}
+		break;
+	case DISGUST:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_dis, -min_diff_ang_dis);
+		case SADNESS:
+			return std::pair<double,double>(min_diff_dis_sad, max_diff_dis_sad);
+		case SURPRISE:
+			return std::pair<double,double>(min_diff_dis_sur, max_diff_dis_sur);
+		case FEAR:
+			return std::pair<double,double>(min_diff_dis_fea, max_diff_dis_fea);
+		case TRUST:
+			return std::pair<double,double>(min_diff_dis_tru, max_diff_dis_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_dis_joy, max_diff_dis_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_dis_ant, max_diff_dis_ant);
+		}
+		break;
+	case SADNESS:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_sad, -min_diff_ang_sad);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_sad, -min_diff_dis_sad);
+		case SURPRISE:
+			return std::pair<double,double>(min_diff_sad_sur, max_diff_sad_sur);
+		case FEAR:
+			return std::pair<double,double>(min_diff_sad_fea, max_diff_sad_fea);
+		case TRUST:
+			return std::pair<double,double>(min_diff_sad_tru, max_diff_sad_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_sad_joy, max_diff_sad_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_sad_ant, max_diff_sad_ant);
+		}
+		break;
+	case SURPRISE:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_sur, -min_diff_ang_sur);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_sur, -min_diff_dis_sur);
+		case SADNESS:
+			return std::pair<double,double>(-max_diff_sad_sur, -min_diff_sad_sur);
+		case FEAR:
+			return std::pair<double,double>(min_diff_sur_fea, max_diff_sur_fea);
+		case TRUST:
+			return std::pair<double,double>(min_diff_sur_tru, max_diff_sur_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_sur_joy, max_diff_sur_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_sur_ant, max_diff_sur_ant);
+		}
+		break;
+	case FEAR:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_fea, -min_diff_ang_fea);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_fea, -min_diff_dis_fea);
+		case SADNESS:
+			return std::pair<double,double>(-max_diff_sad_fea, -min_diff_sad_fea);
+		case SURPRISE:
+			return std::pair<double,double>(-max_diff_sur_fea, -min_diff_sur_fea);
+		case TRUST:
+			return std::pair<double,double>(min_diff_fea_tru, max_diff_fea_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_fea_joy, max_diff_fea_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_fea_ant, max_diff_fea_ant);
+		}
+		break;
+	case TRUST:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_tru, -min_diff_ang_tru);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_tru, -min_diff_dis_tru);
+		case SADNESS:
+			return std::pair<double,double>(-max_diff_sad_tru, -min_diff_sad_tru);
+		case SURPRISE:
+			return std::pair<double,double>(-max_diff_sur_tru, -min_diff_sur_tru);
+		case FEAR:
+			return std::pair<double,double>(-max_diff_fea_tru, -min_diff_fea_tru);
+		case JOY:
+			return std::pair<double,double>(min_diff_tru_joy, max_diff_tru_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_tru_ant, max_diff_tru_ant);
+		}
+		break;
+	case JOY:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_joy, -min_diff_ang_joy);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_joy, -min_diff_dis_joy);
+		case SADNESS:
+			return std::pair<double,double>(-max_diff_sad_joy, -min_diff_sad_joy);
+		case SURPRISE:
+			return std::pair<double,double>(-max_diff_sur_joy, -min_diff_sur_joy);
+		case FEAR:
+			return std::pair<double,double>(-max_diff_fea_joy, -min_diff_fea_joy);
+		case TRUST:
+			return std::pair<double,double>(-max_diff_tru_joy, -min_diff_tru_joy);
+		case ANTICIPATION:
+			return std::pair<double,double>(min_diff_joy_ant, max_diff_joy_ant);
+		}
+		break;
+	case ANTICIPATION:
+		switch(b){
+		case ANGER:
+			return std::pair<double,double>(-max_diff_ang_ant, -min_diff_ang_ant);
+		case DISGUST:
+			return std::pair<double,double>(-max_diff_dis_ant, -min_diff_dis_ant);
+		case SADNESS:
+			return std::pair<double,double>(-max_diff_sad_ant, -min_diff_sad_ant);
+		case SURPRISE:
+			return std::pair<double,double>(-max_diff_sur_ant, -min_diff_sur_ant);
+		case FEAR:
+			return std::pair<double,double>(-max_diff_fea_ant, -min_diff_fea_ant);
+		case TRUST:
+			return std::pair<double,double>(-max_diff_tru_ant, -min_diff_tru_ant);
+		case JOY:
+			return std::pair<double,double>(-max_diff_joy_ant, -min_diff_joy_ant);
+		}
+		break;
+	default:
+		break;
+	}
+	return std::pair<double,double>(0.0,0.0);
 }
 
 } /* namespace sheila */

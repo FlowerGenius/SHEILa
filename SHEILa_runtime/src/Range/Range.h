@@ -24,6 +24,13 @@ public:
 
 	bool contains(uintmax_t);
 
+	uintmax_t lo(){
+		return lower_bound;
+	}
+	uintmax_t hi(){
+		return upper_bound;
+	}
+
 private:
 	uintmax_t lower_bound;
 	uintmax_t upper_bound;

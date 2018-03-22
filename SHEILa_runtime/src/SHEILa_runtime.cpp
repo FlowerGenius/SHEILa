@@ -10,23 +10,64 @@
 //============================================================================
 
 #include "headers.h"
+#include <typeinfo>
 #include "Mood/Mood.h"
+#include <atomic>
 
 
 namespace sheila {
 
 
+
+uintmax_t stouintmax(std::string str){
+
+	if (typeid(uintmax_t) == typeid(unsigned long int)){
+		return std::stoul(str);
+	} else if (typeid(uintmax_t) == typeid(unsigned long long int)){
+		return std::stoull(str);
+	} else {
+		return std::stoi(str);
+	}
+}
+
+/*
+ * Return true if a is at least n% different from b on the interval [lower_bound,upper_bound]
+ */
+bool percent_diff(double a ,double b ,double n ,double lower_bound,double upper_bound){
+
+//	std::cout << ad << '\t' << bd << '\t' << lo << '\t' << hi << std::endl;
+
+
+	if (n >= 0.0) { // n is a positive double
+		if (((((a - b) - lower_bound) / upper_bound) * 100.0) >= n) {
+			return true;
+		}
+	} else { // n is a negative double
+		if (((((a - b) - lower_bound) / upper_bound) * 100.0) <= n) {
+			return true;
+		}
+	}
+
+
+	return false;
+}
+
+
+
 //Information about the central server this runtime will interface with
 namespace server {
-	bool active = false;
+
+	std::atomic_bool FEELING_AVAILABLE;
+	std::atomic_bool ACTIVE;
+
+	std::atomic_uintmax_t active_runtimes;
 
 	const char* IPv4 = "";
 	const char* IPv6 = "";
 	const char* MAC	 = "";
 
-	uintmax_t active_runtimes = 0;
+//	std::vector<Feeling> __feelings;
 
-	std::vector<Feeling> feelings;
 
 	/*
 	 * Query the server for all active runtimes.
@@ -38,37 +79,125 @@ namespace server {
 		return 0;
 	}
 
+
 	/*
 	 * Load all known possible feelings into a vector
 	 */
-	int load_feelings(){
+	std::vector<Feeling> feelings(){
 
 		//TODO contact the server requesting all of the feelings one line at a time
 
+		std::vector<Feeling> temp_feelings;
+
 		std::stringstream ss;
 
-		ss << "Anger" << '\t';
-		ss << "Feeling heated and upset" << '\t';
-		ss << "6148914691236517205:12297829382473034410:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t' << '\n';
-		ss << "Joy" << '\t';
-		ss << "Feeling bright and well" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "6148914691236517205:12297829382473034410:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t';
-		ss << "0:0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0" << '\t' << '\n';
+		ss << "Anger" << '\t';						// Name
+		ss << "Feeling heated and upset" << '\t';	// Description
+
+		ss << "033.3333333:066.6666666" << '\t';	// [Anger] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Disgust] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Sadness] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Surprise] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Fear] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Trust] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Joy] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Anticipation] lower bound : upper bound
+
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Disgust % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Sadness % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Surprise % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Fear % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Trust % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Joy % Diff
+		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Joy] Anticipation % Diff
+
+		ss << '\n';
+
+		ss << "Joy" << '\t';						// Name
+		ss << "Feeling contented and joy" << '\t';	// Description
+
+		ss << "000.0000000:066.6666666" << '\t';	// [Anger] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Disgust] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Sadness] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Surprise] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Fear] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Trust] lower bound : upper bound
+		ss << "033.3333333:066.6666666" << '\t';	// [Joy] lower bound : upper bound
+		ss << "000.0000000:066.6666666" << '\t';	// [Anticipation] lower bound : upper bound
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Disgust % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Sadness % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Surprise % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Trust % Diff
+		ss << "-020.000000:+100.000000" << '\t';	// [Anger] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
+		ss << "-020.000000:+100.000000" << '\t';	// [Disgust] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
+		ss << "-020.000000:+100.000000" << '\t';	// [Sadness] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
+		ss << "-020.000000:+100.000000" << '\t';	// [Surprise] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
+
+		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
+		ss << "-020.000000:+100.000000" << '\t';	// [Fear] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
+
+		ss << "-020.000000:+100.000000" << '\t';	// [Trust] Joy % Diff
+		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
+
+		ss << "+020.000000:+100.000000" << '\t';	// [Joy] Anticipation % Diff
+
+		ss << '\n';
 
 		std::string testresponse = ss.str();
+
+		//TODO Check if there are feelings waiting on the server
+
+//		if (!FEELING_AVAILABLE) {
+//			return Feeling::feelings;
+//		} else {
+//			Feeling::feelings.clear();
+//		}
 
 		size_t pos;
 		std::string feeling_s;
@@ -77,17 +206,69 @@ namespace server {
 			std::string feeling_name;
 			std::string feeling_desc;
 
-			uintmax_t temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
-			uintmax_t temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
+			double temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
+			double temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
 
-			double a1, a2, a3, a4, a5, a6, a7, a8;
-			double b1, b2, b3, b4, b5, b6, b7, b8;
-			double c1, c2, c3, c4, c5, c6, c7, c8;
-			double d1, d2, d3, d4, d5, d6, d7, d8;
-			double e1, e2, e3, e4, e5, e6, e7, e8;
-			double f1, f2, f3, f4, f5, f6, f7, f8;
-			double g1, g2, g3, g4, g5, g6, g7, g8;
-			double h1, h2, h3, h4, h5, h6, h7, h8;
+			double min_diff_ang_dis = 0.0 ; double max_diff_ang_dis = 0.0 ;
+			double min_diff_ang_sad = 0.0 ; double max_diff_ang_sad = 0.0 ;
+			double min_diff_ang_sur = 0.0 ; double max_diff_ang_sur = 0.0 ;
+			double min_diff_ang_fea = 0.0 ; double max_diff_ang_fea = 0.0 ;
+			double min_diff_ang_tru = 0.0 ; double max_diff_ang_tru = 0.0 ;
+			double min_diff_ang_joy = 0.0 ; double max_diff_ang_joy = 0.0 ;
+			double min_diff_ang_ant = 0.0 ; double max_diff_ang_ant = 0.0 ;
+			double min_diff_dis_sad = 0.0 ; double max_diff_dis_sad = 0.0 ;
+			double min_diff_dis_sur = 0.0 ; double max_diff_dis_sur = 0.0 ;
+			double min_diff_dis_fea = 0.0 ; double max_diff_dis_fea = 0.0 ;
+			double min_diff_dis_tru = 0.0 ; double max_diff_dis_tru = 0.0 ;
+			double min_diff_dis_joy = 0.0 ; double max_diff_dis_joy = 0.0 ;
+			double min_diff_dis_ant = 0.0 ; double max_diff_dis_ant = 0.0 ;
+			double min_diff_sad_sur = 0.0 ; double max_diff_sad_sur = 0.0 ;
+			double min_diff_sad_fea = 0.0 ; double max_diff_sad_fea = 0.0 ;
+			double min_diff_sad_tru = 0.0 ; double max_diff_sad_tru = 0.0 ;
+			double min_diff_sad_joy = 0.0 ; double max_diff_sad_joy = 0.0 ;
+			double min_diff_sad_ant = 0.0 ; double max_diff_sad_ant = 0.0 ;
+			double min_diff_sur_fea = 0.0 ; double max_diff_sur_fea = 0.0 ;
+			double min_diff_sur_tru = 0.0 ; double max_diff_sur_tru = 0.0 ;
+			double min_diff_sur_joy = 0.0 ; double max_diff_sur_joy = 0.0 ;
+			double min_diff_sur_ant = 0.0 ; double max_diff_sur_ant = 0.0 ;
+			double min_diff_fea_tru = 0.0 ; double max_diff_fea_tru = 0.0 ;
+			double min_diff_fea_joy = 0.0 ; double max_diff_fea_joy = 0.0 ;
+			double min_diff_fea_ant = 0.0 ; double max_diff_fea_ant = 0.0 ;
+			double min_diff_tru_joy = 0.0 ; double max_diff_tru_joy = 0.0 ;
+			double min_diff_tru_ant = 0.0 ; double max_diff_tru_ant = 0.0 ;
+			double min_diff_joy_ant = 0.0 ; double max_diff_joy_ant = 0.0 ;
+
+			double diffs[] = {
+					 min_diff_ang_dis,  max_diff_ang_dis,
+					 min_diff_ang_sad,  max_diff_ang_sad,
+					 min_diff_ang_sur,  max_diff_ang_sur,
+					 min_diff_ang_fea,  max_diff_ang_fea,
+					 min_diff_ang_tru,  max_diff_ang_tru,
+					 min_diff_ang_joy,  max_diff_ang_joy,
+					 min_diff_ang_ant,  max_diff_ang_ant,
+					 min_diff_dis_sad,  max_diff_dis_sad,
+					 min_diff_dis_sur,  max_diff_dis_sur,
+					 min_diff_dis_fea,  max_diff_dis_fea,
+					 min_diff_dis_tru,  max_diff_dis_tru,
+					 min_diff_dis_joy,  max_diff_dis_joy,
+					 min_diff_dis_ant,  max_diff_dis_ant,
+					 min_diff_sad_sur,  max_diff_sad_sur,
+					 min_diff_sad_fea,  max_diff_sad_fea,
+					 min_diff_sad_tru,  max_diff_sad_tru,
+					 min_diff_sad_joy,  max_diff_sad_joy,
+					 min_diff_sad_ant,  max_diff_sad_ant,
+					 min_diff_sur_fea,  max_diff_sur_fea,
+					 min_diff_sur_tru,  max_diff_sur_tru,
+					 min_diff_sur_joy,  max_diff_sur_joy,
+					 min_diff_sur_ant,  max_diff_sur_ant,
+					 min_diff_fea_tru,  max_diff_fea_tru,
+					 min_diff_fea_joy,  max_diff_fea_joy,
+					 min_diff_fea_ant,  max_diff_fea_ant,
+					 min_diff_tru_joy,  max_diff_tru_joy,
+					 min_diff_tru_ant,  max_diff_tru_ant,
+					 min_diff_joy_ant,  max_diff_joy_ant
+			};
+
 
 			feeling_s = testresponse.substr(0, pos);
 			size_t pos2;
@@ -95,7 +276,7 @@ namespace server {
 			int n = 0;
 			while ((pos2 = feeling_s.find('\t')) != std::string::npos){
 				feeling_s_s = feeling_s.substr(0,pos2);
-				size_t pos3,pos4,pos5,pos6,pos7,pos8,pos9,pos10,pos11,pos12;
+				size_t pos3;
 				switch(n){
 				case 0:
 					feeling_name = feeling_s_s;
@@ -105,323 +286,48 @@ namespace server {
 					break;
 				case 2:
 					pos3 = feeling_s_s.find(':');
-					temp_min1 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max1 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a1 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b1 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c1 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d1 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e1 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f1 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g1 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h1 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min1 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max1 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 3:
 					pos3 = feeling_s_s.find(':');
-					temp_min2 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max2 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a2 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b2 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c2 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d2 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e2 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f2 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g2 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h2 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min2 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max2 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 4:
 					pos3 = feeling_s_s.find(':');
-					temp_min3 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max3 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a3 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b3 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c3 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d3 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e3 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f3 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g3 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h3 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min3 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max3 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 5:
 					pos3 = feeling_s_s.find(':');
-					temp_min4 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max4 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a4 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b4 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c4 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d4 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e4 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f4 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g4 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h3 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min4 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max4 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 6:
 					pos3 = feeling_s_s.find(':');
-					temp_min5 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max5 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a5 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b5 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c5 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d5 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e5 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f5 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g5 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h5 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min5 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max5 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 7:
 					pos3 = feeling_s_s.find(':');
-					temp_min6 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max6 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a6 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b6 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c6 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d6 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e6 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f6 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g6 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h6 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min6 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max6 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 8:
 					pos3 = feeling_s_s.find(':');
-					temp_min7 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max7 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a7 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b7 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c7 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d7 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e7 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f7 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g7 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h7 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min7 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max7 = std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				case 9:
 					pos3 = feeling_s_s.find(':');
-					temp_min8 = std::stoull(feeling_s_s.substr(0,pos3));
-					feeling_s_s.erase(0,pos3+1);
-
-					pos4 = feeling_s_s.find(':');
-					temp_max8 = std::stoull(feeling_s_s.substr(0,pos4));
-					feeling_s_s.erase(0,pos4+1);
-
-					pos5 = feeling_s_s.find(':');
-					a8 = std::stod(feeling_s_s.substr(0,pos5));
-					feeling_s_s.erase(0,pos5+1);
-
-					pos6 = feeling_s_s.find(':');
-					b8 = std::stod(feeling_s_s.substr(0,pos6));
-					feeling_s_s.erase(0,pos6+1);
-
-					pos7 = feeling_s_s.find(':');
-					c8 = std::stod(feeling_s_s.substr(0,pos7));
-					feeling_s_s.erase(0,pos7+1);
-
-					pos8 = feeling_s_s.find(':');
-					d8 = std::stod(feeling_s_s.substr(0,pos8));
-					feeling_s_s.erase(0,pos8+1);
-
-					pos9 = feeling_s_s.find(':');
-					e8 = std::stod(feeling_s_s.substr(0,pos9));
-					feeling_s_s.erase(0,pos9+1);
-
-					pos10 = feeling_s_s.find(':');
-					f8 = std::stod(feeling_s_s.substr(0,pos10));
-					feeling_s_s.erase(0,pos10+1);
-
-					pos11 = feeling_s_s.find(':');
-					g8 = std::stod(feeling_s_s.substr(0,pos11));
-					feeling_s_s.erase(0,pos11+1);
-
-					h8 = std::stod(feeling_s_s.substr(0,-1));
-
+					temp_min8 = std::stod(feeling_s_s.substr(0,pos3));
+					temp_max8 = std::stod(feeling_s_s.substr(pos3+1));
+					break;
+				default:
+					pos3 = feeling_s_s.find(':');
+					diffs[n-10] = std::stod(feeling_s_s.substr(0,pos3));
+					diffs[n-9]	= std::stod(feeling_s_s.substr(pos3+1));
 					break;
 				}
 
@@ -429,18 +335,46 @@ namespace server {
 				n++;
 			}
 			testresponse.erase(0, pos+1);
-			feelings.push_back(Feeling(feeling_name, feeling_desc,
-										temp_min1,temp_max1,a1,b1,c1,d1,e1,f1,g1,h1,
-										temp_min2,temp_max2,a2,b2,c2,d2,e2,f2,g2,h2,
-										temp_min3,temp_max3,a3,b3,c3,d3,e3,f3,g3,h3,
-										temp_min4,temp_max4,a4,b4,c4,d4,e4,f4,g4,h4,
-										temp_min5,temp_max5,a5,b5,c5,d5,e5,f5,g5,h5,
-										temp_min6,temp_max6,a6,b6,c6,d6,e6,f6,g6,h6,
-										temp_min7,temp_max7,a7,b7,c7,d7,e7,f7,g7,h7,
-										temp_min8,temp_max8,a8,b8,c8,d8,e8,f8,g8,h8));
+			temp_feelings.push_back(Feeling(feeling_name, feeling_desc,
+										(temp_min1 / 100.0) * UINTMAX_MAX,(temp_max1 / 100.0) * UINTMAX_MAX,
+										(temp_min2 / 100.0) * UINTMAX_MAX,(temp_max2 / 100.0) * UINTMAX_MAX,
+										(temp_min3 / 100.0) * UINTMAX_MAX,(temp_max3 / 100.0) * UINTMAX_MAX,
+										(temp_min4 / 100.0) * UINTMAX_MAX,(temp_max4 / 100.0) * UINTMAX_MAX,
+										(temp_min5 / 100.0) * UINTMAX_MAX,(temp_max5 / 100.0) * UINTMAX_MAX,
+										(temp_min6 / 100.0) * UINTMAX_MAX,(temp_max6 / 100.0) * UINTMAX_MAX,
+										(temp_min7 / 100.0) * UINTMAX_MAX,(temp_max7 / 100.0) * UINTMAX_MAX,
+										(temp_min8 / 100.0) * UINTMAX_MAX,(temp_max8 / 100.0) * UINTMAX_MAX,
+										 min_diff_ang_dis,  max_diff_ang_dis,
+										 min_diff_ang_sad,  max_diff_ang_sad,
+										 min_diff_ang_sur,  max_diff_ang_sur,
+										 min_diff_ang_fea,  max_diff_ang_fea,
+										 min_diff_ang_tru,  max_diff_ang_tru,
+										 min_diff_ang_joy,  max_diff_ang_joy,
+										 min_diff_ang_ant,  max_diff_ang_ant,
+										 min_diff_dis_sad,  max_diff_dis_sad,
+										 min_diff_dis_sur,  max_diff_dis_sur,
+										 min_diff_dis_fea,  max_diff_dis_fea,
+										 min_diff_dis_tru,  max_diff_dis_tru,
+										 min_diff_dis_joy,  max_diff_dis_joy,
+										 min_diff_dis_ant,  max_diff_dis_ant,
+										 min_diff_sad_sur,  max_diff_sad_sur,
+										 min_diff_sad_fea,  max_diff_sad_fea,
+										 min_diff_sad_tru,  max_diff_sad_tru,
+										 min_diff_sad_joy,  max_diff_sad_joy,
+										 min_diff_sad_ant,  max_diff_sad_ant,
+										 min_diff_sur_fea,  max_diff_sur_fea,
+										 min_diff_sur_tru,  max_diff_sur_tru,
+										 min_diff_sur_joy,  max_diff_sur_joy,
+										 min_diff_sur_ant,  max_diff_sur_ant,
+										 min_diff_fea_tru,  max_diff_fea_tru,
+										 min_diff_fea_joy,  max_diff_fea_joy,
+										 min_diff_fea_ant,  max_diff_fea_ant,
+										 min_diff_tru_joy,  max_diff_tru_joy,
+										 min_diff_tru_ant,  max_diff_tru_ant,
+										 min_diff_joy_ant,  max_diff_joy_ant));
 		}
 
-		return 0;
+		return temp_feelings;
 	}
 
 	/*
@@ -450,7 +384,55 @@ namespace server {
 
 		//TODO contact the server requesting the global mood data
 
-		return Mood();
+		std::stringstream ss;
+
+		ss << "0.0:0.0:0.0:0.0:0.0:0.0:0.0:300.0" << std::endl;
+
+		std::string testresponse = ss.str();
+
+		uintmax_t temp_anger;
+		uintmax_t temp_disgust;
+		uintmax_t temp_sadness;
+		uintmax_t temp_surprise;
+		uintmax_t temp_fear;
+		uintmax_t temp_trust;
+		uintmax_t temp_joy;
+		uintmax_t temp_anticipation;
+
+		size_t pos;
+		int n=0;
+		std::string mood_s;
+		while ((pos = testresponse.find(':')) != std::string::npos){
+			mood_s = testresponse.substr(0,pos);
+			switch(n){
+			case 0:
+				temp_anger = stouintmax(mood_s);
+				break;
+			case 1:
+				temp_disgust = stouintmax(mood_s);
+				break;
+			case 2:
+				temp_sadness = stouintmax(mood_s);
+				break;
+			case 3:
+				temp_surprise = stouintmax(mood_s);
+				break;
+			case 4:
+				temp_fear = stouintmax(mood_s);
+				break;
+			case 5:
+				temp_trust = stouintmax(mood_s);
+				break;
+			case 6:
+				temp_joy = stouintmax(mood_s);
+				break;
+			}
+			testresponse.erase(0,pos+1);
+			n++;
+		}
+		temp_anticipation = stouintmax(testresponse);
+
+		return Mood(temp_anger,temp_disgust,temp_sadness,temp_surprise,temp_fear,temp_trust,temp_joy,temp_anticipation);
 	}
 
 
@@ -552,9 +534,10 @@ namespace runtime {
 }
 
 int main() {
-	sheila::server::load_feelings();
 
 	sheila::runtime::mood.setJoy(UINTMAX_MAX / 2);
+	sheila::runtime::mood.setTrust((UINTMAX_MAX / 2) - 300);
+
 	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
