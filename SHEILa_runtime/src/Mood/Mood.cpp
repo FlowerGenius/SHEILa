@@ -263,9 +263,11 @@ std::string Mood::getFeeling() {
 
 		for (char i = 0; i <= 7;i++){
 
-			for (char n = 0; n <= 8;n++){
-//				std::cout << em(i) << em(n-1) << ':' << test[i][n] << std::endl;
-
+			for (char n = 0; n <= 7;n++){
+				if (i!=n){
+				std::cout << em(i) << " must be at least " << (*it).getDiff(i,n).first << "% different from " << em(n) << std::endl;
+				std::cout << em(i) << " must be at most " << (*it).getDiff(i,n).second << "% different from " << em(n) << std::endl;
+				}
 			}
 		}
 

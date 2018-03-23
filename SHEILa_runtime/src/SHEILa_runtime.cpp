@@ -81,6 +81,10 @@ namespace server {
 
 
 	/*
+	 * a is at least min%diff from b AND a is at most max%diff from b
+	 */
+
+	/*
 	 * Load all known possible feelings into a vector
 	 */
 	std::vector<Feeling> feelings(){
@@ -111,32 +115,32 @@ namespace server {
 		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Joy % Diff
 		ss << "+020.000000:+100.000000" << '\t';	// [Anger] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Fear] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Trust] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Joy] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Joy] Anticipation % Diff
 
 		ss << '\n';
 
@@ -152,38 +156,38 @@ namespace server {
 		ss << "033.3333333:066.6666666" << '\t';	// [Joy] lower bound : upper bound
 		ss << "000.0000000:066.6666666" << '\t';	// [Anticipation] lower bound : upper bound
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Disgust % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Sadness % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Surprise % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Trust % Diff
-		ss << "-020.000000:+100.000000" << '\t';	// [Anger] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Anger] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Disgust % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Sadness % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Surprise % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Trust % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Anger] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
-		ss << "-020.000000:+100.000000" << '\t';	// [Disgust] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Sadness % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Surprise % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Trust % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Disgust] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Disgust] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
-		ss << "-020.000000:+100.000000" << '\t';	// [Sadness] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Surprise % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Trust % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Sadness] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Sadness] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
-		ss << "-020.000000:+100.000000" << '\t';	// [Surprise] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Fear % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Trust % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Surprise] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Surprise] Anticipation % Diff
 
-		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
-		ss << "-020.000000:+100.000000" << '\t';	// [Fear] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Fear] Trust % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Fear] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Fear] Anticipation % Diff
 
-		ss << "-020.000000:+100.000000" << '\t';	// [Trust] Joy % Diff
-		ss << "+000.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
+		ss << "-100.000000:-020.000000" << '\t';	// [Trust] Joy % Diff
+		ss << "-100.000000:+100.000000" << '\t';	// [Trust] Anticipation % Diff
 
 		ss << "+020.000000:+100.000000" << '\t';	// [Joy] Anticipation % Diff
 
@@ -209,65 +213,7 @@ namespace server {
 			double temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
 			double temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
 
-			double min_diff_ang_dis = 0.0 ; double max_diff_ang_dis = 0.0 ;
-			double min_diff_ang_sad = 0.0 ; double max_diff_ang_sad = 0.0 ;
-			double min_diff_ang_sur = 0.0 ; double max_diff_ang_sur = 0.0 ;
-			double min_diff_ang_fea = 0.0 ; double max_diff_ang_fea = 0.0 ;
-			double min_diff_ang_tru = 0.0 ; double max_diff_ang_tru = 0.0 ;
-			double min_diff_ang_joy = 0.0 ; double max_diff_ang_joy = 0.0 ;
-			double min_diff_ang_ant = 0.0 ; double max_diff_ang_ant = 0.0 ;
-			double min_diff_dis_sad = 0.0 ; double max_diff_dis_sad = 0.0 ;
-			double min_diff_dis_sur = 0.0 ; double max_diff_dis_sur = 0.0 ;
-			double min_diff_dis_fea = 0.0 ; double max_diff_dis_fea = 0.0 ;
-			double min_diff_dis_tru = 0.0 ; double max_diff_dis_tru = 0.0 ;
-			double min_diff_dis_joy = 0.0 ; double max_diff_dis_joy = 0.0 ;
-			double min_diff_dis_ant = 0.0 ; double max_diff_dis_ant = 0.0 ;
-			double min_diff_sad_sur = 0.0 ; double max_diff_sad_sur = 0.0 ;
-			double min_diff_sad_fea = 0.0 ; double max_diff_sad_fea = 0.0 ;
-			double min_diff_sad_tru = 0.0 ; double max_diff_sad_tru = 0.0 ;
-			double min_diff_sad_joy = 0.0 ; double max_diff_sad_joy = 0.0 ;
-			double min_diff_sad_ant = 0.0 ; double max_diff_sad_ant = 0.0 ;
-			double min_diff_sur_fea = 0.0 ; double max_diff_sur_fea = 0.0 ;
-			double min_diff_sur_tru = 0.0 ; double max_diff_sur_tru = 0.0 ;
-			double min_diff_sur_joy = 0.0 ; double max_diff_sur_joy = 0.0 ;
-			double min_diff_sur_ant = 0.0 ; double max_diff_sur_ant = 0.0 ;
-			double min_diff_fea_tru = 0.0 ; double max_diff_fea_tru = 0.0 ;
-			double min_diff_fea_joy = 0.0 ; double max_diff_fea_joy = 0.0 ;
-			double min_diff_fea_ant = 0.0 ; double max_diff_fea_ant = 0.0 ;
-			double min_diff_tru_joy = 0.0 ; double max_diff_tru_joy = 0.0 ;
-			double min_diff_tru_ant = 0.0 ; double max_diff_tru_ant = 0.0 ;
-			double min_diff_joy_ant = 0.0 ; double max_diff_joy_ant = 0.0 ;
-
-			double diffs[] = {
-					 min_diff_ang_dis,  max_diff_ang_dis,
-					 min_diff_ang_sad,  max_diff_ang_sad,
-					 min_diff_ang_sur,  max_diff_ang_sur,
-					 min_diff_ang_fea,  max_diff_ang_fea,
-					 min_diff_ang_tru,  max_diff_ang_tru,
-					 min_diff_ang_joy,  max_diff_ang_joy,
-					 min_diff_ang_ant,  max_diff_ang_ant,
-					 min_diff_dis_sad,  max_diff_dis_sad,
-					 min_diff_dis_sur,  max_diff_dis_sur,
-					 min_diff_dis_fea,  max_diff_dis_fea,
-					 min_diff_dis_tru,  max_diff_dis_tru,
-					 min_diff_dis_joy,  max_diff_dis_joy,
-					 min_diff_dis_ant,  max_diff_dis_ant,
-					 min_diff_sad_sur,  max_diff_sad_sur,
-					 min_diff_sad_fea,  max_diff_sad_fea,
-					 min_diff_sad_tru,  max_diff_sad_tru,
-					 min_diff_sad_joy,  max_diff_sad_joy,
-					 min_diff_sad_ant,  max_diff_sad_ant,
-					 min_diff_sur_fea,  max_diff_sur_fea,
-					 min_diff_sur_tru,  max_diff_sur_tru,
-					 min_diff_sur_joy,  max_diff_sur_joy,
-					 min_diff_sur_ant,  max_diff_sur_ant,
-					 min_diff_fea_tru,  max_diff_fea_tru,
-					 min_diff_fea_joy,  max_diff_fea_joy,
-					 min_diff_fea_ant,  max_diff_fea_ant,
-					 min_diff_tru_joy,  max_diff_tru_joy,
-					 min_diff_tru_ant,  max_diff_tru_ant,
-					 min_diff_joy_ant,  max_diff_joy_ant
-			};
+			std::vector<double> diffs;
 
 
 			feeling_s = testresponse.substr(0, pos);
@@ -326,8 +272,8 @@ namespace server {
 					break;
 				default:
 					pos3 = feeling_s_s.find(':');
-					diffs[n-10] = std::stod(feeling_s_s.substr(0,pos3));
-					diffs[n-9]	= std::stod(feeling_s_s.substr(pos3+1));
+					diffs.push_back(std::stod(feeling_s_s.substr(0,pos3)));
+					diffs.push_back(std::stod(feeling_s_s.substr(pos3+1)));
 					break;
 				}
 
@@ -344,34 +290,34 @@ namespace server {
 										(temp_min6 / 100.0) * UINTMAX_MAX,(temp_max6 / 100.0) * UINTMAX_MAX,
 										(temp_min7 / 100.0) * UINTMAX_MAX,(temp_max7 / 100.0) * UINTMAX_MAX,
 										(temp_min8 / 100.0) * UINTMAX_MAX,(temp_max8 / 100.0) * UINTMAX_MAX,
-										 min_diff_ang_dis,  max_diff_ang_dis,
-										 min_diff_ang_sad,  max_diff_ang_sad,
-										 min_diff_ang_sur,  max_diff_ang_sur,
-										 min_diff_ang_fea,  max_diff_ang_fea,
-										 min_diff_ang_tru,  max_diff_ang_tru,
-										 min_diff_ang_joy,  max_diff_ang_joy,
-										 min_diff_ang_ant,  max_diff_ang_ant,
-										 min_diff_dis_sad,  max_diff_dis_sad,
-										 min_diff_dis_sur,  max_diff_dis_sur,
-										 min_diff_dis_fea,  max_diff_dis_fea,
-										 min_diff_dis_tru,  max_diff_dis_tru,
-										 min_diff_dis_joy,  max_diff_dis_joy,
-										 min_diff_dis_ant,  max_diff_dis_ant,
-										 min_diff_sad_sur,  max_diff_sad_sur,
-										 min_diff_sad_fea,  max_diff_sad_fea,
-										 min_diff_sad_tru,  max_diff_sad_tru,
-										 min_diff_sad_joy,  max_diff_sad_joy,
-										 min_diff_sad_ant,  max_diff_sad_ant,
-										 min_diff_sur_fea,  max_diff_sur_fea,
-										 min_diff_sur_tru,  max_diff_sur_tru,
-										 min_diff_sur_joy,  max_diff_sur_joy,
-										 min_diff_sur_ant,  max_diff_sur_ant,
-										 min_diff_fea_tru,  max_diff_fea_tru,
-										 min_diff_fea_joy,  max_diff_fea_joy,
-										 min_diff_fea_ant,  max_diff_fea_ant,
-										 min_diff_tru_joy,  max_diff_tru_joy,
-										 min_diff_tru_ant,  max_diff_tru_ant,
-										 min_diff_joy_ant,  max_diff_joy_ant));
+										 diffs[0],  diffs[1],
+										 diffs[2],  diffs[3],
+										 diffs[4],  diffs[5],
+										 diffs[6],  diffs[7],
+										 diffs[8],  diffs[9],
+										 diffs[10],  diffs[11],
+										 diffs[12],  diffs[13],
+										 diffs[14],  diffs[15],
+										 diffs[16],  diffs[17],
+										 diffs[18],  diffs[19],
+										 diffs[20],  diffs[21],
+										 diffs[22],  diffs[23],
+										 diffs[24],	 diffs[25],
+										 diffs[26],  diffs[27],
+										 diffs[28],  diffs[29],
+										 diffs[30],  diffs[31],
+										 diffs[32],  diffs[33],
+										 diffs[34],  diffs[35],
+										 diffs[36],  diffs[37],
+										 diffs[38],  diffs[39],
+										 diffs[40],  diffs[41],
+										 diffs[42],  diffs[43],
+										 diffs[44],  diffs[45],
+										 diffs[46],  diffs[47],
+										 diffs[48],  diffs[49],
+										 diffs[50],  diffs[51],
+										 diffs[52],  diffs[53],
+										 diffs[54],  diffs[55]));
 		}
 
 		return temp_feelings;
