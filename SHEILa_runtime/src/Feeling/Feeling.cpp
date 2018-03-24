@@ -13,6 +13,23 @@
 
 namespace sheila {
 
+/*
+ *
+ */
+std::string ldtos(long double d, int coeff_digits){
+	std::stringstream ss;
+
+	if (d >= 0.0){
+		ss << '+';
+		ss << std::fixed << std::setprecision(std::numeric_limits<long double>::digits10 - coeff_digits) << d;
+	} else {
+		ss << std::fixed << std::setprecision(std::numeric_limits<long double>::digits10 - coeff_digits) << d;
+	}
+
+	return ss.str();
+
+}
+
 std::vector<Feeling> Feeling::feelings;
 
 Feeling::Feeling() {
@@ -116,6 +133,63 @@ const std::string& Feeling::getDescription() const {
 
 const std::string& Feeling::getName() const {
 	return name;
+}
+
+std::string Feeling::toString() {
+	std::stringstream ss;
+
+	ss << std::fixed << std::setprecision(15);
+
+	ss << name << '\t';							// Name
+	ss << description << '\t';					// Description
+
+	ss << ang_range.lo() << ':' << ang_range.hi() << '\t';	// [Anger] lower bound : upper bound
+	ss << dis_range.lo() << ':' << dis_range.hi() << '\t';	// [Disgust] lower bound : upper bound
+	ss << sad_range.lo() << ':' << sad_range.hi() << '\t';	// [Sadness] lower bound : upper bound
+	ss << sur_range.lo() << ':' << sur_range.hi() << '\t';	// [Surprise] lower bound : upper bound
+	ss << fea_range.lo() << ':' << fea_range.hi() << '\t';	// [Fear] lower bound : upper bound
+	ss << tru_range.lo() << ':' << tru_range.hi() << '\t';	// [Trust] lower bound : upper bound
+	ss << joy_range.lo() << ':' << joy_range.hi() << '\t';	// [Joy] lower bound : upper bound
+	ss << ant_range.lo() << ':' << ant_range.hi() << '\t';	// [Anticipation] lower bound : upper bound
+
+	ss << ldtos(min_diff_ang_dis,3) << ':' << ldtos(max_diff_ang_dis,3) << '\t';	// [Anger] Disgust % Diff
+	ss << ldtos(min_diff_ang_sad,3) << ':' << ldtos(max_diff_ang_sad,3) << '\t';	// [Anger] Sadness % Diff
+	ss << ldtos(min_diff_ang_sur,3) << ':' << ldtos(max_diff_ang_sur,3) << '\t';	// [Anger] Surprise % Diff
+	ss << ldtos(min_diff_ang_fea,3) << ':' << ldtos(max_diff_ang_fea,3) << '\t';	// [Anger] Fear % Diff
+	ss << ldtos(min_diff_ang_tru,3) << ':' << ldtos(max_diff_ang_tru,3) << '\t';	// [Anger] Trust % Diff
+	ss << ldtos(min_diff_ang_joy,3) << ':' << ldtos(max_diff_ang_joy,3) << '\t';	// [Anger] Joy % Diff
+	ss << ldtos(min_diff_ang_ant,3) << ':' << ldtos(max_diff_ang_ant,3) << '\t';	// [Anger] Anticipation % Diff
+
+	ss << ldtos(min_diff_dis_sad,3) << ':' << ldtos(max_diff_dis_sad,3) << '\t';	// [Disgust] Sadness % Diff
+	ss << ldtos(min_diff_dis_sur,3) << ':' << ldtos(max_diff_dis_sur,3) << '\t';	// [Disgust] Surprise % Diff
+	ss << ldtos(min_diff_dis_fea,3) << ':' << ldtos(max_diff_dis_fea,3) << '\t';	// [Disgust] Fear % Diff
+	ss << ldtos(min_diff_dis_tru,3) << ':' << ldtos(max_diff_dis_tru,3) << '\t';	// [Disgust] Trust % Diff
+	ss << ldtos(min_diff_dis_joy,3) << ':' << ldtos(max_diff_dis_joy,3) << '\t';	// [Disgust] Joy % Diff
+	ss << ldtos(min_diff_dis_ant,3) << ':' << ldtos(max_diff_dis_ant,3) << '\t';	// [Disgust] Anticipation % Diff
+
+	ss << ldtos(min_diff_sad_sur,3) << ':' << ldtos(max_diff_sad_sur,3) << '\t';	// [Sadness] Surprise % Diff
+	ss << ldtos(min_diff_sad_fea,3) << ':' << ldtos(max_diff_sad_fea,3) << '\t';	// [Sadness] Fear % Diff
+	ss << ldtos(min_diff_sad_tru,3) << ':' << ldtos(max_diff_sad_tru,3) << '\t';	// [Sadness] Trust % Diff
+	ss << ldtos(min_diff_sad_joy,3) << ':' << ldtos(max_diff_sad_joy,3) << '\t';	// [Sadness] Joy % Diff
+	ss << ldtos(min_diff_sad_ant,3) << ':' << ldtos(max_diff_sad_ant,3) << '\t';	// [Sadness] Anticipation % Diff
+
+	ss << ldtos(min_diff_sur_fea,3) << ':' << ldtos(max_diff_sur_fea,3) << '\t';	// [Surprise] Fear % Diff
+	ss << ldtos(min_diff_sur_tru,3) << ':' << ldtos(max_diff_sur_tru,3) << '\t';	// [Surprise] Trust % Diff
+	ss << ldtos(min_diff_sur_joy,3) << ':' << ldtos(max_diff_sur_joy,3) << '\t';	// [Surprise] Joy % Diff
+	ss << ldtos(min_diff_sur_ant,3) << ':' << ldtos(max_diff_sur_ant,3) << '\t';	// [Surprise] Anticipation % Diff
+
+	ss << ldtos(min_diff_fea_tru,3) << ':' << ldtos(max_diff_fea_tru,3) << '\t';	// [Fear] Trust % Diff
+	ss << ldtos(min_diff_fea_joy,3) << ':' << ldtos(max_diff_fea_joy,3) << '\t';	// [Fear] Joy % Diff
+	ss << ldtos(min_diff_fea_ant,3) << ':' << ldtos(max_diff_fea_ant,3) << '\t';	// [Fear] Anticipation % Diff
+
+	ss << ldtos(min_diff_tru_joy,3) << ':' << ldtos(max_diff_tru_joy,3) << '\t';	// [Trust] Joy % Diff
+	ss << ldtos(min_diff_tru_ant,3) << ':' << ldtos(max_diff_tru_ant,3) << '\t';	// [Trust] Anticipation % Diff
+
+	ss << ldtos(min_diff_joy_ant,3) << ':' << ldtos(max_diff_joy_ant,3) << '\t';	// [Joy] Anticipation % Diff
+
+	ss << '\n';
+
+	return ss.str();
 }
 
 /*

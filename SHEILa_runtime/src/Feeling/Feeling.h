@@ -15,6 +15,10 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <limits>
 #include "../Range/Range.h"
 
 namespace sheila {
@@ -76,6 +80,7 @@ public:
 	virtual ~Feeling();
 	const std::string& getDescription() const;
 	const std::string& getName() const;
+	std::string toString();
 
 	std::pair<long double,long double> getDiff(char a, char b);
 

@@ -19,21 +19,21 @@ namespace sheila {
 class Range {
 public:
 	Range();
-	Range(uintmax_t l,uintmax_t u);
+	Range(long double l,long double u);
 	virtual ~Range();
 
-	bool contains(uintmax_t);
+	bool contains(long double);
 
-	uintmax_t lo(){
+	long double lo(){
 		return lower_bound;
 	}
-	uintmax_t hi(){
+	long double hi(){
 		return upper_bound;
 	}
 
 private:
-	uintmax_t lower_bound;
-	uintmax_t upper_bound;
+	long double lower_bound;
+	long double upper_bound;
 };
 
 } /* namespace sheila */

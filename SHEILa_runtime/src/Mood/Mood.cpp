@@ -12,7 +12,6 @@
 #include "Mood.h"
 
 namespace sheila {
-	extern bool percent_diff(double a ,double b ,double n ,double lower_bound,double upper_bound);
 
 	std::string em(int i){
 		switch(i){

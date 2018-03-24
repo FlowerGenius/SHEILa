@@ -18,12 +18,12 @@ Range::Range() {
 	upper_bound = 0;
 }
 
-Range::Range(uintmax_t l,uintmax_t u){
+Range::Range(long double l,long double u){
 	lower_bound = l;
 	upper_bound = u;
 }
 
-bool Range::contains(uintmax_t number){
+bool Range::contains(long double number){
 	if ((number >= lower_bound) && (number <= upper_bound)){
 		return true;
 	} else {

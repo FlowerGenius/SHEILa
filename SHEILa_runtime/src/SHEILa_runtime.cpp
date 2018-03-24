@@ -13,6 +13,8 @@
 #include <typeinfo>
 #include "Mood/Mood.h"
 #include <atomic>
+#include <limits>
+#include <cfloat>
 
 
 namespace sheila {
@@ -30,27 +32,6 @@ uintmax_t stouintmax(std::string str){
 	}
 }
 
-/*
- * Return true if a is at least n% different from b on the interval [lower_bound,upper_bound]
- */
-bool percent_diff(double a ,double b ,double n ,double lower_bound,double upper_bound){
-
-//	std::cout << ad << '\t' << bd << '\t' << lo << '\t' << hi << std::endl;
-
-
-	if (n >= 0.0) { // n is a positive double
-		if (((((a - b) - lower_bound) / upper_bound) * 100.0) >= n) {
-			return true;
-		}
-	} else { // n is a negative double
-		if (((((a - b) - lower_bound) / upper_bound) * 100.0) <= n) {
-			return true;
-		}
-	}
-
-
-	return false;
-}
 
 
 
@@ -147,14 +128,14 @@ namespace server {
 		ss << "Joy" << '\t';						// Name
 		ss << "Feeling contented and joy" << '\t';	// Description
 
-		ss << "000.0000000:066.6666666" << '\t';	// [Anger] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Disgust] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Sadness] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Surprise] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Fear] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Trust] lower bound : upper bound
-		ss << "033.3333333:066.6666666" << '\t';	// [Joy] lower bound : upper bound
-		ss << "000.0000000:066.6666666" << '\t';	// [Anticipation] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Anger] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Disgust] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Sadness] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Surprise] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Fear] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Trust] lower bound : upper bound
+		ss << "033.3333333:066.666666666666666" << '\t';	// [Joy] lower bound : upper bound
+		ss << "000.0000000:066.666666666666666" << '\t';	// [Anticipation] lower bound : upper bound
 
 		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Disgust % Diff
 		ss << "-100.000000:+100.000000" << '\t';	// [Anger] Sadness % Diff
@@ -485,6 +466,8 @@ int main() {
 	sheila::runtime::mood.setTrust((100.0 / 4));
 
 	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
+	//std::cout << sheila::Feeling::feelings[0].toString();
+
 
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
