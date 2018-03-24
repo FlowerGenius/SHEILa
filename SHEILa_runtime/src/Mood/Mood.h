@@ -22,33 +22,33 @@ namespace sheila {
 class Mood {
 public:
 	Mood();
-	Mood(uintmax_t,uintmax_t,uintmax_t,uintmax_t,
-			uintmax_t,uintmax_t,uintmax_t,uintmax_t);
+	Mood(long double,long double,long double,long double,
+			long double,long double,long double,long double);
 	virtual ~Mood();
 
-	uintmax_t getAngerStrength(void);
-	void setAnger(uintmax_t);
+	long double getAngerStrength(void);
+	void setAnger(long double);
 
-	uintmax_t getDisgustStrength(void);
-	void setDisgust(uintmax_t);
+	long double getDisgustStrength(void);
+	void setDisgust(long double);
 
-	uintmax_t getSadnessStrength(void);
-	void setSadness(uintmax_t);
+	long double getSadnessStrength(void);
+	void setSadness(long double);
 
-	uintmax_t getSurpriseStrength(void);
-	void setSurprise(uintmax_t);
+	long double getSurpriseStrength(void);
+	void setSurprise(long double);
 
-	uintmax_t getFearStrength(void);
-	void setFear(uintmax_t);
+	long double getFearStrength(void);
+	void setFear(long double);
 
-	uintmax_t getTrustStrength(void);
-	void setTrust(uintmax_t);
+	long double getTrustStrength(void);
+	void setTrust(long double);
 
-	uintmax_t getJoyStrength(void);
-	void setJoy(uintmax_t);
+	long double getJoyStrength(void);
+	void setJoy(long double);
 
-	uintmax_t getAnticipationStrength(void);
-	void setAnticipation(uintmax_t);
+	long double getAnticipationStrength(void);
+	void setAnticipation(long double);
 
 	std::string getFeeling();
 

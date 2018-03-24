@@ -17,15 +17,15 @@ Emotion::Emotion() {
 	strength = 0;
 }
 
-Emotion::Emotion(uintmax_t strength) {
+Emotion::Emotion(long double strength) {
 	this->strength = strength;
 }
 
-void Emotion::setStrength(uintmax_t strength) {
+void Emotion::setStrength(long double strength) {
 	this->strength = strength;
 }
 
-uintmax_t Emotion::getStrength(void) {
+long double Emotion::getStrength(void) {
 	return strength;
 }
 
@@ -53,7 +53,7 @@ Anger::Anger() {
 	HIGH_FEELING = "rage";
 }
 
-Anger::Anger(uintmax_t strength) {
+Anger::Anger(long double strength) {
 	this->strength = strength;
 }
 
@@ -66,7 +66,7 @@ Disgust::Disgust() {
 	HIGH_FEELING = "loathing";
 }
 
-Disgust::Disgust(uintmax_t strength) {
+Disgust::Disgust(long double strength) {
 	this->strength = strength;
 }
 
@@ -79,7 +79,7 @@ Sadness::Sadness() {
 	HIGH_FEELING = "grief";
 }
 
-Sadness::Sadness(uintmax_t strength) {
+Sadness::Sadness(long double strength) {
 	this->strength = strength;
 }
 
@@ -92,7 +92,7 @@ Surprise::Surprise() {
 	HIGH_FEELING = "amazement";
 }
 
-Surprise::Surprise(uintmax_t strength) {
+Surprise::Surprise(long double strength) {
 	this->strength = strength;
 }
 
@@ -105,7 +105,7 @@ Fear::Fear() {
 	HIGH_FEELING = "terror";
 }
 
-Fear::Fear(uintmax_t strength) {
+Fear::Fear(long double strength) {
 	this->strength = strength;
 }
 
@@ -118,7 +118,7 @@ Trust::Trust() {
 	HIGH_FEELING = "admiration";
 }
 
-Trust::Trust(uintmax_t strength) {
+Trust::Trust(long double strength) {
 	this->strength = strength;
 }
 
@@ -131,7 +131,7 @@ Joy::Joy() {
 	HIGH_FEELING = "ecstasy";
 }
 
-Joy::Joy(uintmax_t strength) {
+Joy::Joy(long double strength) {
 	this->strength = strength;
 }
 
@@ -144,7 +144,7 @@ Anticipation::Anticipation() {
 	HIGH_FEELING = "interest";
 }
 
-Anticipation::Anticipation(uintmax_t strength) {
+Anticipation::Anticipation(long double strength) {
 	this->strength = strength;
 }
 

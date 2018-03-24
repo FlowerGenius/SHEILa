@@ -20,16 +20,16 @@ namespace sheila {
 class Emotion {
 public:
 	Emotion();
-	Emotion(uintmax_t strength);
+	Emotion(long double strength);
 	virtual ~Emotion();
 
-	void setStrength(uintmax_t strength);
-	uintmax_t getStrength(void);
+	void setStrength(long double strength);
+	long double getStrength(void);
 
 	std::string getFeeling(void);
 
 protected:
-	uintmax_t strength;
+	long double strength;
 	std::string LOW_FEELING;
 	std::string MID_FEELING;
 	std::string HIGH_FEELING;
@@ -38,7 +38,7 @@ protected:
 class Anger: public Emotion {
 public:
 	Anger();
-	Anger(uintmax_t strength);
+	Anger(long double strength);
 	virtual ~Anger();
 protected:
 
@@ -47,7 +47,7 @@ protected:
 class Disgust: public Emotion {
 public:
 	Disgust();
-	Disgust(uintmax_t strength);
+	Disgust(long double strength);
 	virtual ~Disgust();
 protected:
 
@@ -56,7 +56,7 @@ protected:
 class Sadness: public Emotion {
 public:
 	Sadness();
-	Sadness(uintmax_t strength);
+	Sadness(long double strength);
 	virtual ~Sadness();
 protected:
 
@@ -65,7 +65,7 @@ protected:
 class Surprise: public Emotion {
 public:
 	Surprise();
-	Surprise(uintmax_t strength);
+	Surprise(long double strength);
 	virtual ~Surprise();
 protected:
 
@@ -74,7 +74,7 @@ protected:
 class Fear: public Emotion {
 public:
 	Fear();
-	Fear(uintmax_t strength);
+	Fear(long double strength);
 	virtual ~Fear();
 protected:
 
@@ -83,7 +83,7 @@ protected:
 class Trust: public Emotion {
 public:
 	Trust();
-	Trust(uintmax_t strength);
+	Trust(long double strength);
 	virtual ~Trust();
 protected:
 
@@ -92,7 +92,7 @@ protected:
 class Joy: public Emotion {
 public:
 	Joy();
-	Joy(uintmax_t strength);
+	Joy(long double strength);
 	virtual ~Joy();
 protected:
 
@@ -101,7 +101,7 @@ protected:
 class Anticipation: public Emotion {
 public:
 	Anticipation();
-	Anticipation(uintmax_t strength);
+	Anticipation(long double strength);
 	virtual ~Anticipation();
 protected:
 

@@ -59,9 +59,9 @@ namespace server {
 Mood::Mood() {
 }
 
-Mood::Mood(uintmax_t anger, uintmax_t disgust, uintmax_t sadness,
-		uintmax_t surprise, uintmax_t fear, uintmax_t trust, uintmax_t joy,
-		uintmax_t anticipation) {
+Mood::Mood(long double anger, long double disgust, long double sadness,
+		long double surprise, long double fear, long double trust, long double joy,
+		long double anticipation) {
 	this->anger = Anger(anger);
 	this->disgust = Disgust(disgust);
 	this->sadness = Sadness(sadness);
@@ -72,67 +72,67 @@ Mood::Mood(uintmax_t anger, uintmax_t disgust, uintmax_t sadness,
 	this->anticipation = Anticipation(anticipation);
 }
 
-uintmax_t Mood::getAngerStrength(void) {
+long double Mood::getAngerStrength(void) {
 	return this->anger.getStrength();
 }
 
-void Mood::setAnger(uintmax_t anger) {
+void Mood::setAnger(long double anger) {
 	this->anger.setStrength(anger);
 }
 
-uintmax_t Mood::getDisgustStrength(void) {
+long double Mood::getDisgustStrength(void) {
 	return this->disgust.getStrength();
 }
 
-void Mood::setDisgust(uintmax_t disgust) {
+void Mood::setDisgust(long double disgust) {
 	this->disgust.setStrength(disgust);
 }
 
-uintmax_t Mood::getSadnessStrength(void) {
+long double Mood::getSadnessStrength(void) {
 	return this->sadness.getStrength();
 }
 
-void Mood::setSadness(uintmax_t sadness) {
+void Mood::setSadness(long double sadness) {
 	this->sadness.setStrength(sadness);
 }
 
-uintmax_t Mood::getSurpriseStrength(void) {
+long double Mood::getSurpriseStrength(void) {
 	return this->surprise.getStrength();
 }
 
-void Mood::setSurprise(uintmax_t surprise) {
+void Mood::setSurprise(long double surprise) {
 	this->surprise.setStrength(surprise);
 }
 
-uintmax_t Mood::getFearStrength(void) {
+long double Mood::getFearStrength(void) {
 	return this->fear.getStrength();
 }
 
-void Mood::setFear(uintmax_t fear) {
+void Mood::setFear(long double fear) {
 	this->fear.setStrength(fear);
 }
 
-uintmax_t Mood::getTrustStrength(void) {
+long double Mood::getTrustStrength(void) {
 	return this->trust.getStrength();
 }
 
-void Mood::setTrust(uintmax_t trust) {
+void Mood::setTrust(long double trust) {
 	this->trust.setStrength(trust);
 }
 
-uintmax_t Mood::getJoyStrength(void) {
+long double Mood::getJoyStrength(void) {
 	return this->joy.getStrength();
 }
 
-void Mood::setJoy(uintmax_t joy) {
+void Mood::setJoy(long double joy) {
 	this->joy.setStrength(joy);
 }
 
-uintmax_t Mood::getAnticipationStrength(void) {
+long double Mood::getAnticipationStrength(void) {
 	return this->anticipation.getStrength();
 }
 
-void Mood::setAnticipation(uintmax_t anticipation) {
+void Mood::setAnticipation(long double anticipation) {
 	this->anticipation.setStrength(anticipation);
 }
 
@@ -141,7 +141,7 @@ void Mood::setAnticipation(uintmax_t anticipation) {
 // then SHEILa is experiencing that feeling
 std::string Mood::getFeeling() {
 
-	std::vector<uintmax_t> temp_emotions = {
+	std::vector<long double> temp_emotions = {
 			getAngerStrength(),
 			getDisgustStrength(),
 			getSadnessStrength(),
@@ -169,135 +169,40 @@ std::string Mood::getFeeling() {
 				(*it).ant_range
 		};
 
-//		bool test[8][9]{
-//			{
-//				(*it).anger_range.contains(temp_emotions[ANGER]),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[ANGER],(*it).a(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[DISGUST],(*it).b(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[SADNESS],(*it).c(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[SURPRISE],(*it).d(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[FEAR],(*it).e(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[TRUST],(*it).f(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[JOY],(*it).g(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi()),
-//				sheila::percent_diff(temp_emotions[ANGER],temp_emotions[ANTICIPATION],(*it).h(1),temp_ranges[ANGER].lo(),temp_ranges[ANGER].hi())
-//			},
-//			{
-//				(*it).disgust_range.contains(temp_emotions[DISGUST]),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[ANGER],(*it).a(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[DISGUST],(*it).b(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[SADNESS],(*it).c(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[SURPRISE],(*it).d(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[FEAR],(*it).e(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[TRUST],(*it).f(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[JOY],(*it).g(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi()),
-//				sheila::percent_diff(temp_emotions[DISGUST],temp_emotions[ANTICIPATION],(*it).h(2),temp_ranges[DISGUST].lo(),temp_ranges[DISGUST].hi())
-//			},
-//			{
-//				(*it).sadness_range.contains(temp_emotions[SADNESS]),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[ANGER],(*it).a(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[DISGUST],(*it).b(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[SADNESS],(*it).c(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[SURPRISE],(*it).d(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[FEAR],(*it).e(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[TRUST],(*it).f(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[JOY],(*it).g(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi()),
-//				sheila::percent_diff(temp_emotions[SADNESS],temp_emotions[ANTICIPATION],(*it).h(3),temp_ranges[SADNESS].lo(),temp_ranges[SADNESS].hi())
-//			},
-//			{
-//				(*it).surprise_range.contains(temp_emotions[SURPRISE]),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[ANGER],(*it).a(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[DISGUST],(*it).b(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[SADNESS],(*it).c(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[SURPRISE],(*it).d(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[FEAR],(*it).e(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[TRUST],(*it).f(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[JOY],(*it).g(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi()),
-//				sheila::percent_diff(temp_emotions[SURPRISE],temp_emotions[ANTICIPATION],(*it).h(4),temp_ranges[SURPRISE].lo(),temp_ranges[SURPRISE].hi())
-//			},
-//			{
-//				(*it).fear_range.contains(temp_emotions[FEAR]),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[ANGER],(*it).a(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[DISGUST],(*it).b(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[SADNESS],(*it).c(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[SURPRISE],(*it).d(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[FEAR],(*it).e(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[TRUST],(*it).f(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[JOY],(*it).g(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi()),
-//				sheila::percent_diff(temp_emotions[FEAR],temp_emotions[ANTICIPATION],(*it).h(5),temp_ranges[FEAR].lo(),temp_ranges[FEAR].hi())
-//			},
-//			{
-//				(*it).trust_range.contains(temp_emotions[TRUST]),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[ANGER],(*it).a(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[DISGUST],(*it).b(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[SADNESS],(*it).c(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[SURPRISE],(*it).d(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[FEAR],(*it).e(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[TRUST],(*it).f(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[JOY],(*it).g(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi()),
-//				sheila::percent_diff(temp_emotions[TRUST],temp_emotions[ANTICIPATION],(*it).h(6),temp_ranges[TRUST].lo(),temp_ranges[TRUST].hi())
-//			},
-//			{
-//				(*it).joy_range.contains(temp_emotions[JOY]),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[ANGER],(*it).a(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[DISGUST],(*it).b(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[SADNESS],(*it).c(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[SURPRISE],(*it).d(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[FEAR],(*it).e(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[TRUST],(*it).f(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[JOY],(*it).g(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi()),
-//				sheila::percent_diff(temp_emotions[JOY],temp_emotions[ANTICIPATION],(*it).h(7),temp_ranges[JOY].lo(),temp_ranges[JOY].hi())
-//			},
-//			{
-//				(*it).anticipation_range.contains(temp_emotions[ANTICIPATION]),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[ANGER],(*it).a(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[DISGUST],(*it).b(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[SADNESS],(*it).c(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[SURPRISE],(*it).d(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[FEAR],(*it).e(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[TRUST],(*it).f(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[JOY],(*it).g(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi()),
-//				sheila::percent_diff(temp_emotions[ANTICIPATION],temp_emotions[ANTICIPATION],(*it).h(8),temp_ranges[ANTICIPATION].lo(),temp_ranges[ANTICIPATION].hi())
-//			}
-//
-//		};
+		match = true;
 
 		for (char i = 0; i <= 7;i++){
 
+			bool inrange = temp_ranges[i].contains(temp_emotions[i]);
+
 			for (char n = 0; n <= 7;n++){
 				if (i!=n){
-				std::cout << em(i) << " must be at least " << (*it).getDiff(i,n).first << "% different from " << em(n) << std::endl;
-				std::cout << em(i) << " must be at most " << (*it).getDiff(i,n).second << "% different from " << em(n) << std::endl;
+
+
+					bool atleast = (temp_emotions[i] >= temp_emotions[n] + (*it).getDiff(i,n).first);
+					bool atmost  = (temp_emotions[i] <= temp_emotions[n] + (*it).getDiff(i,n).second);
+
+					if ( atleast && atmost && inrange){
+						std::cout << "[" << temp_emotions[i] << "%]" << em(i) << "passed" << atleast << atmost << inrange << std::endl;
+					} else {
+						match = false;
+						std::cout << "[" << temp_emotions[i] << "%]" << em(i) << "failed" << atleast << atmost << inrange << std::endl;
+					}
 				}
 			}
 		}
 
-		if (!(*it).ang_range.contains(temp_emotions[ANGER])) {
-			match = false;
-		} else if (!(*it).dis_range.contains(temp_emotions[DISGUST])) {
-			match = false;
-		} else if (!(*it).sad_range.contains(temp_emotions[SADNESS])) {
-			match = false;
-		} else if (!(*it).sur_range.contains(temp_emotions[SURPRISE])) {
-			match = false;
-		} else if (!(*it).fea_range.contains(temp_emotions[FEAR])) {
-			match = false;
-		} else if (!(*it).tru_range.contains(temp_emotions[TRUST])) {
-			match = false;
-		} else if (!(*it).joy_range.contains(temp_emotions[JOY])) {
-			match = false;
-		} else if (!(*it).ant_range.contains(temp_emotions[ANTICIPATION])) {
-			match = false;
-		} else {
-			match = true;
+		if (match) {
 			allfeelings.push_back(*it);
 		}
 
 	}
 
-	std::cout << "All Feelings: " << temp_feelings.size() << std::endl
-			<< "Matches: " << allfeelings.size() << std::endl;
-
-	return allfeelings.at(0).getName();
+	if (allfeelings.size() == 1){
+		return allfeelings.at(0).getName();
+	} else {
+		return "I don't know";
+	}
 }
 
 Mood::~Mood() {

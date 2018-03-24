@@ -210,10 +210,10 @@ namespace server {
 			std::string feeling_name;
 			std::string feeling_desc;
 
-			double temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
-			double temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
+			long double temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
+			long double temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
 
-			std::vector<double> diffs;
+			std::vector<long double> diffs;
 
 
 			feeling_s = testresponse.substr(0, pos);
@@ -232,48 +232,48 @@ namespace server {
 					break;
 				case 2:
 					pos3 = feeling_s_s.find(':');
-					temp_min1 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max1 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min1 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max1 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 3:
 					pos3 = feeling_s_s.find(':');
-					temp_min2 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max2 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min2 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max2 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 4:
 					pos3 = feeling_s_s.find(':');
-					temp_min3 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max3 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min3 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max3 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 5:
 					pos3 = feeling_s_s.find(':');
-					temp_min4 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max4 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min4 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max4 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 6:
 					pos3 = feeling_s_s.find(':');
-					temp_min5 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max5 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min5 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max5 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 7:
 					pos3 = feeling_s_s.find(':');
-					temp_min6 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max6 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min6 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max6 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 8:
 					pos3 = feeling_s_s.find(':');
-					temp_min7 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max7 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min7 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max7 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				case 9:
 					pos3 = feeling_s_s.find(':');
-					temp_min8 = std::stod(feeling_s_s.substr(0,pos3));
-					temp_max8 = std::stod(feeling_s_s.substr(pos3+1));
+					temp_min8 = std::stold(feeling_s_s.substr(0,pos3));
+					temp_max8 = std::stold(feeling_s_s.substr(pos3+1));
 					break;
 				default:
 					pos3 = feeling_s_s.find(':');
-					diffs.push_back(std::stod(feeling_s_s.substr(0,pos3)));
-					diffs.push_back(std::stod(feeling_s_s.substr(pos3+1)));
+					diffs.push_back(std::stold(feeling_s_s.substr(0,pos3)));
+					diffs.push_back(std::stold(feeling_s_s.substr(pos3+1)));
 					break;
 				}
 
@@ -282,14 +282,14 @@ namespace server {
 			}
 			testresponse.erase(0, pos+1);
 			temp_feelings.push_back(Feeling(feeling_name, feeling_desc,
-										(temp_min1 / 100.0) * UINTMAX_MAX,(temp_max1 / 100.0) * UINTMAX_MAX,
-										(temp_min2 / 100.0) * UINTMAX_MAX,(temp_max2 / 100.0) * UINTMAX_MAX,
-										(temp_min3 / 100.0) * UINTMAX_MAX,(temp_max3 / 100.0) * UINTMAX_MAX,
-										(temp_min4 / 100.0) * UINTMAX_MAX,(temp_max4 / 100.0) * UINTMAX_MAX,
-										(temp_min5 / 100.0) * UINTMAX_MAX,(temp_max5 / 100.0) * UINTMAX_MAX,
-										(temp_min6 / 100.0) * UINTMAX_MAX,(temp_max6 / 100.0) * UINTMAX_MAX,
-										(temp_min7 / 100.0) * UINTMAX_MAX,(temp_max7 / 100.0) * UINTMAX_MAX,
-										(temp_min8 / 100.0) * UINTMAX_MAX,(temp_max8 / 100.0) * UINTMAX_MAX,
+										temp_min1,temp_max1,
+										temp_min2,temp_max2,
+										temp_min3,temp_max3,
+										temp_min4,temp_max4,
+										temp_min5,temp_max5,
+										temp_min6,temp_max6,
+										temp_min7,temp_max7,
+										temp_min8,temp_max8,
 										 diffs[0],  diffs[1],
 										 diffs[2],  diffs[3],
 										 diffs[4],  diffs[5],
@@ -481,10 +481,11 @@ namespace runtime {
 
 int main() {
 
-	sheila::runtime::mood.setJoy(UINTMAX_MAX / 2);
-	sheila::runtime::mood.setTrust((UINTMAX_MAX / 2) - 300);
+	sheila::runtime::mood.setJoy(100.0 / 2);
+	sheila::runtime::mood.setTrust((100.0 / 4));
 
 	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
+
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
 	}
