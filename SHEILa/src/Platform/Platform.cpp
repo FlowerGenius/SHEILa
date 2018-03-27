@@ -14,6 +14,8 @@
 namespace sheila {
 namespace platform {
 
+std::vector<Platform> Platform::platforms;
+
 Platform::Platform() {
 	// TODO Auto-generated constructor stub
 

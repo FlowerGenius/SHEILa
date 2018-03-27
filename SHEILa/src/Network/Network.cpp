@@ -14,6 +14,8 @@
 namespace sheila {
 namespace network {
 
+std::vector<Network> Network::networks;
+
 Network::Network() {
 	// TODO Auto-generated constructor stub
 

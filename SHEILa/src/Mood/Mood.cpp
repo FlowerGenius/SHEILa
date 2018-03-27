@@ -10,6 +10,7 @@
 //============================================================================
 
 #include "Mood.h"
+#include "../Server/Server.h"
 
 namespace sheila {
 
@@ -49,10 +50,6 @@ namespace sheila {
 			JOY,
 			ANTICIPATION
 		};
-
-namespace server {
-	extern std::vector<Feeling> feelings();
-}
 
 
 Mood::Mood() {
@@ -151,7 +148,7 @@ std::string Mood::getFeeling() {
 			getAnticipationStrength()
 	};
 
-	std::vector<Feeling> temp_feelings = server::feelings();
+	std::vector<Feeling> temp_feelings = server::Server::feelings();
 	std::vector<Feeling> allfeelings;
 
 	for (std::vector<Feeling>::iterator it = temp_feelings.begin(); it != temp_feelings.end(); ++it) {

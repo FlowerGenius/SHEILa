@@ -13,6 +13,14 @@
 #define SERVER_SERVER_H_
 
 #include <stdint.h>
+#include <vector>
+#include "IPAddress/IPAddress.h"
+#include "Feeling/Feeling.h"
+#include "Mood/Mood.h"
+
+//#include "Network/Network.h"
+//#include "Platform/Platform.h"
+//#include "Runtime/Runtime.h"
 
 namespace sheila {
 namespace server {
@@ -22,13 +30,25 @@ public:
 	Server();
 	virtual ~Server();
 
-	static uintmax_t getActiveRuntimes();
+	static Mood mood();
+
+	static std::vector<Feeling> feelings();
+
+	uintmax_t getActiveRuntimes();
+
 
 private:
 
 	static int instanceId;
 
-	static uintmax_t active_runtimes;
+	uintmax_t active_runtimes;
+
+	sheila::ipaddress::IPv4 ipaddrv4;
+	sheila::ipaddress::IPv6 ipaddrv6;
+
+
+
+
 };
 
 } /* namespace server */

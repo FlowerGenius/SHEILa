@@ -26,13 +26,8 @@ public:
 	void setStrength(long double strength);
 	long double getStrength(void);
 
-	std::string getFeeling(void);
-
 protected:
 	long double strength;
-	std::string LOW_FEELING;
-	std::string MID_FEELING;
-	std::string HIGH_FEELING;
 };
 
 class Anger: public Emotion {

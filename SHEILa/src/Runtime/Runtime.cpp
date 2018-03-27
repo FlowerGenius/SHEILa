@@ -14,18 +14,22 @@
 namespace sheila {
 namespace runtime {
 
-uintmax_t Runtime::instanceId;
+uintmax_t Runtime::instances = 0;
 
 Runtime::Runtime() {
-	instanceId = instanceId + 1;
-	if (instanceId > 1){
-		//TODO Throw an error if there is already a server class
-	}
+	instances += 1;
+
+}
+
+const uintmax_t Runtime::getInstanceId() const {
+	return instanceId;
 }
 
 Runtime::~Runtime() {
-	// TODO Auto-generated destructor stub
+	instances -= 1;
 }
+
+
 
 } /* namespace runtime */
 } /* namespace sheila */

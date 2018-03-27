@@ -13,6 +13,7 @@
 #define RUNTIME_RUNTIME_H_
 
 #include <stdint.h>
+#include "IPAddress/IPAddress.h"
 
 namespace sheila {
 namespace runtime {
@@ -22,8 +23,14 @@ public:
 	Runtime();
 	virtual ~Runtime();
 
+	const uintmax_t getInstanceId() const;
+
 private:
-	static uintmax_t instanceId;
+	static uintmax_t instances;
+	const uintmax_t instanceId = instances + 1;
+
+	sheila::ipaddress::IPv4 ipv4;
+	sheila::ipaddress::IPv6 ipv6;
 
 };
 
