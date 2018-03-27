@@ -33,7 +33,6 @@ std::string ldtos(long double d, int coeff_digits){
 std::vector<Feeling> Feeling::feelings;
 
 Feeling::Feeling() {
-
 }
 
 Feeling::Feeling(std::string name, std::string desc,

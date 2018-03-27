@@ -15,6 +15,8 @@
 #include <atomic>
 #include <limits>
 #include <cfloat>
+#include <unistd.h>
+#include <bitset>
 
 
 namespace sheila {
@@ -457,10 +459,41 @@ namespace runtime {
 	uintmax_t instanceID;
 	Mood mood;
 
+	/*
+	 * Checks if this platform should do something
+	 */
+	int loop(){
+
+
+		return 0;
+	}
+
+	int checks(){
+
+		if (isatty(fileno(stdin))){
+			std::cout << "is a term" << std::endl;
+		}
+
+		return 0;
+	}
+
+	int write(){
+
+	}
+
+	int say(){
+
+	}
+
+	int show(){
+
+	}
+
 }
 }
 
 int main() {
+
 
 	sheila::runtime::mood.setJoy(100.0 / 2);
 	sheila::runtime::mood.setTrust((100.0 / 4));
@@ -468,9 +501,30 @@ int main() {
 	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
 	//std::cout << sheila::Feeling::feelings[0].toString();
 
+	//sheila::runtime::checks();
 
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
 	}
+
+
+	uint8_t a,b,c,d;
+	a = 192;
+	b = 168;
+	c = 0;
+	d = 2;
+
+	uint32_t as = (a << 24) | (b << 16) | (c << 8) | d;
+
+	std::bitset<32> temp_bits = std::bitset<32>(as);
+
+
+
+	uint8_t aw = as >> 16;
+
+
+
+	std::cout << std::bitset<32>(as) << std::endl << int(aw) << std::endl;
+
 	return 0;
 }
