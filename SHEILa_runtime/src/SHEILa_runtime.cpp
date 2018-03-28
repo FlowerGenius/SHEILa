@@ -15,6 +15,7 @@
 #include "Mood/Mood.h"
 #include "Server/Server.h"
 #include "Runtime/Runtime.h";
+#include "Network/Network.h"
 #include <atomic>
 #include <limits>
 #include <cfloat>
@@ -55,23 +56,7 @@ namespace server {
 
 //Information about the local network this platform is connected to
 namespace network {
-	bool active = false;
-
-	const char* IPv4 = "";
-	const char* IPv6 = "";
-	const char* MAC	 = "";
-
-	uintmax_t active_runtimes = 0;
-
-	Mood mood;
-
-	/*
-	 * Query the server for runtimes active on this network.
-	 */
-	int find_active_runtimes(){
-		return 0;
-	}
-
+	Network NETWORK = Network();
 }
 
 //Information about the platform this runtime is active on

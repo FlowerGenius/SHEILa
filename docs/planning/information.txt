@@ -55,3 +55,25 @@ The duties of a SHEILa instance are:
 	
 	7. To Query the central server for program updates and implement them as
 	soon as possible.
+	
+//============================================================================
+
+If a class CLASS_NAME provides an interface for persistent data, it creates 
+a folder at:
+
+{SHEILA_ROOT}/config/{CLASS_NAME}s
+
+where each file in this folder is a parse friendly file describing a
+unique instance of CLASS_NAME to be created for the program.
+
+If a new class CLASS_NAME is created, it creates:
+
+{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{CLASS_NAME}.cpp
+{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{CLASS_NAME}.h
+ 
+If a SUB_CLASS of a class CLASS_NAME is created, it creates:
+
+{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{SUB_CLASS}.cpp
+{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{SUB_CLASS}.h
+
+ 

@@ -18,6 +18,7 @@
 #include "../Runtime/Runtime.h"
 #include "../Mood/Mood.h"
 #include "../IPAddress/IPAddress.h"
+#include "../Version/Version.h"
 
 namespace sheila {
 namespace platform {
@@ -32,11 +33,17 @@ public:
 	uintmax_t getPlatformId();
 
 private:
+
 	bool active;
 	uintmax_t platformId;
 
 	static std::vector<Platform> platforms;
 	std::vector<sheila::runtime::Runtime> runtimes;
+
+	std::string CPU;
+	std::string GPU;
+	std::string os;
+	sheila::Version os_version;
 
 	sheila::ipaddress::IPv4 ipaddrv4;
 	sheila::ipaddress::IPv6 ipaddrv6;
