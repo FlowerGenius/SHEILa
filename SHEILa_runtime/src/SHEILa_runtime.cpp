@@ -9,13 +9,13 @@
 // Modified    : March 19, 2018
 //============================================================================
 
+#include <Entity/Mood/Mood.h>
+#include <Entity/Network/Network.h>
+#include <Entity/Runtime/Runtime.h>
+#include <Entity/Server/Server.h>
 
 #include "headers.h"
 #include <typeinfo>
-#include "Mood/Mood.h"
-#include "Server/Server.h"
-#include "Runtime/Runtime.h";
-#include "Network/Network.h"
 #include <atomic>
 #include <limits>
 #include <cfloat>
@@ -177,6 +177,7 @@ int main() {
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
 	}
+
 
 
 	return 0;
