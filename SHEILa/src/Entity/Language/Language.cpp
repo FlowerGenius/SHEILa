@@ -12,7 +12,6 @@
 #include <Entity/Language/Language.h>
 
 namespace sheila {
-namespace language {
 
 Language::Language() {
 	// TODO Auto-generated constructor stub
@@ -23,5 +22,4 @@ Language::~Language() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace language */
 } /* namespace sheila */

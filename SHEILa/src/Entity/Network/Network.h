@@ -12,7 +12,8 @@
 #ifndef ENTITY_NETWORK_NETWORK_H_
 #define ENTITY_NETWORK_NETWORK_H_
 
-#include <Entity/IPAddress/IPAddress.h>
+#include <Entity/IPAddress/IPv4/IPv4.h>
+#include <Entity/IPAddress/IPv6/IPv6.h>
 #include <Entity/Mood/Mood.h>
 #include <Entity/Platform/Platform.h>
 #include <Entity/Runtime/Runtime.h>
@@ -37,8 +38,8 @@ private:
 	static std::vector<Network> networks;
 	std::vector<sheila::platform::Platform> platforms;
 
-	sheila::ipaddress::IPv4 ipaddrv4;
-	sheila::ipaddress::IPv6 ipaddrv6;
+	sheila::IPv4 ipaddrv4;
+	sheila::IPv6 ipaddrv6;
 
 };
 

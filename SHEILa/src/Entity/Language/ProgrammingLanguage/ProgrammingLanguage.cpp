@@ -1,25 +1,24 @@
 //SHEILa======================================================================
-// Name        : Server.cpp
+// Name        : ProgrammingLanguage.cpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
 // Description : 
-// Module	   : SHEILa_runtime
-// Created     : Mar 27, 2018
+// Module	   : SHEILa
+// Created     : Mar 31, 2018
 // Modified    :
 //============================================================================
 
-#include <Entity/Server/Server.h>
+#include <Entity/Language/ProgrammingLanguage/ProgrammingLanguage.h>
 
 namespace sheila {
 
-Server::Server() {
+ProgrammingLanguage::ProgrammingLanguage() {
+	// TODO Auto-generated constructor stub
 
 }
 
-
-
-Server::~Server() {
+ProgrammingLanguage::~ProgrammingLanguage() {
 	// TODO Auto-generated destructor stub
 }
 

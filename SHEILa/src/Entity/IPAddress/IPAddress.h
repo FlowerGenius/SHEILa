@@ -16,12 +16,11 @@
 #include <string>
 #include <sstream>
 #include <bitset>
+#include <Entity/Entity.h>
 
 namespace sheila {
-namespace ipaddress {
 
-
-class IPAddress {
+class IPAddress : public Entity {
 public:
 	IPAddress();
 	virtual ~IPAddress();
@@ -29,44 +28,6 @@ public:
 	//virtual std::string toString();
 };
 
-/* Internet Protocol address using a 32-bit address */
-class IPv4 : public IPAddress {
-public:
-	IPv4();
-	IPv4(uint32_t address);
-	IPv4(std::string address);
-	IPv4(const char* address);
-	IPv4(uint8_t a,uint8_t b,uint8_t c,uint8_t d);
-
-
-	virtual ~IPv4();
-
-	uint32_t getAddress();
-
-	std::string toString();
-
-private:
-	uint8_t a;
-	uint8_t b;
-	uint8_t c;
-	uint8_t d;
-};
-
-/* Internet Protocol address using a 128-bit address */
-class IPv6 : public IPAddress {
-public:
-	IPv6();
-	virtual ~IPv6();
-
-
-
-	std::string toString();
-private:
-
-};
-
-
-} /* namespace ipaddress */
 } /* namespace sheila */
 
 #endif /* ENTITY_IPADDRESS_IPADDRESS_H_ */

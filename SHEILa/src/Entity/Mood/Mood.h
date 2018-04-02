@@ -53,14 +53,14 @@ public:
 	std::string getFeeling();
 
 private:
-	Anger 			anger;
-	Disgust 		disgust;
-	Sadness 		sadness;
-	Surprise 		surprise;
-	Fear 			fear;
-	Trust 			trust;
-	Joy 			joy;
-	Anticipation 	anticipation;
+	Emotion anger;
+	Emotion disgust;
+	Emotion sadness;
+	Emotion surprise;
+	Emotion	fear;
+	Emotion trust;
+	Emotion	joy;
+	Emotion	anticipation;
 };
 
 } /* namespace sheila */

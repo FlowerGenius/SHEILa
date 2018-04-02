@@ -13,12 +13,13 @@
 #define ENTITY_PLATFORM_PLATFORM_H_
 
 #include <Entity/Version/Version.h>
+#include <Entity/Runtime/Runtime.h>
+#include <Entity/Mood/Mood.h>
+#include <Entity/IPAddress/IPv4/IPv4.h>
+#include <Entity/IPAddress/IPv6/IPv6.h>
+
 #include <stdint.h>
 #include <vector>
-
-#include "../Runtime/Runtime.h"
-#include "../Mood/Mood.h"
-#include "../IPAddress/IPAddress.h"
 
 namespace sheila {
 namespace platform {
@@ -45,8 +46,8 @@ private:
 	std::string os;
 	sheila::Version os_version;
 
-	sheila::ipaddress::IPv4 ipaddrv4;
-	sheila::ipaddress::IPv6 ipaddrv6;
+	sheila::IPv4 ipaddrv4;
+	sheila::IPv6 ipaddrv6;
 };
 
 } /* namespace platform */

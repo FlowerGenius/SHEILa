@@ -14,22 +14,41 @@
 
 namespace sheila {
 
-const std::string Entity::_name = "Entity";
-
-const std::string Entity::_desc = "A thing that has a name, and can be described";
+std::vector<Entity> Entity::entities;
 
 Entity::Entity() {
-	// TODO Auto-generated constructor stub
+	_name = {"Entity"};
+	_desc = {"A thing that has a name, and can be described"};
+}
+
+void Entity::_E_eval(std::string){
 
 }
 
-std::string Entity::repr(){
+
+std::string Entity::_E_repr(){
 
 }
 
-void Entity::eval(std::string){
-
+const std::vector<std::string>& Entity::_getName() const {
+	return _name;
 }
+
+const std::vector<std::string>& Entity::_getDesc() const {
+	return _desc;
+}
+
+const std::vector<Entity>& Entity::_getParents() const {
+	return _parents;
+}
+
+const std::vector<Entity>& Entity::_getChildren() const {
+	return _children;
+}
+
+
+
+
 
 Entity::~Entity() {
 	// TODO Auto-generated destructor stub

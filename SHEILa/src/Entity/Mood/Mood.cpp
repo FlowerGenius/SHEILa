@@ -10,7 +10,7 @@
 //============================================================================
 
 #include <Entity/Mood/Mood.h>
-#include <Entity/Server/Server.h>
+#include <Entity/Server/SHEILaCoreServer/SHEILaCoreServer.h>
 
 namespace sheila {
 
@@ -58,14 +58,14 @@ Mood::Mood() {
 Mood::Mood(long double anger, long double disgust, long double sadness,
 		long double surprise, long double fear, long double trust, long double joy,
 		long double anticipation) {
-	this->anger = Anger(anger);
-	this->disgust = Disgust(disgust);
-	this->sadness = Sadness(sadness);
-	this->surprise = Surprise(surprise);
-	this->fear = Fear(fear);
-	this->trust = Trust(trust);
-	this->joy = Joy(joy);
-	this->anticipation = Anticipation(anticipation);
+	this->anger 		= Emotion(anger);
+	this->disgust 		= Emotion(disgust);
+	this->sadness 		= Emotion(sadness);
+	this->surprise 		= Emotion(surprise);
+	this->fear 			= Emotion(fear);
+	this->trust 		= Emotion(trust);
+	this->joy 			= Emotion(joy);
+	this->anticipation 	= Emotion(anticipation);
 }
 
 long double Mood::getAngerStrength(void) {
@@ -137,6 +137,8 @@ void Mood::setAnticipation(long double anticipation) {
 // then SHEILa is experiencing that feeling
 std::string Mood::getFeeling() {
 
+	bool match,atleast,atmost,inrange;
+
 	std::vector<long double> temp_emotions = {
 			getAngerStrength(),
 			getDisgustStrength(),
@@ -148,41 +150,50 @@ std::string Mood::getFeeling() {
 			getAnticipationStrength()
 	};
 
-	std::vector<Feeling> temp_feelings = server::Server::feelings();
+	std::vector<Feeling> temp_feelings = SHEILaCoreServer::feelings();
 	std::vector<Feeling> allfeelings;
 
 	for (std::vector<Feeling>::iterator it = temp_feelings.begin(); it != temp_feelings.end(); ++it) {
-		bool match = true;
-
-		std::vector<Range> temp_ranges = {
-				(*it).ang_range,
-				(*it).dis_range,
-				(*it).sad_range,
-				(*it).sur_range,
-				(*it).fea_range,
-				(*it).tru_range,
-				(*it).joy_range,
-				(*it).ant_range
-		};
 
 		match = true;
 
 		for (char i = 0; i <= 7;i++){
 
-			bool inrange = temp_ranges[i].contains(temp_emotions[i]);
+			switch(i){
+			case ANGER:
+				inrange = (*it).ang_range.contains(getAngerStrength());
+				break;
+			case DISGUST:
+				inrange = (*it).dis_range.contains(getDisgustStrength());
+				break;
+			case SADNESS:
+				inrange = (*it).sad_range.contains(getSadnessStrength());
+				break;
+			case SURPRISE:
+				inrange = (*it).sur_range.contains(getSurpriseStrength());
+				break;
+			case FEAR:
+				inrange = (*it).fea_range.contains(getFearStrength());
+				break;
+			case TRUST:
+				inrange = (*it).tru_range.contains(getTrustStrength());
+				break;
+			case JOY:
+				inrange = (*it).joy_range.contains(getJoyStrength());
+				break;
+			case ANTICIPATION:
+				inrange = (*it).ant_range.contains(getAnticipationStrength());
+				break;
+			}
 
 			for (char n = 0; n <= 7;n++){
 				if (i!=n){
 
+					atleast = (temp_emotions[i]  >= temp_emotions[n] + (*it).getDiff(i,n).first);
+					atmost  = (temp_emotions[i]  <= temp_emotions[n] + (*it).getDiff(i,n).second);
 
-					bool atleast = (temp_emotions[i] >= temp_emotions[n] + (*it).getDiff(i,n).first);
-					bool atmost  = (temp_emotions[i] <= temp_emotions[n] + (*it).getDiff(i,n).second);
-
-					if ( atleast && atmost && inrange){
-						std::cout << "[" << temp_emotions[i] << "%]" << em(i) << "passed" << atleast << atmost << inrange << std::endl;
-					} else {
+					if ( !atleast || !atmost || !inrange){
 						match = false;
-						std::cout << "[" << temp_emotions[i] << "%]" << em(i) << "failed" << atleast << atmost << inrange << std::endl;
 					}
 				}
 			}

@@ -1,26 +1,29 @@
 //SHEILa======================================================================
-// Name        : Server.cpp
+// Name        : IPv6.cpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
 // Description : 
-// Module	   : SHEILa_runtime
-// Created     : Mar 27, 2018
+// Module	   : SHEILa
+// Created     : Mar 31, 2018
 // Modified    :
 //============================================================================
 
-#include <Entity/Server/Server.h>
+#include <Entity/IPAddress/IPv6/IPv6.h>
 
 namespace sheila {
 
-Server::Server() {
-
+IPv6::IPv6(){
+	_name.push_back("IPv6");
+	_desc.push_back("A protocol for routing network traffic");
 }
 
+std::string IPv6::toString(){
+	return "";
+}
 
+IPv6::~IPv6(){
 
-Server::~Server() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace sheila */

@@ -29,12 +29,6 @@ public:
 
 	static std::vector<Feeling> feelings;
 
-	/* Promises that each subclass of entity has variable "name" */
-	static const std::string _name;
-
-	/* Promises that each subclass of entity has variable "desc" */
-	static const std::string _desc;
-
 	enum {
 		ANGER,
 		DISGUST,
@@ -87,7 +81,8 @@ public:
 	virtual ~Feeling();
 	const std::string& getDescription() const;
 	const std::string& getName() const;
-	std::string toString();
+	std::string _E_repr();
+	void		_E_eval();
 
 	std::pair<long double,long double> getDiff(char a, char b);
 

@@ -13,13 +13,6 @@
 #define SHEILA_H_
 
 /*
- *
- */
-
-/* The location on the server of my core files */
-#define SHEILA_ROOT "/home/erin/Documents/SHEILa"
-
-/*
  * SHEILa sees some object she does not recognize and asks "What is that?"
  *
  *	1. sees a chair, asks the user
@@ -54,5 +47,9 @@
  *
  */
 
+
+
+#include "symbols.inc"
+#include "includes.inc"
 
 #endif /* SHEILA_H_ */

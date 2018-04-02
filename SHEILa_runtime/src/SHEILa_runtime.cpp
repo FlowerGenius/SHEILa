@@ -9,10 +9,8 @@
 // Modified    : March 19, 2018
 //============================================================================
 
-#include <Entity/Mood/Mood.h>
-#include <Entity/Network/Network.h>
-#include <Entity/Runtime/Runtime.h>
-#include <Entity/Server/Server.h>
+
+#include <SHEILa.h>
 
 #include "headers.h"
 #include <typeinfo>
@@ -27,6 +25,9 @@
 namespace sheila {
 
 
+long double sperc(long double p, long double val){
+	return (p / 100.0) * val;
+}
 
 uintmax_t stouintmax(std::string str){
 
@@ -50,7 +51,7 @@ namespace server {
 
 	std::atomic_uintmax_t active_runtimes;
 
-	Server SERVER = Server();
+	SHEILaCoreServer SERVER = SHEILaCoreServer();
 
 }
 
@@ -165,9 +166,13 @@ namespace runtime {
 
 int main() {
 
+	sheila::runtime::mood.setAnger((sheila::sperc(34.0,100.0)));
+	sheila::runtime::mood.setDisgust((100.0 / 100.0));
+	sheila::runtime::mood.setSadness((100.0 / 100.0));
 
-	sheila::runtime::mood.setJoy(100.0 / 2);
-	sheila::runtime::mood.setTrust((100.0 / 4));
+	sheila::runtime::mood.setJoy(sheila::sperc(55.0,100.0));
+	sheila::runtime::mood.setTrust(sheila::sperc(25.0,100.00));
+
 
 	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
 	//std::cout << sheila::Feeling::feelings[0].toString();
@@ -178,7 +183,7 @@ int main() {
 		sheila::runtime::active = false;
 	}
 
-
+	std::cout << sheila::SHEILaCoreServer::feelings()[0]._E_repr() << std::endl;
 
 	return 0;
 }

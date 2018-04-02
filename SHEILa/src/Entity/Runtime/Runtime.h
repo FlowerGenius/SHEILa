@@ -12,7 +12,8 @@
 #ifndef ENTITY_RUNTIME_RUNTIME_H_
 #define ENTITY_RUNTIME_RUNTIME_H_
 
-#include <Entity/IPAddress/IPAddress.h>
+#include <Entity/IPAddress/IPv4/IPv4.h>
+#include <Entity/IPAddress/IPv6/IPv6.h>
 #include <stdint.h>
 
 namespace sheila {
@@ -29,8 +30,8 @@ private:
 	static uintmax_t instances;
 	const uintmax_t instanceId = instances + 1;
 
-	sheila::ipaddress::IPv4 ipv4;
-	sheila::ipaddress::IPv6 ipv6;
+	sheila::IPv4 ipv4;
+	sheila::IPv6 ipv6;
 
 };
 

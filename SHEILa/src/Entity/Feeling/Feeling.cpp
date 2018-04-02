@@ -13,10 +13,6 @@
 
 namespace sheila {
 
-const std::string Feeling::_name = "Feeling";
-
-const std::string Feeling::_desc = "A specific range of emotions that can be identified with one word or phrase";
-
 /*
  *
  */
@@ -37,7 +33,8 @@ std::string ldtos(long double d, int coeff_digits){
 std::vector<Feeling> Feeling::feelings;
 
 Feeling::Feeling() {
-
+	_name.push_back("Feeling");
+	_desc.push_back("A specific range of emotions that can be identified with one word or phrase");
 }
 
 Feeling::Feeling(std::string name, std::string desc,
@@ -77,6 +74,9 @@ Feeling::Feeling(std::string name, std::string desc,
 		long double min_diff_tru_joy, long double max_diff_tru_joy,
 		long double min_diff_tru_ant, long double max_diff_tru_ant,
 		long double min_diff_joy_ant, long double max_diff_joy_ant) {
+
+	_name.push_back("Feeling");
+	_desc.push_back("A specific range of emotions that can be identified with one word or phrase");
 
 	this->name 	= name;
 	this->desc 	= desc;
@@ -138,7 +138,7 @@ const std::string& Feeling::getName() const {
 	return name;
 }
 
-std::string Feeling::toString() {
+std::string Feeling::_E_repr() {
 	std::stringstream ss;
 
 	ss << std::fixed << std::setprecision(15);

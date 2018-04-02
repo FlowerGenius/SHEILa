@@ -13,7 +13,6 @@
 #define ENTITY_LANGUAGE_LANGUAGE_H_
 
 namespace sheila {
-namespace language {
 
 class Language {
 public:
@@ -21,7 +20,6 @@ public:
 	virtual ~Language();
 };
 
-} /* namespace language */
 } /* namespace sheila */
 
 #endif /* ENTITY_LANGUAGE_LANGUAGE_H_ */
