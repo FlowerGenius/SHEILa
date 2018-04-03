@@ -19,12 +19,10 @@
 #include <Entity/Feeling/Feeling.h>
 
 #include <Entity/IPAddress/IPAddress.h>
-#include <Entity/IPAddress/IPv4/IPv4.h>
-#include <Entity/IPAddress/IPv6/IPv6.h>
+#include <Entity/IPv4/IPv4.h>
+#include <Entity/IPv6/IPv6.h>
 
 #include <Entity/Language/Language.h>
-#include <Entity/Language/ProgrammingLanguage/ProgrammingLanguage.h>
-
 #include <Entity/Mood/Mood.h>
 
 #include <Entity/Network/Network.h>
@@ -36,14 +34,14 @@
 #include <Entity/Processor/Processor.h>
 
 #include <Entity/ProcessorArchitecture/ProcessorArchitecture.h>
+#include <Entity/ProgrammingLanguage/ProgrammingLanguage.h>
 
 #include <Entity/Range/Range.h>
 
 #include <Entity/Runtime/Runtime.h>
 
 #include <Entity/Server/Server.h>
-#include <Entity/Server/SHEILaCoreServer/SHEILaCoreServer.h>
-
+#include <Entity/SHEILaCoreServer/SHEILaCoreServer.h>
 #include <Entity/SourceMod/SourceMod.h>
 
 #include <Entity/Version/Version.h>

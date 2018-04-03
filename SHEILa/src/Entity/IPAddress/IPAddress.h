@@ -22,6 +22,7 @@ namespace sheila {
 
 class IPAddress : public Entity {
 public:
+
 	IPAddress();
 	virtual ~IPAddress();
 

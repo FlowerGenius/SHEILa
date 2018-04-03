@@ -12,8 +12,8 @@
 #ifndef ENTITY_NETWORK_NETWORK_H_
 #define ENTITY_NETWORK_NETWORK_H_
 
-#include <Entity/IPAddress/IPv4/IPv4.h>
-#include <Entity/IPAddress/IPv6/IPv6.h>
+#include <Entity/IPv4/IPv4.h>
+#include <Entity/IPv6/IPv6.h>
 #include <Entity/Mood/Mood.h>
 #include <Entity/Platform/Platform.h>
 #include <Entity/Runtime/Runtime.h>

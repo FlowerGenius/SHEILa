@@ -9,8 +9,8 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_SERVER_SHEILACORESERVER_SHEILACORESERVER_H_
-#define ENTITY_SERVER_SHEILACORESERVER_SHEILACORESERVER_H_
+#ifndef ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
+#define ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
 
 #include <Entity/Server/Server.h>
 #include <Entity/Feeling/Feeling.h>
@@ -39,4 +39,4 @@ protected:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_SERVER_SHEILACORESERVER_SHEILACORESERVER_H_ */
+#endif /* ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_ */

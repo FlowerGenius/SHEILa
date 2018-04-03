@@ -12,8 +12,8 @@
 #ifndef ENTITY_SERVER_SERVER_H_
 #define ENTITY_SERVER_SERVER_H_
 
-#include <Entity/IPAddress/IPv4/IPv4.h>
-#include <Entity/IPAddress/IPv6/IPv6.h>
+#include <Entity/IPv4/IPv4.h>
+#include <Entity/IPv6/IPv6.h>
 #include <stdint.h>
 #include <vector>
 

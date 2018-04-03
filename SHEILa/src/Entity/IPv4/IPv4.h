@@ -9,8 +9,8 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_IPADDRESS_IPV4_IPV4_H_
-#define ENTITY_IPADDRESS_IPV4_IPV4_H_
+#ifndef ENTITY_IPV4_IPV4_H_
+#define ENTITY_IPV4_IPV4_H_
 
 #include <Entity/IPAddress/IPAddress.h>
 
@@ -41,4 +41,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_IPADDRESS_IPV4_IPV4_H_ */
+#endif /* ENTITY_IPV4_IPV4_H_ */

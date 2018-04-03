@@ -27,21 +27,19 @@
  * creates a subclass that inherits the type(s).
  *
  * 	3a.	SHEILa creates Chair class inherited from all matching types and
- * 	 	places it in the Furniture subdirectory because Furniture is the
- * 	 	first/best known matching type.
+ * 	 	places it in the Entity subdirectory
  *
  * If the new object is new type of objects{s} that describes known objects,
  * she modifies the classes of those objects(s) such that they inherit from
  * the new class.
  *
- * 	3b.	SHEILa creates Chair class and places it in build src directory,
- * 		modifies potential child classes (e.g. ArmChair) to be children
- * 		of Chair and moves them into Chair subdirectory if they have no
- * 		other parent classes. Otherwise leave them where they are.
+ * 	3b.	SHEILa creates Chair class and places it in the Entity
+ * 		subdirectory, modifies potential child classes (e.g. ArmChair) to be
+ * 		children of Chair.
  *
  * If the new object is completely novel, she creates a new class.
  *
- *	3c.	SHEILa creates Chair class and places it in build src directory.
+ *	3c.	SHEILa creates Chair class and places it in Entity subdirectory.
  *
  *
  *

@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : IPv6.cpp
+// Name        : IPv6.h
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,21 +9,26 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/IPAddress/IPv6/IPv6.h>
+#ifndef ENTITY_IPV6_IPV6_H_
+#define ENTITY_IPV6_IPV6_H_
+
+#include <Entity/IPAddress/IPAddress.h>
 
 namespace sheila {
 
-IPv6::IPv6(){
-	_name.push_back("IPv6");
-	_desc.push_back("A protocol for routing network traffic");
-}
+/* Internet Protocol address using a 128-bit address */
+class IPv6 :  public IPAddress {
+public:
+	IPv6();
+	virtual ~IPv6();
 
-std::string IPv6::toString(){
-	return "";
-}
 
-IPv6::~IPv6(){
 
-}
+	std::string toString();
+private:
+
+};
 
 } /* namespace sheila */
+
+#endif /* ENTITY_IPV6_IPV6_H_ */

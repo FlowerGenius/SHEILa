@@ -12,8 +12,8 @@
 #ifndef ENTITY_RUNTIME_RUNTIME_H_
 #define ENTITY_RUNTIME_RUNTIME_H_
 
-#include <Entity/IPAddress/IPv4/IPv4.h>
-#include <Entity/IPAddress/IPv6/IPv6.h>
+#include <Entity/IPv4/IPv4.h>
+#include <Entity/IPv6/IPv6.h>
 #include <stdint.h>
 
 namespace sheila {

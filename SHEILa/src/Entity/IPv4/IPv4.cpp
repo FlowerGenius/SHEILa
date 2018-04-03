@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/IPAddress/IPv4/IPv4.h>
+#include <Entity/IPv4/IPv4.h>
 
 namespace sheila {
 

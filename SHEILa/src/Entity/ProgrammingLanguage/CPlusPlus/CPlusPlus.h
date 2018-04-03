@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : IPv6.h
+// Name        : CPlusPlus.h
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,26 +9,19 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_IPADDRESS_IPV6_IPV6_H_
-#define ENTITY_IPADDRESS_IPV6_IPV6_H_
+#ifndef ENTITY_PROGRAMMINGLANGUAGE_CPLUSPLUS_CPLUSPLUS_H_
+#define ENTITY_PROGRAMMINGLANGUAGE_CPLUSPLUS_CPLUSPLUS_H_
 
-#include <Entity/IPAddress/IPAddress.h>
+#include <Entity/ProgrammingLanguage/ProgrammingLanguage.h>
 
 namespace sheila {
 
-/* Internet Protocol address using a 128-bit address */
-class IPv6 :  public IPAddress {
+class CPlusPlus: public virtual ProgrammingLanguage {
 public:
-	IPv6();
-	virtual ~IPv6();
-
-
-
-	std::string toString();
-private:
-
+	CPlusPlus();
+	virtual ~CPlusPlus();
 };
 
 } /* namespace sheila */
 
-#endif /* ENTITY_IPADDRESS_IPV6_IPV6_H_ */
+#endif /* ENTITY_PROGRAMMINGLANGUAGE_CPLUSPLUS_CPLUSPLUS_H_ */
