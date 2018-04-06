@@ -33,8 +33,6 @@
 
 #include <Entity/Processor/Processor.h>
 
-#include <Entity/ProcessorArchitecture/ProcessorArchitecture.h>
-#include <Entity/ProgrammingLanguage/ProgrammingLanguage.h>
 
 #include <Entity/Range/Range.h>
 
@@ -42,7 +40,6 @@
 
 #include <Entity/Server/Server.h>
 #include <Entity/SHEILaCoreServer/SHEILaCoreServer.h>
-#include <Entity/SourceMod/SourceMod.h>
 
 #include <Entity/Version/Version.h>
 

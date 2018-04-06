@@ -12,9 +12,11 @@
 #ifndef ENTITY_LANGUAGE_LANGUAGE_H_
 #define ENTITY_LANGUAGE_LANGUAGE_H_
 
+#include <Entity/Entity.h>
+
 namespace sheila {
 
-class Language {
+class Language : public Entity {
 public:
 	Language();
 	virtual ~Language();
