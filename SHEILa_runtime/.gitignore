@@ -1,4 +1,11 @@
 /Debug/
+/Release/
 /.settings/
+/.vs/
 /*.project
 /*.cproject
+/*.sln
+/*.vcxproj
+/*.vcxproj.filters
+/*.vcxproj.user
+/Default/

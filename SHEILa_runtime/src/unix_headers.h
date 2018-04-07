@@ -12,7 +12,6 @@
 #ifndef UNIX_HEADERS_H_
 #define UNIX_HEADERS_H_
 
-
 #ifdef __ANDROID__
 	// This block contains code only to be included when being compiled for a
 	// Android device

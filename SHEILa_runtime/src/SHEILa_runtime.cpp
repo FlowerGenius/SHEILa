@@ -17,8 +17,8 @@
 #include <atomic>
 #include <limits>
 #include <cfloat>
-#include <unistd.h>
 #include <bitset>
+
 
 
 
@@ -142,23 +142,28 @@ namespace runtime {
 
 	int checks(){
 
+
+		#ifdef _unix || __unix || __unix__ 
+		
 		if (isatty(fileno(stdin))){
 			std::cout << "is a term" << std::endl;
 		}
+			
+		#endif
 
 		return 0;
 	}
 
 	int write(std::string, std::ostream output){
-
+		return 0;
 	}
 
 	int say(std::string){
-
+		return 0;
 	}
 
 	int show(){
-
+		return 0;
 	}
 
 }
@@ -166,26 +171,26 @@ namespace runtime {
 
 int main() {
 
-	sheila::runtime::mood.setAnger((sheila::sperc(34.0,100.0)));
-	sheila::runtime::mood.setDisgust((100.0 / 100.0));
-	sheila::runtime::mood.setSadness((100.0 / 100.0));
-
-	sheila::runtime::mood.setJoy(sheila::sperc(55.0,100.0));
-	sheila::runtime::mood.setTrust(sheila::sperc(25.0,100.00));
-
-
-	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
-	//std::cout << sheila::Feeling::feelings[0].toString();
-
-	//sheila::runtime::checks();
-
-	while (sheila::runtime::active && sheila::platform::active){
-		sheila::runtime::active = false;
-	}
+//	sheila::runtime::mood.setAnger((sheila::sperc(34.0,100.0)));
+//	sheila::runtime::mood.setDisgust((100.0 / 100.0));
+//	sheila::runtime::mood.setSadness((100.0 / 100.0));
+//
+//	sheila::runtime::mood.setJoy(sheila::sperc(55.0,100.0));
+//	sheila::runtime::mood.setTrust(sheila::sperc(25.0,100.00));
+//
+//
+//	std::cout << sheila::runtime::mood.getFeeling() << std::endl;
+//	//std::cout << sheila::Feeling::feelings[0].toString();
+//
+//	//sheila::runtime::checks();
+//
+//	while (sheila::runtime::active && sheila::platform::active){
+//		sheila::runtime::active = false;
+//	}
 	if (true) {
 		std::cout << "Ok" << std::endl;
 	}
-	std::cout << sheila::SHEILaCoreServer::feelings()[0]._E_repr() << std::endl;
+	//std::cout << sheila::SHEILaCoreServer::feelings()[0]._E_repr() << std::endl;
 
 	return 0;
 }

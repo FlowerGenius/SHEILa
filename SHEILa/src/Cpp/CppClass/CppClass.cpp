@@ -57,27 +57,27 @@ bool CppClass::hasChild(CppClass e) {
 }
 
 int CppClass::addParent(CppClass e, bool _virtual, AccessLevel _access) {
-
+	return 0;
 }
 
 int CppClass::addChild(CppClass e, bool _virtual, AccessLevel _access) {
-
+	return 0;
 }
 
 int CppClass::editParent(CppClass e, bool _virtual, AccessLevel _access) {
-
+	return 0;
 }
 
 int CppClass::editChild(CppClass e, bool _virtual, AccessLevel _access) {
-
+	return 0;
 }
 
 int CppClass::removeParent(CppClass e) {
-
+	return 0;
 }
 
 int CppClass::removeChild(CppClass e) {
-
+	return 0;
 }
 
 const std::vector<CppClass>& CppClass::getParents() const {
@@ -91,38 +91,38 @@ const std::vector<CppClass>& CppClass::getChildren() const {
 /* Member Functions */
 
 bool CppClass::hasMemberFunction(CppMemberFunction){
-
+	return true;
 }
 int CppClass::addMemberFunction(CppMemberFunction){
-
+	return 0;
 }
 int CppClass::editMemberFunction(CppMemberFunction){
-
+	return 0;
 }
 int CppClass::removeMemberFunction(CppMemberFunction){
-
+	return 0;
 }
 const std::vector<CppMemberFunction>& CppClass::getMemberFunctions() const {
-
+	return _member_functions;
 }
 
 
 /* Data Members */
 
 bool CppClass::hasDataMember(CppDataMember) {
-
+	return true;
 }
 int CppClass::addDataMember(CppDataMember) {
-
+	return 0;
 }
 int CppClass::editDataMember(CppDataMember) {
-
+	return 0;
 }
 int CppClass::removeDataMember(CppDataMember) {
-
+	return 0;
 }
 const std::vector<CppDataMember>& CppClass::getDataMembers() const {
-
+	return _data_members;
 }
 
 CppClass::~CppClass() {

@@ -28,9 +28,9 @@ public:
 
 private:
 
-	bool _const;
-	bool _inline;
-	bool _volatile;
+	bool _const_;
+	bool _inline_;
+	bool _volatile_;
 
 	AccessLevel access_level;
 	StorageClass storage_class;

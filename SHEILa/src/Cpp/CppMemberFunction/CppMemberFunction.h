@@ -28,11 +28,11 @@ public:
 
 private:
 
-	bool _const;
-	bool _inline;
-	bool _virtual;
-	bool _volatile;
-	bool _template;
+	bool _const_;
+	bool _inline_;
+	bool _virtual_;
+	bool _volatile_;
+	bool _template_;
 
 	AccessLevel access_level;
 	StorageClass storage_class;

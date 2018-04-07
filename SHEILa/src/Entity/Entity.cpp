@@ -41,7 +41,7 @@ EntityDefFile::EntityDefFile() {
 }
 
 int EntityDefFile::validate() {
-
+	return 0;
 }
 
 EntityDefFile::~EntityDefFile() {
@@ -55,7 +55,7 @@ EntityHeaderFile::EntityHeaderFile() {
 }
 
 int EntityHeaderFile::validate() {
-
+	return 0;
 }
 
 EntityHeaderFile::~EntityHeaderFile() {
@@ -69,7 +69,7 @@ EntitySourceFile::EntitySourceFile() {
 }
 
 int EntitySourceFile::validate() {
-
+	return 0;
 }
 
 EntitySourceFile::~EntitySourceFile() {
@@ -104,7 +104,7 @@ void Entity::_E_eval(std::string){
 
 
 std::string Entity::_E_repr(){
-
+	return "";
 }
 
 /* Inheritance */
@@ -137,27 +137,27 @@ bool Entity::hasChild(Entity e) {
 }
 
 int Entity::addParent(Entity e, bool _virtual, cpp::AccessLevel _access) {
-
+	return 0;
 }
 
 int Entity::addChild(Entity e, bool _virtual, cpp::AccessLevel _access) {
-
+	return 0;
 }
 
 int Entity::editParent(Entity e, bool _virtual, cpp::AccessLevel _access) {
-
+	return 0;
 }
 
 int Entity::editChild(Entity e, bool _virtual, cpp::AccessLevel _access) {
-
+	return 0;
 }
 
 int Entity::removeParent(Entity e) {
-
+	return 0;
 }
 
 int Entity::removeChild(Entity e) {
-
+	return 0;
 }
 
 const std::vector<Entity>& Entity::_getParents() const {
@@ -171,19 +171,19 @@ const std::vector<Entity>& Entity::_getChildren() const {
 /* Member Functions */
 
 bool Entity::hasMemberFunction(EntityMemberFunction f) {
-
+	return true;
 }
 
 int Entity::addMemberFunction(EntityMemberFunction f) {
-
+	return 0;
 }
 
 int Entity::editMemberFunction(EntityMemberFunction f) {
-
+	return 0;
 }
 
 int Entity::removeMemberFunction(EntityMemberFunction f){
-
+	return 0;
 }
 
 const std::vector<EntityMemberFunction>& Entity::_getMemberFunctions() const {
@@ -193,19 +193,19 @@ const std::vector<EntityMemberFunction>& Entity::_getMemberFunctions() const {
 /* Data Members */
 
 bool Entity::hasDataMember(EntityDataMember m) {
-
+	return true;
 }
 
 int Entity::addDataMember(EntityDataMember m) {
-
+	return 0;
 }
 
 int Entity::editDataMember(EntityDataMember m) {
-
+	return 0;
 }
 
 int Entity::removeDataMember(EntityDataMember m) {
-
+	return 0;
 }
 
 const std::vector<EntityDataMember>& Entity::_getDataMembers() const {

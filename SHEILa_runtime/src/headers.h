@@ -24,10 +24,10 @@
 	// This block contains code to be included only when being compiled
 	// for Microsoft Windows
 	#include "windows_headers.h"
-#elif unix || __unix || __unix__
+#else ifdef unix || __unix || __unix__
 	// This block contains code to be included only when being compiled
 	// for a UNIX system
-	#include "unix_headers.h"
+	#include <unistd.h>
 #endif
 
 #endif /* HEADERS_H_ */

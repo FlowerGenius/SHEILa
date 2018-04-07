@@ -78,8 +78,7 @@ Version::Version(uint8_t major, uint8_t minor, double revision, std::string name
 }
 
 std::string Version::toString() {
-
-
+	return "something"; // TODO return the formatted string 
 }
 
 
