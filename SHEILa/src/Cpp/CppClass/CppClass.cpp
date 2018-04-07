@@ -88,6 +88,43 @@ const std::vector<CppClass>& CppClass::getChildren() const {
 	return _children;
 }
 
+/* Member Functions */
+
+bool CppClass::hasMemberFunction(CppMemberFunction){
+
+}
+int CppClass::addMemberFunction(CppMemberFunction){
+
+}
+int CppClass::editMemberFunction(CppMemberFunction){
+
+}
+int CppClass::removeMemberFunction(CppMemberFunction){
+
+}
+const std::vector<CppMemberFunction>& CppClass::getMemberFunctions() const {
+
+}
+
+
+/* Data Members */
+
+bool CppClass::hasDataMember(CppDataMember) {
+
+}
+int CppClass::addDataMember(CppDataMember) {
+
+}
+int CppClass::editDataMember(CppDataMember) {
+
+}
+int CppClass::removeDataMember(CppDataMember) {
+
+}
+const std::vector<CppDataMember>& CppClass::getDataMembers() const {
+
+}
+
 CppClass::~CppClass() {
 	// TODO Auto-generated destructor stub
 }

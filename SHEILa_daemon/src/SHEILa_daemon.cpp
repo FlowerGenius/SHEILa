@@ -9,31 +9,90 @@
 // Modified    : March 29, 2018
 //============================================================================
 
-#include <Entity/Mood/Mood.h>
-#include <iostream>
+#include "SHEILa_daemon.hpp"
+
+#include <atomic>
+#include <string>
+#include <vector>
 
 
-namespace sheila {
+typedef enum shutdown_conditions {
+	MAINTENANCE_SHUTDOWN,
+	MAINTENANCE_RESTART,
+} ShutdownCondition;
 
-namespace server {
+std::atomic<ShutdownCondition> TERMINATION_SIGNAL;
+std::atomic_bool TERMINATE;
 
+
+/*
+ * Uses the information from 'target' to build a shared object library that is
+ * usable on 'target'
+ */
+int buildLibrary(sheila::Platform target) {
+	//TODO Use the information from 'target' to build a library that will be
+	//usable on 'target'
+	return 0;
 }
 
-namespace network {
-
+/*
+ * Uses the information from 'target' to build a runtime executable that is
+ * usable on 'target'
+ */
+int buildRuntime(sheila::Platform target) {
+	//TODO Use the information from 'target' to build a runtime that will run
+	//on 'target'
+	return 0;
 }
 
-namespace platform {
+/*
+ * Builds the daemon executable
+ */
+int buildDaemon() {
+	system("cd /home/erin/Documents/SHEILa/SHEILa_daemon; echo -n '1. Current Directory is '; pwd");
 
+	return 0;
 }
 
-namespace runtime {
-
+/*
+ * Start the server
+ */
+int server_init() {
+	//TODO Initiate this server
+	return 0;
 }
 
+/*
+ * Recall all known networks
+ */
+int network_init() {
+	//TODO Initiate known networks
+	return 0;
+}
+
+/*
+ * Recall all known platforms
+ */
+int platform_init() {
+	sheila::Platform::load(SHEILA_ENTITY_INSTANCE_LOC);
+	//TODO Initiate known platforms
+	return 0;
+}
+
+/*
+ * Recall and connect to all known runtimes
+ */
+int runtime_init() {
+	//TODO Initiate and connect to known runtimes
+	return 0;
 }
 
 int main() {
-	std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
+
+//	while (!TERMINATE) {
+//
+//	}
+	buildDaemon();
+
 	return 0;
 }

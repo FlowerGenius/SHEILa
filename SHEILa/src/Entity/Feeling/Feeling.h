@@ -40,6 +40,7 @@ public:
 		ANTICIPATION
 	};
 
+
 	Feeling();
 	Feeling(std::string name, std::string desc,
 			long double ang_low, long double ang_hi,
@@ -82,7 +83,7 @@ public:
 	const std::string& getDescription() const;
 	const std::string& getName() const;
 	std::string _E_repr();
-	void		_E_eval();
+	void		_E_eval(std::string);
 
 	std::pair<long double,long double> getDiff(char a, char b);
 

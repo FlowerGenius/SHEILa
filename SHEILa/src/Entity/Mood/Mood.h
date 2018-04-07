@@ -19,6 +19,11 @@
 
 namespace sheila {
 
+/*
+ * A SHEILa Mood is a Plutchik emotional state, determined by the 8 central
+ * Plutchik emotions: Anger, Disgust, Sadness, Surprise, Fear, Trust, Joy and
+ * Anticipation.
+ */
 class Mood {
 public:
 	Mood();

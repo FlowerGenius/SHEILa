@@ -45,6 +45,20 @@
  *
  */
 
+/*
+ * Any class that inherits from Entity must follow these rules:
+ *
+ * 1. 	The relationship from a child class to a parent class represents
+ * 		an ('is a type of') dynamic, as in $CHILD is a type of $PARENT.
+ *
+ * 2.	The relationship from an instance of a class to it's class represents
+ * 		a ('is a') dynamic, as in $CHILD_INSTANCE is a $CHILD.
+ *
+ * 3.	The relationship from a parent class to a child class represents
+ * 		a ('can be a') dynamic, as in $PARENT can be a $CHILD.
+ *
+ */
+
 
 
 #include "symbols.inc"

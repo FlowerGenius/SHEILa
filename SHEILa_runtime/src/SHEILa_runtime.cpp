@@ -182,7 +182,9 @@ int main() {
 	while (sheila::runtime::active && sheila::platform::active){
 		sheila::runtime::active = false;
 	}
-
+	if (true) {
+		std::cout << "Ok" << std::endl;
+	}
 	std::cout << sheila::SHEILaCoreServer::feelings()[0]._E_repr() << std::endl;
 
 	return 0;

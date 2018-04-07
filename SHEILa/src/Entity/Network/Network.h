@@ -36,7 +36,7 @@ private:
 	uintmax_t networkId;
 
 	static std::vector<Network> networks;
-	std::vector<sheila::platform::Platform> platforms;
+	std::vector<sheila::Platform> platforms;
 
 	sheila::IPv4 ipaddrv4;
 	sheila::IPv6 ipaddrv6;

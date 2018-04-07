@@ -27,7 +27,6 @@ std::string ldtos(long double d, int coeff_digits){
 	}
 
 	return ss.str();
-
 }
 
 std::vector<Feeling> Feeling::feelings;
@@ -193,6 +192,108 @@ std::string Feeling::_E_repr() {
 	ss << '\n';
 
 	return ss.str();
+}
+
+void Feeling::_E_eval(std::string data) {
+
+	int n = 0;
+
+	size_t pos2;
+
+	std::string feeling_s = data;
+	std::string feeling_s_s;
+
+	std::vector<long double> diffs;
+
+
+	while ((pos2 = feeling_s.find('\t')) != std::string::npos){
+		feeling_s_s = feeling_s.substr(0,pos2);
+		size_t pos3;
+		switch(n){
+		case 0:
+			name = feeling_s_s;
+			break;
+		case 1:
+			desc = feeling_s_s;
+			break;
+		case 2:
+			pos3 = feeling_s_s.find(':');
+			ang_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 3:
+			pos3 = feeling_s_s.find(':');
+			dis_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 4:
+			pos3 = feeling_s_s.find(':');
+			sad_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 5:
+			pos3 = feeling_s_s.find(':');
+			sur_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 6:
+			pos3 = feeling_s_s.find(':');
+			fea_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 7:
+			pos3 = feeling_s_s.find(':');
+			tru_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 8:
+			pos3 = feeling_s_s.find(':');
+			joy_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		case 9:
+			pos3 = feeling_s_s.find(':');
+			ant_range = Range(std::stold(feeling_s_s.substr(0,pos3)),std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		default:
+			pos3 = feeling_s_s.find(':');
+			diffs.push_back(std::stold(feeling_s_s.substr(0,pos3)));
+			diffs.push_back(std::stold(feeling_s_s.substr(pos3+1)));
+			break;
+		}
+
+		feeling_s.erase(0,pos2+1);
+		n++;
+	}
+
+	this->min_diff_ang_dis = diffs[0]; this->max_diff_ang_dis = diffs[1];
+	this->min_diff_ang_sad = diffs[2]; this->max_diff_ang_sad = diffs[3];
+	this->min_diff_ang_sur = diffs[4]; this->max_diff_ang_sur = diffs[5];
+	this->min_diff_ang_fea = diffs[6]; this->max_diff_ang_fea = diffs[7];
+	this->min_diff_ang_tru = diffs[8]; this->max_diff_ang_tru = diffs[9];
+	this->min_diff_ang_joy = diffs[10]; this->max_diff_ang_joy = diffs[11];
+	this->min_diff_ang_ant = diffs[12]; this->max_diff_ang_ant = diffs[13];
+
+	this->min_diff_dis_sad = diffs[14]; this->max_diff_dis_sad = diffs[15];
+	this->min_diff_dis_sur = diffs[16]; this->max_diff_dis_sur = diffs[17];
+	this->min_diff_dis_fea = diffs[18]; this->max_diff_dis_fea = diffs[19];
+	this->min_diff_dis_tru = diffs[20]; this->max_diff_dis_tru = diffs[21];
+	this->min_diff_dis_joy = diffs[22]; this->max_diff_dis_joy = diffs[23];
+	this->min_diff_dis_ant = diffs[24]; this->max_diff_dis_ant = diffs[25];
+
+	this->min_diff_sad_sur = diffs[26]; this->max_diff_sad_sur = diffs[27];
+	this->min_diff_sad_fea = diffs[28]; this->max_diff_sad_fea = diffs[29];
+	this->min_diff_sad_tru = diffs[30]; this->max_diff_sad_tru = diffs[31];
+	this->min_diff_sad_joy = diffs[32]; this->max_diff_sad_joy = diffs[33];
+	this->min_diff_sad_ant = diffs[34]; this->max_diff_sad_ant = diffs[35];
+
+	this->min_diff_sur_fea = diffs[36]; this->max_diff_sur_fea = diffs[37];
+	this->min_diff_sur_tru = diffs[38]; this->max_diff_sur_tru = diffs[39];
+	this->min_diff_sur_joy = diffs[40]; this->max_diff_sur_joy = diffs[41];
+	this->min_diff_sur_ant = diffs[42]; this->max_diff_sur_ant = diffs[43];
+
+	this->min_diff_fea_tru = diffs[44]; this->max_diff_fea_tru = diffs[45];
+	this->min_diff_fea_joy = diffs[46]; this->max_diff_fea_joy = diffs[47];
+	this->min_diff_fea_ant = diffs[48]; this->max_diff_fea_ant = diffs[49];
+
+	this->min_diff_tru_joy = diffs[50]; this->max_diff_tru_joy = diffs[51];
+	this->min_diff_tru_ant = diffs[52]; this->max_diff_tru_ant = diffs[53];
+
+	this->min_diff_joy_ant = diffs[54]; this->max_diff_joy_ant = diffs[55];
+
 }
 
 /*

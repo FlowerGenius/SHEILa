@@ -139,117 +139,12 @@ std::vector<Feeling> SHEILaCoreServer::feelings(){
 		std::string feeling_s;
 		while ((pos = testresponse.find('\n')) != std::string::npos){
 
-			std::string feeling_name;
-			std::string feeling_desc;
-
-			long double temp_min1,temp_min2,temp_min3,temp_min4,temp_min5,temp_min6,temp_min7,temp_min8;
-			long double temp_max1,temp_max2,temp_max3,temp_max4,temp_max5,temp_max6,temp_max7,temp_max8;
-
-			std::vector<long double> diffs;
-
-
 			feeling_s = testresponse.substr(0, pos);
-			size_t pos2;
-			std::string feeling_s_s;
-			int n = 0;
-			while ((pos2 = feeling_s.find('\t')) != std::string::npos){
-				feeling_s_s = feeling_s.substr(0,pos2);
-				size_t pos3;
-				switch(n){
-				case 0:
-					feeling_name = feeling_s_s;
-					break;
-				case 1:
-					feeling_desc = feeling_s_s;
-					break;
-				case 2:
-					pos3 = feeling_s_s.find(':');
-					temp_min1 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max1 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 3:
-					pos3 = feeling_s_s.find(':');
-					temp_min2 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max2 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 4:
-					pos3 = feeling_s_s.find(':');
-					temp_min3 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max3 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 5:
-					pos3 = feeling_s_s.find(':');
-					temp_min4 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max4 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 6:
-					pos3 = feeling_s_s.find(':');
-					temp_min5 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max5 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 7:
-					pos3 = feeling_s_s.find(':');
-					temp_min6 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max6 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 8:
-					pos3 = feeling_s_s.find(':');
-					temp_min7 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max7 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				case 9:
-					pos3 = feeling_s_s.find(':');
-					temp_min8 = std::stold(feeling_s_s.substr(0,pos3));
-					temp_max8 = std::stold(feeling_s_s.substr(pos3+1));
-					break;
-				default:
-					pos3 = feeling_s_s.find(':');
-					diffs.push_back(std::stold(feeling_s_s.substr(0,pos3)));
-					diffs.push_back(std::stold(feeling_s_s.substr(pos3+1)));
-					break;
-				}
-
-				feeling_s.erase(0,pos2+1);
-				n++;
-			}
+			Feeling f;
+			f._E_eval(feeling_s);
+			temp_feelings.push_back(f);
 			testresponse.erase(0, pos+1);
-			temp_feelings.push_back(Feeling(feeling_name, feeling_desc,
-										temp_min1,temp_max1,
-										temp_min2,temp_max2,
-										temp_min3,temp_max3,
-										temp_min4,temp_max4,
-										temp_min5,temp_max5,
-										temp_min6,temp_max6,
-										temp_min7,temp_max7,
-										temp_min8,temp_max8,
-										 diffs[0],  diffs[1],
-										 diffs[2],  diffs[3],
-										 diffs[4],  diffs[5],
-										 diffs[6],  diffs[7],
-										 diffs[8],  diffs[9],
-										 diffs[10],  diffs[11],
-										 diffs[12],  diffs[13],
-										 diffs[14],  diffs[15],
-										 diffs[16],  diffs[17],
-										 diffs[18],  diffs[19],
-										 diffs[20],  diffs[21],
-										 diffs[22],  diffs[23],
-										 diffs[24],	 diffs[25],
-										 diffs[26],  diffs[27],
-										 diffs[28],  diffs[29],
-										 diffs[30],  diffs[31],
-										 diffs[32],  diffs[33],
-										 diffs[34],  diffs[35],
-										 diffs[36],  diffs[37],
-										 diffs[38],  diffs[39],
-										 diffs[40],  diffs[41],
-										 diffs[42],  diffs[43],
-										 diffs[44],  diffs[45],
-										 diffs[46],  diffs[47],
-										 diffs[48],  diffs[49],
-										 diffs[50],  diffs[51],
-										 diffs[52],  diffs[53],
-										 diffs[54],  diffs[55]));
+
 		}
 
 		return temp_feelings;

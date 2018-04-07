@@ -14,6 +14,70 @@
 
 namespace sheila {
 
+//==ENTITYDATAMEMBER==========================================================
+
+EntityDataMember::EntityDataMember() {
+
+}
+
+EntityDataMember::~EntityDataMember() {
+
+}
+
+//==ENTITYMEMBERFUNCTION======================================================
+
+EntityMemberFunction::EntityMemberFunction() {
+
+}
+
+EntityMemberFunction::~EntityMemberFunction() {
+
+}
+
+//==ENTITYDEFFILE=============================================================
+
+EntityDefFile::EntityDefFile() {
+
+}
+
+int EntityDefFile::validate() {
+
+}
+
+EntityDefFile::~EntityDefFile() {
+
+}
+
+//==ENTITYHEADERFILE==========================================================
+
+EntityHeaderFile::EntityHeaderFile() {
+
+}
+
+int EntityHeaderFile::validate() {
+
+}
+
+EntityHeaderFile::~EntityHeaderFile() {
+
+}
+
+//==ENTITYSOURCEFILE==========================================================
+
+EntitySourceFile::EntitySourceFile() {
+
+}
+
+int EntitySourceFile::validate() {
+
+}
+
+EntitySourceFile::~EntitySourceFile() {
+
+}
+
+//==ENTITY====================================================================
+
 std::vector<Entity> Entity::entities;
 
 void Entity::buildEntity(std::string name, std::string desc){
@@ -165,6 +229,7 @@ std::string Entity::_getClasspath() {
 std::string Entity::_getInstancepath() {
 	return std::string(SHEILA_MEM_DIR).append("/").append(_name[0]);
 }
+
 
 
 Entity::~Entity() {

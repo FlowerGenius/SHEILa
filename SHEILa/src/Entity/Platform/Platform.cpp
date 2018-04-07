@@ -12,7 +12,6 @@
 #include <Entity/Platform/Platform.h>
 
 namespace sheila {
-namespace platform {
 
 std::vector<Platform> Platform::platforms;
 
@@ -25,5 +24,4 @@ Platform::~Platform() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace platform */
 } /* namespace sheila */

@@ -22,12 +22,13 @@
 #include <vector>
 
 namespace sheila {
-namespace platform {
 
-class Platform {
+class Platform : public Entity {
 public:
 	Platform();
 	virtual ~Platform();
+
+
 
 	Mood mood();
 
@@ -35,22 +36,24 @@ public:
 
 private:
 
+	static std::vector<Platform> platforms;
+
 	bool active;
 	uintmax_t platformId;
 
-	static std::vector<Platform> platforms;
-	std::vector<sheila::runtime::Runtime> runtimes;
-
+	std::string libsheila_path;
 	std::string CPU;
 	std::string GPU;
 	std::string os;
+
+	std::vector<sheila::runtime::Runtime> runtimes;
+
 	sheila::Version os_version;
 
 	sheila::IPv4 ipaddrv4;
 	sheila::IPv6 ipaddrv6;
 };
 
-} /* namespace platform */
 } /* namespace sheila */
 
 #endif /* ENTITY_PLATFORM_PLATFORM_H_ */

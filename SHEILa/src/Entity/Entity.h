@@ -81,7 +81,6 @@ public:
 	EntityDefFile();
 	virtual ~EntityDefFile();
 
-	virtual bool will_compile();
 	virtual int validate();
 
 protected:
@@ -203,7 +202,6 @@ protected:
 
 	std::vector<EntityDataMember> _data_members;
 
-//	std::vector<Entity> _children;
 
 	/* Returns a string representation of this instance such that it can be
 	 * restored using "eval()"

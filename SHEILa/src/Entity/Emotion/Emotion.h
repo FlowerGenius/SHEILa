@@ -21,6 +21,10 @@ namespace sheila {
 
 class Emotion : public Entity {
 public:
+	typedef enum PlutchikEmotions
+	{
+		ANGER
+	} PlutchikEmotion;
 
 	Emotion();
 	Emotion(long double strength);
