@@ -12,11 +12,11 @@
 #ifndef ENTITY_PLATFORM_PLATFORM_H_
 #define ENTITY_PLATFORM_PLATFORM_H_
 
-#include <Entity/Version/Version.h>
-#include <Entity/Runtime/Runtime.h>
-#include <Entity/Mood/Mood.h>
-#include <Entity/IPv4/IPv4.h>
-#include <Entity/IPv6/IPv6.h>
+#include "../Version/Version.h"
+#include "../Runtime/Runtime.h"
+#include "../Mood/Mood.h"
+#include "../IPv4/IPv4.h"
+#include "../IPv6/IPv6.h"
 
 #include <stdint.h>
 #include <vector>

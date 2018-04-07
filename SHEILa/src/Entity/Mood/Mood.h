@@ -12,8 +12,11 @@
 #ifndef ENTITY_MOOD_MOOD_H_
 #define ENTITY_MOOD_MOOD_H_
 
-#include <Entity/Emotion/Emotion.h>
-#include <Entity/Feeling/Feeling.h>
+#include "../Emotion/Emotion.h"
+#include "../Feeling/Feeling.h"
+#include "../SHEILaCoreServer/SHEILaCoreServer.h"
+
+
 #include <vector>
 #include <iostream>
 

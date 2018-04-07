@@ -12,7 +12,7 @@
 #ifndef CPP_CPPHEADERFILE_CPPHEADERFILE_H_
 #define CPP_CPPHEADERFILE_CPPHEADERFILE_H_
 
-#include <Cpp/Cpp.h>
+#include "../Cpp.h"
 
 
 namespace sheila {

@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/Processor/GPU.h>
+#include "GPU.h"
 
 namespace sheila {
 namespace processor {

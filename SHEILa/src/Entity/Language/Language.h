@@ -12,7 +12,7 @@
 #ifndef ENTITY_LANGUAGE_LANGUAGE_H_
 #define ENTITY_LANGUAGE_LANGUAGE_H_
 
-#include <Entity/Entity.h>
+#include "../Entity.h"
 
 namespace sheila {
 

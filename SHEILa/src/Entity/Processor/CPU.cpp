@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/Processor/CPU.h>
+#include "CPU.h"
 
 namespace sheila {
 namespace processor {

@@ -12,8 +12,9 @@
 #ifndef ENTITY_FEELING_FEELING_H_
 #define ENTITY_FEELING_FEELING_H_
 
-#include <Entity/Range/Range.h>
-#include <Entity/Entity.h>
+#include "../Range/Range.h"
+#include "../Entity.h"
+
 #include <string>
 #include <vector>
 #include <utility>

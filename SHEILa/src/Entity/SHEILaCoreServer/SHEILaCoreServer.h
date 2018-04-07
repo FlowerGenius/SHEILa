@@ -12,9 +12,11 @@
 #ifndef ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
 #define ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
 
-#include <Entity/Server/Server.h>
-#include <Entity/Feeling/Feeling.h>
-#include <Entity/Mood/Mood.h>
+#include "../Server/Server.h"
+#include "../Feeling/Feeling.h"
+
+class Mood;
+#include "../Mood/Mood.h"
 
 
 namespace sheila {

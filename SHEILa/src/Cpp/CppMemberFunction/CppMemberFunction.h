@@ -12,7 +12,7 @@
 #ifndef CPP_CPPMEMBERFUNCTION_CPPMEMBERFUNCTION_H_
 #define CPP_CPPMEMBERFUNCTION_CPPMEMBERFUNCTION_H_
 
-#include <Cpp/Cpp.h>
+#include "../Cpp.h"
 
 namespace sheila {
 namespace cpp {

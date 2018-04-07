@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/Emotion/Emotion.h>
+#include "Emotion.h"
 
 namespace sheila {
 

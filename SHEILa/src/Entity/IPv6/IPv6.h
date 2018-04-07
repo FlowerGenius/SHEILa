@@ -12,7 +12,7 @@
 #ifndef ENTITY_IPV6_IPV6_H_
 #define ENTITY_IPV6_IPV6_H_
 
-#include <Entity/IPAddress/IPAddress.h>
+#include "../IPAddress/IPAddress.h"
 
 namespace sheila {
 

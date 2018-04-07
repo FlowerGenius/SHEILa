@@ -12,7 +12,7 @@
 #ifndef ENTITY_PROCESSOR_GPU_H_
 #define ENTITY_PROCESSOR_GPU_H_
 
-#include <Entity/Processor/Processor.h>
+#include "Processor.h"
 
 namespace sheila {
 namespace processor {

@@ -12,8 +12,8 @@
 #ifndef CPP_CPPSOURCEFILE_CPPSOURCEFILE_H_
 #define CPP_CPPSOURCEFILE_CPPSOURCEFILE_H_
 
-#include <Cpp/Cpp.h>
-#include <Cpp/CppHeaderFile/CppHeaderFile.h>
+#include "../Cpp.h"
+#include "../CppHeaderFile/CppHeaderFile.h"
 
 
 namespace sheila {

@@ -9,8 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/Mood/Mood.h>
-#include <Entity/SHEILaCoreServer/SHEILaCoreServer.h>
+#include "Mood.h"
 
 namespace sheila {
 

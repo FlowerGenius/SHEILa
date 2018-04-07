@@ -12,11 +12,11 @@
 #ifndef ENTITY_NETWORK_NETWORK_H_
 #define ENTITY_NETWORK_NETWORK_H_
 
-#include <Entity/IPv4/IPv4.h>
-#include <Entity/IPv6/IPv6.h>
-#include <Entity/Mood/Mood.h>
-#include <Entity/Platform/Platform.h>
-#include <Entity/Runtime/Runtime.h>
+#include "../IPv4/IPv4.h"
+#include "../IPv6/IPv6.h"
+#include "../Mood/Mood.h"
+#include "../Platform/Platform.h"
+#include "../Runtime/Runtime.h"
 
 namespace sheila {
 namespace network {

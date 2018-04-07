@@ -12,7 +12,7 @@
 #ifndef ENTITY_IPV4_IPV4_H_
 #define ENTITY_IPV4_IPV4_H_
 
-#include <Entity/IPAddress/IPAddress.h>
+#include "../IPAddress/IPAddress.h"
 
 namespace sheila {
 

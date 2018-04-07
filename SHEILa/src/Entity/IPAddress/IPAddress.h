@@ -16,7 +16,8 @@
 #include <string>
 #include <sstream>
 #include <bitset>
-#include <Entity/Entity.h>
+
+#include "../Entity.h"
 
 namespace sheila {
 

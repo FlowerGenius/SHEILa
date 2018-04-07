@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include <Entity/IPAddress/IPAddress.h>
+#include "IPAddress.h"
 
 namespace sheila {
 

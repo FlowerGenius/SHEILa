@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
-#include <Entity/Entity.h>
+#include "../Entity.h"
 
 namespace sheila {
 

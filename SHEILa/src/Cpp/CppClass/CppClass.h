@@ -12,9 +12,9 @@
 #ifndef CPP_CPPCLASS_CPPCLASS_H_
 #define CPP_CPPCLASS_CPPCLASS_H_
 
-#include <Cpp/Cpp.h>
-#include <Cpp/CppDataMember/CppDataMember.h>
-#include <Cpp/CppMemberFunction/CppMemberFunction.h>
+#include "../Cpp.h"
+#include "../CppDataMember/CppDataMember.h"
+#include "../CppMemberFunction/CppMemberFunction.h"
 
 namespace sheila {
 namespace cpp {

@@ -9,7 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include <Cpp/CppClass/CppClass.h>
+#include "CppClass.h"
 
 namespace sheila {
 namespace cpp {

@@ -12,9 +12,9 @@
 #ifndef ENTITY_ENTITY_H_
 #define ENTITY_ENTITY_H_
 
-#include <symbols.inc>
-#include <Cpp/Cpp.h>
-#include <Cpp/CppClass/CppClass.h>
+#include "../symbols.inc"
+#include "../Cpp/Cpp.h"
+#include "../Cpp/CppClass/CppClass.h"
 
 #include <string>
 #include <vector>

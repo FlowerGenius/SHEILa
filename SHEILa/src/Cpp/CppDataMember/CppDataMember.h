@@ -12,7 +12,7 @@
 #ifndef CPP_CPPDATAMEMBER_CPPDATAMEMBER_H_
 #define CPP_CPPDATAMEMBER_CPPDATAMEMBER_H_
 
-#include <Cpp/Cpp.h>
+#include "../Cpp.h"
 
 
 namespace sheila {
