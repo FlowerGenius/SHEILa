@@ -3,4 +3,6 @@
 #
 cmake_minimum_required(VERSION 3.5)
 
-add_subdirectory("Entity" "Cpp")
+add_subdirectory("src")
+
+add_library(SHEILa SHARED ${PROJECT_SOURCE_DIR}/src/main.cpp )
