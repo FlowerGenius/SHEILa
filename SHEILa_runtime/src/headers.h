@@ -24,7 +24,7 @@
 	// This block contains code to be included only when being compiled
 	// for Microsoft Windows
 	#include "windows_headers.h"
-#else ifdef unix || __unix || __unix__
+#elif defined __unix__
 	// This block contains code to be included only when being compiled
 	// for a UNIX system
 	#include <unistd.h>

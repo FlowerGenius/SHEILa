@@ -24,8 +24,6 @@ public:
 	Runtime();
 	virtual ~Runtime();
 
-	const uintmax_t getInstanceId() const;
-
 private:
 	static uintmax_t instances;
 	const uintmax_t instanceId = instances + 1;

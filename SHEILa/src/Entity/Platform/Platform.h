@@ -17,6 +17,9 @@
 #include "../Mood/Mood.h"
 #include "../IPv4/IPv4.h"
 #include "../IPv6/IPv6.h"
+#include "../InstructionSetArchitecture/InstructionSetArchitecture.h"
+#include "../Vendor/Vendor.h"
+#include "../OperatingSystem/OperatingSystem.h"
 
 #include <stdint.h>
 #include <vector>
@@ -25,10 +28,10 @@ namespace sheila {
 
 class Platform : public Entity {
 public:
+	static std::vector<Platform> platforms;
+
 	Platform();
 	virtual ~Platform();
-
-
 
 	Mood mood();
 
@@ -36,19 +39,16 @@ public:
 
 private:
 
-	static std::vector<Platform> platforms;
-
 	bool active;
 	uintmax_t platformId;
 
 	std::string libsheila_path;
-	std::string CPU;
-	std::string GPU;
-	std::string os;
+
+	InstructionSetArchitecture isa;
+	Vendor vendor;
+	OperatingSystem os;
 
 	std::vector<sheila::runtime::Runtime> runtimes;
-
-	sheila::Version os_version;
 
 	sheila::IPv4 ipaddrv4;
 	sheila::IPv6 ipaddrv6;

@@ -21,10 +21,6 @@ Runtime::Runtime() {
 
 }
 
-const uintmax_t Runtime::getInstanceId() const {
-	return instanceId;
-}
-
 Runtime::~Runtime() {
 	instances -= 1;
 }

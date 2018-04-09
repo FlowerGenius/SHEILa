@@ -19,7 +19,7 @@
 #define SHEILA_WORKSPACE_DIR "/home/erin/Documents/SHEILa"
 
 /* The location on the server of my memory storage */
-#define SHEILA_MEM_DIR "/home/erin/Docuemnts/SHEILa/mem"
+#define SHEILA_ENTITY_DIR "/home/erin/Docuemnts/SHEILa_etc/entities"
 
 /* The maximuim line size in a source file */
 #define SHEILA_LINE_MAX 80

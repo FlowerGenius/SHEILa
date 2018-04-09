@@ -20,6 +20,14 @@ EntityDataMember::EntityDataMember() {
 
 }
 
+const std::string& EntityDataMember::getIdentifier() const {
+	return identifier;
+}
+
+void EntityDataMember::setIdentifier(const std::string& identifier) {
+	this->identifier = identifier;
+}
+
 EntityDataMember::~EntityDataMember() {
 
 }
@@ -28,6 +36,14 @@ EntityDataMember::~EntityDataMember() {
 
 EntityMemberFunction::EntityMemberFunction() {
 
+}
+
+const std::string& EntityMemberFunction::getIdentifier() const {
+	return identifier;
+}
+
+void EntityMemberFunction::setIdentifier(const std::string& identifier) {
+	this->identifier = identifier;
 }
 
 EntityMemberFunction::~EntityMemberFunction() {
@@ -94,6 +110,7 @@ Entity::Entity() {
 	_desc = {"A thing that has a name, and can be described"};
 	_parents = {};
 	_children = {};
+	instance_id = 0;
 }
 
 /* Entity Operations */
@@ -171,7 +188,15 @@ const std::vector<Entity>& Entity::_getChildren() const {
 /* Member Functions */
 
 bool Entity::hasMemberFunction(EntityMemberFunction f) {
-	return true;
+	for (std::vector<EntityMemberFunction>::iterator it = _member_functions.begin();
+			it != _member_functions.end(); ++it) {
+
+		if ((*it).getIdentifier() == f.getIdentifier()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 int Entity::addMemberFunction(EntityMemberFunction f) {
@@ -193,7 +218,15 @@ const std::vector<EntityMemberFunction>& Entity::_getMemberFunctions() const {
 /* Data Members */
 
 bool Entity::hasDataMember(EntityDataMember m) {
-	return true;
+	for (std::vector<EntityDataMember>::iterator it = _data_members.begin();
+			it != _data_members.end(); ++it) {
+
+		if ((*it).getIdentifier() == m.getIdentifier()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 int Entity::addDataMember(EntityDataMember m) {
@@ -222,12 +255,16 @@ const std::vector<std::string>& Entity::_getDesc() const {
 	return _desc;
 }
 
-std::string Entity::_getClasspath() {
+uintmax_t Entity::_getInstanceID() {
+	return instance_id;
+}
+
+std::string Entity::_getClassPath() {
 	return std::string(SHEILA_WORKSPACE_DIR).append("/SHEILa/Entity/").append(_name[0]);
 }
 
-std::string Entity::_getInstancepath() {
-	return std::string(SHEILA_MEM_DIR).append("/").append(_name[0]);
+std::string Entity::_getInstancePath() {
+	return std::string(SHEILA_ENTITY_DIR).append("/").append(_name[0]);
 }
 
 

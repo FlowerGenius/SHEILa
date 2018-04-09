@@ -19,6 +19,8 @@
 #include <string>
 #include <vector>
 #include <typeinfo>
+#include <stdint.h>
+#include <ctime>
 
 
 namespace sheila {
@@ -30,6 +32,9 @@ class EntityDataMember {
 public:
 	EntityDataMember();
 	virtual ~EntityDataMember();
+
+	const std::string& getIdentifier() const;
+	void setIdentifier(const std::string& identifier);
 
 private:
 
@@ -55,6 +60,8 @@ public:
 	EntityMemberFunction();
 	virtual ~EntityMemberFunction();
 
+	const std::string& getIdentifier() const;
+	void setIdentifier(const std::string& identifier);
 
 private:
 
@@ -121,6 +128,11 @@ private:
 
 /* An Entity is, put simply, a C++ class as perceived by SHEILa. */
 class Entity {
+
+/*
+ * Any instance of an entity or of its children has a file on the disk.
+ */
+
 public:
 
 	static std::vector<Entity> entities;
@@ -173,47 +185,77 @@ public:
 	virtual const std::vector<std::string>& _getDesc() const;
 
 
+	/* The id on the server of an instance of this class
+	 *
+	 */
+	virtual uintmax_t _getInstanceID();
+
 	/* The location on the server database of where this class and it's
 	 * header file are located.
 	 */
-	virtual std::string _getClasspath();
+	virtual std::string _getClassPath();
 
 	/* The location on the server database of where substantive instances
 	 * of this class will be stored.
 	 */
-	virtual std::string _getInstancepath();
+	virtual std::string _getInstancePath();
 
 protected:
 
-	EntitySourceFile _source;
-	EntityHeaderFile _header;
 
-	/* Promises that each subclass of entity has variable "name" */
-	std::vector<std::string> _name;
-
-	/* Promises that each subclass of entity has variable "desc" */
-	std::vector<std::string> _desc;
-
-	std::vector<Entity> _parents;
-
-	std::vector<Entity> _children;
-
-	std::vector<EntityMemberFunction> _member_functions;
-
-	std::vector<EntityDataMember> _data_members;
-
-
-	/* Returns a string representation of this instance such that it can be
-	 * restored using "eval()"
+	/* Data Members describing the instance they are accessed from.
+	 *
+	 * IMPORTANT! NONE OF THESE MEMBERS MAY BE INITIALIZED IN A
+	 * DEFAULT CONSTRUCTOR
 	 */
-	virtual std::string _E_repr();
 
-	/* Turns this instance of Entity into a copy of the instance stored using
-	 * "repr()"
+	uintmax_t 							instance_id;
+	std::vector<std::string> 			name; //line 1 of instance file
+	std::vector<std::string>			desc; //line 2 of instance file
+	std::vector<std::string>			picture_paths;
+	std::vector<std::string>			video_paths;
+	std::vector<std::string>			sound_paths;
+	std::vector<std::string>			document_paths;
+	std::vector<std::string>			program_paths;
+	std::vector<long double>			emotion_values;
+	std::vector<std::string>			cv_filters;
+
+
+	/* Member Functions that modify the instance they are accessed from.
+	 *
+	 * IMPORTANT! ALL OF THESE FUNCTIONS MUST BE OVERRIDDEN IN EVERY
+	 * SUBCLASS OF ENTITY
 	 */
-	virtual void _E_eval(std::string);
 
 
+	virtual std::string 				_E_repr();
+	virtual void 						_E_eval(std::string);
+
+	/* Data Members describing the class they are accessed from.
+	 *
+	 * IMPORTANT! ALL OF THESE MEMBERS MUST BE INITIALIZED IN EVERY
+	 * CONSTRUCTOR OF EVERY SUBCLASS OF ENTITY
+	 */
+
+	std::time_t							_time_created;
+	std::time_t							_time_accessed;
+	std::time_t							_time_modified;
+	std::vector<long double>			_emotion_values;
+	std::vector<std::string> 			_name;
+	std::vector<std::string> 			_desc;
+	std::vector<std::string>			_cv_filters;
+	std::vector<Entity> 				_parents;
+	std::vector<Entity> 				_children;
+	std::vector<EntityMemberFunction> 	_member_functions;
+	std::vector<EntityDataMember> 		_data_members;
+	EntitySourceFile 					_source;
+	EntityHeaderFile 					_header;
+
+	/* Member Functions that modify the class they are accessed from.
+	 *
+	 * IMPORTANT! THESE FUNCTIONS MUST NEVER BE OVERRIDDEN IN ANY SUBCLASS
+	 * OF ENTITY
+	 */
 
 };
 

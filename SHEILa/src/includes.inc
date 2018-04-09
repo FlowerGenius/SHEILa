@@ -12,6 +12,7 @@
 #ifndef INCLUDES_INC_
 #define INCLUDES_INC_
 
+#include "Entity/OperatingSystem/OperatingSystem.h"
 #include "Entity/Entity.h"
 
 #include "Entity/Emotion/Emotion.h"
@@ -26,8 +27,6 @@
 #include "Entity/Mood/Mood.h"
 
 #include "Entity/Network/Network.h"
-
-#include "Entity/OS/OS.h"
 
 #include "Entity/Platform/Platform.h"
 

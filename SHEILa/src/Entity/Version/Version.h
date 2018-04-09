@@ -12,12 +12,14 @@
 #ifndef ENTITY_VERSION_VERSION_H_
 #define ENTITY_VERSION_VERSION_H_
 
+#include "../Entity.h"
+
 #include <stdint.h>
 #include <string>
 
 namespace sheila {
 
-class Version {
+class Version : public Entity {
 public:
 	Version();
 	Version(std::string ver);

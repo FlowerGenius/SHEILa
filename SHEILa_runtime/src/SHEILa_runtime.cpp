@@ -143,7 +143,7 @@ namespace runtime {
 	int checks(){
 
 
-		#ifdef _unix || __unix || __unix__ 
+		#ifdef __unix__
 		
 		if (isatty(fileno(stdin))){
 			std::cout << "is a term" << std::endl;

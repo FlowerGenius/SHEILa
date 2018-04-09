@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : OS.cpp
+// Name        : OS.h
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,19 +9,19 @@
 // Modified    :
 //============================================================================
 
-#include "OS.h"
+#ifndef ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_
+#define ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_
+
+#include "../Entity.h"
 
 namespace sheila {
-namespace os {
 
-OS::OS() {
-	// TODO Auto-generated constructor stub
+class OperatingSystem : public Entity {
+public:
+	OperatingSystem();
+	virtual ~OperatingSystem();
+};
 
-}
-
-OS::~OS() {
-	// TODO Auto-generated destructor stub
-}
-
-} /* namespace os */
 } /* namespace sheila */
+
+#endif /* ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_ */

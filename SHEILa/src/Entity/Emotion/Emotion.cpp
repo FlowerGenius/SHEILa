@@ -14,14 +14,14 @@
 namespace sheila {
 
 Emotion::Emotion() {
-	_name.push_back("Emotion");
+	_name = {"Emotion"};
 	_desc.push_back("");
 
 	strength = 0;
 }
 
 Emotion::Emotion(long double strength) {
-	_name.push_back("Emotion");
+	_name = {"Emotion"};
 	_desc.push_back("");
 
 

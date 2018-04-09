@@ -74,7 +74,7 @@ int network_init() {
  * Recall all known platforms
  */
 int platform_init() {
-	sheila::Platform::load(SHEILA_ENTITY_INSTANCE_LOC);
+	//sheila::Platform::load(SHEILA_ENTITY_INSTANCE_LOC);
 	//TODO Initiate known platforms
 	return 0;
 }
