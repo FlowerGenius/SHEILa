@@ -61,19 +61,31 @@ The duties of a SHEILa instance are:
 If a class CLASS_NAME provides an interface for persistent data, it creates 
 a folder at:
 
-{SHEILA_ROOT}/config/{CLASS_NAME}s
+/usr/local/etc/SHEILa/entities/$CLASS_NAME
 
 where each file in this folder is a parse friendly file describing a
-unique instance of CLASS_NAME to be created for the program.
+unique instance of $CLASS_NAME to be created for the program where the name
+of each file is its unique identifier, by default a positive integer.
 
+the file format is as follows:
+
+    @line1[Names]:${alias_0},...,${alias_n} //ex "AMD64","x64","x86_64","x86-64","Intel 64"
+    @line2[Descriptions]:${desc_0},...,${desc_n}
+    @line3[Pictures]:${picpath_0},...,${picpath_n}
+    @line4[Videos]:${vidpath_0},...,${vidpath_n}
+    @line5[Sounds]:${audpath_0},...,${audpath_n}
+    @line6[Documents]:${docpath_0},...,${docpath_n}
+    @line7[Programs]:${exepath_0},...,${exepath_n}
+    @line8[Emotions]:${ang_val},${dis_val},...,${ant_val}
+    @line9[CV Schema]:${schema_0},...,${schema_n}
+    @line(x>9)[DATA]:${ENTITY_DATA}
+   
 If a new class CLASS_NAME is created, it creates:
 
 {SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{CLASS_NAME}.cpp
 {SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{CLASS_NAME}.h
  
-If a SUB_CLASS of a class CLASS_NAME is created, it creates:
 
-{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{SUB_CLASS}.cpp
-{SHEILA_ROOT}/SHEILa/src/{CLASS_NAME}/{SUB_CLASS}.h
+//============================================================================
 
- 
+
