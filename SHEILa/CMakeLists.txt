@@ -5,4 +5,4 @@ cmake_minimum_required(VERSION 3.5)
 
 add_subdirectory("src")
 
-add_library(SHEILa SHARED ${PROJECT_SOURCE_DIR}/src/main.cpp )
+add_library(SHEILa SHARED ${PROJECT_SOURCE_DIR}/src/SHEILa.cpp )
