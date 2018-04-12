@@ -13,8 +13,12 @@
 #define ENTITY_ENTITY_H_
 
 #include "../symbols.inc"
+
 #include "../Cpp/Cpp.h"
 #include "../Cpp/CppClass/CppClass.h"
+#include "../Cpp/CppMemberFunction/CppMemberFunction.h"
+#include "../Cpp/CppDataMember/CppDataMember.h"
+
 
 #include <string>
 #include <vector>
@@ -24,107 +28,6 @@
 
 
 namespace sheila {
-
-/*
- * A schematic for a data member in a SHEILa Entity
- */
-class EntityDataMember {
-public:
-	EntityDataMember();
-	virtual ~EntityDataMember();
-
-	const std::string& getIdentifier() const;
-	void setIdentifier(const std::string& identifier);
-
-private:
-
-	bool _const_;
-	bool _inline_;
-	bool _volatile_;
-
-	cpp::AccessLevel access_level;
-	cpp::StorageClass storage_class;
-
-	std::string type;
-
-	std::string identifier;
-
-};
-
-
-/*
- * A schematic for a member function for a SHEILa Entity
- */
-class EntityMemberFunction {
-public:
-	EntityMemberFunction();
-	virtual ~EntityMemberFunction();
-
-	const std::string& getIdentifier() const;
-	void setIdentifier(const std::string& identifier);
-
-private:
-
-	bool _const_;
-	bool _inline_;
-	bool _virtual_;
-	bool _volatile_;
-	bool _template_;
-
-	cpp::AccessLevel access_level;
-	cpp::StorageClass storage_class;
-
-	std::string return_type;
-
-	std::string identifier;
-
-};
-
-/*
- * A generic schematic for a part of an Entity definition.
- */
-class EntityDefFile {
-public:
-	EntityDefFile();
-	virtual ~EntityDefFile();
-
-	virtual int validate();
-
-protected:
-	std::string path;
-
-	std::string author;
-	std::string sheila_version;
-	std::string brief_copyright;
-	std::string brief_description;
-	std::string module;
-};
-
-/*
- * A schematic for the .h part of an Entity definition
- */
-class EntityHeaderFile : public EntityDefFile {
-public:
-	EntityHeaderFile();
-	virtual ~EntityHeaderFile();
-
-	int validate();
-private:
-	std::vector<EntityHeaderFile> includes;
-};
-
-/*
- * A schematic for the .cpp part of an Entity definition
- */
-class EntitySourceFile : public EntityDefFile {
-public:
-	EntitySourceFile();
-	virtual ~EntitySourceFile();
-
-	int validate();
-private:
-	std::vector<EntityHeaderFile> includes;
-};
 
 /* An Entity is, put simply, a C++ class as perceived by SHEILa. */
 class Entity {
@@ -137,15 +40,28 @@ public:
 
 	static std::vector<Entity> entities;
 
+	/* Helper functions */
+
+	static std::time_t mktime(std::string);
+
 	template <class _T>
 	static std::string repr(_T e) {
 		return e._E_repr();
 	}
 
-	static void buildEntity(std::string name, std::string desc);
+
+
+	static int createNewEntity(
+			std::vector<std::string> names,
+			std::vector<std::string> descs,
+			std::vector<std::string> cvinf,
+ 	);
 
 	Entity();
-	virtual ~Entity();
+	virtual ~Entity();;
+
+	int commitClassToDisk();
+	int loadClassFromDisk();
 
 
 	/* Inheritance */
@@ -161,23 +77,28 @@ public:
 	virtual const std::vector<Entity>& _getParents() const;
 	virtual const std::vector<Entity>& _getChildren() const;
 
+	/* Constructors */
+
+
+	/* Destructors */
+
 
 	/* Member Functions */
 
-	virtual bool hasMemberFunction(EntityMemberFunction);
-	virtual int addMemberFunction(EntityMemberFunction);
-	virtual int editMemberFunction(EntityMemberFunction);
-	virtual int removeMemberFunction(EntityMemberFunction);
-	virtual const std::vector<EntityMemberFunction>& _getMemberFunctions() const;
+	virtual bool hasMemberFunction(cpp::CppMemberFunction);
+	virtual int addMemberFunction(cpp::CppMemberFunction);
+	virtual int editMemberFunction(cpp::CppMemberFunction);
+	virtual int removeMemberFunction(cpp::CppMemberFunction);
+	virtual const std::vector<cpp::CppMemberFunction>& _getMemberFunctions() const;
 
 
 	/* Data Members */
 
-	virtual bool hasDataMember(EntityDataMember);
-	virtual int addDataMember(EntityDataMember);
-	virtual int editDataMember(EntityDataMember);
-	virtual int removeDataMember(EntityDataMember);
-	virtual const std::vector<EntityDataMember>& _getDataMembers() const;
+	virtual bool hasDataMember(cpp::CppDataMember);
+	virtual int addDataMember(cpp::CppDataMember);
+	virtual int editDataMember(cpp::CppDataMember);
+	virtual int removeDataMember(cpp::CppDataMember);
+	virtual const std::vector<cpp::CppDataMember>& _getDataMembers() const;
 
 	/* Entity metadata */
 
@@ -235,6 +156,9 @@ protected:
 	 *
 	 * IMPORTANT! ALL OF THESE MEMBERS MUST BE INITIALIZED IN EVERY
 	 * CONSTRUCTOR OF EVERY SUBCLASS OF ENTITY
+	 *
+	 * TL;DR The following members represent some feature of the code itself
+	 * for the class from which it is called.
 	 */
 
 	std::time_t							_time_created;
@@ -246,10 +170,8 @@ protected:
 	std::vector<std::string>			_cv_filters;
 	std::vector<Entity> 				_parents;
 	std::vector<Entity> 				_children;
-	std::vector<EntityMemberFunction> 	_member_functions;
-	std::vector<EntityDataMember> 		_data_members;
-	EntitySourceFile 					_source;
-	EntityHeaderFile 					_header;
+	std::vector<cpp::CppMemberFunction> _member_functions;
+	std::vector<cpp::CppDataMember> 	_data_members;
 
 	/* Member Functions that modify the class they are accessed from.
 	 *

@@ -28,10 +28,9 @@ const std::vector<std::string>& CppClass::_getDesc() const {
 	return _desc;
 }
 
-
 bool CppClass::hasParent(CppClass e) {
-	for (std::vector<CppClass>::iterator it = _parents.begin();
-			it != _parents.end(); ++it) {
+	for (std::vector<CppClass>::iterator it = _parents<CppClass>.begin();
+			it != _parents<CppClass>.end(); ++it) {
 
 		if ((*it)._getName() == e._getName()) {
 			return true;
@@ -91,7 +90,15 @@ const std::vector<CppClass>& CppClass::getChildren() const {
 /* Member Functions */
 
 bool CppClass::hasMemberFunction(CppMemberFunction){
-	return true;
+	for (std::vector<CppMemberFunction>::iterator it = _member_functions.begin();
+			it != _member_functions.end(); ++it) {
+
+		if ((*it).getIdentifier() == f.getIdentifier()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 int CppClass::addMemberFunction(CppMemberFunction){
 	return 0;
@@ -110,7 +117,15 @@ const std::vector<CppMemberFunction>& CppClass::getMemberFunctions() const {
 /* Data Members */
 
 bool CppClass::hasDataMember(CppDataMember) {
-	return true;
+	for (std::vector<CppDataMember>::iterator it = _data_members.begin();
+			it != _data_members.end(); ++it) {
+
+		if ((*it).getIdentifier() == m.getIdentifier()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 int CppClass::addDataMember(CppDataMember) {
 	return 0;

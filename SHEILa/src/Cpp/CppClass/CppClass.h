@@ -16,6 +16,8 @@
 #include "../CppDataMember/CppDataMember.h"
 #include "../CppMemberFunction/CppMemberFunction.h"
 
+#include <ctime>
+
 namespace sheila {
 namespace cpp {
 
@@ -61,12 +63,18 @@ public:
 
 protected:
 
-	std::vector<std::string> _name;
-	std::vector<std::string> _desc;
-	std::vector<CppClass> _parents;
-	std::vector<CppClass> _children;
-	std::vector<CppMemberFunction> _member_functions;
-	std::vector<CppDataMember> _data_members;
+	template <class _T> std::vector<_T> _parents;
+	template <class _T> std::vector<_T> _children;
+
+
+	std::vector<std::string> 			_name;
+	std::vector<std::string> 			_desc;
+
+	std::time_t							_time_created;
+	std::time_t							_time_accessed;
+	std::time_t							_time_modified;
+	std::vector<CppMemberFunction> 		_member_functions;
+	std::vector<CppDataMember> 			_data_members;
 
 };
 

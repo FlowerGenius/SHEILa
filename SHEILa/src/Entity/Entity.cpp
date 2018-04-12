@@ -14,94 +14,21 @@
 
 namespace sheila {
 
-//==ENTITYDATAMEMBER==========================================================
-
-EntityDataMember::EntityDataMember() {
-
-}
-
-const std::string& EntityDataMember::getIdentifier() const {
-	return identifier;
-}
-
-void EntityDataMember::setIdentifier(const std::string& identifier) {
-	this->identifier = identifier;
-}
-
-EntityDataMember::~EntityDataMember() {
-
-}
-
-//==ENTITYMEMBERFUNCTION======================================================
-
-EntityMemberFunction::EntityMemberFunction() {
-
-}
-
-const std::string& EntityMemberFunction::getIdentifier() const {
-	return identifier;
-}
-
-void EntityMemberFunction::setIdentifier(const std::string& identifier) {
-	this->identifier = identifier;
-}
-
-EntityMemberFunction::~EntityMemberFunction() {
-
-}
-
-//==ENTITYDEFFILE=============================================================
-
-EntityDefFile::EntityDefFile() {
-
-}
-
-int EntityDefFile::validate() {
-	return 0;
-}
-
-EntityDefFile::~EntityDefFile() {
-
-}
-
-//==ENTITYHEADERFILE==========================================================
-
-EntityHeaderFile::EntityHeaderFile() {
-
-}
-
-int EntityHeaderFile::validate() {
-	return 0;
-}
-
-EntityHeaderFile::~EntityHeaderFile() {
-
-}
-
-//==ENTITYSOURCEFILE==========================================================
-
-EntitySourceFile::EntitySourceFile() {
-
-}
-
-int EntitySourceFile::validate() {
-	return 0;
-}
-
-EntitySourceFile::~EntitySourceFile() {
-
-}
-
-//==ENTITY====================================================================
-
 std::vector<Entity> Entity::entities;
 
-void Entity::buildEntity(std::string name, std::string desc){
-	EntitySourceFile cpp;
-	EntityHeaderFile inc;
+int Entity::createNewEntity(
+		std::vector<std::string> names,
+		std::vector<std::string> descs,
+		std::vector<std::string> cvinf
+		) {
 
-	//TODO pass the necessary arguments to build the class
+	EntityHeaderFile inc = EntityHeaderFile(names[0]);
+	EntitySourceFile cpp = EntitySourceFile(names[0]);
 
+	return 0;
+}
+
+std::time_t Entity::mktime(std::string timestring) {
 
 }
 
@@ -114,6 +41,11 @@ Entity::Entity() {
 }
 
 /* Entity Operations */
+
+
+
+
+
 
 void Entity::_E_eval(std::string){
 

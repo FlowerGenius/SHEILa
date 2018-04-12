@@ -13,6 +13,38 @@
 
 namespace sheila {
 
+std::vector<long double>			Emotion::_emotion_values = {
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0
+};
+std::vector<std::string> 			Emotion::_name = {
+		"Emotion"
+};
+std::vector<std::string> 			Emotion::_desc = {
+		""
+};
+std::vector<Entity> 				Emotion::_children = {
+
+};
+std::vector<std::string>			Emotion::_cv_filters = {
+
+};
+std::vector<Entity> 				Emotion::_parents = {
+		Entity()
+};
+
+std::time_t							Emotion::_time_created;
+std::time_t							Emotion::_time_accessed;
+std::time_t							Emotion::_time_modified;
+std::vector<cpp::CppMemberFunction>	Emotion::_member_functions;
+std::vector<cpp::CppDataMember> 	Emotion::_data_members;
+
 Emotion::Emotion() {
 	_name = {"Emotion"};
 	_desc.push_back("");
