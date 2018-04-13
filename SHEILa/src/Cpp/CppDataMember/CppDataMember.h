@@ -12,6 +12,8 @@
 #ifndef CPP_CPPDATAMEMBER_CPPDATAMEMBER_H_
 #define CPP_CPPDATAMEMBER_CPPDATAMEMBER_H_
 
+#include <string>
+
 #include "../Cpp.h"
 
 

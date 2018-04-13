@@ -12,6 +12,8 @@
 #ifndef CPP_CPPMEMBERFUNCTION_CPPMEMBERFUNCTION_H_
 #define CPP_CPPMEMBERFUNCTION_CPPMEMBERFUNCTION_H_
 
+#include <string>
+
 #include "../Cpp.h"
 
 namespace sheila {

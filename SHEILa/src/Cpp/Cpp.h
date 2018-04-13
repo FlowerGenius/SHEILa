@@ -12,9 +12,6 @@
 #ifndef CPP_CPP_H_
 #define CPP_CPP_H_
 
-#include <string>
-#include <vector>
-
 namespace sheila {
 namespace cpp {
 

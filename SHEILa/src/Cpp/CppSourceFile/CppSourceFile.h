@@ -12,6 +12,9 @@
 #ifndef CPP_CPPSOURCEFILE_CPPSOURCEFILE_H_
 #define CPP_CPPSOURCEFILE_CPPSOURCEFILE_H_
 
+#include <string>
+#include <vector>
+
 #include "../Cpp.h"
 #include "../CppHeaderFile/CppHeaderFile.h"
 

@@ -145,6 +145,151 @@ const std::vector<Entity>& Entity::_getChildren() const {
 	return (*_children);
 }
 
+/* Preprocessor Cpp Standard Library Includes */
+
+bool Entity::hasInclude(cpp::CppStandardHeaderFile) {
+	return true;
+}
+
+int Entity::addInclude(cpp::CppStandardHeaderFile) {
+	return 0;
+}
+
+int Entity::removeInclude(cpp::CppStandardHeaderFile) {
+	return 0;
+}
+
+const std::vector<cpp::CppStandardHeaderFile>& Entity::_getCppIncludes() const {
+	return (*_cpp_include_files);
+}
+
+/* Preprocessor C Standard Library Includes */
+
+bool Entity::hasInclude(c::CStandardHeaderFile) {
+	return true;
+}
+
+int Entity::addInclude(c::CStandardHeaderFile) {
+	return 0;
+}
+
+int Entity::removeInclude(c::CStandardHeaderFile) {
+	return 0;
+}
+
+const std::vector<c::CStandardHeaderFile>& Entity::_getCIncludes() const {
+	return (*_c_include_files);
+}
+
+/* Preprocessor Included files */
+
+bool Entity::hasInclude(cpp::CppHeaderFile) {
+	return true;
+}
+
+int Entity::addInclude(cpp::CppHeaderFile) {
+	return 0;
+}
+
+int Entity::removeInclude(cpp::CppHeaderFile) {
+	return 0;
+}
+
+const std::vector<cpp::CppHeaderFile>& Entity::_getIncludes() const {
+	return (*_include_files);
+}
+
+/* Preprocessor Macros */
+
+bool Entity::hasMacro(cpp::CppMacro) {
+	return true;
+}
+
+int Entity::addMacro(cpp::CppMacro) {
+	return 0;
+}
+
+int Entity::editMacro(cpp::CppMacro) {
+	return 0;
+}
+
+int Entity::removeMacro(cpp::CppMacro) {
+	return 0;
+}
+
+const std::vector<cpp::CppMacro>& Entity::_getMacros() const {
+	return (*_macros);
+}
+
+/* Preprocessor Symbols */
+
+bool Entity::hasSymbol(cpp::CppSymbol) {
+	return true;
+}
+
+int Entity::addSymbol(cpp::CppSymbol) {
+	return 0;
+}
+
+int Entity::editSymbol(cpp::CppSymbol) {
+	return 0;
+}
+
+int Entity::removeSymbol(cpp::CppSymbol) {
+	return 0;
+}
+
+const std::vector<cpp::CppSymbol>& Entity::_getSymbols() const {
+	return (*_symbols);
+}
+
+
+/* Constructors */
+
+bool Entity::hasConstructor(cpp::CppConstructor) {
+	return true;
+}
+
+int Entity::addConstructor(cpp::CppConstructor) {
+	return 0;
+}
+
+int Entity::editConstructor(cpp::CppConstructor) {
+	return 0;
+}
+
+int Entity::removeConstructor(cpp::CppConstructor) {
+	return 0;
+}
+
+const std::vector<cpp::CppConstructor>& Entity::_getConstructors() const {
+	return (*_constructors);
+}
+
+
+/* Destructors */
+
+
+bool Entity::hasDestructor(cpp::CppDestructor) {
+	return true;
+}
+
+int Entity::addDestructor(cpp::CppDestructor) {
+	return 0;
+}
+
+int Entity::editDestructor(cpp::CppDestructor) {
+	return 0;
+}
+
+int Entity::removeDestructor(cpp::CppDestructor) {
+	return 0;
+}
+
+const std::vector<cpp::CppDestructor>& Entity::_getDestructors() const {
+	return (*_destructors);
+}
+
 /* Member Functions */
 
 bool Entity::hasMemberFunction(cpp::CppMemberFunction f) {

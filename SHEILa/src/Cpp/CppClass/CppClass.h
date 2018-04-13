@@ -12,11 +12,14 @@
 #ifndef CPP_CPPCLASS_CPPCLASS_H_
 #define CPP_CPPCLASS_CPPCLASS_H_
 
+#include <string>
+#include <vector>
+#include <ctime>
+
 #include "../Cpp.h"
 #include "../CppDataMember/CppDataMember.h"
 #include "../CppMemberFunction/CppMemberFunction.h"
 
-#include <ctime>
 
 namespace sheila {
 namespace cpp {

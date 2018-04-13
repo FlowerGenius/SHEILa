@@ -12,20 +12,14 @@
 #ifndef ENTITY_ENTITY_H_
 #define ENTITY_ENTITY_H_
 
-#include "../symbols.inc"
-
-#include "../Cpp/Cpp.h"
-#include "../Cpp/CppClass/CppClass.h"
-#include "../Cpp/CppMemberFunction/CppMemberFunction.h"
-#include "../Cpp/CppDataMember/CppDataMember.h"
-
-
 #include <string>
 #include <vector>
 #include <typeinfo>
-#include <stdint.h>
 #include <ctime>
 
+#include "../symbols.inc"
+#include "../Cpp/language.inc"
+#include "../C/language.inc"
 
 namespace sheila {
 
@@ -68,11 +62,61 @@ public:
 	const std::vector<Entity>& _getParents() const;
 	const std::vector<Entity>& _getChildren() const;
 
+	/* Preprocessor Cpp Standard Library Includes */
+
+	bool hasInclude(cpp::CppStandardHeaderFile);
+	int addInclude(cpp::CppStandardHeaderFile);
+	int removeInclude(cpp::CppStandardHeaderFile);
+	const std::vector<cpp::CppStandardHeaderFile>& _getCppIncludes() const;
+
+	/* Preprocessor C Standard Library Includes */
+
+	bool hasInclude(c::CStandardHeaderFile);
+	int addInclude(c::CStandardHeaderFile);
+	int removeInclude(c::CStandardHeaderFile);
+	const std::vector<c::CStandardHeaderFile>& _getCIncludes() const;
+
+	/* Preprocessor Included files */
+
+	bool hasInclude(cpp::CppHeaderFile);
+	int addInclude(cpp::CppHeaderFile);
+	int removeInclude(cpp::CppHeaderFile);
+	const std::vector<cpp::CppHeaderFile>& _getIncludes() const;
+
+	/* Preprocessor Macros */
+
+	bool hasMacro(cpp::CppMacro);
+	int addMacro(cpp::CppMacro);
+	int editMacro(cpp::CppMacro);
+	int removeMacro(cpp::CppMacro);
+	const std::vector<cpp::CppMacro>& _getMacros() const;
+
+	/* Preprocessor Symbols */
+
+	bool hasSymbol(cpp::CppSymbol);
+	int addSymbol(cpp::CppSymbol);
+	int editSymbol(cpp::CppSymbol);
+	int removeSymbol(cpp::CppSymbol);
+	const std::vector<cpp::CppSymbol>& _getSymbols() const;
+
+
 	/* Constructors */
+
+	bool hasConstructor(cpp::CppConstructor);
+	int addConstructor(cpp::CppConstructor);
+	int editConstructor(cpp::CppConstructor);
+	int removeConstructor(cpp::CppConstructor);
+	const std::vector<cpp::CppConstructor>& _getConstructors() const;
 
 
 	/* Destructors */
 
+
+	bool hasDestructor(cpp::CppDestructor);
+	int addDestructor(cpp::CppDestructor);
+	int editDestructor(cpp::CppDestructor);
+	int removeDestructor(cpp::CppDestructor);
+	const std::vector<cpp::CppDestructor>& _getDestructors() const;
 
 	/* Member Functions */
 
@@ -152,17 +196,24 @@ protected:
 	 * for the class from which it is called.
 	 */
 
-	std::time_t*						_time_created;
-	std::time_t*						_time_accessed;
-	std::time_t*						_time_modified;
-	std::vector<long double>*			_emotion_values;
-	std::vector<std::string>* 			_name;
-	std::vector<std::string>* 			_desc;
-	std::vector<std::string>*			_cv_filters;
-	std::vector<Entity>* 				_parents;
-	std::vector<Entity>* 				_children;
-	std::vector<cpp::CppMemberFunction>* _member_functions;
-	std::vector<cpp::CppDataMember>* 	_data_members;
+	std::time_t*								_time_created;
+	std::time_t*								_time_accessed;
+	std::time_t*								_time_modified;
+	std::vector<long double>*					_emotion_values;
+	std::vector<std::string>* 					_name;
+	std::vector<std::string>* 					_desc;
+	std::vector<std::string>*					_cv_filters;
+	std::vector<Entity>* 						_parents;
+	std::vector<Entity>* 						_children;
+	std::vector<cpp::CppStandardHeaderFile>*	_cpp_include_files;
+	std::vector<c::CStandardHeaderFile>*		_c_include_files;
+	std::vector<cpp::CppHeaderFile>*			_include_files;
+	std::vector<cpp::CppMacro>*					_macros;
+	std::vector<cpp::CppSymbol>*				_symbols;
+	std::vector<cpp::CppConstructor>*			_constructors;
+	std::vector<cpp::CppDestructor>*			_destructors;
+	std::vector<cpp::CppMemberFunction>* 		_member_functions;
+	std::vector<cpp::CppDataMember>* 			_data_members;
 
 	/* Member Functions that modify the class they are accessed from.
 	 *
