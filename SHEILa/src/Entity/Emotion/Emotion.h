@@ -24,8 +24,6 @@ public:
 
 	static std::vector<Entity> entities;
 
-	static bool hasParent(Entity);
-
 	Emotion();
 	Emotion(long double strength);
 	virtual ~Emotion();
@@ -33,21 +31,25 @@ public:
 	void setStrength(long double strength);
 	long double getStrength(void);
 
+
+
 protected:
 
-	static std::time_t							_time_created;
-	static std::time_t							_time_accessed;
-	static std::time_t							_time_modified;
-	static std::vector<long double>				_emotion_values;
-	static std::vector<std::string> 			_name;
-	static std::vector<std::string> 			_desc;
-	static std::vector<std::string>				_cv_filters;
-	static std::vector<Entity> 					_parents;
-	static std::vector<Entity> 					_children;
-	static std::vector<cpp::CppMemberFunction> 	_member_functions;
-	static std::vector<cpp::CppDataMember> 		_data_members;
-
 	long double strength;
+
+private:
+
+	static std::time_t							_time_created_;
+	static std::time_t							_time_accessed_;
+	static std::time_t							_time_modified_;
+	static std::vector<long double>				_emotion_values_;
+	static std::vector<std::string> 			_name_;
+	static std::vector<std::string> 			_desc_;
+	static std::vector<std::string>				_cv_filters_;
+	static std::vector<Entity> 					_parents_;
+	static std::vector<Entity> 					_children_;
+	static std::vector<cpp::CppMemberFunction> 	_member_functions_;
+	static std::vector<cpp::CppDataMember> 		_data_members_;
 
 };
 

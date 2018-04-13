@@ -26,6 +26,14 @@ public:
 	CppDataMember();
 	virtual ~CppDataMember();
 
+	const std::string& getIdentifier() const {
+		return identifier;
+	}
+
+	void setIdentifier(const std::string& identifier) {
+		this->identifier = identifier;
+	}
+
 private:
 
 	bool _const_;

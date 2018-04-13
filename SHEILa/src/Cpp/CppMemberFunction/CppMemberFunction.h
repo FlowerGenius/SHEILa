@@ -25,6 +25,13 @@ public:
 	CppMemberFunction();
 	virtual ~CppMemberFunction();
 
+	const std::string& getIdentifier() const {
+		return identifier;
+	}
+
+	void setIdentifier(const std::string& identifier) {
+		this->identifier = identifier;
+	}
 
 private:
 

@@ -63,8 +63,8 @@ public:
 
 protected:
 
-	template <class _T> std::vector<_T> _parents;
-	template <class _T> std::vector<_T> _children;
+	std::vector<CppClass> _parents;
+	std::vector<CppClass> _children;
 
 
 	std::vector<std::string> 			_name;

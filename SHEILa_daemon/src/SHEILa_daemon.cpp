@@ -11,6 +11,7 @@
 
 #include "SHEILa_daemon.hpp"
 
+
 #include <atomic>
 #include <string>
 #include <vector>
@@ -23,6 +24,19 @@ typedef enum shutdown_conditions {
 
 std::atomic<ShutdownCondition> TERMINATION_SIGNAL;
 std::atomic_bool TERMINATE;
+
+
+int setupEntity(sheila::Entity e) {
+
+}
+
+int commitEntityToDisk(sheila::Entity e){
+	;
+}
+
+int loadEntityFromDisk(sheila::Entity e){
+	;
+}
 
 
 /*
@@ -93,6 +107,12 @@ int main() {
 //
 //	}
 	buildDaemon();
+
+	sheila::Entity e1 = sheila::Emotion();
+	sheila::Entity e2 = sheila::Emotion();
+
+
+	std::cout << e2.hasParent(sheila::Entity()) << std::endl;
 
 	return 0;
 }

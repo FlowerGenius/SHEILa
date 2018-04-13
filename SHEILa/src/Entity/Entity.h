@@ -42,19 +42,10 @@ public:
 
 	/* Helper functions */
 
-	static std::time_t mktime(std::string);
-
-	template <class _T>
-	static std::string repr(_T e) {
-		return e._E_repr();
-	}
-
-
-
 	static int createNewEntity(
 			std::vector<std::string> names,
 			std::vector<std::string> descs,
-			std::vector<std::string> cvinf,
+			std::vector<std::string> cvinf
  	);
 
 	Entity();
@@ -66,16 +57,16 @@ public:
 
 	/* Inheritance */
 
-	virtual bool hasParent(Entity);
-	virtual bool hasChild(Entity);
-	virtual int addParent(Entity, bool _virtual, cpp::AccessLevel _level);
-	virtual int addChild(Entity, bool _virtual, cpp::AccessLevel _level);
-	virtual int editParent(Entity, bool _virtual, cpp::AccessLevel _level);
-	virtual int editChild(Entity, bool _virtual, cpp::AccessLevel _level);
-	virtual int removeParent(Entity);
-	virtual int removeChild(Entity);
-	virtual const std::vector<Entity>& _getParents() const;
-	virtual const std::vector<Entity>& _getChildren() const;
+	bool hasParent(Entity);
+	bool hasChild(Entity);
+	int addParent(Entity, bool _virtual, cpp::AccessLevel _level);
+	int addChild(Entity, bool _virtual, cpp::AccessLevel _level);
+	int editParent(Entity, bool _virtual, cpp::AccessLevel _level);
+	int editChild(Entity, bool _virtual, cpp::AccessLevel _level);
+	int removeParent(Entity);
+	int removeChild(Entity);
+	const std::vector<Entity>& _getParents() const;
+	const std::vector<Entity>& _getChildren() const;
 
 	/* Constructors */
 
@@ -85,41 +76,41 @@ public:
 
 	/* Member Functions */
 
-	virtual bool hasMemberFunction(cpp::CppMemberFunction);
-	virtual int addMemberFunction(cpp::CppMemberFunction);
-	virtual int editMemberFunction(cpp::CppMemberFunction);
-	virtual int removeMemberFunction(cpp::CppMemberFunction);
-	virtual const std::vector<cpp::CppMemberFunction>& _getMemberFunctions() const;
+	bool hasMemberFunction(cpp::CppMemberFunction);
+	int addMemberFunction(cpp::CppMemberFunction);
+	int editMemberFunction(cpp::CppMemberFunction);
+	int removeMemberFunction(cpp::CppMemberFunction);
+	const std::vector<cpp::CppMemberFunction>& _getMemberFunctions() const;
 
 
 	/* Data Members */
 
-	virtual bool hasDataMember(cpp::CppDataMember);
-	virtual int addDataMember(cpp::CppDataMember);
-	virtual int editDataMember(cpp::CppDataMember);
-	virtual int removeDataMember(cpp::CppDataMember);
-	virtual const std::vector<cpp::CppDataMember>& _getDataMembers() const;
+	bool hasDataMember(cpp::CppDataMember);
+	int addDataMember(cpp::CppDataMember);
+	int editDataMember(cpp::CppDataMember);
+	int removeDataMember(cpp::CppDataMember);
+	const std::vector<cpp::CppDataMember>& _getDataMembers() const;
 
 	/* Entity metadata */
 
-	virtual const std::vector<std::string>& _getName() const;
-	virtual const std::vector<std::string>& _getDesc() const;
+	const std::vector<std::string>& _getName() const;
+	const std::vector<std::string>& _getDesc() const;
 
 
 	/* The id on the server of an instance of this class
 	 *
 	 */
-	virtual uintmax_t _getInstanceID();
+	uintmax_t _getInstanceID();
 
 	/* The location on the server database of where this class and it's
 	 * header file are located.
 	 */
-	virtual std::string _getClassPath();
+	std::string _getClassPath();
 
 	/* The location on the server database of where substantive instances
 	 * of this class will be stored.
 	 */
-	virtual std::string _getInstancePath();
+	std::string _getInstancePath();
 
 protected:
 
@@ -161,23 +152,37 @@ protected:
 	 * for the class from which it is called.
 	 */
 
-	std::time_t							_time_created;
-	std::time_t							_time_accessed;
-	std::time_t							_time_modified;
-	std::vector<long double>			_emotion_values;
-	std::vector<std::string> 			_name;
-	std::vector<std::string> 			_desc;
-	std::vector<std::string>			_cv_filters;
-	std::vector<Entity> 				_parents;
-	std::vector<Entity> 				_children;
-	std::vector<cpp::CppMemberFunction> _member_functions;
-	std::vector<cpp::CppDataMember> 	_data_members;
+	std::time_t*						_time_created;
+	std::time_t*						_time_accessed;
+	std::time_t*						_time_modified;
+	std::vector<long double>*			_emotion_values;
+	std::vector<std::string>* 			_name;
+	std::vector<std::string>* 			_desc;
+	std::vector<std::string>*			_cv_filters;
+	std::vector<Entity>* 				_parents;
+	std::vector<Entity>* 				_children;
+	std::vector<cpp::CppMemberFunction>* _member_functions;
+	std::vector<cpp::CppDataMember>* 	_data_members;
 
 	/* Member Functions that modify the class they are accessed from.
 	 *
 	 * IMPORTANT! THESE FUNCTIONS MUST NEVER BE OVERRIDDEN IN ANY SUBCLASS
 	 * OF ENTITY
 	 */
+
+private:
+
+	static std::time_t							_time_created_;
+	static std::time_t							_time_accessed_;
+	static std::time_t							_time_modified_;
+	static std::vector<long double>				_emotion_values_;
+	static std::vector<std::string> 			_name_;
+	static std::vector<std::string> 			_desc_;
+	static std::vector<std::string>				_cv_filters_;
+	static std::vector<Entity> 					_parents_;
+	static std::vector<Entity> 					_children_;
+	static std::vector<cpp::CppMemberFunction> 	_member_functions_;
+	static std::vector<cpp::CppDataMember> 		_data_members_;
 
 };
 

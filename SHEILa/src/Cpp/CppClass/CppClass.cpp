@@ -29,8 +29,8 @@ const std::vector<std::string>& CppClass::_getDesc() const {
 }
 
 bool CppClass::hasParent(CppClass e) {
-	for (std::vector<CppClass>::iterator it = _parents<CppClass>.begin();
-			it != _parents<CppClass>.end(); ++it) {
+	for (std::vector<CppClass>::iterator it = _parents.begin();
+			it != _parents.end(); ++it) {
 
 		if ((*it)._getName() == e._getName()) {
 			return true;
@@ -89,7 +89,7 @@ const std::vector<CppClass>& CppClass::getChildren() const {
 
 /* Member Functions */
 
-bool CppClass::hasMemberFunction(CppMemberFunction){
+bool CppClass::hasMemberFunction(CppMemberFunction f){
 	for (std::vector<CppMemberFunction>::iterator it = _member_functions.begin();
 			it != _member_functions.end(); ++it) {
 
@@ -116,7 +116,7 @@ const std::vector<CppMemberFunction>& CppClass::getMemberFunctions() const {
 
 /* Data Members */
 
-bool CppClass::hasDataMember(CppDataMember) {
+bool CppClass::hasDataMember(CppDataMember m) {
 	for (std::vector<CppDataMember>::iterator it = _data_members.begin();
 			it != _data_members.end(); ++it) {
 

@@ -13,6 +13,38 @@
 
 namespace sheila {
 
+std::vector<long double>			Feeling::_emotion_values_ = {
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0,
+		0.0
+};
+std::vector<std::string> 			Feeling::_name_ = {
+		"Feeling"
+};
+std::vector<std::string> 			Feeling::_desc_ = {
+		"A schema to make sense of a mood"
+};
+std::vector<Entity> 				Feeling::_children_ = {
+
+};
+std::vector<std::string>			Feeling::_cv_filters_ = {
+
+};
+std::vector<Entity> 				Feeling::_parents_ = {
+		Entity()
+};
+
+std::time_t							Feeling::_time_created_;
+std::time_t							Feeling::_time_accessed_;
+std::time_t							Feeling::_time_modified_;
+std::vector<cpp::CppMemberFunction>	Feeling::_member_functions_;
+std::vector<cpp::CppDataMember> 	Feeling::_data_members_;
+
 /*
  *
  */
@@ -32,8 +64,8 @@ std::string ldtos(long double d, int coeff_digits){
 std::vector<Feeling> Feeling::feelings;
 
 Feeling::Feeling() {
-	_name.push_back("Feeling");
-	_desc.push_back("A specific range of emotions that can be identified with one word or phrase");
+	_name = &Feeling::_name_;
+	_desc = &Feeling::_desc_;
 }
 
 Feeling::Feeling(std::string name, std::string desc,
@@ -74,8 +106,8 @@ Feeling::Feeling(std::string name, std::string desc,
 		long double min_diff_tru_ant, long double max_diff_tru_ant,
 		long double min_diff_joy_ant, long double max_diff_joy_ant) {
 
-	_name.push_back("Feeling");
-	_desc.push_back("A specific range of emotions that can be identified with one word or phrase");
+//	_name.push_back("Feeling");
+//	_desc.push_back("A specific range of emotions that can be identified with one word or phrase");
 
 	this->name 	= name;
 	this->desc 	= desc;
