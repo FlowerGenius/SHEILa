@@ -9,7 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include "InstructionSetArchitecture.h"
+#include "InstructionSetArchitecture.hpp"
 
 namespace sheila {
 

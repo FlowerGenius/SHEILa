@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : SHEILaCoreServer.h
+// Name        : SHEILaCoreServer.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,14 +9,14 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
-#define ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_
+#ifndef ENTITY_SHEILACORESERVER_SHEILACORESERVER_HPP_
+#define ENTITY_SHEILACORESERVER_SHEILACORESERVER_HPP_
 
-#include "../Server/Server.h"
-#include "../Feeling/Feeling.h"
+#include "../Server/Server.hpp"
+#include "../Feeling/Feeling.hpp"
 
 class Mood;
-#include "../Mood/Mood.h"
+#include "../Mood/Mood.hpp"
 
 
 namespace sheila {
@@ -41,4 +41,4 @@ protected:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_SHEILACORESERVER_SHEILACORESERVER_H_ */
+#endif /* ENTITY_SHEILACORESERVER_SHEILACORESERVER_HPP_ */

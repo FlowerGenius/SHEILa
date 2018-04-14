@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : Vendor.h
+// Name        : Vendor.hpp
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //==============================================================================
 
-#ifndef ENTITY_VENDOR_VENDOR_H_
-#define ENTITY_VENDOR_VENDOR_H_
+#ifndef ENTITY_VENDOR_VENDOR_HPP_
+#define ENTITY_VENDOR_VENDOR_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 
@@ -24,4 +24,4 @@ public:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_VENDOR_VENDOR_H_ */
+#endif /* ENTITY_VENDOR_VENDOR_HPP_ */

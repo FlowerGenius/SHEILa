@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Server.h
+// Name        : Server.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,11 +9,11 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_SERVER_SERVER_H_
-#define ENTITY_SERVER_SERVER_H_
+#ifndef ENTITY_SERVER_SERVER_HPP_
+#define ENTITY_SERVER_SERVER_HPP_
 
-#include "../IPv4/IPv4.h"
-#include "../IPv6/IPv6.h"
+#include "../IPv4/IPv4.hpp"
+#include "../IPv6/IPv6.hpp"
 
 #include <stdint.h>
 #include <vector>
@@ -34,4 +34,4 @@ protected:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_SERVER_SERVER_H_ */
+#endif /* ENTITY_SERVER_SERVER_HPP_ */

@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : OS.h
+// Name        : OperatingSystem.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_
-#define ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_
+#ifndef ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_HPP_
+#define ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 
@@ -24,4 +24,4 @@ public:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_H_ */
+#endif /* ENTITY_OPERATINGSYSTEM_OPERATINGSYSTEM_HPP_ */

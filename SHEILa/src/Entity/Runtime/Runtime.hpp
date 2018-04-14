@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Runtime.h
+// Name        : Runtime.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,11 +9,11 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_RUNTIME_RUNTIME_H_
-#define ENTITY_RUNTIME_RUNTIME_H_
+#ifndef ENTITY_RUNTIME_RUNTIME_HPP_
+#define ENTITY_RUNTIME_RUNTIME_HPP_
 
-#include "../IPv4/IPv4.h"
-#include "../IPv6/IPv6.h"
+#include "../IPv4/IPv4.hpp"
+#include "../IPv6/IPv6.hpp"
 #include <stdint.h>
 
 namespace sheila {
@@ -36,4 +36,4 @@ private:
 } /* namespace runtime */
 } /* namespace sheila */
 
-#endif /* ENTITY_RUNTIME_RUNTIME_H_ */
+#endif /* ENTITY_RUNTIME_RUNTIME_HPP_ */

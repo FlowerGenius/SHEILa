@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : Manufacturer.h
+// Name        : Manufacturer.hpp
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //==============================================================================
 
-#ifndef ENTITY_MANUFACTURER_MANUFACTURER_H_
-#define ENTITY_MANUFACTURER_MANUFACTURER_H_
+#ifndef ENTITY_MANUFACTURER_MANUFACTURER_HPP_
+#define ENTITY_MANUFACTURER_MANUFACTURER_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 
@@ -48,4 +48,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_MANUFACTURER_MANUFACTURER_H_ */
+#endif /* ENTITY_MANUFACTURER_MANUFACTURER_HPP_ */

@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Mood.h
+// Name        : Mood.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,12 +9,12 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_MOOD_MOOD_H_
-#define ENTITY_MOOD_MOOD_H_
+#ifndef ENTITY_MOOD_MOOD_HPP_
+#define ENTITY_MOOD_MOOD_HPP_
 
-#include "../Emotion/Emotion.h"
-#include "../Feeling/Feeling.h"
-#include "../SHEILaCoreServer/SHEILaCoreServer.h"
+#include "../Emotion/Emotion.hpp"
+#include "../Feeling/Feeling.hpp"
+#include "../SHEILaCoreServer/SHEILaCoreServer.hpp"
 
 
 #include <vector>
@@ -73,4 +73,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_MOOD_MOOD_H_ */
+#endif /* ENTITY_MOOD_MOOD_HPP_ */

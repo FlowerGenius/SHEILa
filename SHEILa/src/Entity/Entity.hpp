@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : Entity.h
+// Name        : Entity.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,8 +9,8 @@
 // Modified    :
 //==============================================================================
 
-#ifndef ENTITY_ENTITY_H_
-#define ENTITY_ENTITY_H_
+#ifndef ENTITY_ENTITY_HPP_
+#define ENTITY_ENTITY_HPP_
 
 #include <string>
 #include <vector>
@@ -232,6 +232,13 @@ private:
 	static std::vector<std::string>				_cv_filters_;
 	static std::vector<Entity> 					_parents_;
 	static std::vector<Entity> 					_children_;
+	static std::vector<cpp::CppStandardHeaderFile>*	_cpp_include_files_;
+	static std::vector<c::CStandardHeaderFile>*		_c_include_files_;
+	static std::vector<cpp::CppHeaderFile>*			_include_files_;
+	static std::vector<cpp::CppMacro>*				_macros_;
+	static std::vector<cpp::CppSymbol>*				_symbols_;
+	static std::vector<cpp::CppConstructor>*		_constructors_;
+	static std::vector<cpp::CppDestructor>*			_destructors_;
 	static std::vector<cpp::CppMemberFunction> 	_member_functions_;
 	static std::vector<cpp::CppDataMember> 		_data_members_;
 
@@ -239,4 +246,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_ENTITY_H_ */
+#endif /* ENTITY_ENTITY_HPP_ */

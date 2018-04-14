@@ -12,6 +12,9 @@
 #ifndef CPP_CPP_H_
 #define CPP_CPP_H_
 
+#include <string>
+#include <vector>
+
 namespace sheila {
 namespace cpp {
 
@@ -51,8 +54,20 @@ typedef enum ClassTypes {
 
 class Cpp {
 public:
+
+	static bool isReservedWord(std::string);
+	static std::string accessLevel(AccessLevel);
+	static std::string storageClass(StorageClass);
+	static std::string fundamentalType(FundamentalType);
+	static std::string classType(ClassType);
+
 	Cpp();
 	virtual ~Cpp();
+
+private:
+
+	static std::vector<std::string> reserved_words;
+
 };
 
 } /* namespace cpp */

@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : Schema.h
+// Name        : Schema.hpp
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //==============================================================================
 
-#ifndef ENTITY_SCHEMA_SCHEMA_H_
-#define ENTITY_SCHEMA_SCHEMA_H_
+#ifndef ENTITY_SCHEMA_SCHEMA_HPP_
+#define ENTITY_SCHEMA_SCHEMA_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 
@@ -24,4 +24,4 @@ public:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_SCHEMA_SCHEMA_H_ */
+#endif /* ENTITY_SCHEMA_SCHEMA_HPP_ */

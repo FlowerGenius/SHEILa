@@ -9,7 +9,7 @@
 // Modified    :
 //============================================================================
 
-#include "IPv6.h"
+#include "IPv6.hpp"
 
 namespace sheila {
 

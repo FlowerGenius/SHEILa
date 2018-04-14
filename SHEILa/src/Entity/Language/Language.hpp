@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Language.h
+// Name        : Language.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_LANGUAGE_LANGUAGE_H_
-#define ENTITY_LANGUAGE_LANGUAGE_H_
+#ifndef ENTITY_LANGUAGE_LANGUAGE_HPP_
+#define ENTITY_LANGUAGE_LANGUAGE_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 
@@ -24,4 +24,4 @@ public:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_LANGUAGE_LANGUAGE_H_ */
+#endif /* ENTITY_LANGUAGE_LANGUAGE_HPP_ */

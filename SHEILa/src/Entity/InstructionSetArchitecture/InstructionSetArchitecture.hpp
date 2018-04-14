@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : InstructionSetArchitecture.h
+// Name        : InstructionSetArchitecture.hpp
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,11 +9,11 @@
 // Modified    :
 //==============================================================================
 
-#ifndef ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_H_
-#define ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_H_
+#ifndef ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_HPP_
+#define ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_HPP_
 
-#include "../Entity.h"
-#include "../Manufacturer/Manufacturer.h"
+#include "../Entity.hpp"
+#include "../Manufacturer/Manufacturer.hpp"
 
 namespace sheila {
 
@@ -47,4 +47,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_H_ */
+#endif /* ENTITY_INSTRUCTIONSETARCHITECTURE_INSTRUCTIONSETARCHITECTURE_HPP_ */

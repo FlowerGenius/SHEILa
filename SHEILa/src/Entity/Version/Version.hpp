@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Version.h
+// Name        : Version.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_VERSION_VERSION_H_
-#define ENTITY_VERSION_VERSION_H_
+#ifndef ENTITY_VERSION_VERSION_HPP_
+#define ENTITY_VERSION_VERSION_HPP_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 #include <stdint.h>
 #include <string>
@@ -44,4 +44,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_VERSION_VERSION_H_ */
+#endif /* ENTITY_VERSION_VERSION_HPP_ */

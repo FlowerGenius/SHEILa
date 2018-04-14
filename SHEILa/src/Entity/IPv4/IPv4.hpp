@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : IPv4.h
+// Name        : IPv4.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,10 +9,10 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_IPV4_IPV4_H_
-#define ENTITY_IPV4_IPV4_H_
+#ifndef ENTITY_IPV4_IPV4_HPP_
+#define ENTITY_IPV4_IPV4_HPP_
 
-#include "../IPAddress/IPAddress.h"
+#include "../IPAddress/IPAddress.hpp"
 
 namespace sheila {
 
@@ -58,4 +58,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_IPV4_IPV4_H_ */
+#endif /* ENTITY_IPV4_IPV4_HPP_ */

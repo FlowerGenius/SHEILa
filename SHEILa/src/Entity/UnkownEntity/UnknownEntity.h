@@ -12,7 +12,7 @@
 #ifndef SRC_ENTITY_UNKOWNENTITY_UNKNOWNENTITY_H_
 #define SRC_ENTITY_UNKOWNENTITY_UNKNOWNENTITY_H_
 
-#include "../Entity.h"
+#include "../Entity.hpp"
 
 namespace sheila {
 

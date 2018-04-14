@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Platform.h
+// Name        : Platform.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,20 +9,20 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_PLATFORM_PLATFORM_H_
-#define ENTITY_PLATFORM_PLATFORM_H_
+#ifndef ENTITY_PLATFORM_PLATFORM_HPP_
+#define ENTITY_PLATFORM_PLATFORM_HPP_
 
-#include "../Version/Version.h"
-#include "../Runtime/Runtime.h"
-#include "../Mood/Mood.h"
-#include "../IPv4/IPv4.h"
-#include "../IPv6/IPv6.h"
-#include "../InstructionSetArchitecture/InstructionSetArchitecture.h"
-#include "../Vendor/Vendor.h"
-#include "../OperatingSystem/OperatingSystem.h"
+#include "../Version/Version.hpp"
+#include "../Runtime/Runtime.hpp"
+#include "../Mood/Mood.hpp"
+#include "../IPv4/IPv4.hpp"
+#include "../IPv6/IPv6.hpp"
+#include "../Vendor/Vendor.hpp"
+#include "../OperatingSystem/OperatingSystem.hpp"
 
 #include <stdint.h>
 #include <vector>
+#include "../InstructionSetArchitecture/InstructionSetArchitecture.hpp"
 
 namespace sheila {
 
@@ -56,4 +56,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_PLATFORM_PLATFORM_H_ */
+#endif /* ENTITY_PLATFORM_PLATFORM_HPP_ */

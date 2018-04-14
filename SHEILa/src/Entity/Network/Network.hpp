@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Network.h
+// Name        : Network.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,14 +9,14 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_NETWORK_NETWORK_H_
-#define ENTITY_NETWORK_NETWORK_H_
+#ifndef ENTITY_NETWORK_NETWORK_HPP_
+#define ENTITY_NETWORK_NETWORK_HPP_
 
-#include "../IPv4/IPv4.h"
-#include "../IPv6/IPv6.h"
-#include "../Mood/Mood.h"
-#include "../Platform/Platform.h"
-#include "../Runtime/Runtime.h"
+#include "../IPv4/IPv4.hpp"
+#include "../IPv6/IPv6.hpp"
+#include "../Mood/Mood.hpp"
+#include "../Platform/Platform.hpp"
+#include "../Runtime/Runtime.hpp"
 
 namespace sheila {
 namespace network {
@@ -46,4 +46,4 @@ private:
 } /* namespace network */
 } /* namespace sheila */
 
-#endif /* ENTITY_NETWORK_NETWORK_H_ */
+#endif /* ENTITY_NETWORK_NETWORK_HPP_ */

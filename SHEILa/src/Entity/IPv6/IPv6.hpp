@@ -1,35 +1,30 @@
 //SHEILa======================================================================
-// Name        : IPAddress.h
+// Name        : IPv6.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
 // Description : 
-// Module	   : SHEILa_runtime
-// Created     : Mar 27, 2018
+// Module	   : SHEILa
+// Created     : Mar 31, 2018
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_IPADDRESS_IPADDRESS_H_
-#define ENTITY_IPADDRESS_IPADDRESS_H_
+#ifndef ENTITY_IPV6_IPV6_HPP_
+#define ENTITY_IPV6_IPV6_HPP_
 
-#include <stdint.h>
-#include <string>
-#include <sstream>
-#include <bitset>
-
-#include "../Entity.h"
+#include "../IPAddress/IPAddress.hpp"
 
 namespace sheila {
 
-class IPAddress : public Entity {
+/* Internet Protocol address using a 128-bit address */
+class IPv6 :  public IPAddress {
 public:
+	IPv6();
+	virtual ~IPv6();
 
-	static std::vector<IPAddress> ip_addresses;
 
-	IPAddress();
-	virtual ~IPAddress();
 
-	//virtual std::string toString();
+	std::string toString();
 private:
 
 	static std::time_t							_time_created_;
@@ -43,9 +38,8 @@ private:
 	static std::vector<Entity> 					_children_;
 	static std::vector<cpp::CppMemberFunction> 	_member_functions_;
 	static std::vector<cpp::CppDataMember> 		_data_members_;
-
 };
 
 } /* namespace sheila */
 
-#endif /* ENTITY_IPADDRESS_IPADDRESS_H_ */
+#endif /* ENTITY_IPV6_IPV6_HPP_ */

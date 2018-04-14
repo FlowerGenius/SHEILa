@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Range.h
+// Name        : Range.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,8 +9,8 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_RANGE_RANGE_H_
-#define ENTITY_RANGE_RANGE_H_
+#ifndef ENTITY_RANGE_RANGE_HPP_
+#define ENTITY_RANGE_RANGE_HPP_
 
 #include <stdint.h>
 
@@ -38,4 +38,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_RANGE_RANGE_H_ */
+#endif /* ENTITY_RANGE_RANGE_HPP_ */

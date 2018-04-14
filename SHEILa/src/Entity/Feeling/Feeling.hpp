@@ -1,5 +1,5 @@
 //SHEILa======================================================================
-// Name        : Feeling.h
+// Name        : Feeling.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
@@ -9,11 +9,11 @@
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_FEELING_FEELING_H_
-#define ENTITY_FEELING_FEELING_H_
+#ifndef ENTITY_FEELING_FEELING_HPP_
+#define ENTITY_FEELING_FEELING_HPP_
 
-#include "../Range/Range.h"
-#include "../Entity.h"
+#include "../Range/Range.hpp"
+#include "../Entity.hpp"
 
 #include <string>
 #include <vector>
@@ -149,4 +149,4 @@ private:
 
 } /* namespace sheila */
 
-#endif /* ENTITY_FEELING_FEELING_H_ */
+#endif /* ENTITY_FEELING_FEELING_HPP_ */

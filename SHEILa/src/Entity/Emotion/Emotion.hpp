@@ -1,30 +1,42 @@
 //SHEILa======================================================================
-// Name        : IPv6.h
+// Name        : Emotion.hpp
 // Author      : erin
 // Version     : 
 // Copyright   : 
 // Description : 
-// Module	   : SHEILa
-// Created     : Mar 31, 2018
+// Module	   : SHEILa_runtime
+// Created     : Mar 19, 2018
 // Modified    :
 //============================================================================
 
-#ifndef ENTITY_IPV6_IPV6_H_
-#define ENTITY_IPV6_IPV6_H_
+#ifndef ENTITY_EMOTION_EMOTION_HPP_
+#define ENTITY_EMOTION_EMOTION_HPP_
 
-#include "../IPAddress/IPAddress.h"
+#include <stdint.h>
+#include <string>
+#include <vector>
+#include "../Entity.hpp"
 
 namespace sheila {
 
-/* Internet Protocol address using a 128-bit address */
-class IPv6 :  public IPAddress {
+class Emotion : public Entity {
 public:
-	IPv6();
-	virtual ~IPv6();
+
+	static std::vector<Entity> entities;
+
+	Emotion();
+	Emotion(long double strength);
+	virtual ~Emotion();
+
+	void setStrength(long double strength);
+	long double getStrength(void);
 
 
 
-	std::string toString();
+protected:
+
+	long double strength;
+
 private:
 
 	static std::time_t							_time_created_;
@@ -38,8 +50,10 @@ private:
 	static std::vector<Entity> 					_children_;
 	static std::vector<cpp::CppMemberFunction> 	_member_functions_;
 	static std::vector<cpp::CppDataMember> 		_data_members_;
+
 };
+
 
 } /* namespace sheila */
 
-#endif /* ENTITY_IPV6_IPV6_H_ */
+#endif /* ENTITY_EMOTION_EMOTION_HPP_ */
