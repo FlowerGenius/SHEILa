@@ -15,8 +15,65 @@
 #include <string>
 #include <vector>
 
+#include "../C/language.inc"
+
+
+
 namespace sheila {
 namespace cpp {
+
+typedef enum cpp_standard_library_headers {
+	C_ASSERT,
+	C_CTYPE,
+	C_ERRNO,
+	C_FLOAT,
+	C_ISO646,
+	C_LIMITS,
+	C_LOCALE,
+	C_MATH,
+	C_SETJMP,
+	C_SIGNAL,
+	C_STDARG,
+	C_STDDEF,
+	C_STDIO,
+	C_STDLIB,
+	C_STRING,
+	C_TIME,
+	C_WCHAR,
+	C_WCTYPE,
+	ALGORITHM,
+	BITSET,
+	COMPLEX,
+	DEQUE,
+	EXCEPTION,
+	FSTREAM,
+	FUNCTIONAL,
+	IOMANIP,
+	IOS,
+	IOSFWD,
+	IOSTREAM,
+	ISTREAM,
+	ITERATOR,
+	LIMITS,
+	LIST,
+	LOCALE,
+	MAP,
+	MEMORY,
+	NEW,
+	NUMERIC,
+	OSTREAM,
+	QUEUE,
+	SET,
+	SSTREAM,
+	STACK,
+	STDEXCEPT,
+	STREAMBUF,
+	STRING,
+	TYPEINFO,
+	UTILITY,
+	VALARRAY,
+	VECTOR
+} CppStandardHeaderFile;
 
 typedef enum AccessLevels {
 	PRIVATE,
@@ -45,12 +102,6 @@ typedef enum FundamentalTypes {
 	LONG_DOUBLE
 } FundamentalType;
 
-typedef enum ClassTypes {
-	CLASS,
-	STRUCT,
-	UNION
-} ClassType;
-
 
 class Cpp {
 public:
@@ -59,7 +110,7 @@ public:
 	static std::string accessLevel(AccessLevel);
 	static std::string storageClass(StorageClass);
 	static std::string fundamentalType(FundamentalType);
-	static std::string classType(ClassType);
+//	static std::string classType(ClassType);
 
 	Cpp();
 	virtual ~Cpp();

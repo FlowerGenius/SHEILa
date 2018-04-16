@@ -16,7 +16,7 @@
 
 namespace sheila {
 
-class Schema: public Entity {
+class Schema: public SheilaClass<SCHEMA_T> {
 public:
 	Schema();
 	virtual ~Schema();

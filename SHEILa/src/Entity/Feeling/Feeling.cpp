@@ -13,37 +13,80 @@
 
 namespace sheila {
 
-std::vector<long double>			Feeling::_emotion_values_ = {
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0
-};
-std::vector<std::string> 			Feeling::_name_ = {
-		"Feeling"
-};
-std::vector<std::string> 			Feeling::_desc_ = {
-		"A schema to make sense of a mood"
-};
-std::vector<Entity> 				Feeling::_children_ = {
+template<>
+std::string								SheilaClass<FEELING_T>::_source_path_ =
+__FILE__;
 
-};
-std::vector<std::string>			Feeling::_cv_filters_ = {
+template<>
+std::time_t								SheilaClass<FEELING_T>::_time_created_ =
+std::time(nullptr);
 
-};
-std::vector<Entity> 				Feeling::_parents_ = {
-		Entity()
-};
+template<>
+std::time_t								SheilaClass<FEELING_T>::_time_accessed_ =
+std::time(nullptr);
 
-std::time_t							Feeling::_time_created_;
-std::time_t							Feeling::_time_accessed_;
-std::time_t							Feeling::_time_modified_;
-std::vector<cpp::CppMemberFunction>	Feeling::_member_functions_;
-std::vector<cpp::CppDataMember> 	Feeling::_data_members_;
+template<>
+std::time_t								SheilaClass<FEELING_T>::_time_modified_ =
+std::time(nullptr);
+
+template<>
+std::vector<long double> SheilaClass<FEELING_T>::_emotion_values_ =
+{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+
+template<>
+std::vector<std::string> 				SheilaClass<FEELING_T>::_name_ =
+{"Emotion"};
+
+template<>
+std::vector<std::string> 				SheilaClass<FEELING_T>::_desc_ =
+{""};
+
+template<>
+std::vector<std::string>				SheilaClass<FEELING_T>::_cv_filters_ =
+{""};
+
+template<>
+std::vector<cpp::CppClass_advanced> 	SheilaClass<FEELING_T>::_parents_ =
+{};
+
+template<>
+std::vector<cpp::CppClass_advanced> 	SheilaClass<FEELING_T>::_children_ =
+{};
+
+template<>
+std::vector<cpp::CppStandardHeaderFile>	SheilaClass<FEELING_T>::_cpp_include_files_ =
+{};
+
+template<>
+std::vector<c::CStandardHeaderFile>		SheilaClass<FEELING_T>::_c_include_files_ =
+{};
+
+template<>
+std::vector<cpp::CppHeaderFile>			SheilaClass<FEELING_T>::_include_files_ =
+{};
+
+//template<>
+//std::vector<cpp::CppMacro>				_macros_;
+
+//template<>
+//std::vector<cpp::CppSymbol>				_symbols_;
+
+template<>
+std::vector<cpp::CppConstructor>		SheilaClass<FEELING_T>::_constructors_ =
+{};
+
+template<>
+std::vector<cpp::CppDestructor>			SheilaClass<FEELING_T>::_destructors_ =
+{};
+
+template<>
+std::vector<cpp::CppMemberFunction> 	SheilaClass<FEELING_T>::_member_functions_ =
+{};
+
+template<>
+std::vector<cpp::CppDataMember> 		SheilaClass<FEELING_T>::_data_members_ =
+{};
+
 
 /*
  *
@@ -64,8 +107,7 @@ std::string ldtos(long double d, int coeff_digits){
 std::vector<Feeling> Feeling::feelings;
 
 Feeling::Feeling() {
-	_name = &Feeling::_name_;
-	_desc = &Feeling::_desc_;
+
 }
 
 Feeling::Feeling(std::string name, std::string desc,

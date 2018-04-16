@@ -12,8 +12,7 @@
 #ifndef ENTITY_NETWORK_NETWORK_HPP_
 #define ENTITY_NETWORK_NETWORK_HPP_
 
-#include "../IPv4/IPv4.hpp"
-#include "../IPv6/IPv6.hpp"
+#include "../IPAddress/IPAddress.hpp"
 #include "../Mood/Mood.hpp"
 #include "../Platform/Platform.hpp"
 #include "../Runtime/Runtime.hpp"

@@ -12,8 +12,7 @@
 #ifndef ENTITY_SERVER_SERVER_HPP_
 #define ENTITY_SERVER_SERVER_HPP_
 
-#include "../IPv4/IPv4.hpp"
-#include "../IPv6/IPv6.hpp"
+#include "../IPAddress/IPAddress.hpp"
 
 #include <stdint.h>
 #include <vector>

@@ -19,67 +19,136 @@
 #include "../Cpp.h"
 #include "../CppDataMember/CppDataMember.h"
 #include "../CppMemberFunction/CppMemberFunction.h"
+#include "../CppHeaderFile/CppHeaderFile.h"
+#include "../CppMacro/CppMacro.h"
+#include "../CppSymbol/CppSymbol.h"
+#include "../CppConstructor/CppConstructor.h"
+#include "../CppDestructor/CppDestructor.h"
 
 
 namespace sheila {
 namespace cpp {
 
-class CppClass {
+typedef enum ClassTypes {
+	CLASS,
+	STRUCT,
+	UNION
+} ClassType;
+
+/* functions and members shared by every type of class */
+struct CppClass_base {
 public:
-	CppClass();
-	virtual ~CppClass();
+//	CppClass_base();
+	virtual ~CppClass_base() {
+		;
+	}
 
 	virtual const std::vector<std::string>& _getName() const;
 	virtual const std::vector<std::string>& _getDesc() const;
 
+	/* Constructors */
 
-	/* Inheritance */
+	bool hasConstructor(cpp::CppConstructor);
+	int addConstructor(cpp::CppConstructor);
+	int editConstructor(cpp::CppConstructor);
+	int removeConstructor(cpp::CppConstructor);
+	const std::vector<cpp::CppConstructor>& getConstructors() const;
 
-	virtual bool hasParent(CppClass);
-	virtual bool hasChild(CppClass);
-	virtual int addParent(CppClass, bool _virtual, AccessLevel _level);
-	virtual int addChild(CppClass, bool _virtual, AccessLevel _level);
-	virtual int editParent(CppClass, bool _virtual, AccessLevel _level);
-	virtual int editChild(CppClass, bool _virtual, AccessLevel _level);
-	virtual int removeParent(CppClass);
-	virtual int removeChild(CppClass);
-	virtual const std::vector<CppClass>& getParents() const;
-	virtual const std::vector<CppClass>& getChildren() const;
 
+	/* Destructors */
+
+
+	bool hasDestructor(cpp::CppDestructor);
+	int addDestructor(cpp::CppDestructor);
+	int editDestructor(cpp::CppDestructor);
+	int removeDestructor(cpp::CppDestructor);
+	const std::vector<cpp::CppDestructor>& getDestructors() const;
 
 	/* Member Functions */
 
-	virtual bool hasMemberFunction(CppMemberFunction);
-	virtual int addMemberFunction(CppMemberFunction);
-	virtual int editMemberFunction(CppMemberFunction);
-	virtual int removeMemberFunction(CppMemberFunction);
-	virtual const std::vector<CppMemberFunction>& getMemberFunctions() const;
+	bool hasMemberFunction(cpp::CppMemberFunction);
+	int addMemberFunction(cpp::CppMemberFunction);
+	int editMemberFunction(cpp::CppMemberFunction);
+	int removeMemberFunction(cpp::CppMemberFunction);
+	const std::vector<cpp::CppMemberFunction>& getMemberFunctions() const;
 
 
 	/* Data Members */
 
-	virtual bool hasDataMember(CppDataMember);
-	virtual int addDataMember(CppDataMember);
-	virtual int editDataMember(CppDataMember);
-	virtual int removeDataMember(CppDataMember);
-	virtual const std::vector<CppDataMember>& getDataMembers() const;
+	bool hasDataMember(cpp::CppDataMember);
+	int addDataMember(cpp::CppDataMember);
+	int editDataMember(cpp::CppDataMember);
+	int removeDataMember(cpp::CppDataMember);
+	const std::vector<cpp::CppDataMember>& getDataMembers() const;
+
+protected:
+	std::time_t*							_time_created;
+	std::time_t*							_time_accessed;
+	std::time_t*							_time_modified;
+	std::vector<std::string>* 			_name;
+	std::vector<std::string>* 			_desc;
+	std::vector<cpp::CppConstructor>*	_constructors;
+	std::vector<cpp::CppDestructor>*		_destructors;
+	std::vector<cpp::CppMemberFunction>* _member_functions;
+	std::vector<cpp::CppDataMember>* 	_data_members;
+
+};
+
+/* functions and members shared by the advanced class types */
+struct CppClass_advanced : public CppClass_base {
+public:
+
+//	CppClass_advanced();
+	virtual ~CppClass_advanced() {
+		;
+	}
+
+	/* Inheritance */
+
+	virtual bool hasParent(CppClass_advanced);
+	virtual bool hasChild(CppClass_advanced);
+	virtual int addParent(CppClass_advanced, bool _virtual, AccessLevel _level);
+	virtual int addChild(CppClass_advanced, bool _virtual, AccessLevel _level);
+	virtual int editParent(CppClass_advanced, bool _virtual, AccessLevel _level);
+	virtual int editChild(CppClass_advanced, bool _virtual, AccessLevel _level);
+	virtual int removeParent(CppClass_advanced);
+	virtual int removeChild(CppClass_advanced);
+	virtual const std::vector<CppClass_advanced>& getParents() const;
+	virtual const std::vector<CppClass_advanced>& getChildren() const;
+
+
+
 
 protected:
 
-	std::vector<CppClass> _parents;
-	std::vector<CppClass> _children;
+	std::vector<CppClass_advanced>* 			_parents;
+	std::vector<CppClass_advanced>* 			_children;
 
-
-	std::vector<std::string> 			_name;
-	std::vector<std::string> 			_desc;
-
-	std::time_t							_time_created;
-	std::time_t							_time_accessed;
-	std::time_t							_time_modified;
-	std::vector<CppMemberFunction> 		_member_functions;
-	std::vector<CppDataMember> 			_data_members;
 
 };
+
+
+template<cpp::ClassType _Type = CLASS>
+class CppClass : public CppClass_advanced {
+public:
+	CppClass();
+	virtual ~CppClass();
+};
+
+template<>
+class CppClass<STRUCT> : public CppClass_advanced {
+public:
+	CppClass();
+	virtual ~CppClass();
+};
+
+template<>
+class CppClass<UNION> : public CppClass_base {
+public:
+	CppClass();
+	virtual ~CppClass();
+};
+
 
 
 } /* namespace cpp */

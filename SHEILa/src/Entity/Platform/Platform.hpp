@@ -15,8 +15,7 @@
 #include "../Version/Version.hpp"
 #include "../Runtime/Runtime.hpp"
 #include "../Mood/Mood.hpp"
-#include "../IPv4/IPv4.hpp"
-#include "../IPv6/IPv6.hpp"
+#include "../IPAddress/IPAddress.hpp"
 #include "../Vendor/Vendor.hpp"
 #include "../OperatingSystem/OperatingSystem.hpp"
 
@@ -26,7 +25,7 @@
 
 namespace sheila {
 
-class Platform : public Entity {
+class Platform : public SheilaClass<PLATFORM_T> {
 public:
 	static std::vector<Platform> platforms;
 

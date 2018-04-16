@@ -16,7 +16,7 @@
 
 namespace sheila {
 
-class ProgrammingLanguage: public Entity {
+class ProgrammingLanguage: public SheilaClass<PROGRAMMING_LANGUAGE_T> {
 public:
 	ProgrammingLanguage();
 	virtual ~ProgrammingLanguage();

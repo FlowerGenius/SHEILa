@@ -17,9 +17,10 @@ Version::Version() {
 	this->maj = 0;
 	this->min = 0;
 	this->rev = 0;
+
 }
 
-Version::Version(std::string ver) {
+Version::Version(std::string ver)  {
 	size_t pos;
 	int n = 0;
 	while ((pos = ver.find('.')) != std::string::npos){
@@ -63,7 +64,7 @@ Version::Version(std::string ver, std::string name) {
 	this->name = name;
 }
 
-Version::Version(uint8_t major, uint8_t minor, double revision) {
+Version::Version(uint8_t major, uint8_t minor, double revision)  {
 	this->maj = major;
 	this->min = minor;
 	this->rev = revision;

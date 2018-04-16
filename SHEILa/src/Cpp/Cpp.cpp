@@ -163,18 +163,18 @@ std::string Cpp::fundamentalType(FundamentalType typ) {
 
 }
 
-std::string Cpp::classType(ClassType typ) {
-	switch(typ) {
-	case CLASS:
-		return "class";
-	case STRUCT:
-		return "struct";
-	case UNION:
-		return "union";
-	}
-
-	return "class";
-}
+//std::string Cpp::classType(ClassType typ) {
+//	switch(typ) {
+//	case CLASS:
+//		return "class";
+//	case STRUCT:
+//		return "struct";
+//	case UNION:
+//		return "union";
+//	}
+//
+//	return "class";
+//}
 
 Cpp::Cpp() {
 	// TODO Auto-generated constructor stub

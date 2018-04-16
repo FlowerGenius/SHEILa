@@ -16,7 +16,7 @@
 
 namespace sheila {
 
-class Vendor: public Entity {
+class Vendor {
 public:
 	Vendor();
 	virtual ~Vendor();

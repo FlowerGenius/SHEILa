@@ -14,6 +14,8 @@
 
 #include "Cpp.h"
 
+#include "CppArtifact/CppArtifact.h"
+
 #include "CppClass/CppClass.h"
 
 #include "CppCompiler/CppCompiler.h"

@@ -13,7 +13,8 @@
 
 namespace sheila {
 
-std::vector<long double>			IPv4::_emotion_values_ = {
+template<>
+std::vector<long double>			SheilaClass<IPv4_T>::_emotion_values_ = {
 		0.0,
 		0.0,
 		0.0,
@@ -23,32 +24,34 @@ std::vector<long double>			IPv4::_emotion_values_ = {
 		0.0,
 		0.0
 };
-std::vector<std::string> 			IPv4::_name_ = {
+
+template<>
+std::vector<std::string> 			SheilaClass<IPv4_T>::_name_ = {
 		"IPv4"
 };
-std::vector<std::string> 			IPv4::_desc_ = {
+
+template<>
+std::vector<std::string> 			SheilaClass<IPv4_T>::_desc_ = {
 		"A protocol for routing network traffic"
 };
-std::vector<Entity> 				IPv4::_children_ = {
+
+template<>
+std::vector<cpp::CppClass_advanced> 	SheilaClass<IPv4_T>::_children_ = {
 
 };
-std::vector<std::string>			IPv4::_cv_filters_ = {
+
+template<>
+std::vector<std::string>			SheilaClass<IPv4_T>::_cv_filters_ = {
 
 };
-std::vector<Entity> 				IPv4::_parents_ = {
-		Entity(),
+
+template<>
+std::vector<cpp::CppClass_advanced> 	SheilaClass<IPv4_T>::_parents_ = {
 		IPAddress()
 };
 
-std::time_t							IPv4::_time_created_;
-std::time_t							IPv4::_time_accessed_;
-std::time_t							IPv4::_time_modified_;
-std::vector<cpp::CppMemberFunction>	IPv4::_member_functions_;
-std::vector<cpp::CppDataMember> 	IPv4::_data_members_;
 
 IPv4::IPv4(){
-	_name = &IPv4::_name_;
-	_desc = &IPv4::_desc_;
 	a = 0;
 	b = 0;
 	c = 0;
@@ -56,8 +59,6 @@ IPv4::IPv4(){
 }
 
 IPv4::IPv4(uint32_t address){
-	_name = &IPv4::_name_;
-	_desc = &IPv4::_desc_;
 	a = address >> 24;
 	b = address >> 16;
 	c = address >> 8;
@@ -66,8 +67,6 @@ IPv4::IPv4(uint32_t address){
 }
 
 IPv4::IPv4(std::string address){
-	_name = &IPv4::_name_;
-	_desc = &IPv4::_desc_;
 	size_t pos;
 	int n = 0;
 	while ((pos = address.find('.')) != std::string::npos){
@@ -93,9 +92,6 @@ IPv4::IPv4(std::string address){
 }
 
 IPv4::IPv4(const char* address){
-	_name = &IPv4::_name_;
-	_desc = &IPv4::_desc_;
-
 	std::string addr = std::string(address);
 
 	size_t pos;
@@ -122,8 +118,6 @@ IPv4::IPv4(const char* address){
 }
 
 IPv4::IPv4(uint8_t a,uint8_t b,uint8_t c,uint8_t d){
-	_name = &IPv4::_name_;
-	_desc = &IPv4::_desc_;
 	this->a = a;
 	this->b = b;
 	this->c = c;

@@ -19,7 +19,7 @@
 
 namespace sheila {
 
-class Version : public Entity {
+class Version : public SheilaClass<VERSION_T> {
 public:
 	Version();
 	Version(std::string ver);
