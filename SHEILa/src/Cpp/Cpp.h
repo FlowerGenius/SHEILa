@@ -15,8 +15,8 @@
 #include <string>
 #include <vector>
 
-#include "../C/language.inc"
-
+#include "../ProgrammingLanguage/C/language.inc"
+#include "../symbols.inc"
 
 
 namespace sheila {
@@ -102,6 +102,19 @@ typedef enum FundamentalTypes {
 	LONG_DOUBLE
 } FundamentalType;
 
+class CppFeature {
+public:
+	CppFeature() {
+
+	}
+
+	virtual ~CppFeature(){
+
+	}
+
+protected:
+
+};
 
 class Cpp {
 public:

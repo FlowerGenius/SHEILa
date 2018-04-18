@@ -14,65 +14,88 @@
 
 namespace sheila {
 
-template<SheilaEntityType _Te>
-std::string								SheilaClass<_Te>::_source_path_;
+template<unsigned long long int _N>
+xml::XmlFile* cpp::CppObject<_N>::_objdef_file_;
+
+template<>
+cpp::CppSourceFile* 				cpp::CppObject<ENTITY_T>::_source_file_;
+
+template<>
+std::vector<cpp::CppHeaderFile*> 	cpp::CppObject<ENTITY_T>::_header_files_;
+
 
 template<SheilaEntityType _Te>
-std::time_t								SheilaClass<_Te>::_time_created_;
+std::time_t								Entity<_Te>::_time_created_ =
+std::time(nullptr);
 
 template<SheilaEntityType _Te>
-std::time_t								SheilaClass<_Te>::_time_accessed_;
+std::time_t								Entity<_Te>::_time_accessed_ =
+std::time(nullptr);
 
 template<SheilaEntityType _Te>
-std::time_t								SheilaClass<_Te>::_time_modified_;
+std::time_t								Entity<_Te>::_time_modified_ =
+std::time(nullptr);
 
 template<SheilaEntityType _Te>
-std::vector<long double>				SheilaClass<_Te>::_emotion_values_;
+std::vector<long double> Entity<_Te>::_emotion_values_ =
+{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
 template<SheilaEntityType _Te>
-std::vector<std::string> 				SheilaClass<_Te>::_name_;
+std::vector<std::string> 				Entity<_Te>::_name_ =
+{"Entity"};
 
 template<SheilaEntityType _Te>
-std::vector<std::string> 				SheilaClass<_Te>::_desc_;
+std::vector<std::string> 				Entity<_Te>::_desc_ =
+{""};
 
 template<SheilaEntityType _Te>
-std::vector<std::string>				SheilaClass<_Te>::_cv_filters_;
+std::vector<std::string>				Entity<_Te>::_cv_filters_ =
+{""};
 
 template<SheilaEntityType _Te>
-std::vector<cpp::CppClass_advanced> 	SheilaClass<_Te>::_parents_;
+std::vector<cpp::CppClass_advanced> 	Entity<_Te>::_parents_ =
+{};
 
 template<SheilaEntityType _Te>
-std::vector<cpp::CppClass_advanced> 	SheilaClass<_Te>::_children_;
-
-template<SheilaEntityType _Te>
-std::vector<cpp::CppStandardHeaderFile>	SheilaClass<_Te>::_cpp_include_files_;
-
-template<SheilaEntityType _Te>
-std::vector<c::CStandardHeaderFile>		SheilaClass<_Te>::_c_include_files_;
-
-template<SheilaEntityType _Te>
-std::vector<cpp::CppHeaderFile>			SheilaClass<_Te>::_include_files_;
+std::vector<cpp::CppClass_advanced> 	Entity<_Te>::_children_ =
+{};
 
 //template<SheilaEntityType _Te>
-//std::vector<cpp::CppMacro>				_macros_;
-
+//std::vector<cpp::CppStandardHeaderFile>	Entity<_Te>::_cpp_include_files_ =
+//{};
+//
 //template<SheilaEntityType _Te>
-//std::vector<cpp::CppSymbol>				_symbols_;
+//std::vector<c::CStandardHeaderFile>		Entity<_Te>::_c_include_files_ =
+//{};
+//
+//template<SheilaEntityType _Te>
+//std::vector<cpp::CppHeaderFile>			Entity<_Te>::_include_files_ =
+//{};
+//
+////template<SheilaEntityType _Te>
+////std::vector<cpp::CppMacro>				_macros_;
+//
+////template<SheilaEntityType _Te>
+////std::vector<cpp::CppSymbol>				_symbols_;
+//
+//template<SheilaEntityType _Te>
+//std::vector<cpp::CppConstructor>		Entity<_Te>::_constructors_ =
+//{};
+//
+//template<SheilaEntityType _Te>
+//std::vector<cpp::CppDestructor>			Entity<_Te>::_destructors_ =
+//{};
+//
+//template<SheilaEntityType _Te>
+//std::vector<cpp::CppMemberFunction> 	Entity<_Te>::_member_functions_ =
+//{};
+//
+//template<SheilaEntityType _Te>
+//std::vector<cpp::CppDataMember> 		Entity<_Te>::_data_members_ =
+//{};
 
 template<SheilaEntityType _Te>
-std::vector<cpp::CppConstructor>		SheilaClass<_Te>::_constructors_;
-
-template<SheilaEntityType _Te>
-std::vector<cpp::CppDestructor>			SheilaClass<_Te>::_destructors_;
-
-template<SheilaEntityType _Te>
-std::vector<cpp::CppMemberFunction> 	SheilaClass<_Te>::_member_functions_;
-
-template<SheilaEntityType _Te>
-std::vector<cpp::CppDataMember> 		SheilaClass<_Te>::_data_members_;
-
-
-
+std::vector<Entity<_Te> > 			Entity<_Te>::_entities_;
 
 
 //std::vector<Entity> Entity::entities;

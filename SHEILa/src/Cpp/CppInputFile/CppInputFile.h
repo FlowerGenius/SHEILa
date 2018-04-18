@@ -22,7 +22,6 @@
 namespace sheila {
 namespace cpp {
 
-class CppHeaderFile;
 
 class CppInputFile {
 public:
@@ -34,7 +33,11 @@ public:
 		CC
 	};
 
-	CppInputFile();
+	CppInputFile(std::string filepath);
+
+	virtual bool validate();
+
+
 	/* Preprocessor Cpp Standard Library Includes */
 
 	bool hasInclude(cpp::CppStandardHeaderFile);
@@ -75,6 +78,9 @@ public:
 	virtual ~CppInputFile();
 
 };
+
+
+
 } /* namespace cpp */
 } /* namespace sheila */
 

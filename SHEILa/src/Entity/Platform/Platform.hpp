@@ -25,7 +25,7 @@
 
 namespace sheila {
 
-class Platform : public SheilaClass<PLATFORM_T> {
+class Platform : public Entity<PLATFORM_T> {
 public:
 	static std::vector<Platform> platforms;
 

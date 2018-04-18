@@ -14,7 +14,7 @@
 namespace sheila {
 
 template<>
-std::vector<long double>			SheilaClass<MANUFACTURER_T>::_emotion_values_ = {
+std::vector<long double>			Entity<MANUFACTURER_T>::_emotion_values_ = {
 		0.0,
 		0.0,
 		0.0,
@@ -26,12 +26,12 @@ std::vector<long double>			SheilaClass<MANUFACTURER_T>::_emotion_values_ = {
 };
 
 template<>
-std::vector<std::string> 			SheilaClass<MANUFACTURER_T>::_name_ = {
+std::vector<std::string> 			Entity<MANUFACTURER_T>::_name_ = {
 		"Manufacturer"
 };
 
 template<>
-std::vector<std::string> 			SheilaClass<MANUFACTURER_T>::_desc_ = {
+std::vector<std::string> 			Entity<MANUFACTURER_T>::_desc_ = {
 		"a company or collective that manufactures goods"
 };
 

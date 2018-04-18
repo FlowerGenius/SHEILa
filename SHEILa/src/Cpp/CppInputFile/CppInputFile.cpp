@@ -14,9 +14,10 @@
 namespace sheila {
 namespace cpp {
 
-CppInputFile::CppInputFile() {
-	// TODO Auto-generated constructor stub
+CppInputFile::CppInputFile(std::string filepath) {
+	if (filepath.find("")) {
 
+	}
 }
 
 CppInputFile::~CppInputFile() {

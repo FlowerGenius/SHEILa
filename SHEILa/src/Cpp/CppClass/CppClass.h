@@ -19,9 +19,8 @@
 #include "../Cpp.h"
 #include "../CppDataMember/CppDataMember.h"
 #include "../CppMemberFunction/CppMemberFunction.h"
-#include "../CppHeaderFile/CppHeaderFile.h"
+#include "../CppHeader/CppHeader.h"
 #include "../CppMacro/CppMacro.h"
-#include "../CppSymbol/CppSymbol.h"
 #include "../CppConstructor/CppConstructor.h"
 #include "../CppDestructor/CppDestructor.h"
 
@@ -29,11 +28,11 @@
 namespace sheila {
 namespace cpp {
 
-typedef enum ClassTypes {
-	CLASS,
-	STRUCT,
-	UNION
-} ClassType;
+enum class ClassType : std::string {
+	CLASS = "class",
+	STRUCT = "struct",
+	UNION = "union"
+};
 
 /* functions and members shared by every type of class */
 struct CppClass_base {
@@ -128,7 +127,7 @@ protected:
 };
 
 
-template<cpp::ClassType _Type = CLASS>
+template<cpp::ClassType _Type = ClassType::CLASS>
 class CppClass : public CppClass_advanced {
 public:
 	CppClass();
@@ -136,18 +135,22 @@ public:
 };
 
 template<>
-class CppClass<STRUCT> : public CppClass_advanced {
+class CppClass<ClassType::STRUCT> : public CppClass_advanced {
 public:
 	CppClass();
 	virtual ~CppClass();
 };
 
+typedef CppClass<ClassType::STRUCT> CppStruct;
+
 template<>
-class CppClass<UNION> : public CppClass_base {
+class CppClass<ClassType::UNION> : public CppClass_base {
 public:
 	CppClass();
 	virtual ~CppClass();
 };
+
+typedef CppClass<ClassType::UNION> CppUnion;
 
 
 

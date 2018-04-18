@@ -15,9 +15,6 @@ namespace sheila {
 namespace cpp {
 
 
-bool CppArtifact_library::isShared() {
-	return shared;
-}
 
 
 } /* namespace cpp */

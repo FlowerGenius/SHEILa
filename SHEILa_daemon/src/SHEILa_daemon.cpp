@@ -111,12 +111,46 @@ int main() {
 	sheila::Emotion e1 = sheila::Emotion();
 	sheila::Emotion e2 = sheila::Emotion();
 
+
 	sheila::cpp::CppArtifact<sheila::cpp::SHARED_LIBRARY> l;
 
-	std::cout << l.isShared() << std::endl;
+	//std::cout << l.isShared() << std::endl;
 
 //while (true){
 //	std::cout << e2._getName()[0] << std::endl;
 //}
 	return 0;
 }
+
+// Identify unknown objects and add them to the queue
+
+// When available, ask an information source for a name and brief description
+
+// Create the directories:
+//	SRC = ${SHEILA_WORKSPACE_LOC}/src/Entity
+//  ENT = ${SHEILA_ENTITY_LOC}/{@name}[0]
+
+/*
+ * Create the skeleton files:
+ *     C++ Source File: SRC/{@name}[0]/{@name}[0].cpp
+ *     C++ Header File: SRC/{@name}[0]/{@name}[0].hpp
+ *     CMake          : SRC/{@name}[0]/CMakeLists.txt
+ *
+ *     SheilaClass XML: ENT/{@name}[0].xml
+ *
+ */
+
+/*
+ * Modify the parent files:
+ *     C++ Source File: SRC/Entity/Entity.cpp
+ *     C++ Header File: SRC/Entity.hpp XXX Change typedefs and sheila_class
+ *     CMake          : SRC/CMakeLists.txt
+ *
+ *     C/C++ inclusion: ${SHEILA_WORKSPACE_LOC}/src/includes.inc
+ *
+ *     SheilaClass XML: ${SHEILA_ENTITY_LOC}/entities.xml
+ *     SheilaClass XML: ${SHEILA_ENTITY_LOC}/Entity.xml
+ *
+ */
+
+

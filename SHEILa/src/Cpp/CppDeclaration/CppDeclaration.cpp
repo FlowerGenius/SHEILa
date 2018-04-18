@@ -1,25 +1,25 @@
 /*SHEILa========================================================================
- * Name        : CppGlobalComponent.cpp
+ * Name        : CppDeclaration.cpp
  * Author      : FlowerGenius<justanortherngirl58@gmail.com>
  * Version     : 
  * Copyright   : 
  * Description : 
  * Module      : SHEILa
- * Created     : Apr 14, 2018
+ * Created     : Apr 17, 2018
  * Modified    :
  *==============================================================================
  */
-#include "CppGlobalComponent.h"
+#include "CppDeclaration.h"
 
 namespace sheila {
 namespace cpp {
 
-CppGlobalComponent::CppGlobalComponent() {
+CppDeclaration::CppDeclaration() {
 	// TODO Auto-generated constructor stub
 
 }
 
-CppGlobalComponent::~CppGlobalComponent() {
+CppDeclaration::~CppDeclaration() {
 	// TODO Auto-generated destructor stub
 }
 

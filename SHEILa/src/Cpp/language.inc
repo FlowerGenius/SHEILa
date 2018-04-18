@@ -34,9 +34,13 @@
 
 #include "CppMemberFunction/CppMemberFunction.h"
 
+#include "CppObject/CppObject.h"
+
 #include "CppSourceFile/CppSourceFile.h"
 
 #include "CppSymbol/CppSymbol.h"
+
+#include "CppTypeDefinition/CppTypeDefinition.h"
 
 #include "CppVariable/CppVariable.h"
 

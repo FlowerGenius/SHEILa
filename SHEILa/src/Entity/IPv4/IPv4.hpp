@@ -17,7 +17,7 @@
 namespace sheila {
 
 /* Internet Protocol address using a 32-bit address */
-class IPv4 : public IPAddress, public SheilaClass<IPv4_T> {
+class IPv4 : public IPAddress, public Entity<IPv4_T> {
 public:
 	IPv4();
 	IPv4(uint32_t address);

@@ -12,78 +12,36 @@
 #ifndef CPP_CPPARTIFACT_CPPARTIFACT_H_
 #define CPP_CPPARTIFACT_CPPARTIFACT_H_
 
-#include "../CppSourceFile/CppSourceFile.h"
-#include "../CppHeaderFile/CppHeaderFile.h"
+#include <string>
+#include <vector>
+
+#include "../CppObject/CppObject.h"
+
 
 namespace sheila {
 namespace cpp {
 
-typedef enum cpp_artifact_types {
+enum class ArtifactType {
 	EXECUTABLE,
 	STATIC_LIBRARY,
 	SHARED_LIBRARY
-} ArtifactType;
-
-struct CppArtifact_base {
-public:
-
-	virtual ~CppArtifact_base(){
-		;
-	}
-
-protected:
-
-
-
 };
 
-struct CppArtifact_library : public CppArtifact_base {
-public:
-
-	virtual ~CppArtifact_library(){
-		;
-	}
-
-	virtual bool	isShared();
-
-protected:
-	bool	shared;
-};
-
-template<cpp::ArtifactType _Type = EXECUTABLE>
-class CppArtifact : public CppArtifact_base {
+/*
+ * Abstract model of a Cpp Artifact
+ */
+template<cpp::ArtifactType _Ta>
+class CppArtifact {
 public:
 	CppArtifact();
 	virtual ~CppArtifact();
+private:
+//	std::vector<CObject* > 	c_objects;
+	std::vector<CppObject* > 		           cpp_objects;
+	std::vector<CppArtifact<ArtifactType::STATIC_LIBRARY>* > static_libs;
+	std::vector<CppArtifact<ArtifactType::SHARED_LIBRARY>* > shared_libs;
 };
 
-template<>
-class CppArtifact<STATIC_LIBRARY> : public CppArtifact_library {
-public:
-	CppArtifact() {
-		shared = false;
-	}
-
-	virtual ~CppArtifact() {
-		;
-	}
-
-protected:
-
-};
-
-template<>
-class CppArtifact<SHARED_LIBRARY> : public CppArtifact_library {
-public:
-	CppArtifact()  {
-		shared = true;
-	}
-	virtual ~CppArtifact() {
-		;
-	}
-
-protected:
-};
 
 } /* namespace cpp */
 } /* namespace sheila */

@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : CppSymbol.h
+// Name        : CHeaderFile.cpp
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,19 +9,19 @@
 // Modified    :
 //==============================================================================
 
-#ifndef CPP_CPPSYMBOL_CPPSYMBOL_H_
-#define CPP_CPPSYMBOL_CPPSYMBOL_H_
+#include "../CHeaderFile/CHeaderFile.h"
 
 namespace sheila {
-namespace cpp {
+namespace c {
 
-class CppSymbol {
-public:
-	CppSymbol();
-	virtual ~CppSymbol();
-};
+CHeaderFile::CHeaderFile() {
+	// TODO Auto-generated constructor stub
 
-} /* namespace cpp */
+}
+
+CHeaderFile::~CHeaderFile() {
+	// TODO Auto-generated destructor stub
+}
+
+} /* namespace c */
 } /* namespace sheila */
-
-#endif /* CPP_CPPSYMBOL_CPPSYMBOL_H_ */

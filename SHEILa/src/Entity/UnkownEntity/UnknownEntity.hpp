@@ -9,8 +9,8 @@
 // Modified    :
 //==============================================================================
 
-#ifndef SRC_ENTITY_UNKOWNENTITY_UNKNOWNENTITY_H_
-#define SRC_ENTITY_UNKOWNENTITY_UNKNOWNENTITY_H_
+#ifndef SRC_ENTITY_UNKNOWNENTITY_UNKNOWNENTITY_H_
+#define SRC_ENTITY_UNKNOWNENTITY_UNKNOWNENTITY_H_
 
 #include "../Entity.hpp"
 
@@ -22,8 +22,13 @@ public:
 	virtual ~UnknownEntity();
 protected:
 
+private:
+	std::string proposed_class_name;
+	std::string proposed_enum_name;
+
+
 };
 
 } /* namespace sheila */
 
-#endif /* SRC_ENTITY_UNKOWNENTITY_UNKNOWNENTITY_H_ */
+#endif /* SRC_ENTITY_UNKNOWNENTITY_UNKNOWNENTITY_H_ */

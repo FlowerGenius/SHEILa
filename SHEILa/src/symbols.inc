@@ -19,31 +19,24 @@
 #define SHEILA_WORKSPACE_DIR "/home/erin/Documents/SHEILa"
 
 /* The location on the server of my memory storage */
-#define SHEILA_ENTITY_DIR "/home/erin/Docuemnts/SHEILa_etc/entities"
+#define SHEILA_ENTITY_DIR "/home/erin/Documents/SHEILa_etc/entities"
 
-/* The maximuim line size in a source file */
-#define SHEILA_LINE_MAX 80
+#ifndef LINE_MAX
+	/* The maximuim line size in a source file */
+	#define LINE_MAX 80
+#endif
 
-//#define SHEILA_SRC_DIR SHEILA_WORKSPACE_DIR "/SHEILa/src"
-//
-//#define SHEILA_DEBUG_DIR SHEILA_WORKSPACE_DIR "/SHEILa/Debug"
-//
-//#define SHEILA_RELEASE_DIR SHEILA_WORKSPACE_DIR "/SHEILa/Release"
-//
-//
-//#define SHEILA_runtime_SRC_DIR SHEILA_WORKSPACE_DIR "/SHEILa_runtime/src"
-//
-//#define SHEILA_runtime_DEBUG_DIR SHEILA_WORKSPACE_DIR "/SHEILa_runtime/Debug"
-//
-//#define SHEILA_runtime_RELEASE_DIR SHEILA_WORKSPACE_DIR "/SHEILa_runtime/Release"
-//
-//
-//#define SHEILA_daemon_SRC_DIR SHEILA_WORKSPACE_DIR "/SHEILa_daemon/src"
-//
-//#define SHEILA_daemon_DEBUG_DIR SHEILA_WORKSPACE_DIR "/SHEILa_daemon/Debug"
-//
-//#define SHEILA_daemon_RELEASE_DIR SHEILA_WORKSPACE_DIR "/SHEILa_daemon/Release"
+#ifndef PATH_MAX
+	/* The maximum length of a file path */
+	#define PATH_MAX 255
+#endif
 
+#ifndef HEADER_FEILD_LEN
+	#define HEADER_FEILD_LEN (LINE_MAX - 20)
+#endif
 
+#ifndef BUILD_FOR_SHEILA_DAEMON
+	#define BUILD_FOR_SHEILA_DAEMON 1
+#endif
 
 #endif /* SYMBOLS_INC_ */

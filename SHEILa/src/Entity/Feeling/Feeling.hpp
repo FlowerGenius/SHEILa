@@ -25,7 +25,7 @@
 
 namespace sheila {
 
-class Feeling : public SheilaClass<FEELING_T> {
+class Feeling : public Entity<FEELING_T> {
 public:
 
 	static std::vector<Feeling> feelings;

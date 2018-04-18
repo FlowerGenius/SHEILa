@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity ns="sheila" id="-1">
+	<names>
+		<name index="0" >Entity</name>
+		<name index="1" >SHEILa Class</name>
+	</names>
+	
+	<authors>
+		<author email="justanortherngirl58@gmail.com">FlowerGenius</author>
+	</authors>
+	
+	<versions>
+		<version tag="Alpha">0.0.0</version>	
+	</versions>
+	
+	<copyrights>
+		<copyright />
+	</copyrights>
+	
+	<descriptions>
+		<description index="0" >A thing that has a name and can be described</description>
+	</descriptions>
+	
+	<module type="library" >SHEILa</module>
+	<timestamps>
+		<created locale="" encoding=""></created>
+		<modified locale="" encoding=""></modified>
+		<accessed locale="" encoding=""></accessed>
+	</timestamps>
+
+<!-- The source part of the entity definition -->
+	<sourcefile path="" name="Entity" extension=".cpp">
+		<cpp_standard_headers></cpp_standard_headers>
+		<c_standard_headers></c_standard_headers>
+		<includes>
+			<include active="true" standard="false" path="" name="Entity" extension=".hpp" />
+		</includes>
+		<macros></macros>
+		
+	</sourcefile>
+<!-- The header part of the entity definition -->	
+	<headerfile path="" name="Entity" extension=".hpp">
+		<headerguard>
+			<cpp_standard_headers>
+				<cpp_standard_header active="true" cpp_ver="11" >vector</cpp_standard_header>
+				<cpp_standard_header active="true" cpp_ver="11" >string</cpp_standard_header>
+				<cpp_standard_header active="true" cpp_ver="11" >typeinfo</cpp_standard_header>
+				<cpp_standard_header active="true" cpp_ver="11" >ctime</cpp_standard_header>			
+			</cpp_standard_headers>
+	
+			<c_standard_headers>
+			</c_standard_headers>
+	
+			<includes>
+				<header active="true" path="../" name="symbols" extension=".inc" relative="true" />
+				<header active="true" path="../C/" name="language" extension=".inc" relative="true" />
+				<header active="true" path="../Cpp/" name="language" extension=".inc" relative="true" />		
+			</includes>
+	
+			<namespace identifier="sheila">
+				<class type="CLASS" template="true" identifier="Entity">
+				</class>
+			</namespace>
+		</headerguard>
+	</headerfile>
+</entity>

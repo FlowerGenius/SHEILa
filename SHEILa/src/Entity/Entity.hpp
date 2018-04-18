@@ -24,7 +24,7 @@
 namespace sheila {
 
 typedef enum sheila_entity_types {
-	ENTITY_T = -1,
+	ENTITY_T = 1,
 	EMOTION_T,
 	FEELING_T,
 	INSTRUCTION_SET_ARCHITECTURE_T,
@@ -44,16 +44,11 @@ typedef enum sheila_entity_types {
 	RUNTIME_T,
 	SCHEMA_T,
 	SERVER_T,
-	SHEILA_CORE_SERVER_t,
-	UNKOWN_ENTITY_T,
+	SHEILA_CORE_SERVER_T,
+	UNKNOWN_ENTITY_T,
 	VENDOR_T,
 	VERSION_T
 } SheilaEntityType;
-
-
-
-
-
 
 ///* An Entity is, put simply, a C++ class as perceived by SHEILa. */
 //class Entity {
@@ -200,16 +195,7 @@ typedef enum sheila_entity_types {
 //	 * DEFAULT CONSTRUCTOR
 //	 */
 //
-//	uintmax_t 							instance_id;
-//	std::vector<std::string> 			name; //line 1 of instance file
-//	std::vector<std::string>			desc; //line 2 of instance file
-//	std::vector<std::string>			picture_paths;
-//	std::vector<std::string>			video_paths;
-//	std::vector<std::string>			sound_paths;
-//	std::vector<std::string>			document_paths;
-//	std::vector<std::string>			program_paths;
-//	std::vector<long double>			emotion_values;
-//	std::vector<std::string>			cv_filters;
+
 //
 //
 //	/* Member Functions that modify the instance they are accessed from.
@@ -277,46 +263,20 @@ typedef enum sheila_entity_types {
 //
 //};
 
+/*
+ * An entity is a special data type, it represents the pair of files
+ * required to build the class of the same name.
+ */
 template<SheilaEntityType _Tp>
-class SheilaClass : public cpp::CppClass<cpp::CLASS> {
-
+class Entity : public cpp::CppObject<_Tp> {
+/*
+ * All write operations are applied to the class and to it's XML file
+ * All read operations access the XML file
+ */
 public:
 
 
-
-	SheilaClass() {
-
-		_Type = &SheilaClass<_Tp>::_Type_;
-
-		_time_accessed  = &SheilaClass<_Tp>::_time_accessed_;
-		_time_created   = &SheilaClass<_Tp>::_time_created_;
-		_time_modified  = &SheilaClass<_Tp>::_time_modified_;
-
-		_emotion_values = &SheilaClass<_Tp>::_emotion_values_;
-
-		_name = &SheilaClass<_Tp>::_name_;
-		_desc = &SheilaClass<_Tp>::_desc_;
-
-		_cv_filters = &SheilaClass<_Tp>::_cv_filters_;
-
-		_parents  = &SheilaClass<_Tp>::_parents_;
-		_children = &SheilaClass<_Tp>::_children_;
-
-		_c_include_files    = &SheilaClass<_Tp>::_c_include_files_;
-		_cpp_include_files  = &SheilaClass<_Tp>::_cpp_include_files_;
-		_include_files      = &SheilaClass<_Tp>::_include_files_;
-
-		_constructors		= &SheilaClass<_Tp>::_constructors_;
-		_destructors        = &SheilaClass<_Tp>::_destructors_;
-		_member_functions   = &SheilaClass<_Tp>::_member_functions_;
-		_data_members       = &SheilaClass<_Tp>::_data_members_;
-
-	};
-
-	virtual ~SheilaClass() {
-
-	};
-
+#if (BUILD_FOR_SHEILA_DAEMON == false)
 	static const std::string& getSheilaClassSourcePath() {
 		return _source_path_;
 	}
@@ -325,15 +285,15 @@ public:
 		return _Type_;
 	}
 
-	static std::time_t getSheilaClassTimeAccessed() {
+	static const std::time_t& getSheilaClassTimeAccessed() {
 		return _time_accessed_;
 	}
 
-	static std::time_t getSheilaClassTimeCreated() {
+	static const std::time_t& getSheilaClassTimeCreated() {
 		return _time_created_;
 	}
 
-	static std::time_t getSheilaClassTimeModified() {
+	static const std::time_t& getSheilaClassTimeModified() {
 		return _time_modified_;
 	}
 
@@ -341,96 +301,232 @@ public:
 		return _c_include_files_;
 	}
 
-	static const std::vector<cpp::CppClass_advanced>& getSheilaClassChildren()  {
+	static const std::vector<cpp::CppClass_advanced>& getSheilaClassChildren() {
 		return _children_;
 	}
 
-	static const std::vector<cpp::CppConstructor>& getSheilaClassConstructors()  {
+	static const std::vector<cpp::CppConstructor>& getSheilaClassConstructors() {
 		return _constructors_;
 	}
 
-	static const std::vector<cpp::CppStandardHeaderFile>& getSheilaClassCppIncludeFiles()  {
+	static const std::vector<cpp::CppStandardHeaderFile>& getSheilaClassCppIncludeFiles() {
 		return _cpp_include_files_;
 	}
 
-	static const std::vector<std::string>& getSheilaClassCvFilters()  {
+	static const std::vector<std::string>& getSheilaClassCvFilters() {
 		return _cv_filters_;
 	}
 
-	static const std::vector<cpp::CppDataMember>& getSheilaClassDataMembers()  {
+	static const std::vector<cpp::CppDataMember>& getSheilaClassDataMembers() {
 		return _data_members_;
 	}
 
-	static const std::vector<std::string>& getSheilaClassDesc()  {
+	static const std::vector<std::string>& getSheilaClassDesc() {
 		return _desc_;
 	}
 
-	static const std::vector<cpp::CppDestructor>& getSheilaClassDestructors()  {
+	static const std::vector<cpp::CppDestructor>& getSheilaClassDestructors() {
 		return _destructors_;
 	}
 
-	static const std::vector<long double>& getSheilaClassEmotionValues()  {
+	static const std::vector<long double>& getSheilaClassEmotionValues() {
 		return _emotion_values_;
 	}
 
-	static const std::vector<cpp::CppHeaderFile>& getSheilaClassIncludeFiles()  {
+	static const std::vector<cpp::CppHeaderFile>& getSheilaClassIncludeFiles() {
 		return _include_files_;
 	}
 
-	static const std::vector<cpp::CppMemberFunction>& getSheilaClassMemberFunctions()  {
+	static const std::vector<cpp::CppMemberFunction>& getSheilaClassMemberFunctions() {
 		return _member_functions_;
 	}
 
-	static const std::vector<std::string>& getSheilaClassName()  {
+	static const std::vector<std::string>& getSheilaClassName() {
 		return _name_;
 	}
 
-	static const std::vector<cpp::CppClass_advanced>& getSheilaClassParents()  {
+	static const std::vector<cpp::CppClass_advanced>& getSheilaClassParents() {
 		return _parents_;
+	}
+
+	static const std::vector<Entity<_Tp> >& getSheilaClassEntities() {
+		return _entities_;
+	}
+#else
+
+	static const std::string& getSheilaClassSourceFilePath() {
+		return _sourcefile_path_;
+	}
+
+	static const SheilaEntityType getSheilaClassType() {
+		return _Type_;
+	}
+
+	static const std::time_t& getSheilaClassTimeAccessed() {
+		return _time_accessed_;
+	}
+
+	static const std::time_t& getSheilaClassTimeCreated() {
+		return _time_created_;
+	}
+
+	static const std::time_t& getSheilaClassTimeModified() {
+		return _time_modified_;
+	}
+
+	static const std::vector<c::CStandardHeaderFile>& getSheilaClassCIncludeFiles() {
+		return _c_include_files_;
+	}
+
+	static const std::vector<cpp::CppClass_advanced>& getSheilaClassChildren() {
+		return _children_;
+	}
+
+	static const std::vector<cpp::CppConstructor>& getSheilaClassConstructors() {
+		return _constructors_;
+	}
+
+	static const std::vector<cpp::CppStandardHeaderFile>& getSheilaClassCppIncludeFiles() {
+		return _cpp_include_files_;
+	}
+
+	static const std::vector<std::string>& getSheilaClassCvFilters() {
+		return _cv_filters_;
+	}
+
+	static const std::vector<cpp::CppDataMember>& getSheilaClassDataMembers() {
+		return _data_members_;
+	}
+
+	static const std::vector<std::string>& getSheilaClassDesc() {
+		return _desc_;
+	}
+
+	static const std::vector<cpp::CppDestructor>& getSheilaClassDestructors() {
+		return _destructors_;
+	}
+
+	static const std::vector<long double>& getSheilaClassEmotionValues() {
+		return _emotion_values_;
+	}
+
+	static const std::vector<cpp::CppHeaderFile>& getSheilaClassIncludeFiles() {
+		return _include_files_;
+	}
+
+	static const std::vector<cpp::CppMemberFunction>& getSheilaClassMemberFunctions() {
+		return _member_functions_;
+	}
+
+	static const std::vector<std::string>& getSheilaClassName() {
+		return _name_;
+	}
+
+	static const std::vector<cpp::CppClass_advanced>& getSheilaClassParents() {
+		return _parents_;
+	}
+
+	static const std::vector<Entity<_Tp> >& getSheilaClassEntities() {
+		return _entities_;
+	}
+
+#endif
+
+	const static std::string sheila_class(SheilaEntityType t) {
+		switch(t) {
+		case ENTITY_T:
+			return Entity<ENTITY_T>::getSheilaClassName();
+		case EMOTION_T:
+			break;
+		case FEELING_T:
+			break;
+		case INSTRUCTION_SET_ARCHITECTURE_T:
+			break;
+		case IPADDRESS_T:
+			break;
+		case IPv4_T:
+			break;
+		case IPv6_T:
+			break;
+		case LANGUAGE_T:
+			break;
+		case MANUFACTURER_T:
+			break;
+		case MOOD_T:
+			break;
+		case NATURAL_LANGUAGE_T:
+			break;
+		case NETWORK_T:
+			break;
+		case OPERATING_SYSTEM_T:
+			break;
+		case PLATFORM_T:
+			break;
+		case PROCESSOR_T:
+			break;
+		case PROGRAMMING_LANGUAGE_T:
+			break;
+		case RANGE_T:
+			break;
+		case RUNTIME_T:
+			break;
+		case SCHEMA_T:
+			break;
+		case SERVER_T:
+			break;
+		case SHEILA_CORE_SERVER_T:
+			break;
+		case UNKNOWN_ENTITY_T:
+			break;
+		case VENDOR_T:
+			break;
+		case VERSION_T:
+			break;
+		}
+		return "";
+	}
+
+
+	Entity() {
+		instance_id = 0;
+
+
+	}
+
+	virtual ~Entity() {
 	}
 
 
 protected:
 
-	const static SheilaEntityType					_Type_ = _Tp;
-	static std::string								_source_path_;
-	static std::time_t								_time_created_;
-	static std::time_t								_time_accessed_;
-	static std::time_t								_time_modified_;
-	static std::vector<long double>					_emotion_values_;
-	static std::vector<std::string> 				_name_;
-	static std::vector<std::string> 				_desc_;
-	static std::vector<std::string>					_cv_filters_;
-	static std::vector<cpp::CppClass_advanced> 		_parents_;
-	static std::vector<cpp::CppClass_advanced> 		_children_;
-	static std::vector<cpp::CppStandardHeaderFile>	_cpp_include_files_;
-	static std::vector<c::CStandardHeaderFile>		_c_include_files_;
-	static std::vector<cpp::CppHeaderFile>			_include_files_;
-//	static std::vector<cpp::CppMacro>				_macros_;
-//	static std::vector<cpp::CppSymbol>				_symbols_;
-	static std::vector<cpp::CppConstructor>			_constructors_;
-	static std::vector<cpp::CppDestructor>			_destructors_;
-	static std::vector<cpp::CppMemberFunction> 		_member_functions_;
-	static std::vector<cpp::CppDataMember> 			_data_members_;
+	uintmax_t                instance_id;
+	std::vector<std::string> name; //line 1 of instance file
+	std::vector<std::string> desc; //line 2 of instance file
+	std::vector<std::string> picture_paths;
+	std::vector<std::string> video_paths;
+	std::vector<std::string> sound_paths;
+	std::vector<std::string> document_paths;
+	std::vector<std::string> program_paths;
+	std::vector<long double> emotion_values;
+	std::vector<std::string> cv_filters;
 
+	virtual std::string _E_repr();
+	virtual void _E_eval(std::string);
 
-	const SheilaEntityType*							_Type;
-	std::vector<long double>*					_emotion_values;
-	std::vector<std::string>*					_cv_filters;
-	std::vector<cpp::CppStandardHeaderFile>*	_cpp_include_files;
-	std::vector<c::CStandardHeaderFile>*		_c_include_files;
-	std::vector<cpp::CppHeaderFile>*			_include_files;
-//	std::vector<cpp::CppMacro>*					_macros;
-//	std::vector<cpp::CppSymbol>*				_symbols;
+private:
+
+	static const SheilaEntityType _Type_ = _Tp;
+	static std::vector<Entity<_Tp> > _entities_;
+
+#if (BUILD_FOR_SHEILA_DAEMON == 1)
+	static xml::XmlFile*					object_objdef_file_;
+#endif
 
 
 
-	virtual std::string 				_E_repr();
-	virtual void 						_E_eval(std::string);
+
 
 };
-
-
 
 } /* namespace sheila */
 

@@ -14,10 +14,16 @@
 
 #include <string>
 
+#include "../Cpp.h"
+
 namespace sheila {
 namespace cpp {
 
-class CppVariable {
+/*
+ * An abstract model of a variable in C++
+ */
+
+class CppVariable : public CppFeature {
 public:
 	CppVariable();
 	virtual ~CppVariable();
