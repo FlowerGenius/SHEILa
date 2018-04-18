@@ -15,9 +15,36 @@ namespace sheila {
 namespace cpp {
 
 CppMacro::CppMacro() {
-	// TODO Auto-generated constructor stub
+
+	std::cerr << "C++ macro object initialized without being declared" << std::endl;
+	defined = false;
 
 }
+
+CppMacro::CppMacro(std::string id, std::string value,
+		std::vector<std::string> allocator) {
+	this->identifier = id;
+	this->statement = value;
+
+	if (allocator.size() > 0) {
+		arguments(allocator);
+	}
+
+	this->defined = true;
+}
+
+std::string CppMacro::cpp_str() {
+
+	return "";
+}
+
+std::string CppMacro::xml_str() {
+
+	// TODO xml_str for CppMacro
+
+	return "";
+}
+
 
 CppMacro::~CppMacro() {
 	// TODO Auto-generated destructor stub
@@ -25,3 +52,4 @@ CppMacro::~CppMacro() {
 
 } /* namespace cpp */
 } /* namespace sheila */
+

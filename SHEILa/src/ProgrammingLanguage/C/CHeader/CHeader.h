@@ -1,5 +1,5 @@
 //SHEILa========================================================================
-// Name        : CHeaderFile.cpp
+// Name        : CHeaderFile.h
 // Author      : FlowerGenius<justanortherngirl58@gmail.com>
 // Version     : 
 // Copyright   : 
@@ -9,19 +9,30 @@
 // Modified    :
 //==============================================================================
 
-#include "../CHeaderFile/CHeaderFile.h"
+#ifndef C_CHEADER_CHEADER_H_
+#define C_CHEADER_CHEADER_H_
 
 namespace sheila {
 namespace c {
 
-CHeaderFile::CHeaderFile() {
-	// TODO Auto-generated constructor stub
 
-}
+typedef enum c_standard_library_headers {
 
-CHeaderFile::~CHeaderFile() {
-	// TODO Auto-generated destructor stub
-}
+} CStandardHeaderFile;
+
+class CHeader {
+public:
+
+	enum class CHeaderExtensions {
+		H,
+		INC
+	};
+
+	CHeader();
+	virtual ~CHeader();
+};
 
 } /* namespace c */
 } /* namespace sheila */
+
+#endif /* C_CHEADER_CHEADER_H_ */

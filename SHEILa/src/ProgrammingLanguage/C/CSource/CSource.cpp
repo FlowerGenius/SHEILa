@@ -1,26 +1,27 @@
 /*SHEILa========================================================================
- * Name        : CppFile.cpp
+ * Name        : CSource.cpp
  * Author      : FlowerGenius<justanortherngirl58@gmail.com>
  * Version     : 
  * Copyright   : 
  * Description : 
  * Module      : SHEILa
- * Created     : Apr 17, 2018
+ * Created     : Apr 18, 2018
  * Modified    :
  *==============================================================================
  */
-#include "CppFile.h"
+#include "CSource.h"
 
 namespace sheila {
-namespace cpp {
+namespace c {
 
-CppFile::CppFile() {
+CSource::CSource() {
 	// TODO Auto-generated constructor stub
+
 }
 
-CppFile::~CppFile() {
+CSource::~CSource() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace cpp */
+} /* namespace c */
 } /* namespace sheila */

@@ -17,7 +17,7 @@ namespace cpp {
 
 CppHeader::CppHeader() {
 	// TODO Auto-generated constructor stub
-	f = 3;
+
 }
 
 CppHeader::~CppHeader() {

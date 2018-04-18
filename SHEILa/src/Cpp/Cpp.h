@@ -105,15 +105,24 @@ typedef enum FundamentalTypes {
 class CppFeature {
 public:
 	CppFeature() {
-
+		activated = true;
 	}
+
+
+	virtual std::string cpp_str() = 0;
+
+	virtual std::string xml_str() = 0;
+
 
 	virtual ~CppFeature(){
 
 	}
 
 protected:
-
+	/*
+	 * If false, the section is commented out
+	 */
+	bool activated;
 };
 
 class Cpp {

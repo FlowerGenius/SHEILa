@@ -13,6 +13,7 @@
 #define SRC_CPP_CPPHEADER_CPPHEADER_H_
 
 #include "../CppFile/CppFile.h"
+#include "../../ProgrammingLanguage/C/CHeader/CHeader.h"
 
 namespace sheila {
 namespace cpp {
@@ -20,12 +21,32 @@ namespace cpp {
 /*
  * An abstract model of a header file in C++
  */
-class CppHeader : public CppFile {
+class CppHeader :  public CppFile {
 public:
-	CppHeader();
-	virtual ~CppHeader();
-private:
 
+	/*
+	 * All header file extensions specific to C++, though a C++ header file
+	 * may also have a C header file extension
+	 */
+	enum class CppHeaderExtensions : std::string {
+		HH = ".hh",
+		HPP = ".hpp",
+		HXX = ".hxx"
+	};
+
+	CppHeader();
+
+	bool isStandard() const { return standard; }
+
+	virtual ~CppHeader();
+
+
+
+private:
+	/*
+	 * True if this header is part of the C or CPP standard libraries
+	 */
+	bool standard;
 
 };
 

@@ -1,26 +1,27 @@
 /*SHEILa========================================================================
- * Name        : CppFile.cpp
+ * Name        : CFile.h
  * Author      : FlowerGenius<justanortherngirl58@gmail.com>
  * Version     : 
  * Copyright   : 
  * Description : 
  * Module      : SHEILa
- * Created     : Apr 17, 2018
+ * Created     : Apr 18, 2018
  * Modified    :
  *==============================================================================
  */
-#include "CppFile.h"
+#ifndef SRC_PROGRAMMINGLANGUAGE_C_CFILE_CFILE_H_
+#define SRC_PROGRAMMINGLANGUAGE_C_CFILE_CFILE_H_
 
 namespace sheila {
-namespace cpp {
+namespace c {
 
-CppFile::CppFile() {
-	// TODO Auto-generated constructor stub
-}
+class CFile {
+public:
+	CFile();
+	virtual ~CFile();
+};
 
-CppFile::~CppFile() {
-	// TODO Auto-generated destructor stub
-}
-
-} /* namespace cpp */
+} /* namespace c */
 } /* namespace sheila */
+
+#endif /* SRC_PROGRAMMINGLANGUAGE_C_CFILE_CFILE_H_ */

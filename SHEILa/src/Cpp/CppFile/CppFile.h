@@ -29,9 +29,30 @@
 namespace sheila {
 namespace cpp {
 
+/** @brief	An abstract model of a C++ File (ie. [source|header])
+ *	@author	FlowerGenius
+ *
+ *	This class represents a file in the C++ build structure model. A CppFile
+ *	can be either a header or a source file. All attributes that are shared
+ *	by both headers and source files is kept here.
+ */
 class CppFile {
 public:
+
+	/** @brief Creates an object that represents a C++ file.
+	 *	@author FlowerGenius
+	 *
+	 *	This constructor is meant only for initializing members required by
+	 *	derived classes and should never be called excepting that the object
+	 *	created then be cast to a derived type.
+	 *
+	 */
 	CppFile();
+
+	/** @brief Destructor for CppFile,
+	 *  @author FlowerGenius
+	 *
+	 */
 	virtual ~CppFile();
 
 protected:
@@ -96,57 +117,57 @@ protected:
 	/*
 	 * A list of all define directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_DEFINE> >  pp_defines;
+	std::vector<CppPPDirective<CppPPDirectiveType::DEFINE> >  pp_defines;
 
 	/*
 	 * A list of all undef directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_UNDEF> >   pp_undefines;
+	std::vector<CppPPDirective<CppPPDirectiveType::UNDEF> >   pp_undefines;
 
 	/*
 	 * A list of all ifdef directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_IFDEF> >   pp_ifdefines;
+	std::vector<CppPPDirective<CppPPDirectiveType::IFDEF> >   pp_ifdefines;
 
 	/*
 	 * A list of all ifndef directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_IFNDEF> >  pp_ifnotdefines;
+	std::vector<CppPPDirective<CppPPDirectiveType::IFNDEF> >  pp_ifnotdefines;
 
 	/*
 	 * A list of all else directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_ELSE> >    pp_elses;
+	std::vector<CppPPDirective<CppPPDirectiveType::ELSE> >    pp_elses;
 
 	/*
 	 * A list of all endif directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_ENDIF> >   pp_endifs;
+	std::vector<CppPPDirective<CppPPDirectiveType::ENDIF> >   pp_endifs;
 
 	/*
 	 * A list of all elif directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_ELIF> >    pp_elifs;
+	std::vector<CppPPDirective<CppPPDirectiveType::ELIF> >    pp_elifs;
 
 	/*
 	 * A list of all include directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_INCLUDE> > pp_includes;
+	std::vector<CppPPDirective<CppPPDirectiveType::INCLUDE> > pp_includes;
 
 	/*
 	 * A list of all error directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_ERROR> >   pp_errors;
+	std::vector<CppPPDirective<CppPPDirectiveType::ERROR> >   pp_errors;
 
 	/*
 	 * A list of all line directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_LINE> >    pp_lines;
+	std::vector<CppPPDirective<CppPPDirectiveType::LINE> >    pp_lines;
 
 	/*
 	 * A list of all pragma directives in this file.
 	 */
-	std::vector<CppPPDirective<PP_PRAGMA> >  pp_pragmas;
+	std::vector<CppPPDirective<CppPPDirectiveType::PRAGMA> >  pp_pragmas;
 
 };
 
