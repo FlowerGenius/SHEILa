@@ -76,8 +76,6 @@ struct CppPPDirective_base : public CppFeature {
 		before = nullptr;
 	}
 
-//	virtual std::string cpp_str();
-//	std::string xml_str();
 
 	virtual ~CppPPDirective_base() {
 		;
@@ -111,11 +109,12 @@ class CppPPDirective : public CppPPDirective_base {
 public:
 	CppPPDirective(std::vector<std::string> allocator = {});
 
+	virtual ~CppPPDirective();
+
 	std::string cpp_str();
 
 	std::string xml_str();
 
-	virtual ~CppPPDirective();
 private:
 	std::vector<std::string> parameters;
 };
@@ -209,6 +208,8 @@ private:
 /** @brief Type definition of the specialization DEFINE for convenience and
  * 	readability.
  * 	@author FlowerGenius
+ *
+ * 	A specialization of the CppPPDirective template
  */
 typedef CppPPDirective<CppPPDirectiveType::DEFINE> CppDefineDirective;
 
@@ -255,6 +256,8 @@ private:
 /** @brief Type definition of the specialization UNDEF for convenience and
  * 	readability.
  * 	@author FlowerGenius
+ *
+ * 	A specialization of the CppPPDirective template
  */
 typedef CppPPDirective<CppPPDirectiveType::UNDEF> CppUndefDirective;
 
@@ -292,7 +295,15 @@ public:
 	virtual ~CppPPDirective();
 private:
 	CppMacro    *macro;
-}; typedef CppPPDirective<CppPPDirectiveType::IFDEF> CppIfdefDirective;
+};
+
+/** @brief Type definition of the specialization IFDEF for convenience and
+ * 	readability.
+ * 	@author FlowerGenius
+ *
+ * 	A specialization of the CppPPDirective template
+ */
+typedef CppPPDirective<CppPPDirectiveType::IFDEF> CppIfdefDirective;
 
 template<>
 class CppPPDirective<CppPPDirectiveType::IFNDEF> : public CppPPDirective_base {
