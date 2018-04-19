@@ -14,8 +14,15 @@
 namespace sheila {
 namespace cpp {
 
-
-
+//template<ArtifactType _Ta>
+//CppArtifact<_Ta>::CppArtifact() {
+//
+//}
+//
+//template<ArtifactType _Ta>
+//CppArtifact<_Ta>::~CppArtifact() {
+//
+//}
 
 } /* namespace cpp */
 } /* namespace sheila */

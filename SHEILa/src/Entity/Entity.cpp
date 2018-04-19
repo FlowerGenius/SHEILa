@@ -34,42 +34,6 @@ template<class _Te>
 std::vector<cpp::CppClass_advanced> 	Entity<_Te>::this_object_children;
 #endif
 
-//std::vector<Entity> Entity::entities;
-//
-//int Entity::createNewEntity(
-//		std::vector<std::string> names,
-//		std::vector<std::string> descs,
-//		std::vector<std::string> cvinf
-//		) {
-//
-//	return 0;
-//}
-//
-//Entity::Entity() {
-//	_name 				= &Entity::_name_;
-//	_desc 				= &Entity::_desc_;
-//	_parents 			= &Entity::_parents_;
-//	_children 			= &Entity::_children_;
-//	_member_functions 	= &Entity::_member_functions_;
-//	_data_members 		= &Entity::_data_members_;
-//	_time_created 		= &Entity::_time_created_;
-//	_time_modified 		= &Entity::_time_modified_;
-//	_time_accessed 		= &Entity::_time_accessed_;
-//	_cv_filters 		= &Entity::_cv_filters_;
-//	_emotion_values 	= &Entity::_emotion_values_;
-//
-//	instance_id = 0;
-//}
-
-template<class _Tp>
-Entity<_Tp>::Entity() {
-	instance_id = 0;
-}
-
-template<class _Tp>
-Entity<_Tp>::~Entity() {
-	// TODO Auto-generated destructor stub
-}
 
 } /* namespace sheila */
 

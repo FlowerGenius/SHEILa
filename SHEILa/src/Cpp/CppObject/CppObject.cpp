@@ -47,16 +47,16 @@ std::vector<CppHeader*>  CppObject<_N>::this_object_headers;
 #endif
 
 
-template<class _N>
-CppObject<_N>::CppObject() {
-
-	object_source = nullptr;
-}
-
-template<class _N>
-CppObject<_N>::~CppObject() {
-
-}
+//template<class _N>
+//CppObject<_N>::CppObject() {
+//
+//	object_source = nullptr;
+//}
+//
+//template<class _N>
+//CppObject<_N>::~CppObject() {
+//
+//}
 
 } /* namespace cpp */
 } /* namespace sheila */

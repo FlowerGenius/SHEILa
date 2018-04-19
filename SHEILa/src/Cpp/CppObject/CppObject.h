@@ -40,7 +40,7 @@ struct CppObject_base {
  * formatted file header.
  *
  */
-template<class _N = void>
+template<class _N>
 class CppObject : private CppObject_base {
 
 
@@ -49,14 +49,18 @@ public:
 	/* Creates a new abstract model of a C++ object
 	 *
 	 */
-	CppObject();
+	CppObject() {
+		;
+	}
 
 	/* Builds a new abstract model of a C++ object from an XML file
 	 *
 	 */
 	CppObject(xml::XmlFile*);
 
-	virtual ~CppObject();
+	virtual ~CppObject() {
+		;
+	}
 
 protected:
 

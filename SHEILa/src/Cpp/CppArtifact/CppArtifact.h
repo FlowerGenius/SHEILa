@@ -33,14 +33,42 @@ enum class ArtifactType {
 template<cpp::ArtifactType _Ta>
 class CppArtifact {
 public:
-	CppArtifact();
-	virtual ~CppArtifact();
+
+	const static std::string T(ArtifactType t) {
+		switch(t){
+		case ArtifactType::EXECUTABLE:
+			return "executable";
+		case ArtifactType::STATIC_LIBRARY:
+			return "static library";
+		case ArtifactType::SHARED_LIBRARY:
+			return "shared library";
+		default:
+			return T(ArtifactType::EXECUTABLE);
+		}
+	}
+
+	CppArtifact() {
+		this->name = T(_Ta);
+	}
+	virtual ~CppArtifact() {
+		;
+	}
+
+	const std::string& getName() const {
+		return this->name;
+	}
 private:
-//	std::vector<CObject* > 	c_objects;
+
+	std::string name;
+
 	std::vector<CppObject<void>* > 		           cpp_objects;
 	std::vector<CppArtifact<ArtifactType::STATIC_LIBRARY>* > static_libs;
 	std::vector<CppArtifact<ArtifactType::SHARED_LIBRARY>* > shared_libs;
 };
+
+typedef CppArtifact<ArtifactType::EXECUTABLE> CppExecutable;
+typedef CppArtifact<ArtifactType::STATIC_LIBRARY> CppStaticLib;
+typedef CppArtifact<ArtifactType::SHARED_LIBRARY> CppSharedLib;
 
 
 } /* namespace cpp */

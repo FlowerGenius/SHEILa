@@ -26,17 +26,17 @@ std::atomic<ShutdownCondition> TERMINATION_SIGNAL;
 std::atomic_bool TERMINATE;
 
 
-int setupEntity(sheila::SheilaEntityType e) {
-
-}
-
-int commitEntityToDisk(sheila::SheilaEntityType e){
-	;
-}
-
-int loadEntityFromDisk(sheila::SheilaEntityType e){
-	;
-}
+//int setupEntity(sheila::SheilaEntityType e) {
+//
+//}
+//
+//int commitEntityToDisk(sheila::SheilaEntityType e){
+//	;
+//}
+//
+//int loadEntityFromDisk(sheila::SheilaEntityType e){
+//	;
+//}
 
 
 /*
@@ -112,9 +112,9 @@ int main() {
 	sheila::Emotion e2 = sheila::Emotion();
 
 
-	sheila::cpp::CppArtifact<sheila::cpp::SHARED_LIBRARY> l;
+	sheila::cpp::CppSharedLib l;
 
-	//std::cout << l.isShared() << std::endl;
+	std::cout << l.getName() << std::endl;
 
 //while (true){
 //	std::cout << e2._getName()[0] << std::endl;
