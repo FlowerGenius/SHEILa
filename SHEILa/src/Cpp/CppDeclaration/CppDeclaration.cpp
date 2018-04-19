@@ -14,12 +14,14 @@
 namespace sheila {
 namespace cpp {
 
-CppDeclaration::CppDeclaration() {
+template<class _Tp>
+CppDeclaration<_Tp>::CppDeclaration() {
 	// TODO Auto-generated constructor stub
 
 }
 
-CppDeclaration::~CppDeclaration() {
+template<class _Tp>
+CppDeclaration<_Tp>::~CppDeclaration() {
 	// TODO Auto-generated destructor stub
 }
 

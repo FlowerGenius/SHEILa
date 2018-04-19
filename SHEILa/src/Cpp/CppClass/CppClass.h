@@ -28,15 +28,29 @@
 namespace sheila {
 namespace cpp {
 
-enum class ClassType : std::string {
-	CLASS = "class",
-	STRUCT = "struct",
-	UNION = "union"
+enum class ClassType {
+	CLASS,
+	STRUCT,
+	UNION
 };
 
 /* functions and members shared by every type of class */
 struct CppClass_base {
 public:
+
+	static const std::string T(ClassType t) {
+		switch(t) {
+		case ClassType::CLASS:
+			return "class";
+		case ClassType::STRUCT:
+			return "struct";
+		case ClassType::UNION:
+			return "union";
+		default:
+			return "class";
+		}
+	}
+
 //	CppClass_base();
 	virtual ~CppClass_base() {
 		;

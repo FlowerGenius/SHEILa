@@ -27,7 +27,7 @@ CppMacro::CppMacro(std::string id, std::string value,
 	this->statement = value;
 
 	if (allocator.size() > 0) {
-		arguments(allocator);
+		arguments = std::vector<std::string>(allocator);
 	}
 
 	this->defined = true;

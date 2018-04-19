@@ -19,7 +19,7 @@
 
 namespace sheila {
 
-class Emotion : public Entity<EMOTION_T> {
+class Emotion : public Entity<Emotion> {
 public:
 
 	static std::vector<Emotion> entities;

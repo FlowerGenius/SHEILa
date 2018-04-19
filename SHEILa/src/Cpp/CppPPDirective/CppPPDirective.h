@@ -14,24 +14,25 @@
 
 #include "../Cpp.h"
 #include "../CppHeader/CppHeader.h"
+#include "../CppMacro/CppMacro.h"
 
 namespace sheila {
 namespace cpp {
 
-enum class CppPPDirectiveType : std::string {
-	DEFINE  = "define",
-	UNDEF   = "undef",
-	IFDEF   = "ifdef",
-	IFNDEF  = "ifndef",
-	ELSE    = "else",
-	ENDIF   = "endif",
-	IF      = "if",
-	ELIF    = "elif",
-	INCLUDE = "include",
-	ERROR   = "error",
-	LINE    = "line",
-	PRAGMA  = "pragma",
-	OTHER	= "*"
+enum class CppPPDirectiveType {
+	DEFINE,
+	UNDEF,
+	IFDEF,
+	IFNDEF,
+	ELSE,
+	ENDIF,
+	IF,
+	ELIF,
+	INCLUDE,
+	ERROR,
+	LINE,
+	PRAGMA,
+	OTHER
 };
 
 
@@ -39,6 +40,37 @@ enum class CppPPDirectiveType : std::string {
  * Abstract model of a C++ Preprocessor directive;
  */
 struct CppPPDirective_base : public CppFeature {
+
+	static std::string T(CppPPDirectiveType t) {
+		switch(t){
+		case CppPPDirectiveType::DEFINE:
+			return "define";
+		case CppPPDirectiveType::UNDEF:
+			return "undef";
+		case CppPPDirectiveType::IFDEF:
+			return "ifdef";
+		case CppPPDirectiveType::IFNDEF:
+			return "ifndef";
+		case CppPPDirectiveType::ELSE:
+			return "else";
+		case CppPPDirectiveType::ENDIF:
+			return "endif";
+		case CppPPDirectiveType::IF:
+			return "if";
+		case CppPPDirectiveType::ELIF:
+			return "elif";
+		case CppPPDirectiveType::INCLUDE:
+			return "include";
+		case CppPPDirectiveType::ERROR:
+			return "error";
+		case CppPPDirectiveType::LINE:
+			return "line";
+		case CppPPDirectiveType::PRAGMA:
+			return "pragma";
+		default:
+			return "other";
+		}
+	}
 
 	CppPPDirective_base() {
 		before = nullptr;
@@ -141,8 +173,8 @@ public:
 	virtual ~CppPPDirective();
 
 	std::string cpp_str() {
-		std::string s = "#"+CppPPDirectiveType::DEFINE+macro->getIdentifier();
-		if (macro->getArguments().size > 0) {
+		std::string s = "#"+T(CppPPDirectiveType::DEFINE)+macro->getIdentifier();
+		if (macro->getArguments().size() > 0) {
 			s.append("(");
 			for (auto const& value: macro->getArguments()) {
 				s.append(value + ",");
@@ -156,7 +188,7 @@ public:
 
 	std::string xml_str() {
 		std::string s;
-		if (macro->getArguments().size > 0) {
+		if (macro->getArguments().size() > 0) {
 			s.append("[");
 			for (auto const& value: macro->getArguments()) {
 				s.append(value + ",");
@@ -164,14 +196,14 @@ public:
 			s.replace(s.rfind(','),1,1,']');
 		}
 
-		return "<"+CppPPDirectiveType::DEFINE
+		return "<"+T(CppPPDirectiveType::DEFINE)
 				+" id="+macro->getIdentifier()
 				+" arguments="+s
 				+" statement="+macro->getStatement()+" />";
 	}
 
 private:
-	CppMacro    *macro;
+	CppMacro	*macro;	/** Pointer to the macro that this object defines */
 };
 
 /** @brief Type definition of the specialization DEFINE for convenience and
@@ -193,31 +225,31 @@ template<>
 class CppPPDirective<CppPPDirectiveType::UNDEF> : public CppPPDirective_base {
 public:
 
-	/** @brief Creates a model of a C++ undef directive and destroys a macro
-	 * 	object.
+	/** @brief Creates a model of a C++ undef directive and marks a macro
+	 * 	as undefined (destroying it's contents).
 	 *  @author FlowerGenius
-	 *  @param	macro	Reference to the macro object to destroy.
+	 *  @param	macro	Reference to the macro object to undefine.
 	 *
 	 */
 	CppPPDirective(CppMacro &macro) {
 		this->macro = &macro;
-		delete this->macro;
+		this->macro->undefine();
 	}
 
-	/** @brief Creates a model of a C++ undef directive and destroys a macro
-	 * 	object.
+	/** @brief Creates a model of a C++ undef directive and marks a macro
+	 * 	as undefined (destroying it's contents).
 	 *  @author FlowerGenius
-	 *  @param	macro	Pointer to the macro object to destroy.
+	 *  @param	macro	Pointer to the macro object to undefine.
 	 *
 	 */
 	CppPPDirective(CppMacro *macro) {
 		this->macro = macro;
-		delete this->macro;
+		this->macro->undefine();
 	}
 
 	virtual ~CppPPDirective();
 private:
-	CppMacro *macro;
+	CppMacro	*macro;	/** Pointer to the macro that this object undefines */
 };
 
 /** @brief Type definition of the specialization UNDEF for convenience and
@@ -238,7 +270,25 @@ typedef CppPPDirective<CppPPDirectiveType::UNDEF> CppUndefDirective;
 template<>
 class CppPPDirective<CppPPDirectiveType::IFDEF> : public CppPPDirective_base {
 public:
-	CppPPDirective();
+
+	/** @brief Creates a model of a C++ ifdef directive
+	 *  @author FlowerGenius
+	 *  @param	macro	Reference to the macro being tested for existence.
+	 *
+	 */
+	CppPPDirective(CppMacro &macro) {
+		this->macro = &macro;
+	}
+
+	/** @brief Creates a model of a C++ ifdef directive
+	 *  @author FlowerGenius
+	 *  @param	macro	Pointer to the macro being tested for existence.
+	 *
+	 */
+	CppPPDirective(CppMacro *macro) {
+		this->macro = macro;
+	}
+
 	virtual ~CppPPDirective();
 private:
 	CppMacro    *macro;
@@ -298,7 +348,7 @@ public:
 	}
 
 	CppPPDirective(CppHeader &header) {
-		file_ptr = header;
+		file_ptr = &header;
 		if (file_ptr->isStandard()){
 			standard = true;
 		} else {

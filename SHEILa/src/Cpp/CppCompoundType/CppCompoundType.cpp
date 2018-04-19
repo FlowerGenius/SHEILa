@@ -14,12 +14,15 @@
 namespace sheila {
 namespace cpp {
 
-CppCompoundType::CppCompoundType() {
+template<CppCompoundTypeType _Tp>
+CppCompoundType<_Tp>::CppCompoundType() {
 	// TODO Auto-generated constructor stub
 
 }
 
-CppCompoundType::~CppCompoundType() {
+
+template<CppCompoundTypeType _Tp>
+CppCompoundType<_Tp>::~CppCompoundType() {
 	// TODO Auto-generated destructor stub
 }
 

@@ -17,7 +17,7 @@
 
 namespace sheila {
 
-class InstructionSetArchitecture: public Entity<INSTRUCTION_SET_ARCHITECTURE_T> {
+class InstructionSetArchitecture: public Entity<InstructionSetArchitecture> {
 public:
 
 	static std::vector<InstructionSetArchitecture> instruction_set_architectures;

@@ -13,17 +13,6 @@
 
 namespace sheila {
 
-template<>
-xml::XmlFile* 						Entity<EMOTION_T>::_objdef_file_;
-
-template<>
-cpp::CppSourceFile* 				cpp::CppObject<EMOTION_T>::_source_file_;
-
-template<>
-std::vector<cpp::CppHeaderFile*> 	cpp::CppObject<EMOTION_T>::_header_files_;
-
-
-
 Emotion::Emotion() {
 
 

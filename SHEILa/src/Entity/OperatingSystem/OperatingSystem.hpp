@@ -16,7 +16,7 @@
 
 namespace sheila {
 
-class OperatingSystem : public Entity<OPERATING_SYSTEM_T> {
+class OperatingSystem : public Entity<OperatingSystem> {
 public:
 	OperatingSystem();
 	virtual ~OperatingSystem();

@@ -13,42 +13,6 @@
 
 namespace sheila {
 
-template<>
-std::vector<long double>			Entity<IPv4_T>::_emotion_values_ = {
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0
-};
-
-template<>
-std::vector<std::string> 			Entity<IPv4_T>::_name_ = {
-		"IPv4"
-};
-
-template<>
-std::vector<std::string> 			Entity<IPv4_T>::_desc_ = {
-		"A protocol for routing network traffic"
-};
-
-template<>
-std::vector<cpp::CppClass_advanced> 	Entity<IPv4_T>::_children_ = {
-
-};
-
-template<>
-std::vector<std::string>			Entity<IPv4_T>::_cv_filters_ = {
-
-};
-
-template<>
-std::vector<cpp::CppClass_advanced> 	Entity<IPv4_T>::_parents_ = {
-		IPAddress()
-};
 
 
 IPv4::IPv4(){

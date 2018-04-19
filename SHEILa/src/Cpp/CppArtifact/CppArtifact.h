@@ -37,7 +37,7 @@ public:
 	virtual ~CppArtifact();
 private:
 //	std::vector<CObject* > 	c_objects;
-	std::vector<CppObject* > 		           cpp_objects;
+	std::vector<CppObject<void>* > 		           cpp_objects;
 	std::vector<CppArtifact<ArtifactType::STATIC_LIBRARY>* > static_libs;
 	std::vector<CppArtifact<ArtifactType::SHARED_LIBRARY>* > shared_libs;
 };

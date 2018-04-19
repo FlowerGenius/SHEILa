@@ -44,6 +44,7 @@ public:
  */
 template<>
 class CppDeclaration<CppVariable> {
+public:
 	CppDeclaration();
 	virtual ~CppDeclaration();
 };
@@ -53,6 +54,7 @@ class CppDeclaration<CppVariable> {
  */
 template<>
 class CppDeclaration<CppFunction> {
+public:
 	CppDeclaration();
 	virtual ~CppDeclaration();
 };
@@ -61,7 +63,8 @@ class CppDeclaration<CppFunction> {
  * A declaration of a class, aka forward declaration
  */
 template<>
-class CppDeclaration<CppVariable> {
+class CppDeclaration<CppClass_base> {
+public:
 	CppDeclaration();
 	virtual ~CppDeclaration();
 };

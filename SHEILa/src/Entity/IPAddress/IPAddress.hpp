@@ -21,7 +21,7 @@
 
 namespace sheila {
 
-class IPAddress : public Entity<IPADDRESS_T> {
+class IPAddress : public Entity<IPAddress> {
 public:
 
 	static std::vector<IPAddress> ip_addresses;

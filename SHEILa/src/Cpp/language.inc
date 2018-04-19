@@ -28,7 +28,7 @@
 
 #include "CppFunction/CppFunction.h"
 
-#include "CppHeaderFile/CppHeaderFile.h"
+#include "CppHeader/CppHeader.h"
 
 #include "CppMacro/CppMacro.h"
 
@@ -36,9 +36,7 @@
 
 #include "CppObject/CppObject.h"
 
-#include "CppSourceFile/CppSourceFile.h"
-
-#include "CppSymbol/CppSymbol.h"
+#include "CppSource/CppSource.h"
 
 #include "CppTypeDefinition/CppTypeDefinition.h"
 

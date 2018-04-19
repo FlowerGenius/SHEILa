@@ -17,7 +17,7 @@
 namespace sheila {
 
 /* Internet Protocol address using a 128-bit address */
-class IPv6 : public IPAddress, public Entity<IPv6_T> {
+class IPv6 : public IPAddress, public Entity<IPv6> {
 public:
 	IPv6();
 	virtual ~IPv6();

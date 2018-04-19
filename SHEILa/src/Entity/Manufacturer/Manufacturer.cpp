@@ -13,28 +13,6 @@
 
 namespace sheila {
 
-template<>
-std::vector<long double>			Entity<MANUFACTURER_T>::_emotion_values_ = {
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0,
-		0.0
-};
-
-template<>
-std::vector<std::string> 			Entity<MANUFACTURER_T>::_name_ = {
-		"Manufacturer"
-};
-
-template<>
-std::vector<std::string> 			Entity<MANUFACTURER_T>::_desc_ = {
-		"a company or collective that manufactures goods"
-};
-
 std::vector<Manufacturer> Manufacturer::manufacturers;
 
 Manufacturer::Manufacturer() {

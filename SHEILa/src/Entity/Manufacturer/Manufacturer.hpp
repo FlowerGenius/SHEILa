@@ -16,7 +16,7 @@
 
 namespace sheila {
 
-class Manufacturer: public Entity<MANUFACTURER_T> {
+class Manufacturer: public Entity<Manufacturer> {
 public:
 
 	static std::vector<Manufacturer> manufacturers;

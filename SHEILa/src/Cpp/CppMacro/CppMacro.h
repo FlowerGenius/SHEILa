@@ -32,7 +32,7 @@ public:
 	/*
 	 * Set the macro located at the address of the pointer to undefined
 	 */
-	static int undefine_macro(CppMacro *mptr) { return mptr->undefine; }
+	static int undefine_macro(CppMacro *mptr) { return mptr->undefine(); }
 
 	CppMacro();
 

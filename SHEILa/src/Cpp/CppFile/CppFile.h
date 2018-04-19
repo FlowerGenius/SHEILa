@@ -15,14 +15,7 @@
 #include <string>
 #include <vector>
 
-#include "../CppClass/CppClass.h"
 #include "../CppPPDirective/CppPPDirective.h"
-#include "../CppVariable/CppVariable.h"
-#include "../CppFunction/CppFunction.h"
-#include "../CppClassObject/CppClassObject.h"
-#include "../CppEnumeration/CppEnumeration.h"
-#include "../CppTypeDefinition/CppTypeDefinition.h"
-#include "../CppDeclaration/CppDeclaration.h"
 #include "../CppNameSpace/CppNameSpace.h"
 
 
@@ -117,7 +110,7 @@ protected:
 	/*
 	 * A list of all define directives in this file.
 	 */
-	std::vector<CppPPDirective<CppPPDirectiveType::DEFINE> >  pp_defines;
+	std::vector< CppPPDirective<CppPPDirectiveType::DEFINE> >  pp_defines;
 
 	/*
 	 * A list of all undef directives in this file.

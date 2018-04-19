@@ -40,7 +40,7 @@ struct CppObject_base {
  * formatted file header.
  *
  */
-template<unsigned long long int _N = 0>
+template<class _N = void>
 class CppObject : private CppObject_base {
 
 
@@ -56,18 +56,27 @@ public:
 	 */
 	CppObject(xml::XmlFile*);
 
-
-
-
-
-
 	virtual ~CppObject();
+
 protected:
 
+#if (BUILD_FOR_SHEILA_DAEMON == 1)
+	static std::vector<std::string> this_object_names;
+	static std::vector<std::string> this_object_authors;
+	static std::vector<std::string> this_object_versions;
+	static std::vector<std::string> this_object_copyrights;
+	static std::vector<std::string> this_object_descriptions;
+	static std::vector<std::string> this_object_modules;
+	static std::string              this_object_created;
+	static std::vector<std::string> this_object_modified;
 
-//	static cpp::CppSourceFile*		 	_source_file_;
-//	static std::vector<CppHeaderFile*>  _header_files_;
+
+	static std::vector<cpp::CppHeader*> this_object_headers;
+	static cpp::CppSource*              this_object_source;
+#endif
+
 private:
+
 	std::vector<std::string> object_names;
 	std::vector<std::string> object_authors;
 	std::vector<std::string> object_versions;
@@ -77,11 +86,9 @@ private:
 	std::string              object_created;
 	std::vector<std::string> object_modified;
 
-//	xml::XmlFile*		object_objdef_file;
 
 	std::vector<cpp::CppHeader*> object_headers;
 	cpp::CppSource*              object_source;
-
 
 
 };

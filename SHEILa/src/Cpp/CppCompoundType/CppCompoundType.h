@@ -28,7 +28,7 @@ typedef enum cpp_compound_type_types {
 	FUNCTION
 } CppCompoundTypeType;
 
-struct CppCompoundType_base : public CppType {
+struct CppCompoundType_base /*: public CppType */ {
 	CppCompoundType_base(){
 		;
 	}
