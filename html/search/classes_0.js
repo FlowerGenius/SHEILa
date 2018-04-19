@@ -4,6 +4,7 @@ var searchData=
   ['cppartifact',['CppArtifact',['../classsheila_1_1cpp_1_1CppArtifact.html',1,'sheila::cpp']]],
   ['cppfeature',['CppFeature',['../classsheila_1_1cpp_1_1CppFeature.html',1,'sheila::cpp']]],
   ['cppfile',['CppFile',['../classsheila_1_1cpp_1_1CppFile.html',1,'sheila::cpp']]],
+  ['cppheader',['CppHeader',['../classsheila_1_1cpp_1_1CppHeader.html',1,'sheila::cpp']]],
   ['cppobject',['CppObject',['../classsheila_1_1cpp_1_1CppObject.html',1,'sheila::cpp']]],
   ['cppobject_3c_20_5ftp_20_3e',['CppObject&lt; _Tp &gt;',['../classsheila_1_1cpp_1_1CppObject.html',1,'sheila::cpp']]],
   ['cppobject_3c_20emotion_20_3e',['CppObject&lt; Emotion &gt;',['../classsheila_1_1cpp_1_1CppObject.html',1,'sheila::cpp']]],
@@ -23,5 +24,6 @@ var searchData=
   ['cppppdirective',['CppPPDirective',['../classsheila_1_1cpp_1_1CppPPDirective.html',1,'sheila::cpp']]],
   ['cppppdirective_3c_20cppppdirectivetype_3a_3adefine_20_3e',['CppPPDirective&lt; CppPPDirectiveType::DEFINE &gt;',['../classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1DEFINE_01_4.html',1,'sheila::cpp']]],
   ['cppppdirective_3c_20cppppdirectivetype_3a_3aifdef_20_3e',['CppPPDirective&lt; CppPPDirectiveType::IFDEF &gt;',['../classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1IFDEF_01_4.html',1,'sheila::cpp']]],
-  ['cppppdirective_3c_20cppppdirectivetype_3a_3aundef_20_3e',['CppPPDirective&lt; CppPPDirectiveType::UNDEF &gt;',['../classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1UNDEF_01_4.html',1,'sheila::cpp']]]
+  ['cppppdirective_3c_20cppppdirectivetype_3a_3aundef_20_3e',['CppPPDirective&lt; CppPPDirectiveType::UNDEF &gt;',['../classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1UNDEF_01_4.html',1,'sheila::cpp']]],
+  ['cppppdirective_5fbase',['CppPPDirective_base',['../structsheila_1_1cpp_1_1CppPPDirective__base.html',1,'sheila::cpp']]]
 ];

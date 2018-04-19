@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -139,7 +140,7 @@ class sheila::cpp::CppObject&lt; _N &gt;</h3>
 <p>This template class is very strange and possibly not clearly intuitive, thus this description may be too long to read, skip down to the end for a concise summary - FlowerGenius</p>
 <p>Important Note: The strange nature of the class is a result of it's intended usage, as this library is not meant for the understanding of a human developer, rather it is meant for the understanding of the Software Human Emulated Intelligence (on) Linux [a] a.k.a. <code>SHEILa</code>.</p>
 <p>Introduction: For the purposes of this model, a C++ compilation object shall be defined as the combination of a single C++ source file and a definition of the user defined Header Files included from that source.</p>
-<p>All header files included from those main header files shall not be <em>defined</em> by the object, rather they shall be referenced by the object. That is to say that when a <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a></code> is represented in XML, the XML file contains only references to non-primary header files. Where the properties of them can be accessed through their pointer to their respective <code>CppHeader</code> models such that modifications to those models modify them globally, rather than modifying a local copy of them.</p>
+<p>All header files included from those main header files shall not be <em>defined</em> by the object, rather they shall be referenced by the object. That is to say that when a <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a></code> is represented in XML, the XML file contains only references to non-primary header files. Where the properties of them can be accessed through their pointer to their respective <code><a class="el" href="classsheila_1_1cpp_1_1CppHeader.html" title="An abstract model of a header file in C++. ">CppHeader</a></code> models such that modifications to those models modify them globally, rather than modifying a local copy of them.</p>
 <p>An XML representation of a <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a></code> or one of it's children must be a model of an entire valid XML file.</p>
 <p>Typical Usage (modeling a C++ compilation object) : <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a>&lt;<em>void</em> &gt;</code> </p>
 <p>Adv. Usage (child models a C++ compilation object) : <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a>&lt;<em>_N</em> &gt;</code> where <em>_N</em> is the class that the <code><a class="el" href="classsheila_1_1cpp_1_1CppObject.html" title="An abstract model of a compilation object in C++. ">CppObject</a></code> is going to model.</p>
@@ -193,8 +194,8 @@ template&lt;class _N&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Cpp/CppObject/<a class="el" href="CppObject_8h_source.html">CppObject.h</a></li>
-<li>src/Cpp/CppObject/CppObject.cpp</li>
+<li>/home/erin/Documents/SHEILa/SHEILa/src/Cpp/CppObject/<a class="el" href="CppObject_8h_source.html">CppObject.h</a></li>
+<li>/home/erin/Documents/SHEILa/SHEILa/src/Cpp/CppObject/CppObject.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

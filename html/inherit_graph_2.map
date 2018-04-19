@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1CppFeature.html" title="An abstract model of a feature of the C++ programming language. " alt="" coords="5,5,167,32"/>
+<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1CppFeature.html" title="An abstract model of a feature of the C++ programming language. " alt="" coords="5,111,167,138"/>
+<area shape="rect" id="node2" href="$structsheila_1_1cpp_1_1CppPPDirective__base.html" title="Abstract model of a C++ Preprocessor directive;. " alt="" coords="215,111,437,138"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1CppPPDirective.html" title="Generic CppPPDirective template class. " alt="" coords="505,5,692,47"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1DEFINE_01_4.html" title="C++ Preprocessor directive specialization for a define directive. " alt="" coords="485,71,712,112"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1IFDEF_01_4.html" title="C++ Preprocessor directive specialization for an ifdef directive. " alt="" coords="491,136,707,177"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1CppPPDirective_3_01CppPPDirectiveType_1_1UNDEF_01_4.html" title="C++ Preprocessor directive specialization for an undef directive. " alt="" coords="487,201,711,243"/>
 </map>
