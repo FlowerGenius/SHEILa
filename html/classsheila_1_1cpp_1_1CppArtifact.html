@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,13 +84,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>sheila</b></li><li class="navelem"><b>cpp</b></li><li class="navelem"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacesheila.html">sheila</a></li><li class="navelem"><a class="el" href="namespacesheila_1_1cpp.html">cpp</a></li><li class="navelem"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classsheila_1_1cpp_1_1CppArtifact-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">sheila::cpp::CppArtifact&lt; _Ta &gt; Class Template Reference</div>  </div>
@@ -115,9 +117,24 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa44bfa66264835921258c41e6de7acf0"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#aa44bfa66264835921258c41e6de7acf0">T</a> (Cpp::ArtifactType t)</td></tr>
+<tr class="memitem:aa44bfa66264835921258c41e6de7acf0"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#aa44bfa66264835921258c41e6de7acf0">T</a> (<a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49f">Cpp::ArtifactType</a> t)</td></tr>
 <tr class="memdesc:aa44bfa66264835921258c41e6de7acf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translation function for getting the name of an artifact.  <a href="#aa44bfa66264835921258c41e6de7acf0">More...</a><br /></td></tr>
 <tr class="separator:aa44bfa66264835921258c41e6de7acf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a215e13a99371d8858c5a7c104b665901"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#a215e13a99371d8858c5a7c104b665901">artifact_type_name</a></td></tr>
+<tr class="memdesc:a215e13a99371d8858c5a7c104b665901"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the type of artifact that this instance represents.  <a href="#a215e13a99371d8858c5a7c104b665901">More...</a><br /></td></tr>
+<tr class="separator:a215e13a99371d8858c5a7c104b665901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb49f0acc6832f69499e82fe40d1369"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppObject.html">CppObject</a>&lt; void &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#a8cb49f0acc6832f69499e82fe40d1369">cpp_objects</a></td></tr>
+<tr class="memdesc:a8cb49f0acc6832f69499e82fe40d1369"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of pointers to linked C++ objects.  <a href="#a8cb49f0acc6832f69499e82fe40d1369">More...</a><br /></td></tr>
+<tr class="separator:a8cb49f0acc6832f69499e82fe40d1369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c7605f50f3c9ed4b23ea931a6f25f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a>&lt; <a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49faffffbac82e2a3aa2d3ae8a02ff4e9fec">Cpp::ArtifactType::STATIC_LIBRARY</a> &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#a92c7605f50f3c9ed4b23ea931a6f25f4">static_libs</a></td></tr>
+<tr class="memdesc:a92c7605f50f3c9ed4b23ea931a6f25f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of pointers to linked C++ static libraries.  <a href="#a92c7605f50f3c9ed4b23ea931a6f25f4">More...</a><br /></td></tr>
+<tr class="separator:a92c7605f50f3c9ed4b23ea931a6f25f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4335930962921ce9be842794224c0b9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a>&lt; <a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49fa3c87a2f00006b2b373090ef97b4ba450">Cpp::ArtifactType::SHARED_LIBRARY</a> &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html#ac4335930962921ce9be842794224c0b9">shared_libs</a></td></tr>
+<tr class="memdesc:ac4335930962921ce9be842794224c0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of pointers to linked C++ shared libraries.  <a href="#ac4335930962921ce9be842794224c0b9">More...</a><br /></td></tr>
+<tr class="separator:ac4335930962921ce9be842794224c0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;Cpp::ArtifactType _Ta&gt;<br />
@@ -240,7 +257,7 @@ template&lt;Cpp::ArtifactType _Ta&gt; </div>
         <tr>
           <td class="memname">static const std::string <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">sheila::cpp::CppArtifact</a>&lt; _Ta &gt;::T </td>
           <td>(</td>
-          <td class="paramtype">Cpp::ArtifactType&#160;</td>
+          <td class="paramtype"><a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49f">Cpp::ArtifactType</a>&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
@@ -262,6 +279,103 @@ template&lt;Cpp::ArtifactType _Ta&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>C++ string containing the name of artifact <em>t</em>.</dd></dl>
 <p>This function returns the name of the type of artifact <em>t</em>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a215e13a99371d8858c5a7c104b665901"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;Cpp::ArtifactType _Ta&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">sheila::cpp::CppArtifact</a>&lt; _Ta &gt;::artifact_type_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The name of the type of artifact that this instance represents. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8cb49f0acc6832f69499e82fe40d1369"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;Cpp::ArtifactType _Ta&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppObject.html">CppObject</a>&lt;void&gt;* &gt; <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">sheila::cpp::CppArtifact</a>&lt; _Ta &gt;::cpp_objects</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The vector of pointers to linked C++ objects. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac4335930962921ce9be842794224c0b9"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;Cpp::ArtifactType _Ta&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a>&lt;<a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49fa3c87a2f00006b2b373090ef97b4ba450">Cpp::ArtifactType::SHARED_LIBRARY</a>&gt;* &gt; <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">sheila::cpp::CppArtifact</a>&lt; _Ta &gt;::shared_libs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The vector of pointers to linked C++ shared libraries. </p>
+
+</div>
+</div>
+<a class="anchor" id="a92c7605f50f3c9ed4b23ea931a6f25f4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;Cpp::ArtifactType _Ta&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">CppArtifact</a>&lt;<a class="el" href="classsheila_1_1cpp_1_1Cpp.html#a550854dd8d390e65262c179a66e1a49faffffbac82e2a3aa2d3ae8a02ff4e9fec">Cpp::ArtifactType::STATIC_LIBRARY</a>&gt;* &gt; <a class="el" href="classsheila_1_1cpp_1_1CppArtifact.html">sheila::cpp::CppArtifact</a>&lt; _Ta &gt;::static_libs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The vector of pointers to linked C++ static libraries. </p>
 
 </div>
 </div>

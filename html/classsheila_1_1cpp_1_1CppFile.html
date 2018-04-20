@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>sheila</b></li><li class="navelem"><b>cpp</b></li><li class="navelem"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html">CppFile</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacesheila.html">sheila</a></li><li class="navelem"><a class="el" href="namespacesheila_1_1cpp.html">cpp</a></li><li class="navelem"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html">CppFile</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -92,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classsheila_1_1cpp_1_1CppFile-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">sheila::cpp::CppFile Class Reference</div>  </div>
+<div class="title">sheila::cpp::CppFile Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -106,6 +107,7 @@ Inheritance diagram for sheila::cpp::CppFile:</div>
 <div class="center"><img src="classsheila_1_1cpp_1_1CppFile__inherit__graph.png" border="0" usemap="#sheila_1_1cpp_1_1CppFile_inherit__map" alt="Inheritance graph"/></div>
 <map name="sheila_1_1cpp_1_1CppFile_inherit__map" id="sheila_1_1cpp_1_1CppFile_inherit__map">
 <area shape="rect" id="node2" href="classsheila_1_1cpp_1_1CppHeader.html" title="An abstract model of a header file in C++. " alt="" coords="5,80,164,107"/>
+<area shape="rect" id="node3" href="classsheila_1_1cpp_1_1CppSource.html" title="An abstract model of a source file in C++. " alt="" coords="188,80,347,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -117,37 +119,78 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31a5b2b4eb53b18fc34c3506b9ba7671"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a31a5b2b4eb53b18fc34c3506b9ba7671">~CppFile</a> ()</td></tr>
 <tr class="memdesc:a31a5b2b4eb53b18fc34c3506b9ba7671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys and object that represents a C++ file.  <a href="#a31a5b2b4eb53b18fc34c3506b9ba7671">More...</a><br /></td></tr>
 <tr class="separator:a31a5b2b4eb53b18fc34c3506b9ba7671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e3814fffe98beb5032a751f29b0b15"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#ab5e3814fffe98beb5032a751f29b0b15">cpp_str</a> ()=0</td></tr>
+<tr class="memdesc:ab5e3814fffe98beb5032a751f29b0b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents this file in C++ code.  <a href="#ab5e3814fffe98beb5032a751f29b0b15">More...</a><br /></td></tr>
+<tr class="separator:ab5e3814fffe98beb5032a751f29b0b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dcb99bb8811f464cdf4ab2748fb909b"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a0dcb99bb8811f464cdf4ab2748fb909b">xml_str</a> ()=0</td></tr>
+<tr class="memdesc:a0dcb99bb8811f464cdf4ab2748fb909b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents this file in XML code.  <a href="#a0dcb99bb8811f464cdf4ab2748fb909b">More...</a><br /></td></tr>
+<tr class="separator:a0dcb99bb8811f464cdf4ab2748fb909b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"></a>
-std::vector&lt; CppFunction &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#ae5e047eb8e3eb4fc6bdbc8c1b31e85cf">contained_functions</a></td></tr>
-<tr class="memdesc:ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of function definitions. <br /></td></tr>
+<tr class="memitem:ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppFunction.html">CppFunction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#ae5e047eb8e3eb4fc6bdbc8c1b31e85cf">contained_functions</a></td></tr>
+<tr class="memdesc:ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of function definitions.  <a href="#ae5e047eb8e3eb4fc6bdbc8c1b31e85cf">More...</a><br /></td></tr>
 <tr class="separator:ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0b940ba0f8e1c22affd6e4347735bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc0b940ba0f8e1c22affd6e4347735bc"></a>
-std::vector&lt; CppClass&lt; ClassType::CLASS &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#afc0b940ba0f8e1c22affd6e4347735bc">contained_classes</a></td></tr>
-<tr class="memdesc:afc0b940ba0f8e1c22affd6e4347735bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of class definitions. <br /></td></tr>
+<tr class="memitem:afc0b940ba0f8e1c22affd6e4347735bc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppClass.html">CppClass</a>&lt; ClassType::CLASS &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#afc0b940ba0f8e1c22affd6e4347735bc">contained_classes</a></td></tr>
+<tr class="memdesc:afc0b940ba0f8e1c22affd6e4347735bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of class definitions.  <a href="#afc0b940ba0f8e1c22affd6e4347735bc">More...</a><br /></td></tr>
 <tr class="separator:afc0b940ba0f8e1c22affd6e4347735bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acddb282abe036a17e06f36bace0d524d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acddb282abe036a17e06f36bace0d524d"></a>
-std::vector&lt; CppStruct &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#acddb282abe036a17e06f36bace0d524d">contained_structs</a></td></tr>
-<tr class="memdesc:acddb282abe036a17e06f36bace0d524d"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of struct definitions. <br /></td></tr>
+<tr class="memitem:acddb282abe036a17e06f36bace0d524d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#a5e10fa462ac899457e440656799aff62">CppStruct</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#acddb282abe036a17e06f36bace0d524d">contained_structs</a></td></tr>
+<tr class="memdesc:acddb282abe036a17e06f36bace0d524d"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of struct definitions.  <a href="#acddb282abe036a17e06f36bace0d524d">More...</a><br /></td></tr>
 <tr class="separator:acddb282abe036a17e06f36bace0d524d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd2581f506621f7d380ee89be0ef8b22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd2581f506621f7d380ee89be0ef8b22"></a>
-std::vector&lt; CppUnion &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#abd2581f506621f7d380ee89be0ef8b22">contained_unions</a></td></tr>
-<tr class="memdesc:abd2581f506621f7d380ee89be0ef8b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of union definitions. <br /></td></tr>
+<tr class="memitem:abd2581f506621f7d380ee89be0ef8b22"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#ac2a9a8452776160ce4d526f9c9d318b8">CppUnion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#abd2581f506621f7d380ee89be0ef8b22">contained_unions</a></td></tr>
+<tr class="memdesc:abd2581f506621f7d380ee89be0ef8b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of union definitions.  <a href="#abd2581f506621f7d380ee89be0ef8b22">More...</a><br /></td></tr>
 <tr class="separator:abd2581f506621f7d380ee89be0ef8b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf8b8297ecc155bcd08852238bc832f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf8b8297ecc155bcd08852238bc832f4"></a>
-std::vector&lt; CppEnumeration &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#abf8b8297ecc155bcd08852238bc832f4">contained_enums</a></td></tr>
-<tr class="memdesc:abf8b8297ecc155bcd08852238bc832f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of enum defintiions. <br /></td></tr>
+<tr class="memitem:abf8b8297ecc155bcd08852238bc832f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppEnumeration.html">CppEnumeration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#abf8b8297ecc155bcd08852238bc832f4">contained_enums</a></td></tr>
+<tr class="memdesc:abf8b8297ecc155bcd08852238bc832f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of enum defintiions.  <a href="#abf8b8297ecc155bcd08852238bc832f4">More...</a><br /></td></tr>
 <tr class="separator:abf8b8297ecc155bcd08852238bc832f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a617d4a88f7870f7224533e0798c46f02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a617d4a88f7870f7224533e0798c46f02"></a>
-std::vector&lt; CppTypeDefinition &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a617d4a88f7870f7224533e0798c46f02">contained_typedefs</a></td></tr>
-<tr class="memdesc:a617d4a88f7870f7224533e0798c46f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of type definitions. <br /></td></tr>
+<tr class="memitem:a617d4a88f7870f7224533e0798c46f02"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppTypeDefinition.html">CppTypeDefinition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a617d4a88f7870f7224533e0798c46f02">contained_typedefs</a></td></tr>
+<tr class="memdesc:a617d4a88f7870f7224533e0798c46f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of type definitions.  <a href="#a617d4a88f7870f7224533e0798c46f02">More...</a><br /></td></tr>
 <tr class="separator:a617d4a88f7870f7224533e0798c46f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a3765d819d5f2d123d2629a995f9f90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a3765d819d5f2d123d2629a995f9f90"></a>
-std::vector&lt; CppNameSpace &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a4a3765d819d5f2d123d2629a995f9f90">contained_namespaces</a></td></tr>
-<tr class="memdesc:a4a3765d819d5f2d123d2629a995f9f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of namespace definitions. <br /></td></tr>
+<tr class="memitem:a4a3765d819d5f2d123d2629a995f9f90"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppNameSpace.html">CppNameSpace</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a4a3765d819d5f2d123d2629a995f9f90">contained_namespaces</a></td></tr>
+<tr class="memdesc:a4a3765d819d5f2d123d2629a995f9f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of namespace definitions.  <a href="#a4a3765d819d5f2d123d2629a995f9f90">More...</a><br /></td></tr>
 <tr class="separator:a4a3765d819d5f2d123d2629a995f9f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ef7457528fd69a139dad7e02d83d360"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt; <a class="el" href="classsheila_1_1cpp_1_1CppVariable.html">CppVariable</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a6ef7457528fd69a139dad7e02d83d360">contained_declared_variables</a></td></tr>
+<tr class="memdesc:a6ef7457528fd69a139dad7e02d83d360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declarations of variables that are not also definitions.  <a href="#a6ef7457528fd69a139dad7e02d83d360">More...</a><br /></td></tr>
+<tr class="separator:a6ef7457528fd69a139dad7e02d83d360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70eb5df0dec6bc6f3575de537a1a29c2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt; <a class="el" href="classsheila_1_1cpp_1_1CppFunction.html">CppFunction</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a70eb5df0dec6bc6f3575de537a1a29c2">contained_prototypes</a></td></tr>
+<tr class="memdesc:a70eb5df0dec6bc6f3575de537a1a29c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declarations of prototype functions.  <a href="#a70eb5df0dec6bc6f3575de537a1a29c2">More...</a><br /></td></tr>
+<tr class="separator:a70eb5df0dec6bc6f3575de537a1a29c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acca5535996b1e13f978d1c42aa33f379"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt; <a class="el" href="structsheila_1_1cpp_1_1CppClass__base.html">CppClass_base</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#acca5535996b1e13f978d1c42aa33f379">contained_forward_declarations</a></td></tr>
+<tr class="memdesc:acca5535996b1e13f978d1c42aa33f379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declarations of classes, unions, and structs.  <a href="#acca5535996b1e13f978d1c42aa33f379">More...</a><br /></td></tr>
+<tr class="separator:acca5535996b1e13f978d1c42aa33f379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b37a8bdd2e5cefa91c77caedcaff6a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#aedd421f55e18f341861a6f7a5b72ed54">CppDefineDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a45b37a8bdd2e5cefa91c77caedcaff6a">pp_defines</a></td></tr>
+<tr class="memdesc:a45b37a8bdd2e5cefa91c77caedcaff6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all define directives in this file.  <a href="#a45b37a8bdd2e5cefa91c77caedcaff6a">More...</a><br /></td></tr>
+<tr class="separator:a45b37a8bdd2e5cefa91c77caedcaff6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc4862ac7c46cd18a83710e901970b99"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#afe0bf9c4a0a19757618e76fa981669d2">CppUndefDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#acc4862ac7c46cd18a83710e901970b99">pp_undefines</a></td></tr>
+<tr class="memdesc:acc4862ac7c46cd18a83710e901970b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all undef directives in this file.  <a href="#acc4862ac7c46cd18a83710e901970b99">More...</a><br /></td></tr>
+<tr class="separator:acc4862ac7c46cd18a83710e901970b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a689c372687e719bf4f0f186f3233d904"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#a5118d46ca6a0b8efa950e0e384bd1b14">CppIfdefDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a689c372687e719bf4f0f186f3233d904">pp_ifdefines</a></td></tr>
+<tr class="memdesc:a689c372687e719bf4f0f186f3233d904"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all ifdef directives in this file.  <a href="#a689c372687e719bf4f0f186f3233d904">More...</a><br /></td></tr>
+<tr class="separator:a689c372687e719bf4f0f186f3233d904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c7dc8bc55179dd50d79d71b7501b831"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#af7f22e5e58e4e5a2fb86e4b26f9a711f">CppIfndefDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a6c7dc8bc55179dd50d79d71b7501b831">pp_ifnotdefines</a></td></tr>
+<tr class="memdesc:a6c7dc8bc55179dd50d79d71b7501b831"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all ifndef directives in this file.  <a href="#a6c7dc8bc55179dd50d79d71b7501b831">More...</a><br /></td></tr>
+<tr class="separator:a6c7dc8bc55179dd50d79d71b7501b831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0e0f2f6335177ec90dba907e6c4059"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#acada2315477b0f08f562f5df9246b29d">CppElseDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a8f0e0f2f6335177ec90dba907e6c4059">pp_elses</a></td></tr>
+<tr class="memdesc:a8f0e0f2f6335177ec90dba907e6c4059"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all else directives in this file.  <a href="#a8f0e0f2f6335177ec90dba907e6c4059">More...</a><br /></td></tr>
+<tr class="separator:a8f0e0f2f6335177ec90dba907e6c4059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afffecc4b14bc6490f329e14a0e253727"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#af58461ed2dabad1315f5294d044a0d35">CppEndifDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#afffecc4b14bc6490f329e14a0e253727">pp_endifs</a></td></tr>
+<tr class="memdesc:afffecc4b14bc6490f329e14a0e253727"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all endif directives in this file.  <a href="#afffecc4b14bc6490f329e14a0e253727">More...</a><br /></td></tr>
+<tr class="separator:afffecc4b14bc6490f329e14a0e253727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff0d472b2c310369f2b8a9a3fda1e6d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#aff0f77c48c7ad5d49ce836cb50e0779d">CppElifDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#a2ff0d472b2c310369f2b8a9a3fda1e6d">pp_elifs</a></td></tr>
+<tr class="memdesc:a2ff0d472b2c310369f2b8a9a3fda1e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all elif directives in this file.  <a href="#a2ff0d472b2c310369f2b8a9a3fda1e6d">More...</a><br /></td></tr>
+<tr class="separator:a2ff0d472b2c310369f2b8a9a3fda1e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac77b7ea783dc1aab3636ee2e6ddb70db"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsheila_1_1cpp_1_1CppPPDirective.html">CppPPDirective</a>&lt; <a class="el" href="namespacesheila_1_1cpp.html#aa795acd256a63af56445cc8711128751a04ff6a9583ba9957ebe1128d0f988ad8">CppPPDirectiveType::INCLUDE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#ac77b7ea783dc1aab3636ee2e6ddb70db">pp_includes</a></td></tr>
+<tr class="memdesc:ac77b7ea783dc1aab3636ee2e6ddb70db"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all include directives in this file.  <a href="#ac77b7ea783dc1aab3636ee2e6ddb70db">More...</a><br /></td></tr>
+<tr class="separator:ac77b7ea783dc1aab3636ee2e6ddb70db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacee82f7f991c051ca32c544ea361787"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#a2ebd87fc4e1a20881c00ed05f38b9f42">CppErrorDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#aacee82f7f991c051ca32c544ea361787">pp_errors</a></td></tr>
+<tr class="memdesc:aacee82f7f991c051ca32c544ea361787"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all error directives in this file.  <a href="#aacee82f7f991c051ca32c544ea361787">More...</a><br /></td></tr>
+<tr class="separator:aacee82f7f991c051ca32c544ea361787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8ab1d8a81ed790969b34e62bdde199f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#afac20578d601cbfb0c939e1ab8a75978">CppLineDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#af8ab1d8a81ed790969b34e62bdde199f">pp_lines</a></td></tr>
+<tr class="memdesc:af8ab1d8a81ed790969b34e62bdde199f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all line directives in this file.  <a href="#af8ab1d8a81ed790969b34e62bdde199f">More...</a><br /></td></tr>
+<tr class="separator:af8ab1d8a81ed790969b34e62bdde199f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09a9c27c6aa89de6a4b9ccba3944f61"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacesheila_1_1cpp.html#a7ed610e2c55b3dc47614fa71038b1387">CppPragmaDirective</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsheila_1_1cpp_1_1CppFile.html#ad09a9c27c6aa89de6a4b9ccba3944f61">pp_pragmas</a></td></tr>
+<tr class="memdesc:ad09a9c27c6aa89de6a4b9ccba3944f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all pragma directives in this file.  <a href="#ad09a9c27c6aa89de6a4b9ccba3944f61">More...</a><br /></td></tr>
+<tr class="separator:ad09a9c27c6aa89de6a4b9ccba3944f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract model of a C++ File (ie. [source|header]) </p>
@@ -199,9 +242,531 @@ std::vector&lt; CppNameSpace &gt;&#160;</td><td class="memItemRight" valign="bot
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab5e3814fffe98beb5032a751f29b0b15"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string sheila::cpp::CppFile::cpp_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents this file in C++ code. </p>
+<dl class="section author"><dt>Author</dt><dd>FlowerGenius </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a C++ string representing this C++ file in C++ syntax. </dd></dl>
+
+<p>Implemented in <a class="el" href="classsheila_1_1cpp_1_1CppHeader.html#a6acbd9fdf7323744bbde91e076c48ee7">sheila::cpp::CppHeader</a>, and <a class="el" href="classsheila_1_1cpp_1_1CppSource.html#aa12ffb109bfcabd439deaf0a0879d9e8">sheila::cpp::CppSource</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0dcb99bb8811f464cdf4ab2748fb909b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string sheila::cpp::CppFile::xml_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents this file in XML code. </p>
+<dl class="section author"><dt>Author</dt><dd>FlowerGenius </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a C++ string representing this C++ file in XML syntax. </dd></dl>
+
+<p>Implemented in <a class="el" href="classsheila_1_1cpp_1_1CppHeader.html#a2a7fb46418e9dc5b846d7047d15146ca">sheila::cpp::CppHeader</a>, and <a class="el" href="classsheila_1_1cpp_1_1CppSource.html#ad68add243069f1a6ff042757945e63f7">sheila::cpp::CppSource</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afc0b940ba0f8e1c22affd6e4347735bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppClass.html">CppClass</a>&lt;ClassType::CLASS&gt; &gt; sheila::cpp::CppFile::contained_classes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of class definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6ef7457528fd69a139dad7e02d83d360"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt;<a class="el" href="classsheila_1_1cpp_1_1CppVariable.html">CppVariable</a>&gt; &gt; sheila::cpp::CppFile::contained_declared_variables</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Declarations of variables that are not also definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="abf8b8297ecc155bcd08852238bc832f4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppEnumeration.html">CppEnumeration</a>&gt; sheila::cpp::CppFile::contained_enums</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of enum defintiions. </p>
+
+</div>
+</div>
+<a class="anchor" id="acca5535996b1e13f978d1c42aa33f379"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt;<a class="el" href="structsheila_1_1cpp_1_1CppClass__base.html">CppClass_base</a>&gt; &gt; sheila::cpp::CppFile::contained_forward_declarations</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Forward declarations of classes, unions, and structs. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae5e047eb8e3eb4fc6bdbc8c1b31e85cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppFunction.html">CppFunction</a>&gt; sheila::cpp::CppFile::contained_functions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of function definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4a3765d819d5f2d123d2629a995f9f90"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppNameSpace.html">CppNameSpace</a>&gt; sheila::cpp::CppFile::contained_namespaces</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of namespace definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a70eb5df0dec6bc6f3575de537a1a29c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppDeclaration.html">CppDeclaration</a>&lt;<a class="el" href="classsheila_1_1cpp_1_1CppFunction.html">CppFunction</a>&gt; &gt; sheila::cpp::CppFile::contained_prototypes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Declarations of prototype functions. </p>
+
+</div>
+</div>
+<a class="anchor" id="acddb282abe036a17e06f36bace0d524d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#a5e10fa462ac899457e440656799aff62">CppStruct</a>&gt; sheila::cpp::CppFile::contained_structs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of struct definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a617d4a88f7870f7224533e0798c46f02"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppTypeDefinition.html">CppTypeDefinition</a>&gt; sheila::cpp::CppFile::contained_typedefs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of type definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="abd2581f506621f7d380ee89be0ef8b22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#ac2a9a8452776160ce4d526f9c9d318b8">CppUnion</a>&gt; sheila::cpp::CppFile::contained_unions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of union definitions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a45b37a8bdd2e5cefa91c77caedcaff6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#aedd421f55e18f341861a6f7a5b72ed54">CppDefineDirective</a>&gt; sheila::cpp::CppFile::pp_defines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all define directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2ff0d472b2c310369f2b8a9a3fda1e6d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#aff0f77c48c7ad5d49ce836cb50e0779d">CppElifDirective</a>&gt; sheila::cpp::CppFile::pp_elifs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all elif directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8f0e0f2f6335177ec90dba907e6c4059"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#acada2315477b0f08f562f5df9246b29d">CppElseDirective</a>&gt; sheila::cpp::CppFile::pp_elses</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all else directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="afffecc4b14bc6490f329e14a0e253727"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#af58461ed2dabad1315f5294d044a0d35">CppEndifDirective</a>&gt; sheila::cpp::CppFile::pp_endifs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all endif directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="aacee82f7f991c051ca32c544ea361787"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#a2ebd87fc4e1a20881c00ed05f38b9f42">CppErrorDirective</a>&gt; sheila::cpp::CppFile::pp_errors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all error directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a689c372687e719bf4f0f186f3233d904"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#a5118d46ca6a0b8efa950e0e384bd1b14">CppIfdefDirective</a>&gt; sheila::cpp::CppFile::pp_ifdefines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all ifdef directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6c7dc8bc55179dd50d79d71b7501b831"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#af7f22e5e58e4e5a2fb86e4b26f9a711f">CppIfndefDirective</a>&gt; sheila::cpp::CppFile::pp_ifnotdefines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all ifndef directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac77b7ea783dc1aab3636ee2e6ddb70db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsheila_1_1cpp_1_1CppPPDirective.html">CppPPDirective</a>&lt;<a class="el" href="namespacesheila_1_1cpp.html#aa795acd256a63af56445cc8711128751a04ff6a9583ba9957ebe1128d0f988ad8">CppPPDirectiveType::INCLUDE</a>&gt; &gt; sheila::cpp::CppFile::pp_includes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all include directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="af8ab1d8a81ed790969b34e62bdde199f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#afac20578d601cbfb0c939e1ab8a75978">CppLineDirective</a>&gt; sheila::cpp::CppFile::pp_lines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all line directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad09a9c27c6aa89de6a4b9ccba3944f61"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#a7ed610e2c55b3dc47614fa71038b1387">CppPragmaDirective</a>&gt; sheila::cpp::CppFile::pp_pragmas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all pragma directives in this file. </p>
+
+</div>
+</div>
+<a class="anchor" id="acc4862ac7c46cd18a83710e901970b99"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacesheila_1_1cpp.html#afe0bf9c4a0a19757618e76fa981669d2">CppUndefDirective</a>&gt; sheila::cpp::CppFile::pp_undefines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of all undef directives in this file. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/erin/Documents/SHEILa/SHEILa/src/Cpp/CppFile/<a class="el" href="CppFile_8h_source.html">CppFile.h</a></li>
-<li>/home/erin/Documents/SHEILa/SHEILa/src/Cpp/CppFile/CppFile.cpp</li>
+<li>/home/erin/Documents/SHEILa/SHEILa/src/Cpp/CppFile/<a class="el" href="CppFile_8cpp.html">CppFile.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
