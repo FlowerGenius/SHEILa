@@ -14,8 +14,6 @@
 
 #include "../Server/Server.hpp"
 #include "../Feeling/Feeling.hpp"
-
-class Mood;
 #include "../Mood/Mood.hpp"
 
 

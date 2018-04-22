@@ -14,7 +14,6 @@
 
 #include "../Emotion/Emotion.hpp"
 #include "../Feeling/Feeling.hpp"
-#include "../SHEILaCoreServer/SHEILaCoreServer.hpp"
 
 
 #include <vector>
@@ -29,9 +28,7 @@ namespace sheila {
  */
 class Mood {
 public:
-	Mood();
-	Mood(long double,long double,long double,long double,
-			long double,long double,long double,long double);
+	Mood(std::initializer_list<long double> = {});
 	virtual ~Mood();
 
 	long double getAngerStrength(void);
@@ -61,14 +58,14 @@ public:
 	std::string getFeeling();
 
 private:
-	Emotion anger;
-	Emotion disgust;
-	Emotion sadness;
-	Emotion surprise;
-	Emotion	fear;
-	Emotion trust;
-	Emotion	joy;
-	Emotion	anticipation;
+	Emotion<PlutchikEmotion::ANGER> anger;
+	Emotion<PlutchikEmotion::DISGUST> disgust;
+	Emotion<PlutchikEmotion::SADNESS> sadness;
+	Emotion<PlutchikEmotion::SURPRISE> surprise;
+	Emotion<PlutchikEmotion::FEAR>	fear;
+	Emotion<PlutchikEmotion::TRUST> trust;
+	Emotion<PlutchikEmotion::JOY>	joy;
+	Emotion<PlutchikEmotion::ANTICIPATION>	anticipation;
 };
 
 } /* namespace sheila */

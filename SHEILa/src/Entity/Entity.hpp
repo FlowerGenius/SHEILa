@@ -18,10 +18,22 @@
 #include <ctime>
 
 #include "../symbols.inc"
-#include "../Cpp/language.inc"
 #include "../ProgrammingLanguage/C/language.inc"
+#include "../ProgrammingLanguage/Cpp/language.inc"
 
 namespace sheila {
+
+struct Entity_base {
+
+	Entity_base() {
+
+	}
+
+	virtual ~Entity_base() {
+
+	}
+
+};
 
 /** @brief Template class for an @c Entity in the SHEILa structure model.
  *  @author FlowerGenius
@@ -31,19 +43,25 @@ namespace sheila {
  *  required to build the class of the same name and it's variants.
  */
 template<class _Tp>
-class Entity : private cpp::CppObject<_Tp> {
+class Entity : public cpp::Cpp::Project::Artifact::Object<_Tp> {
 public:
 
 	/** @brief Creates an @c Entity for modifying the class of type @a _Tp.
 	 *  @author FlowerGenius
 	 *
 	 */
-	Entity() { instance_id = 0; }
+	Entity() {
+		instance_id = 0;
+	}
 
 	/** @brief Destroys an @c Entity object.
 	 *  @author FlowerGenius
 	 */
 	virtual ~Entity() {}
+
+	static const std::vector<_Tp>& getConcreteObjects() {
+		return this_object_entities;;
+	}
 
 
 protected:
@@ -97,6 +115,8 @@ protected:
 	 */
 	std::vector<std::string> instance_cv_filters;
 
+private:
+
 	/** @brief  Function returning a C++ string representing this instance.
 	 *  @author FlowerGenius
 	 *  @return A strictly formatted C++ string.
@@ -107,7 +127,7 @@ protected:
 	 */
 	virtual std::string _E_repr() {}
 
-	/** @brief Function that re-creates an instance of @Entity<_Tp> from a
+	/** @brief Function that re-creates an instance of @Entity< _Tp > from a
 	 *  C++ string.
 	 *  @author FlowerGenius
 	 *  @param repr A C++ string that represents an instance of @c Entity<_Tp>
@@ -115,11 +135,52 @@ protected:
 	virtual void _E_eval(std::string repr) {}
 
 #if (BUILD_FOR_SHEILA_DAEMON == 1)
+
+	/** @brief The POSIX time that this object was last accessed */
 	static std::time_t								this_object_accessed;
+
+	/** @brief The emotional baggage that this object carries.
+	 *  @author FlowerGenius
+	 *
+	 *  This field differs from the @a instance_emotion_values in that this
+	 *  represents how SHEILa feels about this class of thing, rather than
+	 *  a thing itself. As an example, this is how she feels about Cars, rather
+	 *  than a specific car she has seen.
+	 */
 	static std::vector<long double>					this_object_emotion_values;
+
+	/** @brief List of paths to all known schemas for identifying entities as
+	 *  being of this ( _Tp ) type.
+	 */
 	static std::vector<std::string>					this_object_cv_filters;
-	static std::vector<cpp::CppClass_advanced> 		this_object_parents;
-	static std::vector<cpp::CppClass_advanced> 		this_object_children;
+
+	/** @brief List of pointers to all of the entities that this entity is
+	 *  derived from.
+	 *  @author FlowerGenius
+	 *
+	 *  As an entity can actually contain more that one class, parent in
+	 *  this context means something different from the default C++ context.
+	 *  A parent of an entity means that the CV schema of the parent must
+	 *  match all of it's children, but the children have more specific
+	 *  CV schema adding specificity on top of the schema of the parent.
+	 *
+	 */
+	static std::vector<cpp::Cpp::ClassType> 		this_object_parents;
+
+	/** @brief List of pointers to all of the entities that are derived from
+	 *  this entity.
+	 *  @author FlowerGenius
+	 *
+	 *  As an entity can actually contain more that one class, child in
+	 *  this context means something different from the default C++ context.
+	 *  A parent of an entity means that the CV schema of the parent must
+	 *  match all of it's children, but the children have more specific
+	 *  CV schema adding specificity on top of the schema of the parent.
+	 *
+	 */
+	static std::vector<cpp::Cpp::ClassType> 		this_object_children;
+
+	/** Actual location in storage for all entities of type _Tp */
 	static std::vector<_Tp > 						this_object_entities;
 #endif
 

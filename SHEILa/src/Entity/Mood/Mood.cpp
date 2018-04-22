@@ -39,32 +39,50 @@ namespace sheila {
 
 	}
 
-	enum {
-			ANGER,
-			DISGUST,
-			SADNESS,
-			SURPRISE,
-			FEAR,
-			TRUST,
-			JOY,
-			ANTICIPATION
-		};
+Mood::Mood(std::initializer_list<long double> allocator) {
 
+	std::initializer_list<long double>::iterator it = allocator.begin();
 
-Mood::Mood() {
-}
+	if (it != allocator.end() && (*it) != this->anger.getStrength()) {
+		this->anger 		= Emotion<PlutchikEmotion::ANGER>(*it);
+		++it;
+	}
 
-Mood::Mood(long double anger, long double disgust, long double sadness,
-		long double surprise, long double fear, long double trust, long double joy,
-		long double anticipation) {
-	this->anger 		= Emotion(anger);
-	this->disgust 		= Emotion(disgust);
-	this->sadness 		= Emotion(sadness);
-	this->surprise 		= Emotion(surprise);
-	this->fear 			= Emotion(fear);
-	this->trust 		= Emotion(trust);
-	this->joy 			= Emotion(joy);
-	this->anticipation 	= Emotion(anticipation);
+	if (it != allocator.end() && (*it) != this->disgust.getStrength()) {
+		this->disgust 		= Emotion<PlutchikEmotion::DISGUST>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->sadness.getStrength()) {
+		this->sadness 		= Emotion<PlutchikEmotion::SADNESS>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->surprise.getStrength()) {
+		this->surprise 		= Emotion<PlutchikEmotion::SURPRISE>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->fear.getStrength()) {
+		this->fear 			= Emotion<PlutchikEmotion::FEAR>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->trust.getStrength()) {
+		this->trust 		= Emotion<PlutchikEmotion::TRUST>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->joy.getStrength()) {
+		this->joy 			= Emotion<PlutchikEmotion::JOY>(*it);
+		++it;
+	}
+
+	if (it != allocator.end() && (*it) != this->anticipation.getStrength()) {
+		this->anticipation 	= Emotion<PlutchikEmotion::ANTICIPATION>(*it);
+		++it;
+	}
+
 }
 
 long double Mood::getAngerStrength(void) {
@@ -149,7 +167,7 @@ std::string Mood::getFeeling() {
 			getAnticipationStrength()
 	};
 
-	std::vector<Feeling> temp_feelings = SHEILaCoreServer::feelings();
+	std::vector<Feeling> temp_feelings = Feeling::getConcreteObjects();
 	std::vector<Feeling> allfeelings;
 
 	for (std::vector<Feeling>::iterator it = temp_feelings.begin(); it != temp_feelings.end(); ++it) {
@@ -158,29 +176,29 @@ std::string Mood::getFeeling() {
 
 		for (char i = 0; i <= 7;i++){
 
-			switch(i){
-			case ANGER:
+			switch(PlutchikEmotion(i)){
+			case PlutchikEmotion::ANGER:
 				inrange = (*it).ang_range.contains(getAngerStrength());
 				break;
-			case DISGUST:
+			case PlutchikEmotion::DISGUST:
 				inrange = (*it).dis_range.contains(getDisgustStrength());
 				break;
-			case SADNESS:
+			case PlutchikEmotion::SADNESS:
 				inrange = (*it).sad_range.contains(getSadnessStrength());
 				break;
-			case SURPRISE:
+			case PlutchikEmotion::SURPRISE:
 				inrange = (*it).sur_range.contains(getSurpriseStrength());
 				break;
-			case FEAR:
+			case PlutchikEmotion::FEAR:
 				inrange = (*it).fea_range.contains(getFearStrength());
 				break;
-			case TRUST:
+			case PlutchikEmotion::TRUST:
 				inrange = (*it).tru_range.contains(getTrustStrength());
 				break;
-			case JOY:
+			case PlutchikEmotion::JOY:
 				inrange = (*it).joy_range.contains(getJoyStrength());
 				break;
-			case ANTICIPATION:
+			case PlutchikEmotion::ANTICIPATION:
 				inrange = (*it).ant_range.contains(getAnticipationStrength());
 				break;
 			}
@@ -188,8 +206,8 @@ std::string Mood::getFeeling() {
 			for (char n = 0; n <= 7;n++){
 				if (i!=n){
 
-					atleast = (temp_emotions[i]  >= temp_emotions[n] + (*it).getDiff(i,n).first);
-					atmost  = (temp_emotions[i]  <= temp_emotions[n] + (*it).getDiff(i,n).second);
+					atleast = (temp_emotions[i]  >= temp_emotions[n] + (*it).getDiff(PlutchikEmotion(i),PlutchikEmotion(n)).first);
+					atmost  = (temp_emotions[i]  <= temp_emotions[n] + (*it).getDiff(PlutchikEmotion(i),PlutchikEmotion(n)).second);
 
 					if ( !atleast || !atmost || !inrange){
 						match = false;

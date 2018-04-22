@@ -30,10 +30,39 @@ std::string ldtos(long double d, int coeff_digits){
 	return ss.str();
 }
 
-std::vector<Feeling> Feeling::feelings;
+Feeling::Feeling(std::initializer_list<std::string> info,
+				 std::initializer_list<long double> bound_allocator,
+				 std::initializer_list<long double> diff_allocator) {
 
-Feeling::Feeling() {
 
+	int i;
+
+	if ( info.size() >= 2 ) {
+		i = 0;
+		for ( auto&& inf : info ) {
+			if (i == 0) {
+				this->name = inf;
+			} else if (i == 1) {
+				this->desc = inf;
+			}
+		}
+	}
+
+	if ( bound_allocator.size() >= 16 ) {
+		i = 0;
+		for ( auto&& val : bound_allocator ) {
+			this->values[i] = val;
+			++i;
+		}
+	}
+
+	if ( diff_allocator.size() >= 56 ) {
+		i = 0;
+		for ( auto&& diff : diff_allocator ) {
+			this->data[i] = diff;
+			++i;
+		}
+	}
 }
 
 Feeling::Feeling(std::string name, std::string desc,
@@ -88,45 +117,45 @@ Feeling::Feeling(std::string name, std::string desc,
 	this->joy_range 	= Range(joy_low, joy_hi);
 	this->ant_range 	= Range(ant_low, ant_hi);
 
-	this->min_diff_ang_dis = min_diff_ang_dis; this->max_diff_ang_dis = max_diff_ang_dis;
-	this->min_diff_ang_sad = min_diff_ang_sad; this->max_diff_ang_sad = max_diff_ang_sad;
-	this->min_diff_ang_sur = min_diff_ang_sur; this->max_diff_ang_sur = max_diff_ang_sur;
-	this->min_diff_ang_fea = min_diff_ang_fea; this->max_diff_ang_fea = max_diff_ang_fea;
-	this->min_diff_ang_tru = min_diff_ang_tru; this->max_diff_ang_tru = max_diff_ang_tru;
-	this->min_diff_ang_joy = min_diff_ang_joy; this->max_diff_ang_joy = max_diff_ang_joy;
-	this->min_diff_ang_ant = min_diff_ang_ant; this->max_diff_ang_ant = max_diff_ang_ant;
+	this->data[0] = min_diff_ang_dis; this->data[1] = max_diff_ang_dis;
+	this->data[2] = min_diff_ang_sad; this->data[3] = max_diff_ang_sad;
+	this->data[4] = min_diff_ang_sur; this->data[5] = max_diff_ang_sur;
+	this->data[6] = min_diff_ang_fea; this->data[7] = max_diff_ang_fea;
+	this->data[8] = min_diff_ang_tru; this->data[9] = max_diff_ang_tru;
+	this->data[10] = min_diff_ang_joy; this->data[11] = max_diff_ang_joy;
+	this->data[12] = min_diff_ang_ant; this->data[13] = max_diff_ang_ant;
 
-	this->min_diff_dis_sad = min_diff_dis_sad; this->max_diff_dis_sad = max_diff_dis_sad;
-	this->min_diff_dis_sur = min_diff_dis_sur; this->max_diff_dis_sur = max_diff_dis_sur;
-	this->min_diff_dis_fea = min_diff_dis_fea; this->max_diff_dis_fea = max_diff_dis_fea;
-	this->min_diff_dis_tru = min_diff_dis_tru; this->max_diff_dis_tru = max_diff_dis_tru;
-	this->min_diff_dis_joy = min_diff_dis_joy; this->max_diff_dis_joy = max_diff_dis_joy;
-	this->min_diff_dis_ant = min_diff_dis_ant; this->max_diff_dis_ant = max_diff_dis_ant;
+	this->data[14] = min_diff_dis_sad; this->data[15] = max_diff_dis_sad;
+	this->data[16] = min_diff_dis_sur; this->data[17] = max_diff_dis_sur;
+	this->data[18] = min_diff_dis_fea; this->data[19] = max_diff_dis_fea;
+	this->data[20] = min_diff_dis_tru; this->data[21] = max_diff_dis_tru;
+	this->data[22] = min_diff_dis_joy; this->data[23] = max_diff_dis_joy;
+	this->data[24] = min_diff_dis_ant; this->data[25] = max_diff_dis_ant;
 
-	this->min_diff_sad_sur = min_diff_sad_sur; this->max_diff_sad_sur = max_diff_sad_sur;
-	this->min_diff_sad_fea = min_diff_sad_fea; this->max_diff_sad_fea = max_diff_sad_fea;
-	this->min_diff_sad_tru = min_diff_sad_tru; this->max_diff_sad_tru = max_diff_sad_tru;
-	this->min_diff_sad_joy = min_diff_sad_joy; this->max_diff_sad_joy = max_diff_sad_joy;
-	this->min_diff_sad_ant = min_diff_sad_ant; this->max_diff_sad_ant = max_diff_sad_ant;
+	this->data[26] = min_diff_sad_sur; this->data[27] = max_diff_sad_sur;
+	this->data[28] = min_diff_sad_fea; this->data[29] = max_diff_sad_fea;
+	this->data[30] = min_diff_sad_tru; this->data[31] = max_diff_sad_tru;
+	this->data[32] = min_diff_sad_joy; this->data[33] = max_diff_sad_joy;
+	this->data[34] = min_diff_sad_ant; this->data[35] = max_diff_sad_ant;
 
-	this->min_diff_sur_fea = min_diff_sur_fea; this->max_diff_sur_fea = max_diff_sur_fea;
-	this->min_diff_sur_tru = min_diff_sur_tru; this->max_diff_sur_tru = max_diff_sur_tru;
-	this->min_diff_sur_joy = min_diff_sur_joy; this->max_diff_sur_joy = max_diff_sur_joy;
-	this->min_diff_sur_ant = min_diff_sur_ant; this->max_diff_sur_ant = max_diff_sur_ant;
+	this->data[36] = min_diff_sur_fea; this->data[37] = max_diff_sur_fea;
+	this->data[38] = min_diff_sur_tru; this->data[39] = max_diff_sur_tru;
+	this->data[40] = min_diff_sur_joy; this->data[41] = max_diff_sur_joy;
+	this->data[42] = min_diff_sur_ant; this->data[43] = max_diff_sur_ant;
 
-	this->min_diff_fea_tru = min_diff_fea_tru; this->max_diff_fea_tru = max_diff_fea_tru;
-	this->min_diff_fea_joy = min_diff_fea_joy; this->max_diff_fea_joy = max_diff_fea_joy;
-	this->min_diff_fea_ant = min_diff_fea_ant; this->max_diff_fea_ant = max_diff_fea_ant;
+	this->data[44] = min_diff_fea_tru; this->data[45] = max_diff_fea_tru;
+	this->data[46] = min_diff_fea_joy; this->data[47] = max_diff_fea_joy;
+	this->data[48] = min_diff_fea_ant; this->data[49] = max_diff_fea_ant;
 
-	this->min_diff_tru_joy = min_diff_tru_joy; this->max_diff_tru_joy = max_diff_tru_joy;
-	this->min_diff_tru_ant = min_diff_tru_ant; this->max_diff_tru_ant = max_diff_tru_ant;
+	this->data[50] = min_diff_tru_joy; this->data[51] = max_diff_tru_joy;
+	this->data[52] = min_diff_tru_ant; this->data[53] = max_diff_tru_ant;
 
-	this->min_diff_joy_ant = min_diff_joy_ant; this->max_diff_joy_ant = max_diff_joy_ant;
+	this->data[54] = min_diff_joy_ant; this->data[55] = max_diff_joy_ant;
 
 }
 
 Feeling::~Feeling() {
-	// TODO Auto-generated destructor stub
+
 }
 
 const std::string& Feeling::getDescription() const {
@@ -154,40 +183,40 @@ std::string Feeling::_E_repr() {
 	ss << joy_range.lo() << ':' << joy_range.hi() << '\t';	// [Joy] lower bound : upper bound
 	ss << ant_range.lo() << ':' << ant_range.hi() << '\t';	// [Anticipation] lower bound : upper bound
 
-	ss << ldtos(min_diff_ang_dis,3) << ':' << ldtos(max_diff_ang_dis,3) << '\t';	// [Anger] Disgust % Diff
-	ss << ldtos(min_diff_ang_sad,3) << ':' << ldtos(max_diff_ang_sad,3) << '\t';	// [Anger] Sadness % Diff
-	ss << ldtos(min_diff_ang_sur,3) << ':' << ldtos(max_diff_ang_sur,3) << '\t';	// [Anger] Surprise % Diff
-	ss << ldtos(min_diff_ang_fea,3) << ':' << ldtos(max_diff_ang_fea,3) << '\t';	// [Anger] Fear % Diff
-	ss << ldtos(min_diff_ang_tru,3) << ':' << ldtos(max_diff_ang_tru,3) << '\t';	// [Anger] Trust % Diff
-	ss << ldtos(min_diff_ang_joy,3) << ':' << ldtos(max_diff_ang_joy,3) << '\t';	// [Anger] Joy % Diff
-	ss << ldtos(min_diff_ang_ant,3) << ':' << ldtos(max_diff_ang_ant,3) << '\t';	// [Anger] Anticipation % Diff
+	ss << ldtos(data[0],3) << ':' << ldtos(data[1],3) << '\t';	// [Anger] Disgust % Diff
+	ss << ldtos(data[2],3) << ':' << ldtos(data[3],3) << '\t';	// [Anger] Sadness % Diff
+	ss << ldtos(data[4],3) << ':' << ldtos(data[5],3) << '\t';	// [Anger] Surprise % Diff
+	ss << ldtos(data[6],3) << ':' << ldtos(data[7],3) << '\t';	// [Anger] Fear % Diff
+	ss << ldtos(data[8],3) << ':' << ldtos(data[9],3) << '\t';	// [Anger] Trust % Diff
+	ss << ldtos(data[10],3) << ':' << ldtos(data[11],3) << '\t';	// [Anger] Joy % Diff
+	ss << ldtos(data[12],3) << ':' << ldtos(data[13],3) << '\t';	// [Anger] Anticipation % Diff
 
-	ss << ldtos(min_diff_dis_sad,3) << ':' << ldtos(max_diff_dis_sad,3) << '\t';	// [Disgust] Sadness % Diff
-	ss << ldtos(min_diff_dis_sur,3) << ':' << ldtos(max_diff_dis_sur,3) << '\t';	// [Disgust] Surprise % Diff
-	ss << ldtos(min_diff_dis_fea,3) << ':' << ldtos(max_diff_dis_fea,3) << '\t';	// [Disgust] Fear % Diff
-	ss << ldtos(min_diff_dis_tru,3) << ':' << ldtos(max_diff_dis_tru,3) << '\t';	// [Disgust] Trust % Diff
-	ss << ldtos(min_diff_dis_joy,3) << ':' << ldtos(max_diff_dis_joy,3) << '\t';	// [Disgust] Joy % Diff
-	ss << ldtos(min_diff_dis_ant,3) << ':' << ldtos(max_diff_dis_ant,3) << '\t';	// [Disgust] Anticipation % Diff
+	ss << ldtos(data[14],3) << ':' << ldtos(data[15],3) << '\t';	// [Disgust] Sadness % Diff
+	ss << ldtos(data[16],3) << ':' << ldtos(data[17],3) << '\t';	// [Disgust] Surprise % Diff
+	ss << ldtos(data[18],3) << ':' << ldtos(data[19],3) << '\t';	// [Disgust] Fear % Diff
+	ss << ldtos(data[20],3) << ':' << ldtos(data[21],3) << '\t';	// [Disgust] Trust % Diff
+	ss << ldtos(data[22],3) << ':' << ldtos(data[23],3) << '\t';	// [Disgust] Joy % Diff
+	ss << ldtos(data[24],3) << ':' << ldtos(data[25],3) << '\t';	// [Disgust] Anticipation % Diff
 
-	ss << ldtos(min_diff_sad_sur,3) << ':' << ldtos(max_diff_sad_sur,3) << '\t';	// [Sadness] Surprise % Diff
-	ss << ldtos(min_diff_sad_fea,3) << ':' << ldtos(max_diff_sad_fea,3) << '\t';	// [Sadness] Fear % Diff
-	ss << ldtos(min_diff_sad_tru,3) << ':' << ldtos(max_diff_sad_tru,3) << '\t';	// [Sadness] Trust % Diff
-	ss << ldtos(min_diff_sad_joy,3) << ':' << ldtos(max_diff_sad_joy,3) << '\t';	// [Sadness] Joy % Diff
-	ss << ldtos(min_diff_sad_ant,3) << ':' << ldtos(max_diff_sad_ant,3) << '\t';	// [Sadness] Anticipation % Diff
+	ss << ldtos(data[26],3) << ':' << ldtos(data[27],3) << '\t';	// [Sadness] Surprise % Diff
+	ss << ldtos(data[28],3) << ':' << ldtos(data[29],3) << '\t';	// [Sadness] Fear % Diff
+	ss << ldtos(data[30],3) << ':' << ldtos(data[31],3) << '\t';	// [Sadness] Trust % Diff
+	ss << ldtos(data[32],3) << ':' << ldtos(data[33],3) << '\t';	// [Sadness] Joy % Diff
+	ss << ldtos(data[34],3) << ':' << ldtos(data[35],3) << '\t';	// [Sadness] Anticipation % Diff
 
-	ss << ldtos(min_diff_sur_fea,3) << ':' << ldtos(max_diff_sur_fea,3) << '\t';	// [Surprise] Fear % Diff
-	ss << ldtos(min_diff_sur_tru,3) << ':' << ldtos(max_diff_sur_tru,3) << '\t';	// [Surprise] Trust % Diff
-	ss << ldtos(min_diff_sur_joy,3) << ':' << ldtos(max_diff_sur_joy,3) << '\t';	// [Surprise] Joy % Diff
-	ss << ldtos(min_diff_sur_ant,3) << ':' << ldtos(max_diff_sur_ant,3) << '\t';	// [Surprise] Anticipation % Diff
+	ss << ldtos(data[36],3) << ':' << ldtos(data[37],3) << '\t';	// [Surprise] Fear % Diff
+	ss << ldtos(data[38],3) << ':' << ldtos(data[39],3) << '\t';	// [Surprise] Trust % Diff
+	ss << ldtos(data[40],3) << ':' << ldtos(data[41],3) << '\t';	// [Surprise] Joy % Diff
+	ss << ldtos(data[42],3) << ':' << ldtos(data[43],3) << '\t';	// [Surprise] Anticipation % Diff
 
-	ss << ldtos(min_diff_fea_tru,3) << ':' << ldtos(max_diff_fea_tru,3) << '\t';	// [Fear] Trust % Diff
-	ss << ldtos(min_diff_fea_joy,3) << ':' << ldtos(max_diff_fea_joy,3) << '\t';	// [Fear] Joy % Diff
-	ss << ldtos(min_diff_fea_ant,3) << ':' << ldtos(max_diff_fea_ant,3) << '\t';	// [Fear] Anticipation % Diff
+	ss << ldtos(data[44],3) << ':' << ldtos(data[45],3) << '\t';	// [Fear] Trust % Diff
+	ss << ldtos(data[46],3) << ':' << ldtos(data[47],3) << '\t';	// [Fear] Joy % Diff
+	ss << ldtos(data[48],3) << ':' << ldtos(data[49],3) << '\t';	// [Fear] Anticipation % Diff
 
-	ss << ldtos(min_diff_tru_joy,3) << ':' << ldtos(max_diff_tru_joy,3) << '\t';	// [Trust] Joy % Diff
-	ss << ldtos(min_diff_tru_ant,3) << ':' << ldtos(max_diff_tru_ant,3) << '\t';	// [Trust] Anticipation % Diff
+	ss << ldtos(data[50],3) << ':' << ldtos(data[51],3) << '\t';	// [Trust] Joy % Diff
+	ss << ldtos(data[52],3) << ':' << ldtos(data[53],3) << '\t';	// [Trust] Anticipation % Diff
 
-	ss << ldtos(min_diff_joy_ant,3) << ':' << ldtos(max_diff_joy_ant,3) << '\t';	// [Joy] Anticipation % Diff
+	ss << ldtos(data[54],3) << ':' << ldtos(data[55],3) << '\t';	// [Joy] Anticipation % Diff
 
 	ss << '\n';
 
@@ -259,40 +288,46 @@ void Feeling::_E_eval(std::string data) {
 		n++;
 	}
 
-	this->min_diff_ang_dis = diffs[0]; this->max_diff_ang_dis = diffs[1];
-	this->min_diff_ang_sad = diffs[2]; this->max_diff_ang_sad = diffs[3];
-	this->min_diff_ang_sur = diffs[4]; this->max_diff_ang_sur = diffs[5];
-	this->min_diff_ang_fea = diffs[6]; this->max_diff_ang_fea = diffs[7];
-	this->min_diff_ang_tru = diffs[8]; this->max_diff_ang_tru = diffs[9];
-	this->min_diff_ang_joy = diffs[10]; this->max_diff_ang_joy = diffs[11];
-	this->min_diff_ang_ant = diffs[12]; this->max_diff_ang_ant = diffs[13];
+//	this->data[0] = diffs[0]; this->data[1] = diffs[1];
+//	this->data[2] = diffs[2]; this->data[3] = diffs[3];
+//	this->data[4] = diffs[4]; this->data[5] = diffs[5];
+//	this->data[6] = diffs[6]; this->data[7] = diffs[7];
+//	this->data[8] = diffs[8]; this->data[9] = diffs[9];
+//	this->data[10] = diffs[10]; this->data[11] = diffs[11];
+//	this->data[12] = diffs[12]; this->data[13] = diffs[13];
+//
+//	this->data[14] = diffs[14]; this->data[15] = diffs[15];
+//	this->data[16] = diffs[16]; this->data[17] = diffs[17];
+//	this->data[18] = diffs[18]; this->data[19] = diffs[19];
+//	this->data[20] = diffs[20]; this->data[21] = diffs[21];
+//	this->data[22] = diffs[22]; this->data[23] = diffs[23];
+//	this->data[24] = diffs[24]; this->data[25] = diffs[25];
+//
+//	this->data[26] = diffs[26]; this->data[27] = diffs[27];
+//	this->data[28] = diffs[28]; this->data[29] = diffs[29];
+//	this->data[30] = diffs[30]; this->data[31] = diffs[31];
+//	this->data[32] = diffs[32]; this->data[33] = diffs[33];
+//	this->data[34] = diffs[34]; this->data[35] = diffs[35];
+//
+//	this->data[36] = diffs[36]; this->data[37] = diffs[37];
+//	this->data[38] = diffs[38]; this->data[39] = diffs[39];
+//	this->data[40] = diffs[40]; this->data[41] = diffs[41];
+//	this->data[42] = diffs[42]; this->data[43] = diffs[43];
+//
+//	this->data[44] = diffs[44]; this->data[45] = diffs[45];
+//	this->data[46] = diffs[46]; this->data[47] = diffs[47];
+//	this->data[48] = diffs[48]; this->data[49] = diffs[49];
+//
+//	this->data[50] = diffs[50]; this->data[51] = diffs[51];
+//	this->data[52] = diffs[52]; this->data[53] = diffs[53];
+//
+//	this->data[54] = diffs[54]; this->data[55] = diffs[55];
 
-	this->min_diff_dis_sad = diffs[14]; this->max_diff_dis_sad = diffs[15];
-	this->min_diff_dis_sur = diffs[16]; this->max_diff_dis_sur = diffs[17];
-	this->min_diff_dis_fea = diffs[18]; this->max_diff_dis_fea = diffs[19];
-	this->min_diff_dis_tru = diffs[20]; this->max_diff_dis_tru = diffs[21];
-	this->min_diff_dis_joy = diffs[22]; this->max_diff_dis_joy = diffs[23];
-	this->min_diff_dis_ant = diffs[24]; this->max_diff_dis_ant = diffs[25];
-
-	this->min_diff_sad_sur = diffs[26]; this->max_diff_sad_sur = diffs[27];
-	this->min_diff_sad_fea = diffs[28]; this->max_diff_sad_fea = diffs[29];
-	this->min_diff_sad_tru = diffs[30]; this->max_diff_sad_tru = diffs[31];
-	this->min_diff_sad_joy = diffs[32]; this->max_diff_sad_joy = diffs[33];
-	this->min_diff_sad_ant = diffs[34]; this->max_diff_sad_ant = diffs[35];
-
-	this->min_diff_sur_fea = diffs[36]; this->max_diff_sur_fea = diffs[37];
-	this->min_diff_sur_tru = diffs[38]; this->max_diff_sur_tru = diffs[39];
-	this->min_diff_sur_joy = diffs[40]; this->max_diff_sur_joy = diffs[41];
-	this->min_diff_sur_ant = diffs[42]; this->max_diff_sur_ant = diffs[43];
-
-	this->min_diff_fea_tru = diffs[44]; this->max_diff_fea_tru = diffs[45];
-	this->min_diff_fea_joy = diffs[46]; this->max_diff_fea_joy = diffs[47];
-	this->min_diff_fea_ant = diffs[48]; this->max_diff_fea_ant = diffs[49];
-
-	this->min_diff_tru_joy = diffs[50]; this->max_diff_tru_joy = diffs[51];
-	this->min_diff_tru_ant = diffs[52]; this->max_diff_tru_ant = diffs[53];
-
-	this->min_diff_joy_ant = diffs[54]; this->max_diff_joy_ant = diffs[55];
+	int i = 0;
+	for ( auto&& var : diffs) {
+		data[i] = var;
+		++i;
+	}
 
 }
 
@@ -302,155 +337,174 @@ void Feeling::_E_eval(std::string data) {
  * A positive difference means that a > b
  * Negative difference means that b > a
  */
-std::pair<long double,long double> Feeling::getDiff(char a, char b)
+std::pair<long double,long double> Feeling::getDiff(PlutchikEmotion a, PlutchikEmotion b)
 {
-	switch(a){
-	case ANGER:
-		switch(b){
-		case DISGUST:
-			return std::pair<long double,long double>(min_diff_ang_dis, max_diff_ang_dis);
-		case SADNESS:
-			return std::pair<long double,long double>(min_diff_ang_sad, max_diff_ang_sad);
-		case SURPRISE:
-			return std::pair<long double,long double>(min_diff_ang_sur, max_diff_ang_sur);
-		case FEAR:
-			return std::pair<long double,long double>(min_diff_ang_fea, max_diff_ang_fea);
-		case TRUST:
-			return std::pair<long double,long double>(min_diff_ang_tru, max_diff_ang_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_ang_joy, max_diff_ang_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_ang_ant, max_diff_ang_ant);
+	try {
+		switch(a){
+		case PlutchikEmotion::ANGER:
+			switch(b){
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(data[0], data[1]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(data[2], data[3]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(data[4], data[5]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(data[6], data[7]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(data[8], data[9]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[10], data[11]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[12], data[13]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::DISGUST:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[1], -data[0]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(data[14], data[15]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(data[16], data[17]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(data[18], data[19]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(data[20], data[21]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[22], data[23]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[24], data[25]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::SADNESS:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[3], -data[2]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[15], -data[14]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(data[26], data[27]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(data[28], data[29]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(data[30], data[31]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[32], data[33]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[34], data[35]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::SURPRISE:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[5], -data[4]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[17], -data[16]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(-data[27], -data[26]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(data[36], data[37]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(data[38], data[39]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[40], data[41]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[42], data[43]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::FEAR:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[7], -data[6]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[19], -data[18]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(-data[29], -data[28]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(-data[37], -data[36]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(data[44], data[45]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[46], data[47]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[48], data[49]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::TRUST:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[9], -data[8]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[21], -data[20]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(-data[31], -data[30]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(-data[39], -data[38]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(-data[45], -data[44]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(data[50], data[51]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[52], data[53]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::JOY:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[11], -data[10]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[23], -data[22]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(-data[33], -data[32]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(-data[41], -data[40]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(-data[47], -data[46]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(-data[51], -data[50]);
+			case PlutchikEmotion::ANTICIPATION:
+				return std::pair<long double,long double>(data[54], data[55]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
+		case PlutchikEmotion::ANTICIPATION:
+			switch(b){
+			case PlutchikEmotion::ANGER:
+				return std::pair<long double,long double>(-data[13], -data[12]);
+			case PlutchikEmotion::DISGUST:
+				return std::pair<long double,long double>(-data[25], -data[24]);
+			case PlutchikEmotion::SADNESS:
+				return std::pair<long double,long double>(-data[35], -data[34]);
+			case PlutchikEmotion::SURPRISE:
+				return std::pair<long double,long double>(-data[43], -data[42]);
+			case PlutchikEmotion::FEAR:
+				return std::pair<long double,long double>(-data[49], -data[48]);
+			case PlutchikEmotion::TRUST:
+				return std::pair<long double,long double>(-data[53], -data[52]);
+			case PlutchikEmotion::JOY:
+				return std::pair<long double,long double>(-data[55], -data[54]);
+			default:
+				throw exception::EmotionSelfDiffException(b);
+			}
+			break;
 		}
-		break;
-	case DISGUST:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_dis, -min_diff_ang_dis);
-		case SADNESS:
-			return std::pair<long double,long double>(min_diff_dis_sad, max_diff_dis_sad);
-		case SURPRISE:
-			return std::pair<long double,long double>(min_diff_dis_sur, max_diff_dis_sur);
-		case FEAR:
-			return std::pair<long double,long double>(min_diff_dis_fea, max_diff_dis_fea);
-		case TRUST:
-			return std::pair<long double,long double>(min_diff_dis_tru, max_diff_dis_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_dis_joy, max_diff_dis_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_dis_ant, max_diff_dis_ant);
-		}
-		break;
-	case SADNESS:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_sad, -min_diff_ang_sad);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_sad, -min_diff_dis_sad);
-		case SURPRISE:
-			return std::pair<long double,long double>(min_diff_sad_sur, max_diff_sad_sur);
-		case FEAR:
-			return std::pair<long double,long double>(min_diff_sad_fea, max_diff_sad_fea);
-		case TRUST:
-			return std::pair<long double,long double>(min_diff_sad_tru, max_diff_sad_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_sad_joy, max_diff_sad_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_sad_ant, max_diff_sad_ant);
-		}
-		break;
-	case SURPRISE:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_sur, -min_diff_ang_sur);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_sur, -min_diff_dis_sur);
-		case SADNESS:
-			return std::pair<long double,long double>(-max_diff_sad_sur, -min_diff_sad_sur);
-		case FEAR:
-			return std::pair<long double,long double>(min_diff_sur_fea, max_diff_sur_fea);
-		case TRUST:
-			return std::pair<long double,long double>(min_diff_sur_tru, max_diff_sur_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_sur_joy, max_diff_sur_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_sur_ant, max_diff_sur_ant);
-		}
-		break;
-	case FEAR:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_fea, -min_diff_ang_fea);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_fea, -min_diff_dis_fea);
-		case SADNESS:
-			return std::pair<long double,long double>(-max_diff_sad_fea, -min_diff_sad_fea);
-		case SURPRISE:
-			return std::pair<long double,long double>(-max_diff_sur_fea, -min_diff_sur_fea);
-		case TRUST:
-			return std::pair<long double,long double>(min_diff_fea_tru, max_diff_fea_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_fea_joy, max_diff_fea_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_fea_ant, max_diff_fea_ant);
-		}
-		break;
-	case TRUST:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_tru, -min_diff_ang_tru);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_tru, -min_diff_dis_tru);
-		case SADNESS:
-			return std::pair<long double,long double>(-max_diff_sad_tru, -min_diff_sad_tru);
-		case SURPRISE:
-			return std::pair<long double,long double>(-max_diff_sur_tru, -min_diff_sur_tru);
-		case FEAR:
-			return std::pair<long double,long double>(-max_diff_fea_tru, -min_diff_fea_tru);
-		case JOY:
-			return std::pair<long double,long double>(min_diff_tru_joy, max_diff_tru_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_tru_ant, max_diff_tru_ant);
-		}
-		break;
-	case JOY:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_joy, -min_diff_ang_joy);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_joy, -min_diff_dis_joy);
-		case SADNESS:
-			return std::pair<long double,long double>(-max_diff_sad_joy, -min_diff_sad_joy);
-		case SURPRISE:
-			return std::pair<long double,long double>(-max_diff_sur_joy, -min_diff_sur_joy);
-		case FEAR:
-			return std::pair<long double,long double>(-max_diff_fea_joy, -min_diff_fea_joy);
-		case TRUST:
-			return std::pair<long double,long double>(-max_diff_tru_joy, -min_diff_tru_joy);
-		case ANTICIPATION:
-			return std::pair<long double,long double>(min_diff_joy_ant, max_diff_joy_ant);
-		}
-		break;
-	case ANTICIPATION:
-		switch(b){
-		case ANGER:
-			return std::pair<long double,long double>(-max_diff_ang_ant, -min_diff_ang_ant);
-		case DISGUST:
-			return std::pair<long double,long double>(-max_diff_dis_ant, -min_diff_dis_ant);
-		case SADNESS:
-			return std::pair<long double,long double>(-max_diff_sad_ant, -min_diff_sad_ant);
-		case SURPRISE:
-			return std::pair<long double,long double>(-max_diff_sur_ant, -min_diff_sur_ant);
-		case FEAR:
-			return std::pair<long double,long double>(-max_diff_fea_ant, -min_diff_fea_ant);
-		case TRUST:
-			return std::pair<long double,long double>(-max_diff_tru_ant, -min_diff_tru_ant);
-		case JOY:
-			return std::pair<long double,long double>(-max_diff_joy_ant, -min_diff_joy_ant);
-		}
-		break;
-	default:
-		break;
+	}
+	catch( const exception::EmotionSelfDiffException &e ) {
+		return std::pair<long double,long double>(0.0,0.0);
 	}
 	return std::pair<long double,long double>(0.0,0.0);
 }

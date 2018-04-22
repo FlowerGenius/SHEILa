@@ -13,34 +13,17 @@
 
 namespace sheila {
 
-Emotion::Emotion() {
+template<PlutchikEmotion _Te>
+Emotion<_Te> Emotion<_Te>::global_value;
 
-
-	strength = 0;
-}
-
-Emotion::Emotion(long double strength) {
-
+void Emotion_base::setStrength(long double strength) {
 	this->strength = strength;
 }
 
-void Emotion::setStrength(long double strength) {
-
-	if(strength >= double(-100.0L) && strength <= double(100.0L)){
-
-	}
-	this->strength = strength;
-
-
+long double Emotion_base::getStrength(void) {
+	return this->strength;
 }
 
-long double Emotion::getStrength(void) {
-	return strength;
-}
-
-
-Emotion::~Emotion() {
-	// TODO Auto-generated destructor stub
-}
 
 } /* namespace sheila */
+

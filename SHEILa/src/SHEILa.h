@@ -57,6 +57,13 @@
  * 3.	The relationship from a parent class to a child class represents
  * 		a ('can be a') dynamic, as in $PARENT can be a $CHILD.
  *
+ *
+ * 	Entity: IP Address
+ * 	Variants: v4,v6
+ *
+ * 	if variants > 0 then Entity<IPAddress_base>
+ * 	else Entity<IPAddress>
+ *
  */
 
 

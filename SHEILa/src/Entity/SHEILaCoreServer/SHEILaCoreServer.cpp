@@ -201,7 +201,7 @@ Mood SHEILaCoreServer::mood(){
 	}
 	temp_anticipation = stold(testresponse);
 
-	return Mood(temp_anger,temp_disgust,temp_sadness,temp_surprise,temp_fear,temp_trust,temp_joy,temp_anticipation);
+	return Mood({temp_anger,temp_disgust,temp_sadness,temp_surprise,temp_fear,temp_trust,temp_joy,temp_anticipation});
 }
 
 SHEILaCoreServer::~SHEILaCoreServer() {
