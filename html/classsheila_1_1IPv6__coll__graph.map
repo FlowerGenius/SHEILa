@@ -1,10 +1,9 @@
 <map id="sheila::IPv6" name="sheila::IPv6">
-<area shape="rect" id="node2" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress" alt="" coords="1125,35,1251,61"/>
-<area shape="rect" id="node3" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPAddress \&gt;" alt="" coords="745,33,928,60"/>
-<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPAddress \&gt;" alt="" coords="541,19,696,61"/>
-<area shape="rect" id="node5" href="$structsheila_1_1cpp_1_1CppObject__base.html" title="The base for all of the specializations of CppClass. " alt="" coords="193,5,384,32"/>
-<area shape="rect" id="node9" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPv6 \&gt;" alt="" coords="541,85,696,126"/>
-<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1CppSource.html" title="An abstract model of a source file in C++. " alt="" coords="209,101,368,128"/>
-<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1CppFile.html" title="An abstract model of a C++ File (ie. [source|header]) " alt="" coords="5,101,144,128"/>
-<area shape="rect" id="node8" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPv6 \&gt;" alt="" coords="952,85,1101,112"/>
+<area shape="rect" id="node2" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress\&lt;\l IPv6 \&gt;" alt="" coords="94,443,227,484"/>
+<area shape="rect" id="node3" href="$structsheila_1_1IPAddress__base.html" title="sheila::IPAddress_base" alt="" coords="81,367,241,393"/>
+<area shape="rect" id="node4" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPAddress\l_base \&gt;" alt="" coords="75,276,246,317"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPAddress_base \&gt;" alt="" coords="83,185,238,227"/>
+<area shape="rect" id="node6" href="$structsheila_1_1cpp_1_1CppObject__base.html" title="The base for all of the specializations of CppClass. " alt="" coords="5,81,196,108"/>
+<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1CppSource.html" title="An abstract model of a source file in C++. " alt="" coords="220,81,379,108"/>
+<area shape="rect" id="node8" href="$classsheila_1_1cpp_1_1CppFile.html" title="An abstract model of a C++ File (ie. [source|header]) " alt="" coords="230,5,369,32"/>
 </map>

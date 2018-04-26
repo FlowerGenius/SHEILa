@@ -1,17 +1,11 @@
 <map id="/home/erin/Documents/SHEILa/SHEILa/src/Entity/Server/Server.hpp" name="/home/erin/Documents/SHEILa/SHEILa/src/Entity/Server/Server.hpp">
-<area shape="rect" id="node2" href="$SHEILaCoreServer_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/SHEILaCoreServer/SHEILaCoreServer.hpp" alt="" coords="396,109,675,165"/>
-<area shape="rect" id="node7" href="$includes_8inc.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/includes.inc" alt="" coords="376,533,593,574"/>
-<area shape="rect" id="node16" href="$Server_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Server/Server.cpp" alt="" coords="928,109,1111,165"/>
-<area shape="rect" id="node3" href="$Mood_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Mood/Mood.hpp" alt="" coords="289,213,472,269"/>
-<area shape="rect" id="node15" href="$SHEILaCoreServer_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/SHEILaCoreServer/SHEILaCoreServer.cpp" alt="" coords="573,213,852,269"/>
-<area shape="rect" id="node4" href="$Mood_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Mood/Mood.cpp" alt="" coords="57,317,240,373"/>
-<area shape="rect" id="node5" href="$Network_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Network/Network.hpp" alt="" coords="5,421,188,477"/>
-<area shape="rect" id="node13" href="$Platform_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Platform/Platform.hpp" alt="" coords="264,317,447,373"/>
-<area shape="rect" id="node6" href="$Network_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Network/Network.cpp" alt="" coords="5,525,188,581"/>
-<area shape="rect" id="node8" href="$SHEILa_8h.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/SHEILa.h" alt="" coords="382,629,587,671"/>
-<area shape="rect" id="node9" href="$main_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/main.cpp" alt="" coords="172,726,373,767"/>
-<area shape="rect" id="node10" href="$SHEILa__daemon_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_daemon\l/src/SHEILa_daemon.hpp" alt="" coords="397,719,572,775"/>
-<area shape="rect" id="node12" href="$SHEILa__runtime_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_runtime\l/src/SHEILa_runtime.cpp" alt="" coords="596,719,768,775"/>
-<area shape="rect" id="node11" href="$SHEILa__daemon_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_daemon\l/src/SHEILa_daemon.cpp" alt="" coords="397,823,572,879"/>
-<area shape="rect" id="node14" href="$Platform_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Platform/Platform.cpp" alt="" coords="264,421,447,477"/>
+<area shape="rect" id="node2" href="$Server_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/Server/Server.cpp" alt="" coords="5,109,188,165"/>
+<area shape="rect" id="node3" href="$SHEILaCoreServer_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/SHEILaCoreServer/SHEILaCoreServer.hpp" alt="" coords="212,109,491,165"/>
+<area shape="rect" id="node5" href="$includes_8inc.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/includes.inc" alt="" coords="420,221,637,262"/>
+<area shape="rect" id="node4" href="$SHEILaCoreServer_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/Entity\l/SHEILaCoreServer/SHEILaCoreServer.cpp" alt="" coords="117,213,396,269"/>
+<area shape="rect" id="node6" href="$SHEILa_8h.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/SHEILa.h" alt="" coords="426,317,631,359"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa/src/main.cpp" alt="" coords="216,414,417,455"/>
+<area shape="rect" id="node8" href="$SHEILa__daemon_8hpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_daemon\l/src/SHEILa_daemon.hpp" alt="" coords="441,407,616,463"/>
+<area shape="rect" id="node10" href="$SHEILa__runtime_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_runtime\l/src/SHEILa_runtime.cpp" alt="" coords="640,407,812,463"/>
+<area shape="rect" id="node9" href="$SHEILa__daemon_8cpp.html" title="/home/erin/Documents\l/SHEILa/SHEILa_daemon\l/src/SHEILa_daemon.cpp" alt="" coords="441,511,616,567"/>
 </map>

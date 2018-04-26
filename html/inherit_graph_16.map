@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1CppEnumeration.html" title="sheila::cpp::CppEnumeration" alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node1" href="$structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1Files_1_1OutFiles_1_1Object__base.html" title="The base for all of the specializations of CppClass. " alt="" coords="5,5,201,47"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Structure_1_1Files_1_1OutFiles_1_1Object.html" title="An abstract model of a compilation object in C++. " alt="" coords="249,5,452,47"/>
 </map>

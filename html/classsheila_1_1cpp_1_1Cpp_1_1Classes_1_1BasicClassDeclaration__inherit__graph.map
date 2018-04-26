@@ -1,0 +1,8 @@
+<map id="sheila::cpp::Cpp::Classes::BasicClassDeclaration" name="sheila::cpp::Cpp::Classes::BasicClassDeclaration">
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClassDeclaration.html" title="a generic class forward declaration " alt="" coords="463,37,638,79"/>
+<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1ScopedEnumerationDeclaration.html" title="sheila::cpp::Cpp::Classes\l::ScopedEnumerationDeclaration" alt="" coords="444,103,657,144"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Feature.html" title="An abstract model of a feature of the C++ programming language. " alt="" coords="5,78,175,105"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1ClassDeclaration.html" title="A forward declaration of a Class. " alt="" coords="705,5,879,47"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1UnionDeclaration.html" title="A forward declaration of a Union. " alt="" coords="705,71,879,112"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1StructDeclaration.html" title="A forward declaration of a Struct. " alt="" coords="927,5,1100,47"/>
+</map>

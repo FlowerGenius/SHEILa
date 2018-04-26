@@ -1,23 +1,6 @@
 var searchData=
 [
   ['cppcompoundtypetype',['CppCompoundTypeType',['../namespacesheila_1_1cpp.html#aa1d40787fa09af3d9274bef31357e28b',1,'sheila::cpp']]],
-  ['cppdefinedirective',['CppDefineDirective',['../namespacesheila_1_1cpp.html#aedd421f55e18f341861a6f7a5b72ed54',1,'sheila::cpp']]],
-  ['cppelifdirective',['CppElifDirective',['../namespacesheila_1_1cpp.html#aff0f77c48c7ad5d49ce836cb50e0779d',1,'sheila::cpp']]],
-  ['cppelsedirective',['CppElseDirective',['../namespacesheila_1_1cpp.html#acada2315477b0f08f562f5df9246b29d',1,'sheila::cpp']]],
-  ['cppendifdirective',['CppEndifDirective',['../namespacesheila_1_1cpp.html#af58461ed2dabad1315f5294d044a0d35',1,'sheila::cpp']]],
-  ['cpperrordirective',['CppErrorDirective',['../namespacesheila_1_1cpp.html#a2ebd87fc4e1a20881c00ed05f38b9f42',1,'sheila::cpp']]],
-  ['cppexecutable',['CppExecutable',['../namespacesheila_1_1cpp.html#aae8209a8fb050c68db2b8d87d960f783',1,'sheila::cpp']]],
-  ['cppifdefdirective',['CppIfdefDirective',['../namespacesheila_1_1cpp.html#a5118d46ca6a0b8efa950e0e384bd1b14',1,'sheila::cpp']]],
-  ['cppifdirective',['CppIfDirective',['../namespacesheila_1_1cpp.html#a2d364979c50c823b4e26842b9677231b',1,'sheila::cpp']]],
-  ['cppifndefdirective',['CppIfndefDirective',['../namespacesheila_1_1cpp.html#af7f22e5e58e4e5a2fb86e4b26f9a711f',1,'sheila::cpp']]],
-  ['cppincludedirective',['CppIncludeDirective',['../namespacesheila_1_1cpp.html#a7ad2a4c834ea3bc37ce073d6e94bd58c',1,'sheila::cpp']]],
-  ['cpplinedirective',['CppLineDirective',['../namespacesheila_1_1cpp.html#afac20578d601cbfb0c939e1ab8a75978',1,'sheila::cpp']]],
-  ['cpppragmadirective',['CppPragmaDirective',['../namespacesheila_1_1cpp.html#a7ed610e2c55b3dc47614fa71038b1387',1,'sheila::cpp']]],
-  ['cppsharedlib',['CppSharedLib',['../namespacesheila_1_1cpp.html#a37be759c12c3e7576f41fa13411088dc',1,'sheila::cpp']]],
   ['cppstandardheaderfile',['CppStandardHeaderFile',['../namespacesheila_1_1cpp.html#a47fb149039590fa0ff638f7961516cc7',1,'sheila::cpp']]],
-  ['cppstaticlib',['CppStaticLib',['../namespacesheila_1_1cpp.html#a400dfd87dd4dd8f98e575d64fbfa2c3d',1,'sheila::cpp']]],
-  ['cppstruct',['CppStruct',['../namespacesheila_1_1cpp.html#a5e10fa462ac899457e440656799aff62',1,'sheila::cpp']]],
-  ['cppundefdirective',['CppUndefDirective',['../namespacesheila_1_1cpp.html#afe0bf9c4a0a19757618e76fa981669d2',1,'sheila::cpp']]],
-  ['cppunion',['CppUnion',['../namespacesheila_1_1cpp.html#ac2a9a8452776160ce4d526f9c9d318b8',1,'sheila::cpp']]],
   ['cstandardheaderfile',['CStandardHeaderFile',['../namespacesheila_1_1c.html#ae050cdba372b64b59c190177138f19f9',1,'sheila::c']]]
 ];

@@ -1,0 +1,7 @@
+<map id="sheila::cpp::Cpp::Project::SharedLibrary" name="sheila::cpp::Cpp::Project::SharedLibrary">
+<area shape="rect" id="node2" href="$structsheila_1_1cpp_1_1Cpp_1_1Project_1_1Artifact.html" title="Abstract model of a C++ compilation artifact. " alt="" coords="127,200,293,241"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1OutFile.html" title="A C++ Output file. " alt="" coords="5,96,172,137"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1BasicFile.html" title="A basic file on the filesystem. " alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Namespace.html" title="C++ namespace. " alt="" coords="197,103,391,130"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Feature.html" title="An abstract model of a feature of the C++ programming language. " alt="" coords="209,13,379,39"/>
+</map>

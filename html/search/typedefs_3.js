@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['shutdowncondition',['ShutdownCondition',['../SHEILa__daemon_8cpp.html#aaebf4ec826e7ae8af83a07f286b53154',1,'SHEILa_daemon.cpp']]],
-  ['storageclass',['StorageClass',['../namespacesheila_1_1cpp.html#a9b32c8346eab0910d0070c568b0fa253',1,'sheila::cpp']]]
+  ['elifdirective',['ElifDirective',['../structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Directives.html#a7e8c2e5e6ea279dcae84851479659d31',1,'sheila::cpp::Cpp::Structure::PreProcessor::Directives']]],
+  ['elsedirective',['ElseDirective',['../structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Directives.html#abeee84ac6e4418f05a2e411a25a501ed',1,'sheila::cpp::Cpp::Structure::PreProcessor::Directives']]],
+  ['endifdirective',['EndifDirective',['../structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Directives.html#a4696e6dfa6291c090b0f489091161a42',1,'sheila::cpp::Cpp::Structure::PreProcessor::Directives']]],
+  ['errordirective',['ErrorDirective',['../structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Directives.html#a0bc42de721fe77f5dc2755d4bc1544fc',1,'sheila::cpp::Cpp::Structure::PreProcessor::Directives']]]
 ];

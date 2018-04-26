@@ -1,0 +1,12 @@
+<map id="sheila::Mood::getFeeling" name="sheila::Mood::getFeeling">
+<area shape="rect" id="node2" href="$classsheila_1_1Mood.html#ab374085ea9b1d4d62f64e3461b4a0058" title="sheila::Mood::getAngerStrength" alt="" coords="217,5,423,32"/>
+<area shape="rect" id="node4" href="$classsheila_1_1Mood.html#a1858db87db12585ebfa5ccbdc87b78da" title="sheila::Mood::getDisgust\lStrength" alt="" coords="237,57,403,98"/>
+<area shape="rect" id="node5" href="$classsheila_1_1Mood.html#a54f4d3264e462d6a7dc96a1aa538a300" title="sheila::Mood::getSadness\lStrength" alt="" coords="233,122,407,163"/>
+<area shape="rect" id="node6" href="$classsheila_1_1Mood.html#ab18d2a2307d5e4fd4154d2f6c231fd16" title="sheila::Mood::getSurprise\lStrength" alt="" coords="235,187,405,229"/>
+<area shape="rect" id="node7" href="$classsheila_1_1Mood.html#ac66dec57930daf58ceeccb583c09a238" title="sheila::Mood::getFearStrength" alt="" coords="221,253,419,280"/>
+<area shape="rect" id="node8" href="$classsheila_1_1Mood.html#ab873360e036c61b7f18f7ff2cd94403c" title="sheila::Mood::getTrustStrength" alt="" coords="219,304,421,331"/>
+<area shape="rect" id="node9" href="$classsheila_1_1Mood.html#a422151cbb480c351213c3e8a7cd1b7d3" title="sheila::Mood::getJoyStrength" alt="" coords="224,355,416,381"/>
+<area shape="rect" id="node10" href="$classsheila_1_1Mood.html#a520eb03d77f99d4d502eb8928c40ff59" title="sheila::Mood::getAnticipation\lStrength" alt="" coords="225,406,415,447"/>
+<area shape="rect" id="node11" href="$classsheila_1_1Entity.html#aa3e38c8b9a03845e6353331caba246c5" title="sheila::Entity\&lt; Feeling\l \&gt;::getConcreteObjects" alt="" coords="241,471,399,513"/>
+<area shape="rect" id="node3" href="$structsheila_1_1Emotion__base.html#a731b4d6053208f371ab00dc913850976" title="Get the strength of this instance (as a percentage) " alt="" coords="471,217,617,258"/>
+</map>

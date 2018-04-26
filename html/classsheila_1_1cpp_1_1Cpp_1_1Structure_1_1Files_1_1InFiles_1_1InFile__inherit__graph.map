@@ -1,0 +1,5 @@
+<map id="sheila::cpp::Cpp::Structure::Files::InFiles::InFile" name="sheila::cpp::Cpp::Structure::Files::InFiles::InFile">
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Structure_1_1Files_1_1InFiles_1_1Header.html" title="An abstract model of a header file in C++. " alt="" coords="459,5,637,47"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Structure_1_1Files_1_1InFiles_1_1Source.html" title="An abstract model of a source file in C++. " alt="" coords="459,71,637,112"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Structure_1_1Files_1_1File.html" title="A basic file on the filesystem. " alt="" coords="5,39,184,80"/>
+</map>

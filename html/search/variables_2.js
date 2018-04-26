@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['b',['b',['../classsheila_1_1IPv4.html#a0f599d9c8db2b52ef9e35d0fa0bd4c98',1,'sheila::IPv4']]],
-  ['backward',['backward',['../CMakeCache_8txt.html#a4e00b9c657cdeb7b14ea0c43097dcecc',1,'CMakeCache.txt']]],
-  ['bank',['bank',['../information_8txt.html#a3b2964f5b47abca71b3badec26fa49c1',1,'information.txt']]],
-  ['before',['before',['../structsheila_1_1cpp_1_1CppPPDirective__base.html#adb048076bb0c997f5a612dc8a686f7c4',1,'sheila::cpp::CppPPDirective_base']]],
-  ['byte_5forder',['byte_order',['../classsheila_1_1processor_1_1Processor.html#a702014983c7bf15b3b2418aa32eab588',1,'sheila::processor::Processor']]]
+  ['basicinteger',['BasicInteger',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1IntegerTypes.html#a5287a6f84a0e0eed0bcf35275e82a82d',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::IntegerTypes']]],
+  ['before',['before',['../structsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Directives_1_1Directive__base.html#a8f895942d26b2dba7fa4f738d1de72d0',1,'sheila::cpp::Cpp::Structure::PreProcessor::Directives::Directive_base']]],
+  ['boolean',['Boolean',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes.html#ac90504f165edc1e6bb643dfc1648b43a',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::IntegralTypes']]]
 ];

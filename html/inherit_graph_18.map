@@ -1,5 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1CppFile.html" title="An abstract model of a C++ File (ie. [source|header]) " alt="" coords="5,31,144,57"/>
-<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1CppHeader.html" title="An abstract model of a header file in C++. " alt="" coords="192,5,351,32"/>
-<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1CppSource.html" title="An abstract model of a source file in C++. " alt="" coords="192,56,351,83"/>
+<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1Cpp_1_1Token.html" title="sheila::cpp::Cpp::Token" alt="" coords="5,179,167,206"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Function.html" title="A C++ Function. " alt="" coords="225,78,399,105"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Instance.html" title="An Instance of a C++ class. " alt="" coords="225,129,399,155"/>
+<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1Cpp_1_1Namespace.html" title="C++ namespace. " alt="" coords="215,179,409,206"/>
+<area shape="rect" id="node8" href="$classsheila_1_1cpp_1_1Cpp_1_1Structure_1_1PreProcessor_1_1Macro.html" title="A C++ preprocessor Macro. " alt="" coords="223,231,401,272"/>
+<area shape="rect" id="node9" href="$classsheila_1_1cpp_1_1Cpp_1_1Variable.html" title="A C++ variable. " alt="" coords="226,297,398,323"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClass_1_1Constructor.html" title="A representation of a C++ class constructor. " alt="" coords="472,5,657,47"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClass_1_1Destructor.html" title="A representation of a C++ class destructor. " alt="" coords="475,71,654,112"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClass_1_1MemberFunction.html" title="A C++ Member Function. " alt="" coords="457,136,672,177"/>
+<area shape="rect" id="node10" href="$classsheila_1_1cpp_1_1Cpp_1_1Enumerator.html" title="A name that represents a constant ingeger defined in an Enum. " alt="" coords="469,297,661,323"/>
 </map>

@@ -1,0 +1,8 @@
+<map id="sheila::cpp::Cpp::Types::ScalarType" name="sheila::cpp::Cpp::Types::ScalarType">
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1ArithmeticType.html" title="An ArithmeticType of the C++ ProgrammingLanguage. " alt="" coords="424,57,632,113"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1Type.html" title="C++ Type. " alt="" coords="5,64,167,105"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1FloatingPointTypes_1_1FloatingPointType.html" title="Floating point type in C++. " alt="" coords="689,5,897,76"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1IntegralType.html" title="An IntegralType of the C++ ProgrammingLanguage. " alt="" coords="680,101,905,157"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1CharacterTypes_1_1CharacterType.html" title="Characters are of CharType or WideCharType. " alt="" coords="953,45,1200,116"/>
+<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1IntegerTypes_1_1IntegerType.html" title="a type representing an integer of some size. " alt="" coords="962,140,1191,211"/>
+</map>

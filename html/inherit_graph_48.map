@@ -1,0 +1,39 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Emotion\l_base \&gt;" alt="" coords="133,363,292,404"/>
+<area shape="rect" id="node13" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Feeling \&gt;" alt="" coords="131,493,295,519"/>
+<area shape="rect" id="node15" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Instruction\lSetArchitecture \&gt;" alt="" coords="127,544,298,585"/>
+<area shape="rect" id="node17" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPAddress\l_base \&gt;" alt="" coords="127,609,298,651"/>
+<area shape="rect" id="node22" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Language \&gt;" alt="" coords="123,675,302,702"/>
+<area shape="rect" id="node24" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Manufacturer \&gt;" alt="" coords="113,726,312,753"/>
+<area shape="rect" id="node26" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Number \&gt;" alt="" coords="129,777,297,803"/>
+<area shape="rect" id="node28" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Operating\lSystem \&gt;" alt="" coords="129,828,296,869"/>
+<area shape="rect" id="node30" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Platform \&gt;" alt="" coords="127,894,298,921"/>
+<area shape="rect" id="node32" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Programming\lLanguage \&gt;" alt="" coords="119,945,306,987"/>
+<area shape="rect" id="node34" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Schema \&gt;" alt="" coords="127,1011,298,1038"/>
+<area shape="rect" id="node36" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Version \&gt;" alt="" coords="129,1062,296,1089"/>
+<area shape="rect" id="node38" href="$classsheila_1_1Entity.html" title="Template class for an Entity in the SHEILa structure model. " alt="" coords="141,1113,285,1139"/>
+<area shape="rect" id="node3" href="$structsheila_1_1Emotion__base.html" title="The base for all specializations of the Emotion class;. " alt="" coords="394,307,541,334"/>
+<area shape="rect" id="node4" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::ANGER \&gt;" alt="" coords="630,5,801,47"/>
+<area shape="rect" id="node5" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::ANTICIPATION \&gt;" alt="" coords="623,71,808,112"/>
+<area shape="rect" id="node6" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::DISGUST \&gt;" alt="" coords="630,136,801,177"/>
+<area shape="rect" id="node7" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::FEAR \&gt;" alt="" coords="630,201,801,243"/>
+<area shape="rect" id="node8" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::JOY \&gt;" alt="" coords="630,267,801,308"/>
+<area shape="rect" id="node9" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::SADNESS \&gt;" alt="" coords="630,332,801,373"/>
+<area shape="rect" id="node10" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::SURPRISE \&gt;" alt="" coords="630,397,801,439"/>
+<area shape="rect" id="node11" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::TRUST \&gt;" alt="" coords="630,463,801,504"/>
+<area shape="rect" id="node12" href="$classsheila_1_1Emotion.html" title="An emotion as understood by SHEILa. " alt="" coords="636,529,795,555"/>
+<area shape="rect" id="node14" href="$classsheila_1_1Feeling.html" title="A Feeling as understood by SHEILa. " alt="" coords="414,493,521,519"/>
+<area shape="rect" id="node16" href="$classsheila_1_1InstructionSetArchitecture.html" title="sheila::InstructionSetArchitecture" alt="" coords="360,551,575,578"/>
+<area shape="rect" id="node18" href="$structsheila_1_1IPAddress__base.html" title="The base of all IPAddress Types. " alt="" coords="387,621,547,647"/>
+<area shape="rect" id="node19" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress\&lt;\l IPAddressType::v4 \&gt;" alt="" coords="640,580,791,621"/>
+<area shape="rect" id="node20" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress\&lt;\l IPAddressType::v6 \&gt;" alt="" coords="640,645,791,687"/>
+<area shape="rect" id="node21" href="$classsheila_1_1IPAddress.html" title="An IP Address. " alt="" coords="649,711,782,752"/>
+<area shape="rect" id="node23" href="$classsheila_1_1Language.html" title="sheila::Language" alt="" coords="407,675,527,702"/>
+<area shape="rect" id="node25" href="$classsheila_1_1Manufacturer.html" title="sheila::Manufacturer" alt="" coords="397,726,537,753"/>
+<area shape="rect" id="node27" href="$classsheila_1_1Number.html" title="sheila::Number" alt="" coords="412,777,523,803"/>
+<area shape="rect" id="node29" href="$classsheila_1_1OperatingSystem.html" title="sheila::OperatingSystem" alt="" coords="385,835,550,862"/>
+<area shape="rect" id="node31" href="$classsheila_1_1Platform.html" title="sheila::Platform" alt="" coords="411,894,524,921"/>
+<area shape="rect" id="node33" href="$classsheila_1_1ProgrammingLanguage.html" title="sheila::ProgrammingLanguage" alt="" coords="369,953,566,979"/>
+<area shape="rect" id="node35" href="$classsheila_1_1Schema.html" title="sheila::Schema" alt="" coords="411,1011,523,1038"/>
+<area shape="rect" id="node37" href="$classsheila_1_1Version.html" title="sheila::Version" alt="" coords="413,1062,521,1089"/>
+</map>

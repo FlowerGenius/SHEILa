@@ -1,15 +1,7 @@
 <map id="sheila::SHEILaCoreServer" name="sheila::SHEILaCoreServer">
-<area shape="rect" id="node2" href="$classsheila_1_1Server.html" title="sheila::Server" alt="" coords="1492,83,1595,110"/>
-<area shape="rect" id="node3" href="$classsheila_1_1IPv4.html" title="sheila::IPv4" alt="" coords="1300,58,1391,84"/>
-<area shape="rect" id="node4" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress" alt="" coords="1125,83,1251,110"/>
-<area shape="rect" id="node12" href="$classsheila_1_1IPv6.html" title="sheila::IPv6" alt="" coords="1300,108,1391,135"/>
-<area shape="rect" id="node5" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPAddress \&gt;" alt="" coords="745,83,928,110"/>
-<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPAddress \&gt;" alt="" coords="541,76,696,117"/>
-<area shape="rect" id="node7" href="$structsheila_1_1cpp_1_1CppObject__base.html" title="The base for all of the specializations of CppClass. " alt="" coords="193,10,384,36"/>
-<area shape="rect" id="node11" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPv4 \&gt;" alt="" coords="541,10,696,52"/>
-<area shape="rect" id="node14" href="$classsheila_1_1cpp_1_1CppObject.html" title="sheila::cpp::CppObject\l\&lt; IPv6 \&gt;" alt="" coords="541,141,696,182"/>
-<area shape="rect" id="node8" href="$classsheila_1_1cpp_1_1CppSource.html" title="An abstract model of a source file in C++. " alt="" coords="209,152,368,179"/>
-<area shape="rect" id="node9" href="$classsheila_1_1cpp_1_1CppFile.html" title="An abstract model of a C++ File (ie. [source|header]) " alt="" coords="5,152,144,179"/>
-<area shape="rect" id="node10" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPv4 \&gt;" alt="" coords="952,27,1101,54"/>
-<area shape="rect" id="node13" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPv6 \&gt;" alt="" coords="952,139,1101,166"/>
+<area shape="rect" id="node2" href="$classsheila_1_1Server.html" title="sheila::Server" alt="" coords="128,381,231,408"/>
+<area shape="rect" id="node3" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress\&lt;\l IPAddressType::v4 \&gt;" alt="" coords="5,277,156,319"/>
+<area shape="rect" id="node4" href="$structsheila_1_1IPAddress__base.html" title="The base of all IPAddress Types. " alt="" coords="51,201,211,228"/>
+<area shape="rect" id="node7" href="$classsheila_1_1IPAddress.html" title="sheila::IPAddress\&lt;\l IPAddressType::v6 \&gt;" alt="" coords="180,277,331,319"/>
+<area shape="rect" id="node5" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; IPAddress\l_base \&gt;" alt="" coords="46,111,217,152"/>
 </map>

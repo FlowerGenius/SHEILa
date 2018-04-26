@@ -1,0 +1,7 @@
+<map id="sheila::cpp::Cpp::Project::Artifact::Object&lt; _N &gt;" name="sheila::cpp::Cpp::Project::Artifact::Object&lt; _N &gt;">
+<area shape="rect" id="node2" href="$structsheila_1_1cpp_1_1Cpp_1_1Project_1_1Artifact_1_1Object__base.html" title="The base for all of the specializations of CppClass. " alt="" coords="437,5,604,47"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1OutFile.html" title="A C++ Output file. " alt="" coords="221,5,388,47"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1BasicFile.html" title="A basic file on the filesystem. " alt="" coords="5,35,172,76"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1InFile.html" title="An abstract model of a C++ Input File (ie. [source|header]) " alt="" coords="221,71,388,112"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Project_1_1File_1_1Source.html" title="An abstract model of a source file in C++. " alt="" coords="437,71,604,112"/>
+</map>

@@ -1,27 +1,8 @@
 var searchData=
 [
-  ['t',['T',['../classsheila_1_1cpp_1_1CppArtifact.html#aa44bfa66264835921258c41e6de7acf0',1,'sheila::cpp::CppArtifact::T()'],['../structsheila_1_1cpp_1_1CppClass__base.html#afc661057d4c7325be73d2adf9ace25d5',1,'sheila::cpp::CppClass_base::T()'],['../structsheila_1_1cpp_1_1CppPPDirective__base.html#a1642e639eba556bc7dd40e2a8c6a3787',1,'sheila::cpp::CppPPDirective_base::T()']]],
-  ['terminate',['TERMINATE',['../SHEILa__daemon_8cpp.html#ab3acaa221d1f218927ea5b1b5ec0b71b',1,'SHEILa_daemon.cpp']]],
-  ['termination_5fsignal',['TERMINATION_SIGNAL',['../SHEILa__daemon_8cpp.html#a52db25185ef338093392c247a6605b65',1,'SHEILa_daemon.cpp']]],
-  ['this_5fobject_5faccessed',['this_object_accessed',['../classsheila_1_1Entity.html#a6d069483e436ab350efa4d0df6a645ff',1,'sheila::Entity']]],
-  ['this_5fobject_5fauthors',['this_object_authors',['../classsheila_1_1cpp_1_1CppObject.html#a5fc64c455982979a5eeaec18854f51e3',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fchildren',['this_object_children',['../classsheila_1_1Entity.html#aefa457dc620993e483f3c516e5000d54',1,'sheila::Entity']]],
-  ['this_5fobject_5fcopyrights',['this_object_copyrights',['../classsheila_1_1cpp_1_1CppObject.html#a2352a9ecd655aaba57fdf59d31d37097',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fcreated',['this_object_created',['../classsheila_1_1cpp_1_1CppObject.html#ad6157edf009c9349ab12f71cc72db167',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fcv_5ffilters',['this_object_cv_filters',['../classsheila_1_1Entity.html#a728728ae3df6b5cc640369ff91d9129d',1,'sheila::Entity']]],
-  ['this_5fobject_5fdescriptions',['this_object_descriptions',['../classsheila_1_1cpp_1_1CppObject.html#af053e55717121c30961683a0ddf17d9b',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5femotion_5fvalues',['this_object_emotion_values',['../classsheila_1_1Entity.html#a4e861017474baadb9fbbff072391ac07',1,'sheila::Entity']]],
-  ['this_5fobject_5fentities',['this_object_entities',['../classsheila_1_1Entity.html#a8252b8597fd4849c974aa405b9e56732',1,'sheila::Entity']]],
-  ['this_5fobject_5fheaders',['this_object_headers',['../classsheila_1_1cpp_1_1CppObject.html#a052325617a591c393217657472c99bc3',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fmodified',['this_object_modified',['../classsheila_1_1cpp_1_1CppObject.html#a290f362b8a2478998973be582fd5ae48',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fmodules',['this_object_modules',['../classsheila_1_1cpp_1_1CppObject.html#ab906242f3d38ad1e5f9e4b100b103774',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fnames',['this_object_names',['../classsheila_1_1cpp_1_1CppObject.html#add8f0ae54d00c74aa75161c177f68a0f',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fparents',['this_object_parents',['../classsheila_1_1Entity.html#a75f681ccbbede749e9ce44e8f251b029',1,'sheila::Entity']]],
-  ['this_5fobject_5fsource',['this_object_source',['../classsheila_1_1cpp_1_1CppObject.html#a49225aea2bb8a4fbf0218b2250e157bc',1,'sheila::cpp::CppObject']]],
-  ['this_5fobject_5fversions',['this_object_versions',['../classsheila_1_1cpp_1_1CppObject.html#a2e1aa9074d8afe547fc2734b994de2c2',1,'sheila::cpp::CppObject']]],
-  ['tostring',['toString',['../classsheila_1_1IPv4.html#a3c7c858128485303117df9aded69911e',1,'sheila::IPv4::toString()'],['../classsheila_1_1IPv6.html#afc886fa120d8a7dfe941757605f13e0a',1,'sheila::IPv6::toString()'],['../classsheila_1_1Version.html#afabb5711ecfc7f55eb6c70b52e44be9a',1,'sheila::Version::toString()']]],
-  ['tru_5frange',['tru_range',['../classsheila_1_1Feeling.html#a4b7565c9d74085c8bf33c173398897e6',1,'sheila::Feeling']]],
-  ['trust',['TRUST',['../classsheila_1_1Feeling.html#afbeef960fb11c35616cfee746140e2aca465cfb0371f9d83fe548d986a7dd5a77',1,'sheila::Feeling::TRUST()'],['../classsheila_1_1Mood.html#ad710f88013750e6bfabcbe1ae54d82ea',1,'sheila::Mood::trust()'],['../namespacesheila.html#a2d3767fc34b745f38a8134e21c7c9568a828650bfe647cc032dfb32cc6d5799cc',1,'sheila::TRUST()']]],
-  ['type',['type',['../classsheila_1_1cpp_1_1CppDataMember.html#a85f8119ecfdd0b8a2a62f42a42291b17',1,'sheila::cpp::CppDataMember::type()'],['../classsheila_1_1cpp_1_1CppVariable.html#a1f34d21c7125d002d162401742b30286',1,'sheila::cpp::CppVariable::type()']]],
-  ['typeinfo',['TYPEINFO',['../namespacesheila_1_1cpp.html#a019ca1b8256fd89c7d2d405106e22ceda3fbd4c7bb3e55bf43731c02041455e6d',1,'sheila::cpp']]]
+  ['value',['value',['../classsheila_1_1cpp_1_1Cpp_1_1Variable.html#ab1b6e0aa4a9b9b6af6bf771fe4b8b567',1,'sheila::cpp::Cpp::Variable']]],
+  ['variable',['Variable',['../classsheila_1_1cpp_1_1Cpp_1_1Variable.html#af21650504643c069d275ba1a5ecd50ac',1,'sheila::cpp::Cpp::Variable']]],
+  ['variable',['Variable',['../classsheila_1_1cpp_1_1Cpp_1_1Variable.html',1,'sheila::cpp::Cpp']]],
+  ['variable_3c_20type_20_3e',['Variable&lt; type &gt;',['../classsheila_1_1cpp_1_1Cpp_1_1Variable.html',1,'sheila::cpp::Cpp']]],
+  ['void',['Void',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes.html#a0f9f03e425b551be1bc158b344553ac6',1,'sheila::cpp::Cpp::Types::FundamentalTypes']]]
 ];

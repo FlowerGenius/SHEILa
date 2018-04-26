@@ -1,0 +1,7 @@
+<map id="sheila::cpp::Cpp::Classes::BasicClass" name="sheila::cpp::Cpp::Classes::BasicClass">
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClass.html" title="A Generic Class with the same rules as a namespace. " alt="" coords="227,37,400,79"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1ScopedEnumeration.html" title="A C++11 Scoped Enum [either class or struct]. " alt="" coords="227,103,400,144"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Class.html" title="A C++ class. " alt="" coords="448,5,621,47"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Union.html" title="A C++ union. " alt="" coords="448,71,621,112"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Struct.html" title="A C++ struct. " alt="" coords="669,5,843,47"/>
+</map>

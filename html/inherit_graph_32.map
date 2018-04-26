@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsheila_1_1xml_1_1XmlFile.html" title="sheila::xml::XmlFile" alt="" coords="5,5,143,32"/>
-<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1CppObjdefFile.html" title="sheila::cpp::CppObjdefFile" alt="" coords="191,5,367,32"/>
+<area shape="rect" id="node1" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Feeling \&gt;" alt="" coords="5,5,169,32"/>
+<area shape="rect" id="node2" href="$classsheila_1_1Feeling.html" title="A Feeling as understood by SHEILa. " alt="" coords="217,5,324,32"/>
 </map>

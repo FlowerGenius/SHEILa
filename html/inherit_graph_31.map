@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classsheila_1_1Vendor.html" title="sheila::Vendor" alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node1" href="$classsheila_1_1Entity.html" title="sheila::Entity\&lt; Emotion\l_base \&gt;" alt="" coords="5,267,164,308"/>
+<area shape="rect" id="node2" href="$structsheila_1_1Emotion__base.html" title="The base for all specializations of the Emotion class;. " alt="" coords="212,274,359,301"/>
+<area shape="rect" id="node3" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::ANGER \&gt;" alt="" coords="414,5,585,47"/>
+<area shape="rect" id="node4" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::ANTICIPATION \&gt;" alt="" coords="407,71,592,112"/>
+<area shape="rect" id="node5" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::DISGUST \&gt;" alt="" coords="414,136,585,177"/>
+<area shape="rect" id="node6" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::FEAR \&gt;" alt="" coords="414,201,585,243"/>
+<area shape="rect" id="node7" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::JOY \&gt;" alt="" coords="414,267,585,308"/>
+<area shape="rect" id="node8" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::SADNESS \&gt;" alt="" coords="414,332,585,373"/>
+<area shape="rect" id="node9" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::SURPRISE \&gt;" alt="" coords="414,397,585,439"/>
+<area shape="rect" id="node10" href="$classsheila_1_1Emotion.html" title="sheila::Emotion\&lt; Plutchik\lEmotion::TRUST \&gt;" alt="" coords="414,463,585,504"/>
+<area shape="rect" id="node11" href="$classsheila_1_1Emotion.html" title="An emotion as understood by SHEILa. " alt="" coords="420,529,579,555"/>
 </map>

@@ -1,14 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structsheila_1_1cpp_1_1CppCompoundType__base.html" title="sheila::cpp::CppCompound\lType_base" alt="" coords="5,332,185,373"/>
-<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1CppCompoundType.html" title="sheila::cpp::CppCompound\lType\&lt; _Tt \&gt;" alt="" coords="257,5,437,47"/>
-<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01ARRAY_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; ARRAY \&gt;" alt="" coords="257,71,437,112"/>
-<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01CLASS_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; CLASS \&gt;" alt="" coords="257,136,437,177"/>
-<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01ENUMERATION_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; ENUMERATION \&gt;" alt="" coords="257,201,437,243"/>
-<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01FUNCTION_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; FUNCTION \&gt;" alt="" coords="257,267,437,308"/>
-<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01POINTER_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; POINTER \&gt;" alt="" coords="257,332,437,373"/>
-<area shape="rect" id="node8" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01POINTER__TO__MEMBER_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; POINTER_TO_MEMBER \&gt;" alt="" coords="233,397,460,439"/>
-<area shape="rect" id="node9" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01REFERENCE_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; REFERENCE \&gt;" alt="" coords="257,463,437,504"/>
-<area shape="rect" id="node10" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01STRING_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; STRING \&gt;" alt="" coords="257,528,437,569"/>
-<area shape="rect" id="node11" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01STRUCT_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; STRUCT \&gt;" alt="" coords="257,593,437,635"/>
-<area shape="rect" id="node12" href="$classsheila_1_1cpp_1_1CppCompoundType_3_01UNION_01_4.html" title="sheila::cpp::CppCompound\lType\&lt; UNION \&gt;" alt="" coords="257,659,437,700"/>
+<area shape="rect" id="node1" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1BasicClass.html" title="A Basic class definition in C++. " alt="" coords="18,43,191,84"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1GenericClass.html" title="A Generic Class with the same rules as a namespace. " alt="" coords="252,39,425,80"/>
+<area shape="rect" id="node6" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1ScopedEnumeration.html" title="A C++11 Scoped Enum [either class or struct]. " alt="" coords="252,104,425,145"/>
+<area shape="rect" id="node3" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Class.html" title="A C++ class. " alt="" coords="473,5,647,47"/>
+<area shape="rect" id="node5" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Union.html" title="A C++ union. " alt="" coords="473,71,647,112"/>
+<area shape="rect" id="node4" href="$classsheila_1_1cpp_1_1Cpp_1_1Classes_1_1Struct.html" title="A C++ struct. " alt="" coords="695,5,868,47"/>
+<area shape="rect" id="node7" href="$classsheila_1_1cpp_1_1Cpp_1_1Enumeration.html" title="A C++ Enum. " alt="" coords="5,111,204,138"/>
 </map>

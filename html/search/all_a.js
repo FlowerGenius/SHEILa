@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['joy',['JOY',['../classsheila_1_1Feeling.html#afbeef960fb11c35616cfee746140e2aca7acb283ac52d222a36ebb8c9e4effdff',1,'sheila::Feeling::JOY()'],['../classsheila_1_1Mood.html#aeae5945623eb04a2a5f08df8c55f1efb',1,'sheila::Mood::joy()'],['../namespacesheila.html#a2d3767fc34b745f38a8134e21c7c9568a29d6b927928b11cf01ddc78497e05513',1,'sheila::JOY()']]],
-  ['joy_5frange',['joy_range',['../classsheila_1_1Feeling.html#aa5b3f974606a8f6d3bec0cf30d2fcb45',1,'sheila::Feeling']]],
-  ['juno',['Juno',['../CMakeCache_8txt.html#a825301f1f1e1fc29d08c8697642b409b',1,'CMakeCache.txt']]]
+  ['longdouble',['LongDouble',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1FloatingPointTypes.html#a8b025ffed1a24b60a70d6605ad2a1f3a',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::FloatingPointTypes']]],
+  ['longinteger',['LongInteger',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1IntegerTypes.html#a39ced0ade586780f781207e9936690cf',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::IntegerTypes']]],
+  ['longlongdouble',['LongLongDouble',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1FloatingPointTypes.html#aa45daddd4a33d03ff8661057971aeba3',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::FloatingPointTypes']]],
+  ['longlonginteger',['LongLongInteger',['../structsheila_1_1cpp_1_1Cpp_1_1Types_1_1FundamentalTypes_1_1ArithmeticTypes_1_1IntegralTypes_1_1IntegerTypes.html#af8c3944ba84ae607c2e11653487002ae',1,'sheila::cpp::Cpp::Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::IntegerTypes']]]
 ];

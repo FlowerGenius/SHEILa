@@ -1,0 +1,7 @@
+<map id="sheila::cpp::Cpp::ClassType::BasicClass" name="sheila::cpp::Cpp::ClassType::BasicClass">
+<area shape="rect" id="node3" href="$structsheila_1_1cpp_1_1Cpp_1_1ClassType_1_1GenericClass.html" title="A Generic Class with the same rules as a namespace. " alt="" coords="459,71,647,112"/>
+<area shape="rect" id="node2" href="$classsheila_1_1cpp_1_1Cpp_1_1Feature.html" title="An abstract model of a feature of the C++ programming language. " alt="" coords="5,78,175,105"/>
+<area shape="rect" id="node4" href="$structsheila_1_1cpp_1_1Cpp_1_1ClassType_1_1Class.html" title="A C++ class. " alt="" coords="695,5,883,47"/>
+<area shape="rect" id="node5" href="$structsheila_1_1cpp_1_1Cpp_1_1ClassType_1_1Struct.html" title="A C++ struct. " alt="" coords="695,71,883,112"/>
+<area shape="rect" id="node6" href="$structsheila_1_1cpp_1_1Cpp_1_1ClassType_1_1Union.html" title="A C++ union. " alt="" coords="695,136,883,177"/>
+</map>
