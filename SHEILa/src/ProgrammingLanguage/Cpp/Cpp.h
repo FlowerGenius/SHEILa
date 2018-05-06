@@ -243,6 +243,7 @@ namespace LexicalElements {
 class Identifier;
 namespace ReservedWords {
 class ReservedWord;
+class ReservedTypeWord;
 }
 }
 
@@ -261,7 +262,9 @@ namespace Types {
  */
 class Type {
 
-	typedef const LexicalElements::ReservedWords::ReservedWord* rw_ptr;
+	typedef const LexicalElements::ReservedWords::ReservedTypeWord* rw_ptr;
+
+	static std::list<Type*> all_types;
 
 public:
 
@@ -315,6 +318,8 @@ namespace FundamentalTypes {
  */
 class FundamentalType : public Type {
 
+	static std::list<const FundamentalType*> all_fundamental_types;
+
 public:
 	FundamentalType(std::initializer_list<res_word_ptr> req,
 			std::initializer_list<res_word_ptr> opt = {});
@@ -328,9 +333,13 @@ public:
 
 	const static FundamentalType Void;;
 
+	const static std::list<const FundamentalType*>& getFundamentalTypes()
+		{ return all_fundamental_types; }
+
 protected:
 	std::list<res_word_ptr> req_words;
 	std::list<res_word_ptr> opt_words;
+private:
 };
 
 /** @brief The void type.
@@ -354,11 +363,17 @@ namespace ArithmeticTypes {
  */
 class ArithmeticType : public FundamentalType {
 
+	static std::list<const ArithmeticType*> all_arithmetic_types;
+
 public:
 	ArithmeticType(std::initializer_list<res_word_ptr> req,
 			std::initializer_list<res_word_ptr> opt = {});
 	virtual ~ArithmeticType();
 
+	const static std::list<const ArithmeticType*>& getArithmeticTypes()
+		{ return all_arithmetic_types; }
+
+private:
 };
 
 /** The Integral Types of C++ */
@@ -368,10 +383,14 @@ namespace IntegralTypes {
  *
  */
 class IntegralType : public ArithmeticType {
+
+	static std::list<const IntegralType*> all_integral_types;
+
 public:
 
-	IntegralType(std::initializer_list<res_word_ptr> req,
-			std::initializer_list<res_word_ptr> opt = {});
+	IntegralType(std::initializer_list<res_word_ptr> req = {},
+			std::initializer_list<res_word_ptr> opt = {},
+			bool sgn = true);
 	virtual ~IntegralType();
 
 	const bool& isSigned(void) const { return _signed_; }
@@ -384,11 +403,15 @@ public:
 	 */
 	const static IntegralType Boolean;
 
-protected:
+	const static std::list<const IntegralType*>& getIntegralTypes()
+		{ return all_integral_types; }
+
+private:
 
 	/** @brief Evaluates to true if signed */
 	bool _signed_;
 
+private:
 };
 
 /** The Character Types of C++ */
@@ -403,10 +426,13 @@ namespace CharacterTypes {
  *
  */
 class CharacterType : public IntegralType {
+
+	static std::list<const CharacterType*> all_character_types;
+
 public:
 
 	CharacterType(std::initializer_list<res_word_ptr>
-	req, std::initializer_list<res_word_ptr> opt = {});
+	req, std::initializer_list<res_word_ptr> opt = {}, bool sgn=true);
 	virtual ~CharacterType();
 
 	/** @brief The char type is a small integer.
@@ -434,6 +460,11 @@ public:
 	/** @brief uwchar_t */
 	const static CharacterType UnsignedWideChar;
 
+	const static std::list<const CharacterType*>& getCharacterTypes()
+		{ return all_character_types; }
+
+private:
+
 };
 
 };
@@ -452,10 +483,13 @@ namespace IntegerTypes {
  *
  */
 class IntegerType : public IntegralType {
+
+	static std::list<const IntegerType*> all_integer_types;
+
 public:
 
 	IntegerType(std::initializer_list<res_word_ptr> req,
-			std::initializer_list<res_word_ptr> opt={});
+			std::initializer_list<res_word_ptr> opt={}, bool sgn=true);
 	virtual ~IntegerType();
 
 	/** @brief A short (half byte) integer */
@@ -483,6 +517,11 @@ public:
 
 	/** @brief A long long (8x byte) integer */
 	const static IntegerType UnsignedLongLongInteger;
+
+	const static std::list<const IntegerType*> getIntegerTypes()
+		{ return all_integer_types; }
+private:
+
 };
 };
 };
@@ -500,6 +539,8 @@ namespace FloatingPointTypes {
  *
  */
 class FloatingPointType : public ArithmeticType {
+
+	static std::list<const FloatingPointType*> all_floating_point_types;
 
 public:
 	FloatingPointType(std::initializer_list<res_word_ptr>
@@ -522,6 +563,11 @@ public:
 	 * point value
 	 */
 	const static FloatingPointType LongLongDouble;
+
+	const static std::list<const FloatingPointType*>& getFloatingPointTypes()
+		{ return all_floating_point_types; }
+
+private:
 
 };
 
@@ -552,25 +598,17 @@ public:
 
 	const static CompoundType T_Array;
 
-
-
 	const static CompoundType T_Pointer;
 
 	const static CompoundType T_PointerToMember;
 
 	const static CompoundType T_Reference;
 
-//	const static CompoundType T_Class;
-//
-//	const static CompoundType T_Union;
-//
-//	const static CompoundType T_Struct;
-
 	const static CompoundType T_Function;
 
 protected:
 
-	Type contents_type;
+	Type *contents_type;
 
 };
 
@@ -591,13 +629,10 @@ namespace EnumerationTypes {
 class EnumerationType : public CompoundType {
 public:
 
-	EnumerationType(std::initializer_list<res_word_ptr>
-	req, std::initializer_list<res_word_ptr> opt = {});
+	EnumerationType(std::string nm = "");
 	virtual ~EnumerationType();
 
 };
-
-
 
 }
 
@@ -719,54 +754,151 @@ class ClassType : public CompoundType {
 public:
 
 	ClassType(std::initializer_list<res_word_ptr>
-	req, std::initializer_list<res_word_ptr> opt = {});
+	req = {});
 	virtual ~ClassType();
 
-	/** @brief A C++ Union type.
-	 *
-	 * [O'Reilly] Unions are similar to classes; however they can
-	 * hold a value for only one data member at a time. As a
-	 * result, a union occupies only as much space as it's largest
-	 * data member requires. Other differences between unions and
-	 * classes are:
-	 *
-	 * @arg The default access level for unions is public; the
-	 * default access level for classes is private.
-	 * @arg Unions cannot have member functions that are declared
-	 * using the keyword @c virtual.
-	 * @arg Unions cannot inherit from anything, nor can anything
-	 * inherit from them.
-	 * @arg The members of unions cannot be objects that define
-	 * constructors or destructors, or that overload the assignment
-	 * operator.
-	 *
-	 * Unions can be anonymous (unnamed). This form is used when
-	 * nesting a union inside a struct or class that contains an
-	 * extra data member to indicate what the union contains.
-	 *
-	 */
-	const static ClassType T_Union;
-
-	/** @brief A C++ Class type.
-	 *
-	 *  [O'Reilly] You define a class by declaring a set of data
-	 *  members and member functions for it.
-	 */
 	const static ClassType T_Class;
 
-	/** @brief A C++ Struct type.
-	 *
-	 *  [O'Reilly] Structs are functionally identical to classes
-	 *  except that the default access level for their members is
-	 *  public, not private. To define a struct, you use the
-	 *  keyword @c struct, in place of the keyword @c class.
-	 *
-	 */
+	const static ClassType T_Union;
+
 	const static ClassType T_Struct;
-};
 
 };
+
+/** @brief A C++ Union type.
+ *
+ * [O'Reilly] Unions are similar to classes; however they can
+ * hold a value for only one data member at a time. As a
+ * result, a union occupies only as much space as it's largest
+ * data member requires. Other differences between unions and
+ * classes are:
+ *
+ * @arg The default access level for unions is public; the
+ * default access level for classes is private.
+ * @arg Unions cannot have member functions that are declared
+ * using the keyword @c virtual.
+ * @arg Unions cannot inherit from anything, nor can anything
+ * inherit from them.
+ * @arg The members of unions cannot be objects that define
+ * constructors or destructors, or that overload the assignment
+ * operator.
+ *
+ * Unions can be anonymous (unnamed). This form is used when
+ * nesting a union inside a struct or class that contains an
+ * extra data member to indicate what the union contains.
+ *
+ */
+class CppUnionType : public Type {
+public:
+	CppUnionType(std::string nm);
+	virtual ~CppUnionType();
+
 };
+
+/** @brief A C++ Class type.
+ *
+ *  [O'Reilly] You define a class by declaring a set of data
+ *  members and member functions for it.
+ */
+class CppClassType : public Type {
+public:
+	CppClassType(std::string nm = "");
+	virtual ~CppClassType();
+
+};
+
+/** @brief A C++ Struct type.
+ *
+ *  [O'Reilly] Structs are functionally identical to classes
+ *  except that the default access level for their members is
+ *  public, not private. To define a struct, you use the
+ *  keyword @c struct, in place of the keyword @c class.
+ *
+ */
+class CppStructType : public CppClassType {
+public:
+	CppStructType(std::string nm);
+	virtual ~CppStructType();
+};
+
+} /* namespace ClassTypes */
+
+namespace EnumerationTypes {
+
+/** @brief A scoped enumeration type in C++.
+ *
+ *  A scoped enum can have the type either @c class or @c struct. the name
+ *  is optional as enumerations can be anonymous. A scoped enum can also
+ *  specify any integral data type as the type of it's enumerators.
+ *
+ */
+class ScopedEnumType : public EnumerationType {
+public:
+
+	ScopedEnumType(const ClassTypes::ClassType *scopetype, std::string nm = "",
+			const FundamentalTypes::ArithmeticTypes::IntegralTypes::IntegralType
+			*dtype = &FundamentalTypes::ArithmeticTypes::IntegralTypes::
+			IntegerTypes::IntegerType::BasicInteger);
+
+	virtual ~ScopedEnumType();
+
+private:
+
+	const ClassTypes::ClassType *scope_class;
+	const FundamentalTypes::ArithmeticTypes::IntegralTypes::IntegralType *datatype;
+
+};
+
+} /* namespace EnumerationTypes */
+
+} /* namespace CompoundTypes */
+
+using namespace FundamentalTypes;
+
+typedef FundamentalType FundamentalType;
+
+using namespace ArithmeticTypes;
+
+typedef ArithmeticType ArithmeticType;
+
+using namespace IntegralTypes;
+
+typedef IntegralType IntegralType;
+
+using namespace CharacterTypes;
+
+typedef CharacterType CharacterType;
+
+using namespace IntegerTypes;
+
+typedef IntegerType IntegerType;
+
+using namespace FloatingPointTypes;
+
+typedef FloatingPointType FloatingPointType;
+
+using namespace CompoundTypes;
+
+typedef CompoundType CompoundType;
+
+using namespace EnumerationTypes;
+
+typedef EnumerationType EnumerationType;
+
+typedef ArrayType ArrayType;
+typedef StringType StringType;
+typedef PointerType PointerType;
+typedef PointerToMemberType PointerToMemberType;
+typedef ReferenceType ReferenceType;
+
+using namespace ClassTypes;
+
+typedef ClassType ClassType;
+typedef CppUnionType CppUnionType;
+typedef CppClassType CppClassType;
+typedef CppStructType CppStructType;
+
+typedef ScopedEnumType ScopedEnumType;
 
 /** @brief C++ Type definition. (Different From a @c typedef statement)
  *
@@ -781,681 +913,723 @@ class TypeDefinition : public Feature {
 class TypeDeclaration : public Feature {
 
 };
+} /* namespace Types */
+
+/** The Lexical Elements of C++ */
+namespace LexicalElements {
+
+/** @brief A Lexical element in C++ *
+ *
+ */
+class LexicalElement {
+public:
+
+	LexicalElement();
+	virtual ~LexicalElement();
+
 };
 
-	/** The Lexical Elements of C++ */
-	namespace LexicalElements {
+class Comment : public LexicalElement {
+public:
+
+	Comment();
+	virtual ~Comment();
+
+};
+
+/** @brief An identifier is a unique name that references data.
+ *
+ */
+class Identifier : public LexicalElement {
+public:
+
+	Identifier(std::string unformatted_string,
+			Types::Type *typ=nullptr);
+	virtual ~Identifier();
+
+	void declare(Types::Type *t);
+
+	const Types::Type* getType() const { return t; }
+
+	const std::string& getName() const { return name; }
+
+private:
+
+	std::string name;
+	Types::Type *t;
+
+};
+
+/** @brief A Typename is an identifier that represents a Type
+ *
+ */
+class Typename : public LexicalElement {
+public:
+
+	Typename(std::string nm, Types::Type typ);
+	virtual ~Typename();
+
+private:
+	Identifier  name;
+	Types::Type type_named;
+
+};
+
+/** The Reserved Words of C++ */
+namespace ReservedWords {
+
+/** @brief The reserved keywords and tokens of C++
+ *
+ */
+class ReservedWord : public LexicalElement {
+public:
+
+
 
-		/** @brief A Lexical element in C++ *
-		 *
-		 */
-		class LexicalElement {
-		public:
+	static const ReservedWord R_and;
+	static const ReservedWord R_and_eq;
+	static const ReservedWord R_not;
+	static const ReservedWord R_not_eq;
 
-			LexicalElement();
-			virtual ~LexicalElement();
+	static const ReservedWord R_asm;
+	static const ReservedWord R_bitand;
+	static const ReservedWord R_bitor;
+	static const ReservedWord R_break;
+	static const ReservedWord R_case;
+	static const ReservedWord R_catch;
+	static const ReservedWord R_compl;
+	static const ReservedWord R_const_cast;
+	static const ReservedWord R_continue;
+	static const ReservedWord R_default;
+	static const ReservedWord R_delete;
+	static const ReservedWord R_do;
+	static const ReservedWord R_dynamic_cast;
+	static const ReservedWord R_else;
+	static const ReservedWord R_explicit;
+	static const ReservedWord R_export;
+	static const ReservedWord R_false;
+	static const ReservedWord R_for;
+	static const ReservedWord R_friend;
+	static const ReservedWord R_goto;
+	static const ReservedWord R_if;
+	static const ReservedWord R_inline;
+	static const ReservedWord R_namespace;
+	static const ReservedWord R_new;
 
-		};
+	static const ReservedWord R_operator;
+	static const ReservedWord R_or;
+	static const ReservedWord R_or_eq;
+	static const ReservedWord R_private;
+	static const ReservedWord R_protected;
+	static const ReservedWord R_public;
+	static const ReservedWord R_reinterpret_cast;
+	static const ReservedWord R_return;
+	static const ReservedWord R_sizeof;
+	static const ReservedWord R_static_cast;
+	static const ReservedWord R_switch;
+	static const ReservedWord R_template;
+	static const ReservedWord R_this;
+	static const ReservedWord R_throw;
+	static const ReservedWord R_true;
+	static const ReservedWord R_try;
+	static const ReservedWord R_typedef;
+	static const ReservedWord R_typeid;
+	static const ReservedWord R_using;
+	static const ReservedWord R_virtual;
+	static const ReservedWord R_while;
+	static const ReservedWord R_xor;
+	static const ReservedWord R_xor_eq;
 
-		class Comment : public LexicalElement {
-		public:
+	//				template<typename _Tp>
+	//				static const ReservedWord *rfromtype() {
+		//
+		//				}
 
-			Comment();
-			virtual ~Comment();
+	static const std::list<const ReservedWord*>& getAllWords() {
+		return all_words;
+	}
 
-		};
+	static const bool isReservedWord(std::string nm) {
+		for (auto&& word : all_words) {
+			if (word->getWord() == nm) { return true; }
+		}
 
-		/** @brief An identifier is a unique name that references data.
-		 *
-		 */
-		class Identifier : public LexicalElement {
-		public:
+		return false;
+	}
 
-			Identifier(std::string unformatted_string);
-			virtual ~Identifier();
 
-			void declare(Types::Type t, void* data=nullptr);
+	ReservedWord(std::string str);
+	virtual ~ReservedWord();
 
-			const Types::Type* getType() const { return t; }
+	const std::string& getWord() const { return name.getName(); }
 
-			const std::string& getName() const { return name; }
 
-		private:
 
-			std::string name;
-			Types::Type *t;
+protected:
+	Identifier name;
 
-		};
+private:
+	static std::list<const ReservedWord*> all_words;
+};
 
-		/** @brief A Typename is an identifier that represents a Type
-		 *
-		 */
-		class Typename : public LexicalElement {
-		public:
+class ReservedTypeWord : public ReservedWord {
+public:
 
-			Typename(std::string nm, Types::Type typ);
-			virtual ~Typename();
+	static const ReservedTypeWord R_void;
 
-		private:
-			Identifier  name;
-			Types::Type type_named;
+	static const ReservedTypeWord R_bool;
 
-		};
-
-		/** The Reserved Words of C++ */
-		namespace ReservedWords {
+	static const ReservedTypeWord R_char;
 
-			/** @brief The reserved keywords and tokens of C++
-			 *
-			 */
-			class ReservedWord : public LexicalElement {
-			public:
+	static const ReservedTypeWord R_wchar_t;
 
-				ReservedWord(std::string str);
-				virtual ~ReservedWord();
+	static const ReservedTypeWord R_short;
 
-				const std::string& getWord() const { return name.getName(); }
+	static const ReservedTypeWord R_int;
 
-				static const ReservedWord R_void;
+	static const ReservedTypeWord R_long;
 
-				static const ReservedWord R_bool;
+	static const ReservedTypeWord R_float;
 
-				static const ReservedWord R_char;
+	static const ReservedTypeWord R_double;
 
-				static const ReservedWord R_wchar_t;
+	static const ReservedTypeWord R_enum;
 
-				static const ReservedWord R_short;
+	static const ReservedTypeWord R_class;
 
-				static const ReservedWord R_int;
+	static const ReservedTypeWord R_struct;
 
-				static const ReservedWord R_long;
+	static const ReservedTypeWord R_union;
 
-				static const ReservedWord R_float;
+	static const ReservedTypeWord R_signed;
 
-				static const ReservedWord R_double;
+	static const ReservedTypeWord R_unsigned;
 
-				static const ReservedWord R_enum;
+	static const ReservedTypeWord R_typename;
 
-				static const ReservedWord R_class;
+	ReservedTypeWord(std::string str);
+	virtual ~ReservedTypeWord();
 
-				static const ReservedWord R_struct;
+};
 
-				static const ReservedWord R_union;
+class Qualifier : public ReservedWord {
+public:
 
-				static const ReservedWord R_and;
-				static const ReservedWord R_and_eq;
-				static const ReservedWord R_not;
-				static const ReservedWord R_not_eq;
-
-				static const ReservedWord R_asm;
-				static const ReservedWord R_bitand;
-				static const ReservedWord R_bitor;
-				static const ReservedWord R_break;
-				static const ReservedWord R_case;
-				static const ReservedWord R_catch;
-				static const ReservedWord R_compl;
-				static const ReservedWord R_const_cast;
-				static const ReservedWord R_continue;
-				static const ReservedWord R_default;
-				static const ReservedWord R_delete;
-				static const ReservedWord R_do;
-				static const ReservedWord R_dynamic_cast;
-				static const ReservedWord R_else;
-				static const ReservedWord R_explicit;
-				static const ReservedWord R_export;
-				static const ReservedWord R_false;
-				static const ReservedWord R_for;
-				static const ReservedWord R_friend;
-				static const ReservedWord R_goto;
-				static const ReservedWord R_if;
-				static const ReservedWord R_inline;
-				static const ReservedWord R_namespace;
-				static const ReservedWord R_new;
-
-				static const ReservedWord R_operator;
-				static const ReservedWord R_or;
-				static const ReservedWord R_or_eq;
-				static const ReservedWord R_private;
-				static const ReservedWord R_protected;
-				static const ReservedWord R_public;
-				static const ReservedWord R_reinterpret_cast;
-				static const ReservedWord R_return;
-				static const ReservedWord R_signed;
-				static const ReservedWord R_sizeof;
-				static const ReservedWord R_static_cast;
-				static const ReservedWord R_switch;
-				static const ReservedWord R_template;
-				static const ReservedWord R_this;
-				static const ReservedWord R_throw;
-				static const ReservedWord R_true;
-				static const ReservedWord R_try;
-				static const ReservedWord R_typedef;
-				static const ReservedWord R_typeid;
-				static const ReservedWord R_typename;
-				static const ReservedWord R_unsigned;
-				static const ReservedWord R_using;
-				static const ReservedWord R_virtual;
-				static const ReservedWord R_while;
-				static const ReservedWord R_xor;
-				static const ReservedWord R_xor_eq;
-
-			protected:
-				Identifier name;
-			};
-
-
-			/** The Qualifiers of C++ */
-			namespace Qualifiers {
-
-				class Qualifier : public ReservedWord {
-				public:
-
-					Qualifier(std::string str);
-					virtual ~Qualifier();
-
-				};
-
-				static const Qualifier R_const = Qualifier("const");
-				static const Qualifier R_volatile = Qualifier("volatile");
-
-			};
-
-			/** The Storage Classes of C++ */
-			namespace StorageClasses {
-
-				class StorageClass : public ReservedWord {
-
-				};
-
-				static const StorageClass R_extern;
-				static const StorageClass R_auto;
-				static const StorageClass R_mutable;
-				static const StorageClass R_static;
-				static const StorageClass R_register;
-
-			};
-
-
-		};
-
-
-		/** @brief An Expression in C++.
-		 *
-		 *  [O'Reilly] An expression is something that yields a value. Nearly
-		 *  every type of statement uses an expression in some way. The
-		 *  simplest expressions in C++ are just literals or variables by
-		 *  themselves.
-		 *
-		 */
-		class Expression : public LexicalElement {
-		public:
-
-			Expression();
-			virtual Expression();
-
-		protected:
-
-			/** @brief The Stream of LexicalElement that this expression is
-			 * composed of.
-			 */
-			std::vector<LexicalElement> composition;
-
-		};
-
-		namespace Literals {
-
-			/** @brief A literal expression in C++.
-			 *
-			 */
-			class Literal : public Expression {
-
-			public:
-
-
-				Literal(void);
+	static const Qualifier R_const; // = Qualifier("const");
+	static const Qualifier R_volatile; // = Qualifier("volatile");
+
+
+	Qualifier(std::string str);
+	virtual ~Qualifier();
+
+};
+
+class StorageClass : public ReservedWord {
+public:
+
+	static const StorageClass R_extern;
+	static const StorageClass R_auto;
+	static const StorageClass R_mutable;
+	static const StorageClass R_static;
+	static const StorageClass R_register;
+
+	StorageClass(std::string str);
+	virtual ~StorageClass();
+
+};
+
+
+};
+
+
+/** @brief An Expression in C++.
+ *
+ *  [O'Reilly] An expression is something that yields a value. Nearly
+ *  every type of statement uses an expression in some way. The
+ *  simplest expressions in C++ are just literals or variables by
+ *  themselves.
+ *
+ */
+class Expression : public LexicalElement {
+public:
+
+	Expression(std::initializer_list<LexicalElement> expr = {});
+	virtual ~Expression();
+
+	virtual void *yields();
+
+protected:
+
+	/** @brief The Stream of LexicalElement that this expression is
+	 * composed of.
+	 */
+	std::vector<LexicalElement> composition;
+
+};
+
+namespace Literals {
+
+/** @brief A literal expression in C++.
+ *
+ *  A literal expression is an expression that can be written
+ *  as a string, but the preprocessor identifies the type
+ *  implicitly based on the syntax.
+ *
+ */
+class Literal : public Expression {
+
+public:
+
+	Literal(std::string,const Types::Type *typ=nullptr);
+
+	//				Literal(bool);
+	//				Literal(char);
+	//				Literal(short);
+	//				Literal(int);
+	//				Literal(long);
+	//				Literal(long long);
+
+	virtual ~Literal();
+
+	void *getData() const { return data; }
+
+	template<typename _Tp>
+	const _Tp get() {
+		return (const _Tp)&data;
+	}
+
+	const static Literal Bool_true;
+	const static Literal Bool_false;
+
+protected:
+
+	const Types::Type *data_type;
+
+	std::string verbatim;
+
+private:
+
+	void *data;
+
+};
+
+
+
 //
-//				Literal(bool);
+//			class BooleanLiteral : public Literal {
+//			public:
 //
-//				Literal(char);
-//				Literal(short);
-//				Literal(int);
-//				Literal(long);
-//				Literal(long long);
-
-
-				virtual ~Literal();
-
-				void *getData() {
-					using namespace Types::FundamentalTypes::ArithmeticTypes::IntegralTypes;
-					if (data_type == Boolean) {
-						return &this->BooleanData;
-					} else if (data_type == CharacterTypes::Char) {
-						CharacterTypes::CharacterType *chartype = dynamic_cast<CharacterTypes::CharacterType*>(&data_type);
-						if (chartype->isSigned()) {
-							return &this->UCharData;
-						} else {
-							return &this->CharData;
-						}
-					} else if (data_type == CharacterTypes::WideChar) {
-						CharacterTypes::CharacterType *chartype = dynamic_cast<CharacterTypes::CharacterType*>(&data_type);
-						if (chartype->isSigned()) {
-							return &this->UWcharData;
-						} else {
-							return &this->WcharData;
-						}
-					} else if (data_type == IntegerTypes::ShortInteger) {
-						return &this->ShortData;
-					}
-
-
-				}
-
-
-			protected:
-
-				Types::Type data_type;
-
-				union {
-					bool BooleanData;
-
-					char CharData;
-					unsigned char UCharData;
-
-					wchar_t WcharData;
-					unsigned wchar_t UWcharData;
-
-					short ShortData;
-					unsigned short UShortData;
-
-					int IntegerData;
-					unsigned int UIntegerData;
-
-					long LongData;
-					unsigned long ULongData;
-
-					long long LongLongData;
-					unsigned long long ULongLongData;
-
-					float FloatData;
-					double DoubleData;
-					long double LongDoubleData;
-				};
-
-			};
-
-		};
-
-		/** The Operators of C++ */
-		namespace Operators {
-
-			/** @brief A C++ Operator.
-			 *
-			 *  [O'Reilly] An operator is used to perform a specific operation
-			 *  on a set of operands in an expression. Operators in C++ work
-			 *  with anywhere from one to three operands, depending on the
-			 *  operator.
-			 *
-			 */
-			class Operator : public LexicalElement {
-			public:
-				Operator(std::string regex="", short associativity=0);
-				virtual ~Operator();
-
-			private:
-
-				/** @brief Determines the association of the Operator
-				 *
-				 *  @arg @c 0 No association.
-				 *  @arg @c 1 Associates Left.
-				 *  @arg @c 2 Associates Right.
-				 */
-				short associates;
-
-				std::string regex;
-
-			};
-
-			/** @brief Scope resolution operator in C++ (::).
-			 *
-			 *  [O'Reilly] The scope resolution operator is used to specify
-			 *  a scope. The scope operator can also be used without a scope
-			 *  name to specify the @a global scope.
-			 *
-			 */
-			static const Operator O_ScopeResolution;
-
-			/** @brief Array subscript operator in C++ ([]).
-			 *
-			 *  [O'Reilly] The array subscript operator is used to access
-			 *  individual elements of arrays or memory referenced by
-			 *  pointers.
-			 *
-			 */
-			static const Operator O_ArraySubscript;
-
-			/** The member selection operators of C++ */
-			namespace MemberSelectionOperators {
-
-
-				class MemberSelectionOperator : public Operator {
-				public:
-
-					MemberSelectionOperator();
-					virtual ~MemberSelectionOperator();
-
-				};
-
-				static const MemberSelectionOperator O_DotMemberSelection;
-
-				static const MemberSelectionOperator O_ArrowMemberSelection;
-
-			};
-
-			/** @brief Functon call operator in C++ (()).
-			 *
-			 *  [O'Reilly] The function call operator, which is ( ), is used
-			 *  to invoke a function.
-			 *
-			 */
-			static const Operator O_FunctionCall;
-
-			/** @brief Value construction operator in C++ (()).
-			 *
-			 *  [O'Reilly] The value construction operator, which is also ( ),
-			 *  is used to create an instance of a type.
-			 *
-			 */
-			static const Operator O_ValueConstruction;
-
-			static const Operator O_PostfixIncrement;
-
-			static const Operator O_PostfixDecrement;
-
-			/** @brief @c typeid operator in C++ (typeid).
-			 *
-			 *  [O'Reilly] The @c typeid operator gets runtime type information
-			 *  for an operand... ...To get type information about a variable
-			 *  or type itself [(Typename)], you use the @c typeid operator.
-			 *
-			 *  The operand for @c typeid may be an expression or a type. The
-			 *  result of the @c typeid operator is a constant reference to
-			 *  an object of type @c type_info.
-			 *
-			 */
-			static const Operator O_TypeInformation;
-
-			/** The Cast Operators of C++ (unique to C++) */
-			namespace CppCastOperators {
-
-				/** @brief A C++ Cast Operator.
-				 *
-				 *  [O'Reilly] The cast operators specific to C++ are:
-				 *
-				 *  @arg @c dynamic_cast See O_DynamicCast.
-				 *  @arg @c static_cast See O_StaticCast.
-				 *  @arg @c const_cast See O_ConstCast.
-				 *  @arg @c reinterpret_cast See O_ReinterpretCast.
-				 *
-				 */
-				class CppCastOperator : public Operator {
-				public:
-					CppCastOperator();
-					virtual ~CppCastOperator();
-				};
-
-				/** @brief  C++ Type Cast - Dynamic
-				 *
-				 *  [O'Reilly] The @c dynamic_cast operator casts a pointer
-				 *  of one class type to a pointer of another within a
-				 *  derivation chain. It is allowed only with pointers and
-				 *  references to polymorphic types, which are types that
-				 *  have at least one virtual member function.
-				 *
-				 */
-				static const CppCastOperator O_DynamicCast;
-
-				/** @brief C++ Type Cast - Static
-				 *
-				 *  [O'Reilly] The @c static_cast operator is used to
-				 *  cast a pointer of one class type to a pointer of another
-				 *  within a derivation chain while avoiding the runtime
-				 *  checks done with @c dynamic_cast. As a result, you can
-				 *  use the @c static_cast operator with pointers to non-
-				 *  polymorphic types, which are types that have no virtual
-				 *  member functions. You can also use it to carry out some
-				 *  of the conversions performed using C-style casts, generally
-				 *  conversions between related types. The @c static_cast
-				 *  operator has the same syntax as @c dynamic_cast.
-				 *
-				 */
-				static const CppCastOperator O_StaticCast;
-
- 				/** @brief C++ Type Cast - Constant
- 				 *
- 				 *  [O'Reilly] You can use the @c const_cast operator to cast
- 				 *  away the @c const and @c volatile qualifiers. It has the
- 				 *  same syntax as @c dynamic_cast. Between the angle brackets,
- 				 *  you specify the same type as the original without the
- 				 *  @c const or @c volatile qualifier. Using the result is
- 				 *  assured to be safe only if the data to which the pointer
- 				 *  points was not declared as @c const or @c volatile when it
- 				 *  was first declared in the program.
-				 *
-				 */
-				static const CppCastOperator O_ConstCast;
-
-				/** @brief C++ Type Cast - Reinterpret
-				 *
-				 *  [O'Reilly] The @c reinterpret_cast allows you to convert
-				 *  a pointer to any other pointer type. It also allows you
-				 *  to convert any integral type to a pointer and back. It
-				 *  uses syntax like the other forms of casting specific to
-				 *  C++. It is typically used sparingly.
-				 *
-				 */
-				static const CppCastOperator O_ReinterpretCast;
-
-			};
-
-
-			static const Operator O_SizeInformation;
-
-			static const Operator O_PrefixIncrement;
-
-			static const Operator O_PrefixDecrement;
-
-			static const Operator O_BitwiseNot;
-
-			static const Operator O_LogicalNot;
-
-			static const Operator O_UnaryMinus;
-
-			static const Operator O_UnaryPlus;
-
-			static const Operator O_AddressOf;
-
-			static const Operator O_Indirection;
-
-			static const Operator O_Allocate;
-
-			static const Operator O_ArrayAllocate;
-
-			static const Operator O_Deallocate;
-
-			static const Operator O_ArrayDeallocate;
-
-			static const Operator O_CstyleCast;
-
-			static const Operator O_DotPointerToMemberSelection;
-
-			static const Operator O_ArrowPointerToMemberSelection;
-
-			static const Operator O_Multiply;
-
-			static const Operator O_Divide;
-
-			static const Operator O_Modulo;
-
-			static const Operator O_Add;
-
-			static const Operator O_Subtract;
-
-			static const Operator O_ShiftLeft;
-
-			static const Operator O_ShiftRight;
-
-			static const Operator O_LessThan;
-
-			static const Operator O_LessEqual;
-
-			static const Operator O_GreaterThan;
-
-			static const Operator O_GreaterEqual;
-
-			static const Operator O_EqualTo;
-
-			static const Operator O_NotEqualTo;
-
-			static const Operator O_BitwiseAnd;
-
-			static const Operator O_BitwiseXor;
-
-			static const Operator O_BitwiseOr;
-
-			static const Operator O_LogicalAnd;
-
-			static const Operator O_LogicalOr;
-
-			static const Operator O_ConditionalExpression;
-
-			static const Operator O_SimpleAssignment;
-
-			static const Operator O_MultiplyAssign;
-
-			static const Operator O_DivideAssign;
-
-			static const Operator O_ModuloAssign;
-
-			static const Operator O_AddAssign;
-
-			static const Operator O_SubtractAssign;
-
-			static const Operator O_ShiftLeftAssign;
-
-			static const Operator O_ShiftRightAssign;
-
-			static const Operator O_AndAssign;
-
-			static const Operator O_XorAssign;
-
-			static const Operator O_OrAssign;
-
-			static const Operator O_ThrowException;
-
-			static const Operator O_Sequence;
-
-		};
-
-	};
-
-	namespace Scopes {
-
-		class Scope {
-		public:
-
-			Scope();
-			virtual ~Scope();
-
-			std::string str();
-
-		};
-
-	};
-
-
-	/** A C++ Token
+//				BooleanLiteral(std::string str) : Literal(str) {
+//					;
+//				}
+//
+//				virtual ~BooleanLiteral();
+//
+//				const bool getBool() const {
+//					return (const bool)getData();
+//				}
+//
+//				const static BooleanLiteral Bool_true;
+//				const static BooleanLiteral Bool_false;
+//
+//			private:
+//
+//				bool value;
+//
+//			};
+//
+//			class CharacterLiteral : public Literal {
+//			public:
+//
+//				CharacterLiteral();
+//				virtual ~CharacterLiteral();
+//
+//			};
+//
+//			class IntegerLiteral : public Literal {
+//			public:
+//
+//				IntegerLiteral();
+//				virtual ~IntegerLiteral();
+//
+//			};
+//
+//			class FloatingPointLiteral : public Literal {
+//			public:
+//
+//				FloatingPointLiteral();
+//				virtual ~FloatingPointLiteral();
+//
+//			};
+
+};
+
+/** The Operators of C++ */
+namespace Operators {
+
+/** @brief A C++ Operator.
+ *
+ *  [O'Reilly] An operator is used to perform a specific operation
+ *  on a set of operands in an expression. Operators in C++ work
+ *  with anywhere from one to three operands, depending on the
+ *  operator.
+ *
+ */
+class Operator : public LexicalElement {
+public:
+
+	/** @brief Scope resolution operator in C++ (::).
+	 *
+	 *  [O'Reilly] The scope resolution operator is used to specify
+	 *  a scope. The scope operator can also be used without a scope
+	 *  name to specify the @a global scope.
 	 *
 	 */
-	class Token {
-	public:
+	static const Operator O_ScopeResolution;
+
+	/** @brief Array subscript operator in C++ ([]).
+	 *
+	 *  [O'Reilly] The array subscript operator is used to access
+	 *  individual elements of arrays or memory referenced by
+	 *  pointers.
+	 *
+	 */
+	static const Operator O_ArraySubscript;
+
+	/** @brief Functon call operator in C++ (()).
+	 *
+	 *  [O'Reilly] The function call operator, which is ( ), is used
+	 *  to invoke a function.
+	 *
+	 */
+	static const Operator O_FunctionCall;
+
+	/** @brief Value construction operator in C++ (()).
+	 *
+	 *  [O'Reilly] The value construction operator, which is also ( ),
+	 *  is used to create an instance of a type.
+	 *
+	 */
+	static const Operator O_ValueConstruction;
+
+	static const Operator O_PostfixIncrement;
+
+	static const Operator O_PostfixDecrement;
+
+	/** @brief @c typeid operator in C++ (typeid).
+	 *
+	 *  [O'Reilly] The @c typeid operator gets runtime type information
+	 *  for an operand... ...To get type information about a variable
+	 *  or type itself [(Typename)], you use the @c typeid operator.
+	 *
+	 *  The operand for @c typeid may be an expression or a type. The
+	 *  result of the @c typeid operator is a constant reference to
+	 *  an object of type @c type_info.
+	 *
+	 */
+	static const Operator O_TypeInformation;
+
+	static const Operator O_SizeInformation;
+
+	static const Operator O_PrefixIncrement;
+
+	static const Operator O_PrefixDecrement;
+
+	static const Operator O_BitwiseNot;
+
+	static const Operator O_LogicalNot;
+
+	static const Operator O_UnaryMinus;
+
+	static const Operator O_UnaryPlus;
+
+	static const Operator O_AddressOf;
+
+	static const Operator O_Indirection;
+
+	static const Operator O_Allocate;
+
+	static const Operator O_ArrayAllocate;
+
+	static const Operator O_Deallocate;
+
+	static const Operator O_ArrayDeallocate;
+
+	static const Operator O_CstyleCast;
+
+	static const Operator O_DotPointerToMemberSelection;
+
+	static const Operator O_ArrowPointerToMemberSelection;
+
+	static const Operator O_Multiply;
+
+	static const Operator O_Divide;
+
+	static const Operator O_Modulo;
+
+	static const Operator O_Add;
+
+	static const Operator O_Subtract;
+
+	static const Operator O_ShiftLeft;
+
+	static const Operator O_ShiftRight;
+
+	static const Operator O_LessThan;
+
+	static const Operator O_LessEqual;
+
+	static const Operator O_GreaterThan;
+
+	static const Operator O_GreaterEqual;
+
+	static const Operator O_EqualTo;
+
+	static const Operator O_NotEqualTo;
+
+	static const Operator O_BitwiseAnd;
+
+	static const Operator O_BitwiseXor;
+
+	static const Operator O_BitwiseOr;
+
+	static const Operator O_LogicalAnd;
+
+	static const Operator O_LogicalOr;
+
+	static const Operator O_ConditionalExpression;
+
+	static const Operator O_SimpleAssignment;
+
+	static const Operator O_MultiplyAssign;
+
+	static const Operator O_DivideAssign;
+
+	static const Operator O_ModuloAssign;
+
+	static const Operator O_AddAssign;
+
+	static const Operator O_SubtractAssign;
+
+	static const Operator O_ShiftLeftAssign;
+
+	static const Operator O_ShiftRightAssign;
+
+	static const Operator O_AndAssign;
+
+	static const Operator O_XorAssign;
+
+	static const Operator O_OrAssign;
+
+	static const Operator O_ThrowException;
+
+	static const Operator O_Sequence;
+
+	Operator(std::string regex="", short associativity=0);
+	virtual ~Operator();
+
+private:
+
+	/** @brief Determines the association of the Operator
+	 *
+	 *  @arg @c 0 No association.
+	 *  @arg @c 1 Associates Left.
+	 *  @arg @c 2 Associates Right.
+	 */
+	short associates;
+
+	std::string regex;
+
+};
 
 
-		/** @brief Initializes the @a activated data member by default
-		 *  @author FlowerGenius
-		 *
-		 *  Important Note: This constructor is part of a pure virtual abstract
-		 *  base class and as such should never be called excepting that a derived
-		 *  class calls it as part of the derivation chain.
-		 *
-		 */
-		Token() : identifier(""), activated(true) {}
+class MemberSelectionOperator : public Operator {
+public:
 
-		/** @brief Destroys this CppFeature object
-		 *  @author FlowerGenius
-		 *
-		 *  Important Note: This destructor is part of a pure virtual abstract
-		 *  base class and as such should never be called excepting that a derived
-		 *  class calls it as part of the derivation chain.
-		 *
-		 */
-		virtual ~Token(){}
+	static const MemberSelectionOperator O_DotMemberSelection;
 
-		virtual const Scopes::Scope& getScope() const { return cpp_scope; }
+	static const MemberSelectionOperator O_ArrowMemberSelection;
 
-		/** @brief Retrieve the ID of this Feature
-		 *
-		 * @return
-		 */
-		virtual const LexicalElements::Identifier& getIdentifier() const { return identifier; }
+	MemberSelectionOperator();
+	virtual ~MemberSelectionOperator();
 
-		/** @brief Retrieve the scoped ID of this Feature
-		 *
-		 * @return
-		 */
-		virtual std::string getAbsoluteIdentifier() { return getScope().str() +
-				getIdentifier().getName(); }
+};
 
-		/** @brief Pure virtual member function promising the ability of derived
-		 *  types of @c CppFeature to be represented in C++ syntax.
-		 *  @author FlowerGenius
-		 *  @return C++ string representing this feature in C++ syntax.
-		 *
-		 *  Since a @c CppFeature is a C++ lexical component, it must
-		 *  be able to be represented in valid and portable C++ syntax such that
-		 *  it can be inserted into a C++ file and form functioning code.
-		 *
-		 */
-		virtual std::string cpp_str() = 0;
 
-		/** @brief Pure virtual member function promising the ability of derived
-		 *  types of @c CppFeature to be represented in XML syntax.
-		 *  @author FlowerGenius
-		 *  @return C++ string representing this feature in XML syntax.
-		 *
-		 *  Since a @c CppFeature is a C++ lexical component, it can be
-		 *  represented using XML.
-		 *
-		 *  In the C++ program structure model that is defined in the classes found
-		 *  in this library, any feature of C++ that can be represented in C++
-		 *  syntax can also be represented in a strictly typed specialization of
-		 *  XML that can be used to form a meta-level understanding of a C++
-		 *  program and each of it's individual components.
-		 *
-		 *  TL;DR Any feature of C++ can be represented as an XML tag as well.
-		 *
-		 */
-		virtual std::string xml_str() = 0;
+/** @brief A C++ Cast Operator.
+ *
+ *  [O'Reilly] The cast operators specific to C++ are:
+ *
+ *  @arg @c dynamic_cast See O_DynamicCast.
+ *  @arg @c static_cast See O_StaticCast.
+ *  @arg @c const_cast See O_ConstCast.
+ *  @arg @c reinterpret_cast See O_ReinterpretCast.
+ *
+ */
+class CppCastOperator : public Operator {
+public:
 
-	protected:
+	/** @brief  C++ Type Cast - Dynamic
+	 *
+	 *  [O'Reilly] The @c dynamic_cast operator casts a pointer
+	 *  of one class type to a pointer of another within a
+	 *  derivation chain. It is allowed only with pointers and
+	 *  references to polymorphic types, which are types that
+	 *  have at least one virtual member function.
+	 *
+	 */
+	static const CppCastOperator O_DynamicCast;
 
-		Scopes::Scope cpp_scope;
+	/** @brief C++ Type Cast - Static
+	 *
+	 *  [O'Reilly] The @c static_cast operator is used to
+	 *  cast a pointer of one class type to a pointer of another
+	 *  within a derivation chain while avoiding the runtime
+	 *  checks done with @c dynamic_cast. As a result, you can
+	 *  use the @c static_cast operator with pointers to non-
+	 *  polymorphic types, which are types that have no virtual
+	 *  member functions. You can also use it to carry out some
+	 *  of the conversions performed using C-style casts, generally
+	 *  conversions between related types. The @c static_cast
+	 *  operator has the same syntax as @c dynamic_cast.
+	 *
+	 */
+	static const CppCastOperator O_StaticCast;
 
-		/** The ID of this Feature */
-		LexicalElements::Identifier identifier;
+	/** @brief C++ Type Cast - Constant
+	 *
+	 *  [O'Reilly] You can use the @c const_cast operator to cast
+	 *  away the @c const and @c volatile qualifiers. It has the
+	 *  same syntax as @c dynamic_cast. Between the angle brackets,
+	 *  you specify the same type as the original without the
+	 *  @c const or @c volatile qualifier. Using the result is
+	 *  assured to be safe only if the data to which the pointer
+	 *  points was not declared as @c const or @c volatile when it
+	 *  was first declared in the program.
+	 *
+	 */
+	static const CppCastOperator O_ConstCast;
 
-		/** @brief Represents the commented/uncommented state of the feature */
-		bool activated;
-	};
+	/** @brief C++ Type Cast - Reinterpret
+	 *
+	 *  [O'Reilly] The @c reinterpret_cast allows you to convert
+	 *  a pointer to any other pointer type. It also allows you
+	 *  to convert any integral type to a pointer and back. It
+	 *  uses syntax like the other forms of casting specific to
+	 *  C++. It is typically used sparingly.
+	 *
+	 */
+	static const CppCastOperator O_ReinterpretCast;
+
+
+	CppCastOperator();
+	virtual ~CppCastOperator();
+
+};
+
+};
+
+};
+
+namespace Scopes {
+
+class Scope {
+public:
+
+	Scope();
+	virtual ~Scope();
+
+	std::string str();
+
+};
+
+};
+
+
+//	/** A C++ Token
+//	 *
+//	 */
+//	class Token {
+//	public:
+//
+//
+//		/** @brief Initializes the @a activated data member by default
+//		 *  @author FlowerGenius
+//		 *
+//		 *  Important Note: This constructor is part of a pure virtual abstract
+//		 *  base class and as such should never be called excepting that a derived
+//		 *  class calls it as part of the derivation chain.
+//		 *
+//		 */
+//		Token(std::string id = "", bool act = true) :
+//			identifier(id), activated(act) {}
+//
+//		/** @brief Destroys this CppFeature object
+//		 *  @author FlowerGenius
+//		 *
+//		 *  Important Note: This destructor is part of a pure virtual abstract
+//		 *  base class and as such should never be called excepting that a derived
+//		 *  class calls it as part of the derivation chain.
+//		 *
+//		 */
+//		virtual ~Token(){}
+//
+//		virtual const Scopes::Scope& getScope() const { return cpp_scope; }
+//
+//		/** @brief Retrieve the ID of this Feature
+//		 *
+//		 * @return
+//		 */
+//		virtual const LexicalElements::Identifier& getIdentifier() const { return identifier; }
+//
+//		/** @brief Retrieve the scoped ID of this Feature
+//		 *
+//		 * @return
+//		 */
+//		virtual std::string getAbsoluteIdentifier() { return getScope().str() +
+//				getIdentifier().getName(); }
+//
+//		/** @brief Pure virtual member function promising the ability of derived
+//		 *  types of @c CppFeature to be represented in C++ syntax.
+//		 *  @author FlowerGenius
+//		 *  @return C++ string representing this feature in C++ syntax.
+//		 *
+//		 *  Since a @c CppFeature is a C++ lexical component, it must
+//		 *  be able to be represented in valid and portable C++ syntax such that
+//		 *  it can be inserted into a C++ file and form functioning code.
+//		 *
+//		 */
+//		virtual std::string cpp_str() = 0;
+//
+//		/** @brief Pure virtual member function promising the ability of derived
+//		 *  types of @c CppFeature to be represented in XML syntax.
+//		 *  @author FlowerGenius
+//		 *  @return C++ string representing this feature in XML syntax.
+//		 *
+//		 *  Since a @c CppFeature is a C++ lexical component, it can be
+//		 *  represented using XML.
+//		 *
+//		 *  In the C++ program structure model that is defined in the classes found
+//		 *  in this library, any feature of C++ that can be represented in C++
+//		 *  syntax can also be represented in a strictly typed specialization of
+//		 *  XML that can be used to form a meta-level understanding of a C++
+//		 *  program and each of it's individual components.
+//		 *
+//		 *  TL;DR Any feature of C++ can be represented as an XML tag as well.
+//		 *
+//		 */
+//		virtual std::string xml_str() = 0;
+//
+//	protected:
+//
+//		Scopes::Scope *cpp_scope;
+//
+//		/** The ID of this Feature */
+//		LexicalElements::Identifier identifier;
+//
+//		/** @brief Represents the commented/uncommented state of the feature */
+//		bool activated;
+//	};
 
 	/** @brief A C++ variable.
 	 *
@@ -1478,21 +1652,28 @@ class TypeDeclaration : public Feature {
 		 *  @param typ
 		 *  @param val
 		 */
-		Variable(LexicalElements::Identifier id,Types::Type typ,
+		Variable(std::string proposed_id,Types::Type *typ=nullptr,
 				LexicalElements::Expression *val=nullptr);
+
 		virtual ~Variable();
 
 		/**
 		 *
 		 * @return
 		 */
-		const Types::Type& getType() const { return type; }
+		const Types::Type* getType() const { return type; }
+
+		/**
+		 *
+		 */
+		void setType(Types::Type*) { this->type = type; }
+
 
 		/** @brief Get the value of this variable
 		 *
 		 *  @return A reference to @a value.
 		 */
-		const LexicalElements::Expression& getValue() const {
+		const LexicalElements::Expression* getValue() const {
 			return value;
 		}
 
@@ -1502,11 +1683,19 @@ class TypeDeclaration : public Feature {
 
 	protected:
 
+		LexicalElements::Identifier id;
+
 		/** Pointer to the value of this variable */
-		LexicalElements::Expression value;
+		LexicalElements::Expression *value;
 
 		/** The type of value contained by this variable */
-		Types::Type type;
+		Types::Type *type;
+
+		std::vector<const LexicalElements::
+		ReservedWords::Qualifier*> qualifiers;
+
+		std::vector<const LexicalElements::
+		ReservedWords::StorageClass*> storage_classes;
 
 	};
 
@@ -1540,285 +1729,341 @@ class TypeDeclaration : public Feature {
 
 #define LANG_CPP_CLASS_FUNCTION
 
-	struct Statements {
+	namespace Statements {
 
-		class Statement {
-
-		};
-
-		class ExpressionStatement {
-
-		};
-
-		struct Declarations {
-
-			class Declaration : public Statement {
-
-			};
-
-			class VariableDeclaration : public Declaration {
-
-			};
-
-			class FunctionDeclaration : public Declaration {
-
-			};
-
-			struct Definitions {
-
-				class Definition : public Declaration {
-
-				};
-
-				class VariableDefinition : public VariableDeclaration {
-
-				};
-
-				class FunctionDefinition : public FunctionDeclaration {
-
-				};
-
-			};
-
-		};
+	class Statement {
 
 	};
+
+	class ExpressionStatement {
+
+	};
+
+	namespace Declarations {
+
+	class Declaration : public Statement {
+
+	};
+
+	class VariableDeclaration : public Declaration {
+
+	};
+
+	class FunctionDeclaration : public Declaration {
+
+	};
+
+	namespace Definitions {
+
+	class Definition : public Declaration {
+
+	};
+
+	class VariableDefinition : public VariableDeclaration {
+
+	};
+
+	class FunctionDefinition : public FunctionDeclaration {
+
+	};
+
+	} /* namespace Definitions */
+
+	} /* namespace Declarations */
+
+	} /* namespace Statements */
 
 
 #define LANG_CPP_CLASS_TYPE_DECLARATION
 
+	namespace Enumerations {
 
-
-#define LANG_CPP_CLASS_EXPRESSION
-
-#define ENUM_INT_SIZE int
-
-	class Instance;
-	class Namespace;
-	class Enumeration;
-
-	class EnumeratorDefinition;
-
-	/** @brief A name that represents a constant ingeger defined in an Enum.
-	 *
-	 */
-	class Enumerator : public Variable {
-	/* Usage:
-	 *
-	 *     !{{identifier}}
-	 *
-	 * XML:
-	 *
-	 *     <enumerator id="!{{identifier}}" />
-	 *
-	 */
-	public:
-		Enumerator(EnumeratorDefinition* enumeration=nullptr,
-				std::string id="",ENUM_INT_SIZE val=0);
-		virtual ~Enumerator();
-
-		/** @brief Represents this file in C++ code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-		 */
-		std::string cpp_str();
-
-		/** @brief Represents this file in XML code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-		 */
-		std::string xml_str();
-
-	private:
-
-		/** A pointer to the Enumeration that owns this Enumerator */
-		EnumeratorDefinition* enumerator_def;
-
-	};
-
-	class EnumerationDefinition;
-
-
-	/** @brief A definition of an Enumerator.
-	 *  @author FlowerGenius
-	 *
-	 *  IMPORTANT: This definition can only occur within the context of an
-	 *  Enumeration.
-	 *
-	 */
-	class EnumeratorDefinition : public Feature {
-	/* Usage:
-	 * enum ??? {
-	 *     !{{identifier}} #{ = {value}}
-	 * };
-	 * XML:
-	 *
-	 *     <enumerator id="!{identifier}" [value="{value}"] [type="{*(enumerator->enum_ptr)}"] " />
-	 *
-	 */
+	class Enumeration : public Token {
 	public:
 
-		/** @brief Creates an EnumeratorDefinition with the default next value.
-		 *
-		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
-		 *  @param id Identifier of this Enumerator
-		 */
-		EnumeratorDefinition(EnumerationDefinition* enum_ptr, std::string id);
+		Enumeration(
+			std::string nm,
+			const Types::IntegralType *etype = &Types::IntegerType::BasicInteger,
+			std::map<std::string,LexicalElements::Literals::Literal> = {}
+		);
 
-		/** @brief Creates an instantiated EnumeratorDefinition.
-		 *
-		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
-		 *  @param id Identifier of this Enumerator
-		 *  @param n const int value this Enumerator represents.
-		 */
-		EnumeratorDefinition(EnumerationDefinition* enum_ptr,
-				std::string id,ENUM_INT_SIZE n);
-
-		/** @brief Destroys this EnumeratorDefinition.
-		 *
-		 */
-		virtual ~EnumeratorDefinition();
-
-
-		/** @brief Represents this file in C++ code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-		 */
-		std::string cpp_str();
-
-		/** @brief Represents this file in XML code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-		 */
-		std::string xml_str();
-
-
-	private:
-
-		bool explicit_enumerator;
-
-		Enumerator             data;
-		EnumerationDefinition  *enumeration_def;
-
-	};
-
-//	/** @brief A declaration of an Enumerator.
-//	 *  @author FlowerGenius
-//	 *
-//	 */
-//	class EnumeratorDeclaration : public Feature {
-//
-//	};
-
-
-#define LANG_CPP_CLASS_ENUMERATOR
-
-	/** @brief A C++ Enum
-	 *
-	 */
-	class Enumeration : public Type {
-	public:
-		Enumeration();
 		virtual ~Enumeration();
 
-		const bool& isAnonymous() const { return anonymous; }
+		const std::vector<Variable*>&
+			getEnumerators() const { return enumerators; }
 
-		/** @brief Represents this file in C++ code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-		 */
-		std::string cpp_str();
 
-		/** @brief Represents this file in XML code.
-		 *  @author FlowerGenius
-		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-		 */
-		std::string xml_str();
+	protected:
 
-		/** @brief The variables of this enum
-		 *
-		 * @return
-		 */
+		const Types::IntegralType *enumerator_type;
 
+		const Types::CompoundType *new_type;
 
 	private:
 
-		bool anonymous;
-
-		/** @brief The list of enumerators that this Enumeration defines.
-		 *
-		 */
-		std::vector<Enumerator*> enumerators;
+		std::vector<Variable*> enumerators;
 
 	};
 
-	/** @brief A definition of a C++ enum
-	 *
-	 */
-	class EnumerationDefinition : public Feature {
-	/* Usage:
-	 *
-	 *  enum #{enumeration->identifer} {
-	 *     #{enumeration->enumers[0]},
-	 *     .
-	 *     .
-	 *     .
-	 *     #{enumeration->enumers[n]}
-	 * } #{this->type_name};
-	 *
-	 * XML:
-	 *
-	 * <enum [id="{enumeration->identifier}"] [objects="{this->objects}"]>
-	 *     ?
-	 *     ?
-	 *     ?
-	 * </enum>
-	 *
-	 */
-	public:
 
-		EnumerationDefinition(bool anonymous=true, std::string identifer="");
+	} /* namespace Enumerations */
+
+	namespace Classes {
 
 
-		virtual ~EnumerationDefinition();
+	} /* namespace Classes */
 
-		/** @brief Get the default value of the next
-		 *
-		 *  @return The default value for a proposed next Enumerator
-		 */
-		ENUM_INT_SIZE next();
+	namespace Enumerations {
 
-		void addEnumerator(std::string id);
+	class ScopedEnumeration : public Enumeration {
+		public:
 
-		void addEnumerator(std::string id, ENUM_INT_SIZE n);
+			ScopedEnumeration(const Types::ClassType scopetype,
+					std::string nm = "",
+					const Types::IntegerType *dtype = &Types::IntegerType::
+					BasicInteger,
+					std::map<std::string,LexicalElements::Literals::Literal>
+					mp ={}
+			);
+			virtual ~ScopedEnumeration();
 
-		const std::vector<EnumeratorDefinition>& getEnumeratorDefinitions() const
-				{ return enumerator_definitions; }
+		protected:
 
-		const Enumeration& getData() const { return data; }
 
-		std::string cpp_str();
 
-		std::string xml_str();
+		};
 
-	private:
+	} /* namespace Enumerations */
 
-		/** The list of the EnumeratorDefinitions that this Enumeration defines */
-		std::vector<EnumeratorDefinition> enumerator_definitions;
 
-		/** The Enumeration that this class will define */
-		Enumeration data;
-
-	};
-
-	/** @brief A forward declaration of an enum
-	 *
-	 */
-	class EnumerationDeclaration : public Feature {
-
-	};
-
-#define LANG_CPP_CLASS_ENUMERATION
+//#define ENUM_INT_SIZE int
+//
+//	class Instance;
+//	class Namespace;
+//	class Enumeration;
+//
+//	class EnumeratorDefinition;
+//
+//	/** @brief A name that represents a constant ingeger defined in an Enum.
+//	 *
+//	 */
+//	class Enumerator : public Variable {
+//	/* Usage:
+//	 *
+//	 *     !{{identifier}}
+//	 *
+//	 * XML:
+//	 *
+//	 *     <enumerator id="!{{identifier}}" />
+//	 *
+//	 */
+//	public:
+//		Enumerator(EnumeratorDefinition* enumeration=nullptr,
+//				std::string id="",ENUM_INT_SIZE val=0);
+//		virtual ~Enumerator();
+//
+//		/** @brief Represents this file in C++ code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
+//		 */
+//		std::string cpp_str();
+//
+//		/** @brief Represents this file in XML code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
+//		 */
+//		std::string xml_str();
+//
+//	private:
+//
+//		/** A pointer to the Enumeration that owns this Enumerator */
+//		EnumeratorDefinition* enumerator_def;
+//
+//	};
+//
+//	class EnumerationDefinition;
+//
+//
+//	/** @brief A definition of an Enumerator.
+//	 *  @author FlowerGenius
+//	 *
+//	 *  IMPORTANT: This definition can only occur within the context of an
+//	 *  Enumeration.
+//	 *
+//	 */
+//	class EnumeratorDefinition : public Feature {
+//	/* Usage:
+//	 * enum ??? {
+//	 *     !{{identifier}} #{ = {value}}
+//	 * };
+//	 * XML:
+//	 *
+//	 *     <enumerator id="!{identifier}" [value="{value}"] [type="{*(enumerator->enum_ptr)}"] " />
+//	 *
+//	 */
+//	public:
+//
+//		/** @brief Creates an EnumeratorDefinition with the default next value.
+//		 *
+//		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
+//		 *  @param id Identifier of this Enumerator
+//		 */
+//		EnumeratorDefinition(EnumerationDefinition* enum_ptr, std::string id);
+//
+//		/** @brief Creates an instantiated EnumeratorDefinition.
+//		 *
+//		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
+//		 *  @param id Identifier of this Enumerator
+//		 *  @param n const int value this Enumerator represents.
+//		 */
+//		EnumeratorDefinition(EnumerationDefinition* enum_ptr,
+//				std::string id,ENUM_INT_SIZE n);
+//
+//		/** @brief Destroys this EnumeratorDefinition.
+//		 *
+//		 */
+//		virtual ~EnumeratorDefinition();
+//
+//
+//		/** @brief Represents this file in C++ code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
+//		 */
+//		std::string cpp_str();
+//
+//		/** @brief Represents this file in XML code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
+//		 */
+//		std::string xml_str();
+//
+//
+//	private:
+//
+//		bool explicit_enumerator;
+//
+//		Enumerator             data;
+//		EnumerationDefinition  *enumeration_def;
+//
+//	};
+//
+////	/** @brief A declaration of an Enumerator.
+////	 *  @author FlowerGenius
+////	 *
+////	 */
+////	class EnumeratorDeclaration : public Feature {
+////
+////	};
+//
+//
+//#define LANG_CPP_CLASS_ENUMERATOR
+//
+//	/** @brief A C++ Enum
+//	 *
+//	 */
+//	class Enumeration : public Type {
+//	public:
+//		Enumeration();
+//		virtual ~Enumeration();
+//
+//		const bool& isAnonymous() const { return anonymous; }
+//
+//		/** @brief Represents this file in C++ code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
+//		 */
+//		std::string cpp_str();
+//
+//		/** @brief Represents this file in XML code.
+//		 *  @author FlowerGenius
+//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
+//		 */
+//		std::string xml_str();
+//
+//		/** @brief The variables of this enum
+//		 *
+//		 * @return
+//		 */
+//
+//
+//	private:
+//
+//		bool anonymous;
+//
+//		/** @brief The list of enumerators that this Enumeration defines.
+//		 *
+//		 */
+//		std::vector<Enumerator*> enumerators;
+//
+//	};
+//
+//	/** @brief A definition of a C++ enum
+//	 *
+//	 */
+//	class EnumerationDefinition : public Feature {
+//	/* Usage:
+//	 *
+//	 *  enum #{enumeration->identifer} {
+//	 *     #{enumeration->enumers[0]},
+//	 *     .
+//	 *     .
+//	 *     .
+//	 *     #{enumeration->enumers[n]}
+//	 * } #{this->type_name};
+//	 *
+//	 * XML:
+//	 *
+//	 * <enum [id="{enumeration->identifier}"] [objects="{this->objects}"]>
+//	 *     ?
+//	 *     ?
+//	 *     ?
+//	 * </enum>
+//	 *
+//	 */
+//	public:
+//
+//		EnumerationDefinition(bool anonymous=true, std::string identifer="");
+//
+//
+//		virtual ~EnumerationDefinition();
+//
+//		/** @brief Get the default value of the next
+//		 *
+//		 *  @return The default value for a proposed next Enumerator
+//		 */
+//		ENUM_INT_SIZE next();
+//
+//		void addEnumerator(std::string id);
+//
+//		void addEnumerator(std::string id, ENUM_INT_SIZE n);
+//
+//		const std::vector<EnumeratorDefinition>& getEnumeratorDefinitions() const
+//				{ return enumerator_definitions; }
+//
+//		const Enumeration& getData() const { return data; }
+//
+//		std::string cpp_str();
+//
+//		std::string xml_str();
+//
+//	private:
+//
+//		/** The list of the EnumeratorDefinitions that this Enumeration defines */
+//		std::vector<EnumeratorDefinition> enumerator_definitions;
+//
+//		/** The Enumeration that this class will define */
+//		Enumeration data;
+//
+//	};
+//
+//	/** @brief A forward declaration of an enum
+//	 *
+//	 */
+//	class EnumerationDeclaration : public Feature {
+//
+//	};
+//
+//#define LANG_CPP_CLASS_ENUMERATION
 
 
 	/** @brief Scope wrapper for C++ Class Types

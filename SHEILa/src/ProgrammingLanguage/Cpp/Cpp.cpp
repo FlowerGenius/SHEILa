@@ -242,171 +242,191 @@ namespace Types {
 
 using namespace LexicalElements::ReservedWords;
 
+std::list<Type*> Type::all_types;
 
 Types::Type::Type(std::initializer_list<std::string> nm) {
 	this->type_name = nm;
 	rwords = false;
+	all_types.push_back(this);
 }
 
-Types::Type::Type(std::initializer_list<const ReservedWord*> nm) {
+Types::Type::Type(std::initializer_list<rw_ptr> nm) {
 	this->words = nm;
 	rwords = true;
+	all_types.push_back(this);
 }
 
 Types::Type::~Type() {
-
+	all_types.remove(this);
 }
 
-const Type Type::Type_name = Type({&ReservedWord::R_typename});
+const Type Type::Type_name = Type({&ReservedTypeWord::R_typename});
 
-namespace FundamentalTypes {
+namespace FundamentalTypes { /*===============================================*/
 
-FundamentalType::FundamentalType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) : Type(req){
+std::list<const FundamentalType*> FundamentalType::all_fundamental_types;
+
+FundamentalType::FundamentalType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt) : Type(req){
 
 	words.insert(words.end(), opt);
-
+	all_fundamental_types.push_back(this);
 }
 
 FundamentalType::~FundamentalType() {
-
+	all_fundamental_types.remove(this);
 }
 
 const FundamentalType FundamentalType::Void =
-		FundamentalType({&ReservedWord::R_void});
+		FundamentalType({&ReservedTypeWord::R_void});
 
-namespace ArithmeticTypes {
+namespace ArithmeticTypes { /*================================================*/
 
-ArithmeticType::ArithmeticType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) :
+std::list<const ArithmeticType*> ArithmeticType::all_arithmetic_types;
+
+ArithmeticType::ArithmeticType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt) :
 				FundamentalType(req,opt) {
-
+	all_arithmetic_types.push_back(this);
 }
 
 ArithmeticType::~ArithmeticType() {
-
+	all_arithmetic_types.remove(this);
 }
 
-namespace IntegralTypes {
+namespace IntegralTypes { /*==================================================*/
+
+std::list<const IntegralType*> IntegralType::all_integral_types;
 
 IntegralType::IntegralType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt) :
-				ArithmeticType(req,opt) {
-
+		std::initializer_list<res_word_ptr> opt, bool sgn) :
+				ArithmeticType(req,opt), _signed_(sgn) {
+	all_integral_types.push_back(this);
 }
 
 IntegralType::~IntegralType() {
-
+	all_integral_types.remove(this);
 }
 
 const IntegralType IntegralType::Boolean =
-		IntegralType({&ReservedWord::R_bool});
+		IntegralType({&ReservedTypeWord::R_bool});
 
-namespace CharacterTypes {
+namespace CharacterTypes { /*=================================================*/
 
-CharacterType::CharacterType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) : IntegralType(req,opt) {
+std::list<const CharacterType*> CharacterType::all_character_types;
 
+CharacterType::CharacterType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt,bool sgn) :
+				IntegralType(req,opt,sgn) {
+	all_character_types.push_back(this);
 }
 
 CharacterType::~CharacterType() {
-
+	all_character_types.remove(this);
 }
 
 const CharacterType CharacterType::Char =
-		CharacterType({&ReservedWord::R_char},{&ReservedWord::R_signed});
+		CharacterType({&ReservedTypeWord::R_char},{&ReservedTypeWord::R_signed});
 
 const CharacterType CharacterType::WideChar =
-		CharacterType({&ReservedWord::R_wchar_t},{&ReservedWord::R_signed});
+		CharacterType({&ReservedTypeWord::R_wchar_t},{&ReservedTypeWord::R_signed});
 
 const CharacterType CharacterType::UnsignedChar =
-		CharacterType({&ReservedWord::R_unsigned,&ReservedWord::R_char});
+		CharacterType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_char},
+				{},false);
 
 const CharacterType CharacterType::UnsignedWideChar =
-		CharacterType({&ReservedWord::R_unsigned,&ReservedWord::R_wchar_t});
+		CharacterType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_wchar_t},
+				{},false);
 
 } /* namespace CharacterTypes */
 
-namespace IntegerTypes {
+namespace IntegerTypes { /*===================================================*/
 
-IntegerType::IntegerType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) : IntegralType(req,opt) {
+std::list<const IntegerType*> IntegerType::all_integer_types;
 
+
+IntegerType::IntegerType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt, bool sgn) :
+				IntegralType(req,opt,sgn) {
+	all_integer_types.push_back(this);
 }
 
 IntegerType::~IntegerType() {
-
+	all_integer_types.remove(this);
 }
 
 const IntegerType IntegerType::ShortInteger =
-		IntegerType({&ReservedWord::R_short},
-				{&ReservedWord::R_signed,&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_short},
+				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 
 const IntegerType IntegerType::BasicInteger =
-		IntegerType({&ReservedWord::R_int},{&ReservedWord::R_signed});
+		IntegerType({&ReservedTypeWord::R_int},{&ReservedTypeWord::R_signed});
 
 const IntegerType IntegerType::LongInteger =
-		IntegerType({&ReservedWord::R_long},
-				{&ReservedWord::R_signed,&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_long},
+				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 
 const IntegerType IntegerType::LongLongInteger =
-		IntegerType({&ReservedWord::R_long,&ReservedWord::R_long},
-				{&ReservedWord::R_signed,&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long},
+				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 
 const IntegerType IntegerType::UnsignedShortInteger =
-		IntegerType({&ReservedWord::R_unsigned,&ReservedWord::R_short},
-				{&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_short},
+				{&ReservedTypeWord::R_int},false);
 
 const IntegerType IntegerType::UnsignedBasicInteger =
-		IntegerType({&ReservedWord::R_unsigned,&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_int},{},false);
 
 const IntegerType IntegerType::UnsignedLongInteger =
-		IntegerType({&ReservedWord::R_unsigned,&ReservedWord::R_long},
-				{&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long},
+				{&ReservedTypeWord::R_int},false);
 
 const IntegerType IntegerType::UnsignedLongLongInteger =
-		IntegerType({&ReservedWord::R_unsigned,&ReservedWord::R_long,
-	&ReservedWord::R_long},{&ReservedWord::R_int});
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long,
+	&ReservedTypeWord::R_long},{&ReservedTypeWord::R_int},false);
 
 
 } /* namespace IntegerTypes */
 
 } /* namespace IntegralTypes */
 
-namespace FloatingPointTypes {
+namespace FloatingPointTypes { /*=============================================*/
 
-FloatingPointType::FloatingPointType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) :
+std::list<const FloatingPointType*> FloatingPointType::all_floating_point_types;
+
+
+FloatingPointType::FloatingPointType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt) :
 		ArithmeticType(req,opt) {
-
+	all_floating_point_types.push_back(this);
 }
 
 FloatingPointType::~FloatingPointType() {
-
-
+	all_floating_point_types.remove(this);
 }
 
 const FloatingPointType FloatingPointType::Float =
-		FloatingPointType({&ReservedWord::R_float});
+		FloatingPointType({&ReservedTypeWord::R_float});
 
 const FloatingPointType FloatingPointType::Double =
-		FloatingPointType({&ReservedWord::R_double});
+		FloatingPointType({&ReservedTypeWord::R_double});
 
 const FloatingPointType FloatingPointType::LongDouble =
-		FloatingPointType({&ReservedWord::R_long,&ReservedWord::R_double});
+		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_double});
 
 const FloatingPointType FloatingPointType::LongLongDouble =
-		FloatingPointType({&ReservedWord::R_long,&ReservedWord::R_long,
-	&ReservedWord::R_double});
+		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long,
+	&ReservedTypeWord::R_double});
 
 } /* namespace FloatingPointTypes */
 } /* namespace ArithmeticTypes */
 } /* namespace FundamentalTypes */
 
-namespace CompoundTypes {
+namespace CompoundTypes { /*==================================================*/
 
-CompoundType::CompoundType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) : Type(req) {
+CompoundType::CompoundType(std::initializer_list<res_word_ptr> req,
+		std::initializer_list<res_word_ptr> opt) : Type(req) {
 	words.insert(words.end(),opt);
 }
 
@@ -419,20 +439,32 @@ CompoundType::~CompoundType() {
 }
 
 const CompoundType CompoundType::T_Enum =
-		CompoundType({&ReservedWord::R_enum});
+		CompoundType({&ReservedTypeWord::R_enum});
 
 const CompoundType CompoundType::T_ScopedEnum =
-		CompoundType({&ReservedWord::R_enum},{&ReservedWord::R_class,
-		&ReservedWord::R_struct});
+		CompoundType({&ReservedTypeWord::R_enum},{&ReservedTypeWord::R_class,
+		&ReservedTypeWord::R_struct});
 
 namespace EnumerationTypes {
 
-EnumerationType::EnumerationType(std::initializer_list<const ReservedWord*> req,
-		std::initializer_list<const ReservedWord*> opt) : CompoundType(req,opt) {
+EnumerationType::EnumerationType(std::string nm) : CompoundType({nm}) {
 
 }
 
 EnumerationType::~EnumerationType() {
+
+}
+
+ScopedEnumType::ScopedEnumType(
+		const Types::ClassType *scopetype,
+		std::string nm,
+		const Types::IntegralType *dtype) : EnumerationType(nm) {
+	scope_class = scopetype;
+	datatype = dtype;
+
+}
+
+ScopedEnumType::~ScopedEnumType() {
 
 }
 
@@ -443,7 +475,7 @@ EnumerationType::~EnumerationType() {
 
 ArrayType::ArrayType(const Types::Type *target) :
 		CompoundType({target->getName().front()+"[]"}) {
-
+	contents_type = const_cast<Types::Type*>(target);
 }
 
 ArrayType::~ArrayType() {
@@ -452,10 +484,9 @@ ArrayType::~ArrayType() {
 
 
 
-StringType::StringType(const Types::FundamentalTypes::ArithmeticTypes::
-		IntegralTypes::CharacterTypes::CharacterType *string_of) :
+StringType::StringType(const Types::CharacterType *string_of) :
 			CompoundType({string_of->getName().front()+"[]"}) {
-
+	contents_type = const_cast<Types::CharacterType*>(string_of);
 }
 
 StringType::~StringType() {
@@ -463,25 +494,21 @@ StringType::~StringType() {
 }
 
 const StringType StringType::T_CharString =
-		StringType(&Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::
-				CharacterTypes::CharacterType::Char);
+		StringType(&Types::CharacterType::Char);
 
 const StringType StringType::T_WideCharString =
-		StringType(&Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::
-				CharacterTypes::CharacterType::WideChar);
+		StringType(&Types::CharacterType::WideChar);
 
 const StringType StringType::T_UnsignedCharString =
-		StringType(&Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::
-				CharacterTypes::CharacterType::UnsignedChar);
+		StringType(&Types::CharacterType::UnsignedChar);
 
 const StringType StringType::T_UnsignedWideCharString =
-		StringType(&Types::FundamentalTypes::ArithmeticTypes::IntegralTypes::
-				CharacterTypes::CharacterType::UnsignedWideChar);
+		StringType(&Types::CharacterType::UnsignedWideChar);
 
 
 PointerType::PointerType(Types::Type *target) :
 	CompoundType({target->getName().front()+"*"}) {
-
+	contents_type = target;
 }
 
 PointerType::~PointerType() {
@@ -500,6 +527,7 @@ PointerToMemberType::~PointerToMemberType() {
 
 ReferenceType::ReferenceType(Types::Type *target) :
 		CompoundType({target->getName().front()+"&"}) {
+	contents_type = target;
 
 }
 
@@ -509,8 +537,8 @@ ReferenceType::~ReferenceType() {
 
 namespace ClassTypes {
 
-ClassType::ClassType(std::initializer_list<res_word_ptr>
-req, std::initializer_list<res_word_ptr> opt) : CompoundType(req,opt) {
+ClassType::ClassType(std::initializer_list<res_word_ptr> req) :
+		CompoundType(req) {
 
 }
 
@@ -519,13 +547,39 @@ ClassType::~ClassType() {
 }
 
 const ClassType ClassType::T_Class =
-		ClassType({&ReservedWord::R_class});
+		ClassType({&ReservedTypeWord::R_class});
 
 const ClassType ClassType::T_Struct =
-		ClassType({&ReservedWord::R_struct});
+		ClassType({&ReservedTypeWord::R_struct});
 
 const ClassType ClassType::T_Union =
-		ClassType({&ReservedWord::R_union});
+		ClassType({&ReservedTypeWord::R_union});
+
+CppUnionType::CppUnionType(std::string nm) : Type({nm}) {
+
+}
+
+CppUnionType::~CppUnionType() {
+
+}
+
+CppClassType::CppClassType(std::string nm) : Type({nm}) {
+
+}
+
+CppClassType::~CppClassType() {
+
+}
+
+CppStructType::CppStructType(std::string nm) : CppClassType(nm) {
+
+}
+
+CppStructType::~CppStructType() {
+
+}
+
+
 
 } /* namespace ClassTypes */
 } /* namespace CompoundTypes */
@@ -549,8 +603,13 @@ Comment::~Comment() {
 
 }
 
-Identifier::Identifier(std::string unf) {
+Identifier::Identifier(std::string unf, Types::Type *typ) {
+	this->name = unf;
+	this->t = typ;
+}
 
+void Identifier::declare(Types::Type *t) {
+	this->t = t;
 }
 
 Identifier::~Identifier() {
@@ -567,28 +626,24 @@ Typename::~Typename() {
 
 namespace ReservedWords {
 
-ReservedWord::ReservedWord(std::string str) : name(str) {
+std::list<const ReservedWord*> ReservedWord::all_words;;
 
+ReservedWord::ReservedWord(std::string str) : name(str) {
+	all_words.push_back(this);
 }
 
 ReservedWord::~ReservedWord() {
 
 }
 
-namespace ReservedTypenames {
 
-ReservedTypename::ReservedTypename(Types::Type typ) :
-	ReservedWord(typ.get()), Typename(typ.get(),typ) {
+ReservedTypeWord::ReservedTypeWord(std::string str) : ReservedWord(str) {
 
 }
 
-ReservedTypename::~ReservedTypename() {
+ReservedTypeWord::~ReservedTypeWord() {
 
 }
-
-} /* namespace ReservedTypenames */
-
-namespace Qualifiers {
 
 Qualifier::Qualifier(std::string str) : ReservedWord(str) {
 
@@ -598,11 +653,159 @@ Qualifier::~Qualifier() {
 
 }
 
-} /* namespace Qualifiers */
-
 } /* namespace ReservedWords */
 
+Expression::Expression(std::initializer_list<LexicalElement> expr) {
+
+}
+
+Expression::~Expression() {
+
+}
+
+namespace Literals {
+
+Literal::Literal(std::string str, const Types::Type *typ) {
+	verbatim = str;
+
+	using namespace Types::FundamentalTypes::ArithmeticTypes::IntegralTypes;
+
+	if (verbatim == "true")  {
+		data = new bool(true);
+		data_type = &IntegralType::Boolean;
+	} else if (verbatim == "false") {
+		data = new bool(false);
+		data_type = &IntegralType::Boolean;
+	}
+
+	using namespace CharacterTypes;
+
+	if (verbatim.at(0) == 'L' ) {
+		if (verbatim.at(1) == '\'') { /* wide character literal */
+			data = new char();
+		} else if (verbatim.at(1) == '\"') { /* wide string literal */
+
+		} else {
+
+		}
+	} else if (verbatim.at(0) == '\'') { /* character literal */
+
+	} else if (verbatim.at(0) == '\"') { /* string literal */
+
+	} else {
+
+	}
+
+
+	{ data_type = typ; }
+
+
+}
+
+Literal::~Literal() {
+	delete data;
+}
+
+} /* namespace Literals */
+
+namespace Operators {
+
+Operator::Operator(std::string regex, short associativity) {
+
+}
+
+Operator::~Operator() {
+
+}
+
+} /* namespace Operators */
+
 } /* namespace LexicalElements */
+
+
+Cpp::Variable::Variable(std::string proposed_id,Types::Type *typ,
+		LexicalElements::Expression *val) {
+
+	id = LexicalElements::Identifier(proposed_id);
+	type = typ;
+	value = val;
+
+	if (type != nullptr) {
+		id.declare(type);
+	}
+}
+
+std::string Cpp::Variable::cpp_str() {
+
+}
+
+std::string Cpp::Variable::xml_str() {
+
+}
+
+Cpp::Variable::~Variable() {
+
+}
+
+
+namespace Enumerations {
+
+
+Enumeration::Enumeration(std::string nm,
+		const Types::IntegralType *etype,
+		std::map<std::string,LexicalElements::Literals::Literal> mp) :
+				Token(nm) {
+
+	enumerator_type = etype;
+
+	for (auto&& val : mp) {
+		Variable *var = new Variable
+				(
+					val.first,
+					const_cast<Types::IntegralType*>(enumerator_type),
+					&val.second
+				);
+
+		enumerators.push_back(var);
+	}
+
+	new_type = new Types::EnumerationType(nm);
+
+}
+
+Enumeration::~Enumeration() {
+	delete new_type;
+
+	for (auto&& val : enumerators) {
+		delete val;
+	}
+}
+
+} /* namespace Enumerations */
+
+
+namespace Classes {
+
+}
+
+namespace Enumerations {
+
+ScopedEnumeration::ScopedEnumeration(const Types::ClassType scopetype,
+		std::string nm,
+		const Types::IntegerType *dtype,
+		std::map<std::string,LexicalElements::Literals::Literal> mp) :
+				Enumeration(nm,dtype,mp) {
+
+}
+
+ScopedEnumeration::~ScopedEnumeration() {
+
+}
+
+
+} /* namespace Enumerations */
+
+
 } /* namespace Cpp */
 
 
@@ -664,22 +867,7 @@ Cpp::PreProcessor::Macro::~Macro() {
 /*========================= Variables ========================================*/
 #ifdef LANG_CPP_CLASS_VARIABLE
 
-Cpp::Variable::Variable(LexicalElements::Identifier id,Types::Type typ,
-		LexicalElements::Expression *val) {
 
-}
-
-std::string Cpp::Variable::cpp_str() {
-
-}
-
-std::string Cpp::Variable::xml_str() {
-
-}
-
-Cpp::Variable::~Variable() {
-
-}
 
 #endif
 /*========================= Functions ========================================*/
@@ -687,6 +875,24 @@ Cpp::Variable::~Variable() {
 
 
 /*========================= Enums ============================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #ifdef LANG_CPP_CLASS_ENUMERATOR
 
 Cpp::Enumerator::Enumerator(EnumeratorDefinition* enumerator,
