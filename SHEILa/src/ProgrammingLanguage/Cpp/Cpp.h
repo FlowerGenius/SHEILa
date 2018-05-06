@@ -247,6 +247,10 @@ class ReservedTypeWord;
 }
 }
 
+namespace Scopes {
+class Scope;
+}
+
 //class Variable;
 
 namespace Types {
@@ -264,12 +268,13 @@ class Type {
 
 	typedef const LexicalElements::ReservedWords::ReservedTypeWord* rw_ptr;
 
-	static std::list<Type*> all_types;
+
+	static std::map<Scopes::Scope*,std::list<Type*> > all_types;
 
 public:
 
 
-	Type(std::initializer_list<std::string> nm = {});
+	Type(std::initializer_list<std::string> nm = {},  Scopes::Scope *scop=nullptr);
 	Type(std::initializer_list<rw_ptr> nm);
 
 	virtual ~Type();
@@ -298,6 +303,8 @@ protected:
 private:
 
 	bool rwords;
+
+	Scopes::Scope *myscope;
 
 };
 
@@ -1019,9 +1026,7 @@ public:
 	static const ReservedWord R_operator;
 	static const ReservedWord R_or;
 	static const ReservedWord R_or_eq;
-	static const ReservedWord R_private;
-	static const ReservedWord R_protected;
-	static const ReservedWord R_public;
+
 	static const ReservedWord R_reinterpret_cast;
 	static const ReservedWord R_return;
 	static const ReservedWord R_sizeof;
@@ -1073,6 +1078,9 @@ private:
 };
 
 class ReservedTypeWord : public ReservedWord {
+
+	static std::list<const ReservedTypeWord*> all_type_words;
+
 public:
 
 	static const ReservedTypeWord R_void;
@@ -1113,6 +1121,9 @@ public:
 };
 
 class Qualifier : public ReservedWord {
+
+	static std::list<const Qualifier*> all_qualifiers;
+
 public:
 
 	static const Qualifier R_const; // = Qualifier("const");
@@ -1125,6 +1136,9 @@ public:
 };
 
 class StorageClass : public ReservedWord {
+
+	static std::list<const StorageClass*> all_storage_classes;
+
 public:
 
 	static const StorageClass R_extern;
@@ -1135,6 +1149,21 @@ public:
 
 	StorageClass(std::string str);
 	virtual ~StorageClass();
+
+};
+
+class AccessLevel : public ReservedWord {
+
+	static std::list<const AccessLevel*> all_access_levels;
+
+public:
+
+	static const AccessLevel R_private;
+	static const AccessLevel R_protected;
+	static const AccessLevel R_public;
+
+	AccessLevel(std::string str);
+	virtual ~AccessLevel();
 
 };
 
@@ -1212,55 +1241,6 @@ private:
 	void *data;
 
 };
-
-
-
-//
-//			class BooleanLiteral : public Literal {
-//			public:
-//
-//				BooleanLiteral(std::string str) : Literal(str) {
-//					;
-//				}
-//
-//				virtual ~BooleanLiteral();
-//
-//				const bool getBool() const {
-//					return (const bool)getData();
-//				}
-//
-//				const static BooleanLiteral Bool_true;
-//				const static BooleanLiteral Bool_false;
-//
-//			private:
-//
-//				bool value;
-//
-//			};
-//
-//			class CharacterLiteral : public Literal {
-//			public:
-//
-//				CharacterLiteral();
-//				virtual ~CharacterLiteral();
-//
-//			};
-//
-//			class IntegerLiteral : public Literal {
-//			public:
-//
-//				IntegerLiteral();
-//				virtual ~IntegerLiteral();
-//
-//			};
-//
-//			class FloatingPointLiteral : public Literal {
-//			public:
-//
-//				FloatingPointLiteral();
-//				virtual ~FloatingPointLiteral();
-//
-//			};
 
 };
 
@@ -1534,9 +1514,16 @@ public:
 namespace Scopes {
 
 class Scope {
+
+	static std::list<Scope*> scopes;
+
 public:
 
-	Scope();
+	static Scope global_scope;
+
+//	static Scope* newScope(Scope &encloser = global_scope);
+
+	Scope(std::initializer_list<LexicalElements::Identifier> ls = {});
 	virtual ~Scope();
 
 	std::string str();
@@ -1666,7 +1653,7 @@ public:
 		/**
 		 *
 		 */
-		void setType(Types::Type*) { this->type = type; }
+		void setType(Types::Type* type) { this->type = type; }
 
 
 		/** @brief Get the value of this variable

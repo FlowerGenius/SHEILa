@@ -242,22 +242,26 @@ namespace Types {
 
 using namespace LexicalElements::ReservedWords;
 
-std::list<Type*> Type::all_types;
+std::map<Scopes::Scope*,std::list<Type*> > Type::all_types;
 
-Types::Type::Type(std::initializer_list<std::string> nm) {
+Types::Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
 	this->type_name = nm;
 	rwords = false;
-	all_types.push_back(this);
+	if (scop != nullptr) {
+		myscope = scop;
+	} else { myscope = &Scopes::Scope::global_scope; }
+	all_types[myscope].push_back(this);
 }
 
 Types::Type::Type(std::initializer_list<rw_ptr> nm) {
 	this->words = nm;
 	rwords = true;
-	all_types.push_back(this);
+	myscope = &Scopes::Scope::global_scope;
+	all_types[myscope].push_back(this);
 }
 
 Types::Type::~Type() {
-	all_types.remove(this);
+	all_types[myscope].remove(this);
 }
 
 const Type Type::Type_name = Type({&ReservedTypeWord::R_typename});
@@ -633,25 +637,49 @@ ReservedWord::ReservedWord(std::string str) : name(str) {
 }
 
 ReservedWord::~ReservedWord() {
-
+	all_words.remove(this);
 }
 
+std::list<const ReservedTypeWord*> ReservedTypeWord::all_type_words;
 
 ReservedTypeWord::ReservedTypeWord(std::string str) : ReservedWord(str) {
-
+	all_type_words.push_back(this);
 }
 
 ReservedTypeWord::~ReservedTypeWord() {
-
+	all_type_words.remove(this);
 }
 
-Qualifier::Qualifier(std::string str) : ReservedWord(str) {
+std::list<const Qualifier*> Qualifier::all_qualifiers;
 
+Qualifier::Qualifier(std::string str) : ReservedWord(str) {
+	all_qualifiers.push_back(this);
 }
 
 Qualifier::~Qualifier() {
-
+	all_qualifiers.remove(this);
 }
+
+std::list<const StorageClass*> StorageClass::all_storage_classes;
+
+StorageClass::StorageClass(std::string str) : ReservedWord(str) {
+	all_storage_classes.push_back(this);
+}
+
+StorageClass::~StorageClass() {
+	all_storage_classes.remove(this);
+}
+
+std::list<const AccessLevel*> AccessLevel::all_access_levels;
+
+AccessLevel::AccessLevel(std::string str) : ReservedWord(str) {
+	all_access_levels.push_back(this);
+}
+
+AccessLevel::~AccessLevel() {
+	all_access_levels.remove(this);
+}
+
 
 } /* namespace ReservedWords */
 
@@ -721,6 +749,22 @@ Operator::~Operator() {
 } /* namespace Operators */
 
 } /* namespace LexicalElements */
+
+namespace Scopes {
+
+std::list<Scope*> Scope::scopes;
+
+Scope Scope::global_scope = Scope();
+
+Scope::Scope(std::initializer_list<LexicalElements::Identifier> ls) {
+	scopes.push_back(this);
+}
+
+Scope::~Scope() {
+	scopes.remove(this);
+}
+
+} /* namespace Scopes */
 
 
 Cpp::Variable::Variable(std::string proposed_id,Types::Type *typ,
