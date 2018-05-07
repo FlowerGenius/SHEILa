@@ -41,61 +41,18 @@
 	#define CPP_SUPPORT_LONGLONG_DOUBLE true
 #endif
 
-namespace sheila {
-namespace cpp {
 
-typedef enum cpp_standard_library_headers {
-	C_ASSERT,
-	C_CTYPE,
-	C_ERRNO,
-	C_FLOAT,
-	C_ISO646,
-	C_LIMITS,
-	C_LOCALE,
-	C_MATH,
-	C_SETJMP,
-	C_SIGNAL,
-	C_STDARG,
-	C_STDDEF,
-	C_STDIO,
-	C_STDLIB,
-	C_STRING,
-	C_TIME,
-	C_WCHAR,
-	C_WCTYPE,
-	ALGORITHM,
-	BITSET,
-	COMPLEX,
-	DEQUE,
-	EXCEPTION,
-	FSTREAM,
-	FUNCTIONAL,
-	IOMANIP,
-	IOS,
-	IOSFWD,
-	IOSTREAM,
-	ISTREAM,
-	ITERATOR,
-	LIMITS,
-	LIST,
-	LOCALE,
-	MAP,
-	MEMORY,
-	NEW,
-	NUMERIC,
-	OSTREAM,
-	QUEUE,
-	SET,
-	SSTREAM,
-	STACK,
-	STDEXCEPT,
-	STREAMBUF,
-	STRING,
-	TYPEINFO,
-	UTILITY,
-	VALARRAY,
-	VECTOR
-} CppStandardHeaderFile;
+/** @brief Dummy class representing the C++ programming language.
+ *  @author FlowerGenius
+ *
+ *  Stores actions and members which are part of the implementation of the
+ *  language.
+ *
+ *  Important Note: This class is not mean to be instantiated, it is simply
+ *  a scoped wrapper for functions and operations specific to C++.
+ *
+ */
+namespace Cpp {
 
 namespace exception {
 
@@ -121,20 +78,6 @@ namespace exception {
 //	};
 
 }
-
-
-
-/** @brief Dummy class representing the C++ programming language.
- *  @author FlowerGenius
- *
- *  Stores actions and members which are part of the implementation of the
- *  language.
- *
- *  Important Note: This class is not mean to be instantiated, it is simply
- *  a scoped wrapper for functions and operations specific to C++.
- *
- */
-namespace Cpp {
 
 /** @brief An abstract model of a feature of the C++ programming language.
  *  @author FlowerGenius
@@ -2908,8 +2851,5 @@ public:
 //private:
 //	std::vector<std::string> parameters;
 //};
-
-} /* namespace cpp */
-} /* namespace sheila */
 
 #endif /* CPP_CPP_H_ */

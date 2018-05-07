@@ -9,12 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include "CppLanguage.h"
-
-
-
-namespace sheila {
-namespace cpp {
+#include "../include/CppLanguage.h"
 
 #if (BUILD_FOR_SHEILA_DAEMON == 1)
 template<class _N>
@@ -313,9 +308,11 @@ CompoundType::~CompoundType() {
 const CompoundType CompoundType::T_Enum =
 		CompoundType({&ReservedTypeWord::R_enum});
 
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 const CompoundType CompoundType::T_ScopedEnum =
 		CompoundType({&ReservedTypeWord::R_enum},{&ReservedTypeWord::R_class,
 		&ReservedTypeWord::R_struct});
+#endif
 
 namespace EnumerationTypes {
 
@@ -1008,10 +1005,3 @@ Cpp::Project::~Project(){
 //Cpp::Project::Artifact::~Artifact() {
 //
 //}
-
-
-
-} /* namespace cpp */
-} /* namespace sheila */
-
-
