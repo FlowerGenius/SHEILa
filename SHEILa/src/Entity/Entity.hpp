@@ -43,7 +43,7 @@ struct Entity_base {
  *  required to build the class of the same name and it's variants.
  */
 template<class _Tp>
-class Entity : public cpp::Cpp::Project::Artifact::Object<_Tp> {
+class Entity : public cpp::Cpp::Structure::Files::OutFiles::Object<_Tp> {
 public:
 
 	/** @brief Creates an @c Entity for modifying the class of type @a _Tp.
@@ -165,7 +165,7 @@ private:
 	 *  CV schema adding specificity on top of the schema of the parent.
 	 *
 	 */
-	static std::vector<cpp::Cpp::Project::Artifact::Object_base> 		this_object_parents;
+	static std::vector<cpp::Cpp::Structure::Files::OutFiles::Object_base> 		this_object_parents;
 
 	/** @brief List of pointers to all of the entities that are derived from
 	 *  this entity.
@@ -178,7 +178,7 @@ private:
 	 *  CV schema adding specificity on top of the schema of the parent.
 	 *
 	 */
-	static std::vector<cpp::Cpp::Project::Artifact::Object_base> 		this_object_children;
+	static std::vector<cpp::Cpp::Structure::Files::OutFiles::Object_base> 		this_object_children;
 
 	/** Actual location in storage for all entities of type _Tp */
 	static std::vector<_Tp > 						this_object_entities;

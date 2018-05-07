@@ -21,9 +21,25 @@
 #include <sstream>
 
 
-#include "../C/language.inc"
-#include "../../symbols.inc"
+//#include "../C/language.inc"
+//#include "../../symbols.inc"
 
+#if( __cplusplus >= 201103L )
+	#define CPP_SUPPORT_SCOPED_ENUM true
+#endif
+
+#if( __WORDSIZE >= 32)
+	#define CPP_SUPPORT_LONG_INT true
+#endif
+
+#if( __WORDSIZE >= 64)
+	#define CPP_SUPPORT_LONGLONG_INT true
+	#define CPP_SUPPORT_LONG_DOUBLE true
+#endif
+
+#if( __WORDSIZE >= 128)
+	#define CPP_SUPPORT_LONGLONG_DOUBLE true
+#endif
 
 namespace sheila {
 namespace cpp {
@@ -80,33 +96,6 @@ typedef enum cpp_standard_library_headers {
 	VALARRAY,
 	VECTOR
 } CppStandardHeaderFile;
-
-typedef enum AccessLevels {
-	PRIVATE,
-	PROTECTED,
-	PUBLIC
-} AccessLevel;
-
-typedef enum StorageClasses {
-	STATIC,
-	EXTERN,
-	MUTABLE,
-	AUTO,
-	REGISTER
-} StorageClass;
-
-typedef enum FundamentalTypes {
-	VOID = -1,
-	BOOL,
-	CHAR,
-	WCHAR,
-	SHORT,
-	INT,
-	LONG,
-	FLOAT,
-	DOUBLE,
-	LONG_DOUBLE
-} FundamentalType;
 
 namespace exception {
 
@@ -273,7 +262,6 @@ class Type {
 
 public:
 
-
 	Type(std::initializer_list<std::string> nm = {},  Scopes::Scope *scop=nullptr);
 	Type(std::initializer_list<rw_ptr> nm);
 
@@ -333,15 +321,15 @@ public:
 	virtual ~FundamentalType();
 
 	const std::list<res_word_ptr>& getReq() const
-										{ return req_words; }
+												{ return req_words; }
 
 	const std::list<res_word_ptr>& getOpt() const
-										{ return opt_words; }
+												{ return opt_words; }
 
 	const static FundamentalType Void;;
 
 	const static std::list<const FundamentalType*>& getFundamentalTypes()
-		{ return all_fundamental_types; }
+				{ return all_fundamental_types; }
 
 protected:
 	std::list<res_word_ptr> req_words;
@@ -378,7 +366,7 @@ public:
 	virtual ~ArithmeticType();
 
 	const static std::list<const ArithmeticType*>& getArithmeticTypes()
-		{ return all_arithmetic_types; }
+				{ return all_arithmetic_types; }
 
 private:
 };
@@ -411,7 +399,7 @@ public:
 	const static IntegralType Boolean;
 
 	const static std::list<const IntegralType*>& getIntegralTypes()
-		{ return all_integral_types; }
+				{ return all_integral_types; }
 
 private:
 
@@ -450,6 +438,8 @@ public:
 	 *
 	 */
 	const static CharacterType Char;
+
+#ifdef CPP_SUPPORT_WIDE_CHAR
 	/** @brief wchar_t
 	 *
 	 *  [O'Reilly] The wchar_t type is a distinct type
@@ -460,15 +450,18 @@ public:
 	 *
 	 */
 	const static CharacterType WideChar;
+#endif
 
 	/** @brief uchar */
 	const static CharacterType UnsignedChar;
 
+#ifdef CPP_SUPPORT_WIDE_CHAR
 	/** @brief uwchar_t */
 	const static CharacterType UnsignedWideChar;
+#endif
 
 	const static std::list<const CharacterType*>& getCharacterTypes()
-		{ return all_character_types; }
+				{ return all_character_types; }
 
 private:
 
@@ -505,12 +498,15 @@ public:
 	/** @brief A simple (full byte) integer */
 	const static IntegerType BasicInteger;
 
+#ifdef CPP_SUPPORT_LONG_INT
 	/** @brief A long (4x byte) integer */
 	const static IntegerType LongInteger;
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_INT
 	/** @brief A long long (8x byte) integer */
 	const static IntegerType LongLongInteger;
-
+#endif
 
 
 	/** @brief A short (half byte) integer */
@@ -519,14 +515,18 @@ public:
 	/** @brief A simple (full byte) integer */
 	const static IntegerType UnsignedBasicInteger;
 
+#ifdef CPP_SUPPORT_LONG_INT
 	/** @brief A long (4x byte) integer */
 	const static IntegerType UnsignedLongInteger;
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_INT
 	/** @brief A long long (8x byte) integer */
 	const static IntegerType UnsignedLongLongInteger;
+#endif
 
 	const static std::list<const IntegerType*> getIntegerTypes()
-		{ return all_integer_types; }
+				{ return all_integer_types; }
 private:
 
 };
@@ -561,18 +561,22 @@ public:
 	/** @brief A double precision floating point value */
 	const static FloatingPointType Double;
 
+#ifdef CPP_SUPPORT_LONG_DOUBLE
 	/** @brief A long (x4) double precision floating point
 	 * value
 	 */
 	const static FloatingPointType LongDouble;
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_DOUBLE
 	/** @brief A long long (x8) double precision floating
 	 * point value
 	 */
 	const static FloatingPointType LongLongDouble;
+#endif
 
 	const static std::list<const FloatingPointType*>& getFloatingPointTypes()
-		{ return all_floating_point_types; }
+				{ return all_floating_point_types; }
 
 private:
 
@@ -601,7 +605,9 @@ public:
 
 	const static CompoundType T_Enum;
 
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 	const static CompoundType T_ScopedEnum;
+#endif
 
 	const static CompoundType T_Array;
 
@@ -830,6 +836,7 @@ public:
 
 } /* namespace ClassTypes */
 
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 namespace EnumerationTypes {
 
 /** @brief A scoped enumeration type in C++.
@@ -857,6 +864,7 @@ private:
 };
 
 } /* namespace EnumerationTypes */
+#endif
 
 } /* namespace CompoundTypes */
 
@@ -905,8 +913,9 @@ typedef CppUnionType CppUnionType;
 typedef CppClassType CppClassType;
 typedef CppStructType CppStructType;
 
-typedef ScopedEnumType ScopedEnumType;
-
+#ifdef CPP_SUPPORT_SCOPED_ENUM
+	typedef ScopedEnumType ScopedEnumType;
+#endif
 /** @brief C++ Type definition. (Different From a @c typedef statement)
  *
  */
@@ -1047,8 +1056,8 @@ public:
 
 	//				template<typename _Tp>
 	//				static const ReservedWord *rfromtype() {
-		//
-		//				}
+	//
+	//				}
 
 	static const std::list<const ReservedWord*>& getAllWords() {
 		return all_words;
@@ -1521,7 +1530,7 @@ public:
 
 	static Scope global_scope;
 
-//	static Scope* newScope(Scope &encloser = global_scope);
+	//	static Scope* newScope(Scope &encloser = global_scope);
 
 	Scope(std::initializer_list<LexicalElements::Identifier> ls = {});
 	virtual ~Scope();
@@ -1618,10 +1627,10 @@ public:
 //		bool activated;
 //	};
 
-	/** @brief A C++ variable.
-	 *
-	 */
-	class Variable : public LexicalElements::Expression {
+/** @brief A C++ variable.
+ *
+ */
+class Variable : public LexicalElements::Expression {
 	/* Usage:
 	 *
 	 *     !{{identifier}}
@@ -1631,178 +1640,236 @@ public:
 	 *     <variable id=!{{identifier}} />
 	 *
 	 */
-	public:
+public:
 
-		/** @brief A variable in C++.
-		 *
-		 *  @param id
-		 *  @param typ
-		 *  @param val
-		 */
-		Variable(std::string proposed_id,Types::Type *typ=nullptr,
-				LexicalElements::Expression *val=nullptr);
+	/** @brief A variable in C++.
+	 *
+	 *  @param id
+	 *  @param typ
+	 *  @param val
+	 */
+	Variable(std::string proposed_id,Types::Type *typ=nullptr,
+			LexicalElements::Expression *val=nullptr);
 
-		virtual ~Variable();
+	virtual ~Variable();
 
-		/**
-		 *
-		 * @return
-		 */
-		const Types::Type* getType() const { return type; }
+	/**
+	 *
+	 * @return
+	 */
+	const Types::Type* getType() const { return type; }
 
-		/**
-		 *
-		 */
-		void setType(Types::Type* type) { this->type = type; }
-
-
-		/** @brief Get the value of this variable
-		 *
-		 *  @return A reference to @a value.
-		 */
-		const LexicalElements::Expression* getValue() const {
-			return value;
-		}
-
-		std::string cpp_str();
-
-		std::string xml_str();
-
-	protected:
-
-		LexicalElements::Identifier id;
-
-		/** Pointer to the value of this variable */
-		LexicalElements::Expression *value;
-
-		/** The type of value contained by this variable */
-		Types::Type *type;
-
-		std::vector<const LexicalElements::
-		ReservedWords::Qualifier*> qualifiers;
-
-		std::vector<const LexicalElements::
-		ReservedWords::StorageClass*> storage_classes;
-
-	};
-
-
-#define LANG_CPP_CLASS_VARIABLE
-
-
-	/** @brief A C++ Function.
+	/**
 	 *
 	 */
-	class Function : public Token {
-	public:
-		Function();
-		virtual ~Function();
-
-		std::string cpp_str();
-
-		std::string xml_str();
-
-	private:
-
-		/** Pointer to the value returned by this function */
-		LexicalElements::Expression return_value;
-
-		/** The return type of this function */
-		Types::Type ret_type;
+	void setType(Types::Type* type) { this->type = type; }
 
 
-	}; /* Function */
+	/** @brief Get the value of this variable
+	 *
+	 *  @return A reference to @a value.
+	 */
+	const LexicalElements::Expression* getValue() const {
+		return value;
+	}
+
+	std::string cpp_str();
+
+	std::string xml_str();
+
+protected:
+
+	LexicalElements::Identifier id;
+
+	/** Pointer to the value of this variable */
+	LexicalElements::Expression *value;
+
+	/** The type of value contained by this variable */
+	Types::Type *type;
+
+	std::vector<const LexicalElements::
+	ReservedWords::Qualifier*> qualifiers;
+
+	std::vector<const LexicalElements::
+	ReservedWords::StorageClass*> storage_classes;
+
+};
+
+/** @brief A C++ Function.
+ *
+ */
+class Function {
+public:
+	Function();
+	virtual ~Function();
+
+	std::string cpp_str();
+
+	std::string xml_str();
+
+private:
+
+	/** Pointer to the value returned by this function */
+	LexicalElements::Expression return_value;
+
+	/** The return type of this function */
+	Types::Type ret_type;
 
 
-#define LANG_CPP_CLASS_FUNCTION
+}; /* Function */
 
-	namespace Statements {
+namespace Statements {
 
-	class Statement {
+class Statement {
 
-	};
+};
 
-	class ExpressionStatement {
+class ExpressionStatement {
 
-	};
+};
 
-	namespace Declarations {
+namespace Declarations {
 
-	class Declaration : public Statement {
+class Declaration : public Statement {
 
-	};
+};
 
-	class VariableDeclaration : public Declaration {
+class VariableDeclaration : public Declaration {
 
-	};
+};
 
-	class FunctionDeclaration : public Declaration {
+class FunctionDeclaration : public Declaration {
 
-	};
+};
 
-	namespace Definitions {
+namespace Definitions {
 
-	class Definition : public Declaration {
+class Definition : public Declaration {
 
-	};
+};
 
-	class VariableDefinition : public VariableDeclaration {
+class VariableDefinition : public VariableDeclaration {
 
-	};
+};
 
-	class FunctionDefinition : public FunctionDeclaration {
+class FunctionDefinition : public FunctionDeclaration {
 
-	};
+};
 
-	} /* namespace Definitions */
+} /* namespace Definitions */
 
-	} /* namespace Declarations */
+} /* namespace Declarations */
 
-	} /* namespace Statements */
+} /* namespace Statements */
 
 
 #define LANG_CPP_CLASS_TYPE_DECLARATION
 
+namespace Enumerations {
+
+class Enumeration {
+public:
+
+	Enumeration(
+		std::string nm,
+		const Types::IntegralType *etype = &Types::IntegerType::BasicInteger,
+		std::map<std::string,LexicalElements::Literals::Literal> = {}
+	);
+
+	virtual ~Enumeration();
+
+	const std::vector<Variable*>&
+	getEnumerators() const { return enumerators; }
+
+
+protected:
+
+	const Types::IntegralType *enumerator_type;
+
+	const Types::EnumerationType *new_type;
+
+private:
+
+	std::vector<Variable*> enumerators;
+
+};
+
+
+} /* namespace Enumerations */
+
+namespace ClassMembers {
+
+class DataMember : public Variable {
+
+};
+
+class MemberFunction : public Function {
+
+};
+
+} /* namespace ClassMembers */
+
+namespace Classes {
+
+using namespace LexicalElements::ReservedWords;
+
+class CppClass;
+
+typedef std::map<CppClass*, std::pair<const AccessLevel*,bool> > parent_list;
+
+class BasicClass : protected Scopes::Scope {
+
+public:
+
+	BasicClass(const AccessLevel *def_acc,
+			std::string proposed_name="");
+	virtual ~BasicClass();
+
+protected:
+
+	const AccessLevel *default_access;
+
+private:
+
+};
+
+class UnionClass : public BasicClass {
+
+public:
+
+	UnionClass(std::string prop_name);
+	virtual ~UnionClass();
+
+};
+
+class CppClass : public BasicClass {
+public:
+	CppClass(const AccessLevel* acc, std::string prop_name, parent_list mp);
+	virtual ~CppClass();
+};
+
+class ClassClass : public CppClass {
+public:
+	ClassClass(std::string prop_name, parent_list mp);
+	virtual ~ClassClass();
+
+};
+
+class StructClass : public CppClass {
+
+public:
+
+	StructClass(std::string prop_name, parent_list mp);
+	virtual ~StructClass();
+
+};
+
+
+} /* namespace Classes */
+
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 	namespace Enumerations {
-
-	class Enumeration : public Token {
-	public:
-
-		Enumeration(
-			std::string nm,
-			const Types::IntegralType *etype = &Types::IntegerType::BasicInteger,
-			std::map<std::string,LexicalElements::Literals::Literal> = {}
-		);
-
-		virtual ~Enumeration();
-
-		const std::vector<Variable*>&
-			getEnumerators() const { return enumerators; }
-
-
-	protected:
-
-		const Types::IntegralType *enumerator_type;
-
-		const Types::CompoundType *new_type;
-
-	private:
-
-		std::vector<Variable*> enumerators;
-
-	};
-
-
-	} /* namespace Enumerations */
-
-	namespace Classes {
-
-
-	} /* namespace Classes */
-
-	namespace Enumerations {
-
-	class ScopedEnumeration : public Enumeration {
+		class ScopedEnumeration : public Enumeration, protected Scopes::Scope {
 		public:
 
 			ScopedEnumeration(const Types::ClassType scopetype,
@@ -1810,642 +1877,21 @@ public:
 					const Types::IntegerType *dtype = &Types::IntegerType::
 					BasicInteger,
 					std::map<std::string,LexicalElements::Literals::Literal>
-					mp ={}
+			mp ={}
 			);
 			virtual ~ScopedEnumeration();
 
 		protected:
 
-
-
 		};
-
 	} /* namespace Enumerations */
-
-
-//#define ENUM_INT_SIZE int
-//
-//	class Instance;
-//	class Namespace;
-//	class Enumeration;
-//
-//	class EnumeratorDefinition;
-//
-//	/** @brief A name that represents a constant ingeger defined in an Enum.
-//	 *
-//	 */
-//	class Enumerator : public Variable {
-//	/* Usage:
-//	 *
-//	 *     !{{identifier}}
-//	 *
-//	 * XML:
-//	 *
-//	 *     <enumerator id="!{{identifier}}" />
-//	 *
-//	 */
-//	public:
-//		Enumerator(EnumeratorDefinition* enumeration=nullptr,
-//				std::string id="",ENUM_INT_SIZE val=0);
-//		virtual ~Enumerator();
-//
-//		/** @brief Represents this file in C++ code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-//		 */
-//		std::string cpp_str();
-//
-//		/** @brief Represents this file in XML code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-//		 */
-//		std::string xml_str();
-//
-//	private:
-//
-//		/** A pointer to the Enumeration that owns this Enumerator */
-//		EnumeratorDefinition* enumerator_def;
-//
-//	};
-//
-//	class EnumerationDefinition;
-//
-//
-//	/** @brief A definition of an Enumerator.
-//	 *  @author FlowerGenius
-//	 *
-//	 *  IMPORTANT: This definition can only occur within the context of an
-//	 *  Enumeration.
-//	 *
-//	 */
-//	class EnumeratorDefinition : public Feature {
-//	/* Usage:
-//	 * enum ??? {
-//	 *     !{{identifier}} #{ = {value}}
-//	 * };
-//	 * XML:
-//	 *
-//	 *     <enumerator id="!{identifier}" [value="{value}"] [type="{*(enumerator->enum_ptr)}"] " />
-//	 *
-//	 */
-//	public:
-//
-//		/** @brief Creates an EnumeratorDefinition with the default next value.
-//		 *
-//		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
-//		 *  @param id Identifier of this Enumerator
-//		 */
-//		EnumeratorDefinition(EnumerationDefinition* enum_ptr, std::string id);
-//
-//		/** @brief Creates an instantiated EnumeratorDefinition.
-//		 *
-//		 *  @param enumdef_ptr Pointer to the Enum this Enumerator is defined in
-//		 *  @param id Identifier of this Enumerator
-//		 *  @param n const int value this Enumerator represents.
-//		 */
-//		EnumeratorDefinition(EnumerationDefinition* enum_ptr,
-//				std::string id,ENUM_INT_SIZE n);
-//
-//		/** @brief Destroys this EnumeratorDefinition.
-//		 *
-//		 */
-//		virtual ~EnumeratorDefinition();
-//
-//
-//		/** @brief Represents this file in C++ code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-//		 */
-//		std::string cpp_str();
-//
-//		/** @brief Represents this file in XML code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-//		 */
-//		std::string xml_str();
-//
-//
-//	private:
-//
-//		bool explicit_enumerator;
-//
-//		Enumerator             data;
-//		EnumerationDefinition  *enumeration_def;
-//
-//	};
-//
-////	/** @brief A declaration of an Enumerator.
-////	 *  @author FlowerGenius
-////	 *
-////	 */
-////	class EnumeratorDeclaration : public Feature {
-////
-////	};
-//
-//
-//#define LANG_CPP_CLASS_ENUMERATOR
-//
-//	/** @brief A C++ Enum
-//	 *
-//	 */
-//	class Enumeration : public Type {
-//	public:
-//		Enumeration();
-//		virtual ~Enumeration();
-//
-//		const bool& isAnonymous() const { return anonymous; }
-//
-//		/** @brief Represents this file in C++ code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in C++ syntax.
-//		 */
-//		std::string cpp_str();
-//
-//		/** @brief Represents this file in XML code.
-//		 *  @author FlowerGenius
-//		 *  @return Returns a C++ string representing this C++ file in XML syntax.
-//		 */
-//		std::string xml_str();
-//
-//		/** @brief The variables of this enum
-//		 *
-//		 * @return
-//		 */
-//
-//
-//	private:
-//
-//		bool anonymous;
-//
-//		/** @brief The list of enumerators that this Enumeration defines.
-//		 *
-//		 */
-//		std::vector<Enumerator*> enumerators;
-//
-//	};
-//
-//	/** @brief A definition of a C++ enum
-//	 *
-//	 */
-//	class EnumerationDefinition : public Feature {
-//	/* Usage:
-//	 *
-//	 *  enum #{enumeration->identifer} {
-//	 *     #{enumeration->enumers[0]},
-//	 *     .
-//	 *     .
-//	 *     .
-//	 *     #{enumeration->enumers[n]}
-//	 * } #{this->type_name};
-//	 *
-//	 * XML:
-//	 *
-//	 * <enum [id="{enumeration->identifier}"] [objects="{this->objects}"]>
-//	 *     ?
-//	 *     ?
-//	 *     ?
-//	 * </enum>
-//	 *
-//	 */
-//	public:
-//
-//		EnumerationDefinition(bool anonymous=true, std::string identifer="");
-//
-//
-//		virtual ~EnumerationDefinition();
-//
-//		/** @brief Get the default value of the next
-//		 *
-//		 *  @return The default value for a proposed next Enumerator
-//		 */
-//		ENUM_INT_SIZE next();
-//
-//		void addEnumerator(std::string id);
-//
-//		void addEnumerator(std::string id, ENUM_INT_SIZE n);
-//
-//		const std::vector<EnumeratorDefinition>& getEnumeratorDefinitions() const
-//				{ return enumerator_definitions; }
-//
-//		const Enumeration& getData() const { return data; }
-//
-//		std::string cpp_str();
-//
-//		std::string xml_str();
-//
-//	private:
-//
-//		/** The list of the EnumeratorDefinitions that this Enumeration defines */
-//		std::vector<EnumeratorDefinition> enumerator_definitions;
-//
-//		/** The Enumeration that this class will define */
-//		Enumeration data;
-//
-//	};
-//
-//	/** @brief A forward declaration of an enum
-//	 *
-//	 */
-//	class EnumerationDeclaration : public Feature {
-//
-//	};
-//
-//#define LANG_CPP_CLASS_ENUMERATION
-
-
-	/** @brief Scope wrapper for C++ Class Types
-	 *
-	 */
-	struct Classes {
-
-		/** @brief A Basic class definition in C++
-		 *
-		 *  A basic class simply contains data members and controls
-		 *  access to them through scope.
-		 *
-		 */
-		class BasicClass : public Type {
-		public:
-			BasicClass();
-			virtual ~BasicClass();
-
-			/** @brief A C++ Data Member
-			 *
-			 */
-			template<typename type>
-			class DataMember : public Variable<type> {
-			public:
-				/** @brief Represents this DataMember in C++ code.
-				 *  @author FlowerGenius
-				 *  @return Returns a C++ string representing this C++ DataMember in C++ syntax.
-				 */
-				std::string cpp_str();
-
-				/** @brief Represents this DataMemebr in C++ code.
-				 *  @author FlowerGenius
-				 *  @return Returns a C++ string representing this C++ DataMember in XML syntax.
-				 */
-				std::string xml_str();
-
-
-			};
-
-			/** @brief Variable definitions */
-			std::vector<BasicClass::DataMember>  contained_members;
-
-		}; /* BasicClass */
-
-		/** @brief A definition of a basic C++ class
-		 *
-		 */
-		class BasicClassDefinition : public Feature {
-
-			/** @brief Represents this BasicClass in C++ code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this BasicClass in C++ syntax.
-			 */
-			std::string cpp_str();
-
-			/** @brief Represents this BasicClass in XML code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ BasicClass in XML syntax.
-			 */
-			std::string xml_str();
-
-		private:
-
-			/** @brief Declarations of variables that are not also definitions */
-			std::vector<Declaration<BasicClass::DataMember> > contained_declared_members;
-
-		};
-
-		/** @brief A forward declaration of a basic C++ class
-		 *
-		 */
-		class BasicClassDeclaration : public Feature {
-
-		};
-
-		/** @brief A C++11 Scoped Enum [either class or struct]
-		 *
-		 */
-		class ScopedEnumeration : public virtual  Enumeration, public virtual BasicClass {
-		public:
-			ScopedEnumeration();
-			virtual ~ScopedEnumeration();
-
-			/** @brief Represents this ScopedEnumeration in C++ code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ ScopedEnumeration in C++ syntax.
-			 */
-			std::string cpp_str();
-
-			/** @brief Represents this ScopedEnumeration in XML code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ ScopedEnumeration in XML syntax.
-			 */
-			std::string xml_str();
-
-
-		}; /* ScopedEnumeration */
-
-		/** A definition of a C++ ScopedEnumeration
-		 *
-		 */
-		class ScopedEnumerationDefinition : public virtual EnumerationDefinition, public virtual BasicClassDefinition {
-
-		};
-
-		/** A forward declaration of a C++ ScopednEnumeration
-		 *
-		 */
-		class ScopedEnumerationDeclaration : public virtual EnumerationDeclaration, public virtual BasicClassDeclaration {
-
-		};
-
-		/** @brief A Generic Class with the same rules as a namespace.
-		 *
-		 *  A generic class contains data members as well as member functions,
-		 *  and can inherit from other classes.
-		 */
-		class GenericClass	: public BasicClass {
-		public:
-			GenericClass();
-			virtual ~GenericClass();
-
-			std::string cpp_str();
-
-			std::string xml_str();
-
-
-			/** @brief A representation of a C++ class constructor
-			 *  @author FlowerGenius
-			 *
-			 *  A Constructor is a special function called whenever an
-			 *  instance of the class is created.
-			 *
-			 */
-			class Constructor : public Function {
-
-			};
-
-			/** @brief A definition of a Constructor.
-			 *
-			 */
-			class ConstructorDefinition : public FunctionDefinition {
-
-			};
-
-			/** @brief A prototype of a Constructor
-			 *
-			 */
-			class ConstructorDeclaration : public FunctionDeclaration {
-
-			};
-
-			/** @brief A representation of a C++ class destructor
-			 *  @author FlowerGenius
-			 *
-			 *  A Destructor is a special function called whenever an
-			 *  instance of the class is destroyed.
-			 *
-			 */
-			class Destructor : public Function {
-
-			};
-
-			/** @brief A definition of a Destructor.
-			 *
-			 */
-			class DestructorDefinition : public FunctionDefinition {
-
-			};
-
-			/** @brief A prototype of a Destructor
-			 *
-			 */
-			class DestructorDeclaration : public FunctionDeclaration {
-
-			};
-
-
-			/** @brief A C++ Member Function
-			 *
-			 */
-			class MemberFunction : public Function {
-
-			};
-
-
-			/** @brief A definition of a MemberFunction.
-			 *
-			 */
-			class MemberFunctionDefinition : public FunctionDefinition {
-
-			};
-
-			/** @brief A prototype of a MemberFunctionr
-			 *
-			 */
-			class MemberFunctionDeclaration : public FunctionDeclaration {
-
-			};
-
-		private:
-
-			/** @brief List of function definitions */
-			std::vector<MemberFunction> contained_member_functions;
-
-			/** @brief Declarations of prototype functions */
-			std::vector<Declaration<MemberFunction> > contained_member_prototypes;
-
-		}; /* Generic Class */
-
-		/** @brief A generic Class definition
-		 *
-		 */
-		class GenericClassDefinition : public BasicClassDefinition {
-
-		};
-
-		/** @brief a generic class forward declaration
-		 *
-		 */
-		class GenericClassDeclaration : public BasicClassDeclaration {
-
-		};
-
-
-		/** @brief A C++ union.
-		 *
-		 */
-		class Union  : public GenericClass {
-		public:
-			Union();
-			virtual ~Union();
-
-			/** @brief Represents this Union in C++ code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Union in C++ syntax.
-			 */
-			 std::string cpp_str();
-
-			/** @brief Represents this Union in XML code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Union in XML syntax.
-			 */
-			 std::string xml_str();
-
-
-		};
-
-		/** @brief A definition of a Union
-		 *
-		 */
-		class UnionDefinition : public GenericClassDefinition {
-
-		};
-
-		/** @brief A forward declaration of a Union
-		 *
-		 */
-		class UnionDeclaration : public GenericClassDeclaration {
-
-		};
-
-		class Struct;
-
-		/** @brief A C++ class.
-		 *
-		 */
-		class Class : public GenericClass {
-		public:
-			Class();
-			virtual ~Class();
-
-			/** @brief Represents this Class in C++ code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Class in C++ syntax.
-			 */
-			std::string cpp_str();
-
-			/** @brief Represents this Class in XML code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Class in XML syntax.
-			 */
-			std::string xml_str();
-
-		};
-
-		/** @brief A definition of a Class
-		 *
-		 */
-		class ClassDefinition : public GenericClassDefinition {
-		public:
-			/** @brief Represents this Class in C++ code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Class in C++ syntax.
-			 */
-			std::string cpp_str();
-
-			/** @brief Represents this Class in XML code.
-			 *  @author FlowerGenius
-			 *  @return Returns a C++ string representing this C++ Class in XML syntax.
-			 */
-			std::string xml_str();
-
-		protected:
-			/** @brief List of class definitions */
-			std::vector<Class>       contained_classes;
-
-			/** @brief List of struct definitions */
-			std::vector<Struct>		 contained_structs;
-
-			/** @brief List of union definitions */
-			std::vector<Union>		 contained_unions;
-
-			/** @brief Object definitions */
-			std::vector<Instance>  contained_objects;
-
-			/** @brief List of enum defintiions */
-			std::vector<Enumeration>  contained_enums;
-
-			/** @brief List of type definitions */
-			std::vector<TypeDefinition> contained_typedefs;
-
-			/** @brief List of namespace definitions */
-			std::vector<Namespace>    contained_namespaces;
-
-			/** @brief Forward declarations of classes, unions, and structs */
-			std::vector<Declaration<Classes::BasicClass> > contained_forward_declarations;
-		};
-
-		/** @brief A forward declaration of a Class
-		 *
-		 */
-		class ClassDeclaration : public GenericClassDeclaration {
-
-		};
-
-		/** @brief A C++ struct.
-		 *
-		 */
-		class Struct : public Class {
-		public:
-			std::string cpp_str();
-
-			std::string xml_str();
-
-		};
-
-		/** @brief A definition of a Struct
-		 *
-		 */
-		class StructDefinition : public ClassDefinition {
-
-		};
-
-		/** @brief A forward declaration of a Struct
-		 *
-		 */
-		class StructDeclaration : public ClassDeclaration {
-
-		};
-
-
-
-	};
-
-	/** @brief An Instance of a C++ class.
-	 *
-	 */
-	class Instance : public Token {
-	public:
-		std::string cpp_str();
-
-		std::string xml_str();
-
-	};
-
-	/** @brief A definition of an Instance
-	 *
-	 */
-	class InstanceDefinition : public Feature {
-
-	};
-
-	/** @brief A declaration of an Instance
-	 *
-	 */
-	class InstanceDeclaration : public Feature {
-
-	};
+#endif
 
 
 	/** @brief C++ namespace
 	 *
 	 */
-	class Namespace : public Token {
+	class Namespace : public Scopes::Scope {
 	public:
 		Namespace();
 		virtual ~Namespace();
@@ -2456,66 +1902,12 @@ public:
 
 	};
 
-	/** @brief A definition of a namespace.
-	 *
-	 */
-	class NamespaceDefinition : public Feature {
-
-	private:
-
-		/** @brief Variable definitions */
-		std::vector<Variable> 	 contained_variables;
-
-		/** @brief List of function definitions */
-		std::vector<Function> 	 contained_functions;
-
-		/** @brief List of class definitions */
-		std::vector<Classes::Class>       contained_classes;
-
-		/** @brief List of struct definitions */
-		std::vector<Classes::Struct>		 contained_structs;
-
-		/** @brief List of union definitions */
-		std::vector<Classes::Union>		 contained_unions;
-
-		/** @brief Object definitions */
-		std::vector<Instance>  contained_objects;
-
-		/** @brief List of enum defintiions */
-		std::vector<Enumeration>  contained_enums;
-
-		/** @brief List of type definitions */
-		std::vector<TypeDefinition> contained_typedefs;
-
-		/** @brief List of namespace definitions */
-		std::vector<Namespace>    contained_namespaces;
-
-
-
-		/** @brief Declarations of variables that are not also definitions */
-		std::vector<Declaration<Variable> > contained_declared_variables;
-
-		/** @brief Declarations of prototype functions */
-		std::vector<Declaration<Function> > contained_prototypes;
-
-		/** @brief Forward declarations of classes, unions, and structs */
-		std::vector<Declaration<Classes::BasicClass> > contained_forward_declarations;
-
-	};
-
-	/** @brief A declaration of a namespace, ie a @c using statement.
-	 *
-	 */
-	class NamespaceDeclaration : public Feature {
-
-	};
-
-	struct Structure {
+	namespace Structure {
 
 		/** @brief the C++ preprocessor
 		 *
 		 */
-		struct PreProcessor {
+		namespace PreProcessor {
 
 			enum class PreProcessorDirectiveType {
 				DEFINE,
@@ -2532,13 +1924,10 @@ public:
 				PRAGMA
 			};
 
-			PreProcessor();
-			virtual ~PreProcessor();
-
 			/** @brief A C++ preprocessor Macro
 			 *
 			 */
-			class Macro : public Token {
+			class Macro {
 			public:
 
 				/*
@@ -2559,7 +1948,7 @@ public:
 				/*
 				 * Test for whether the macro is defined
 				 */
-				bool isDefined() { return (this->defined && this->activated); }
+				//bool isDefined() { return (this->defined && this->activated); }
 
 				/*
 				 * Set the macro as defined
@@ -2571,7 +1960,7 @@ public:
 				 */
 				int undefine() { defined = false; return (this->defined == false); }
 
-				const std::string& getIdentifier() const { return identifier; }
+				//const std::string& getIdentifier() const { return identifier; }
 				const std::string& getStatement() const { return statement; }
 				const std::vector<std::string>& getArguments() const {return arguments; }
 
@@ -2588,7 +1977,7 @@ public:
 				std::string statement;
 			};
 
-			struct Directives {
+			namespace Directives {
 
 			enum class DirectiveType {
 				DEFINE,
@@ -2739,12 +2128,16 @@ public:
 		/** @brief A C++ File
 		 *
 		 */
-		struct Files {
+		namespace Files {
+
+			namespace OutFiles {
+				class Artifact;
+			}
 
 			/** @brief A basic file on the filesystem
 			 *
 			 */
-			class File {
+			class File : protected Scopes::Scope {
 			public:
 
 				/** @brief Creates an object that represents a C++ file.
@@ -2769,170 +2162,6 @@ public:
 				 */
 				const std::string& getPath() const;
 
-				/** @brief Get a list of all Classes in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the classes
-				 */
-				const std::vector<Classes::Class>&
-				getClasses() const {
-					return contained_classes;
-				}
-
-				/** @brief Get a list of all DeclaredVariables in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  declarations
-				 */
-				const std::vector<Declaration<Variable> >&
-				getDeclaredVariables() const {
-					return contained_declared_variables;
-				}
-
-				/** @brief Get a list of all Enumerations in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  enumerations
-				 */
-				const std::vector<Enumeration>&
-				getEnums() const {
-					return contained_enums;
-				}
-
-				/** @brief Get a list of all ForwardDeclarations in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  declarations
-				 */
-				const std::vector<Declaration<Classes::BasicClass> >&
-				getForwardDeclarations() const {
-					return contained_forward_declarations;
-				}
-
-				/** @brief Get a list of all Functions in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  functions
-				 */
-				const std::vector<Function>&
-				getFunctions() const {
-					return contained_functions;
-				}
-
-				/** @brief Get a list of all Namespaces in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  namespaces
-				 */
-				const std::vector<Namespace>&
-				getNamespaces() const {
-					return contained_namespaces;
-				}
-
-				/** @brief Get a list of all Instances in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  objects
-				 */
-				const std::vector<Instance>&
-				getObjects() const {
-					return contained_objects;
-				}
-
-				/** @brief Get a list of all function Prototypes in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  prototypes
-				 */
-				const std::vector<Declaration<Function> >&
-				getPrototypes() const {
-					return contained_prototypes;
-				}
-
-				/** @brief Get a list of all Structs in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  structs
-				 */
-				const std::vector<Classes::Struct>&
-				getStructs() const {
-					return contained_structs;
-				}
-
-				/** @brief Get a list of all TypeDefinitions in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  typedefs.
-				 */
-				const std::vector<TypeDefinition>&
-				getTypedefs() const {
-					return contained_typedefs;
-				}
-
-				/** @brief Get a list of all Unions in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  unions.
-				 */
-				const std::vector<Classes::Union>&
-				getUnions() const {
-					return contained_unions;
-				}
-
-				/** @brief Get a list of all Variables in this scope
-				 *  @author FlowerGenius
-				 *  @return A reference to the vector containing the
-				 *  variables.
-				 */
-				const std::vector<Variable>&
-				getVariables() const {
-					return contained_variables;
-				}
-
-
-				std::map<std::string,Feature* >	scopeFeatures() {
-					std::map<std::string,Feature* > features;
-					for (auto&& var : getVariables()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getFunctions()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getClasses()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getStructs()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getUnions()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getObjects()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getEnums()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getTypedefs()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getNamespaces()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getDeclaredVariables()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getPrototypes()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					for (auto&& var : getForwardDeclarations()) {
-						features.insert({var.getIdentifier(),(Feature*) &var});
-					}
-					return features;
-				}
-
-				std::map<std::string,Feature* > accessibleFeatures() {
-
-				}
 
 			protected:
 
@@ -2944,52 +2173,13 @@ public:
 
 			private:
 
-				/** @brief Variable definitions */
-				std::vector<VariableDefinition> 	 contained_variables;
-
-				/** @brief List of function definitions */
-				std::vector<FunctionDefinition> 	 contained_functions;
-
-				/** @brief List of class definitions */
-				std::vector<Classes::Class>       contained_classes;
-
-				/** @brief List of struct definitions */
-				std::vector<Classes::Struct>		 contained_structs;
-
-				/** @brief List of union definitions */
-				std::vector<Classes::Union>		 contained_unions;
-
-				/** @brief Object definitions */
-				std::vector<InstanceDefinition>  contained_objects;
-
-				/** @brief List of enum defintiions */
-				std::vector<EnumerationDefinition>  contained_enums;
-
-				/** @brief List of type definitions */
-				std::vector<TypeDefinition> contained_typedefs;
-
-				/** @brief List of namespace definitions */
-				std::vector<NamespaceDefinition>    contained_namespaces;
-
-
-
-				/** @brief Declarations of variables that are not also definitions */
-				std::vector<Declaration<Variable> > contained_declared_variables;
-
-				/** @brief Declarations of prototype functions */
-				std::vector<Declaration<Function> > contained_prototypes;
-
-				/** @brief Forward declarations of classes, unions, and structs */
-				std::vector<Declaration<Classes::BasicClass> > contained_forward_declarations;
-
-
 				/** @brief The absolute path location of this file on the disk */
 				std::string path;
 
 			}; /* Basic File */
 
 
-			struct InFiles {
+			namespace InFiles {
 			/** @brief	An abstract model of a C++ Input File (ie. [source|header])
 			 *	@author	FlowerGenius
 			 *
@@ -3014,106 +2204,11 @@ public:
 				 */
 				virtual std::string xml_str() = 0;
 
-				/** @brief Get all of the C++ features contained by this scope
-				 *
-				 */
-				const std::map<std::string,Feature>& scopeFeatures() const;
-
-				/** @brief Get all of the C++ features accessible through this scope
-				 *
-				 */
-				std::map<std::string,Feature> accessibleFeatures();
-
-				/** @brief Retrieves the list of all PreProcessor Directives
-				 *  matching type @a typ
-				 *  @tparam typ The DirectiveType list to retrieve.
-				 *  @return
-				 *
-				 */
-				template<PreProcessor::DirectiveType typ>
-				const std::vector<PreProcessor::Directive<typ> >&
-				getDirective() const {
-					switch(typ){
-					case PreProcessor::DirectiveType::DEFINE:
-						return pp_defines;
-					case PreProcessor::DirectiveType::UNDEF:
-						return pp_undefines;
-					case PreProcessor::DirectiveType::IFDEF:
-						return pp_ifdefines;
-					case PreProcessor::DirectiveType::IFNDEF:
-						return pp_ifnotdefines;
-					case PreProcessor::DirectiveType::ELSE:
-						return pp_elses;
-					case PreProcessor::DirectiveType::ENDIF:
-						return pp_endifs;
-					case PreProcessor::DirectiveType::ELIF:
-						return pp_elifs;
-					case PreProcessor::DirectiveType::INCLUDE:
-						return pp_includes;
-					case PreProcessor::DirectiveType::ERROR:
-						return pp_errors;
-					case PreProcessor::DirectiveType::LINE:
-						return pp_lines;
-					case PreProcessor::DirectiveType::PRAGMA:
-						return pp_pragmas;
-					}
-				}
-
 			protected:
-
-				void addDefineDirective( std::string identifier,
-						Feature *after_this = nullptr, std::string value = "",
-						std::vector<std::string> args = {} ) {
-
-
-
-				}
-
-				int addUndefDirective() {
-
-				}
 
 			private:
 
-				/** @brief A list of all Macros in this file */
-				std::map<std::string,PreProcessor::Macro>   pp_macros;
-
-				/** @brief A list of all define directives in this file. */
-				std::vector<PreProcessor::DefineDirective>  pp_defines;
-
-				/** @brief A list of all undef directives in this file. */
-				std::vector<PreProcessor::UndefDirective>   pp_undefines;
-
-				/** @brief A list of all ifdef directives in this file. */
-				std::vector<PreProcessor::IfdefDirective>   pp_ifdefines;
-
-				/** @brief A list of all ifndef directives in this file. */
-				std::vector<PreProcessor::IfndefDirective>  pp_ifnotdefines;
-
-				/** @brief A list of all else directives in this file. */
-				std::vector<PreProcessor::ElseDirective>    pp_elses;
-
-				/** @brief A list of all endif directives in this file. */
-				std::vector<PreProcessor::EndifDirective>   pp_endifs;
-
-				/** @brief A list of all elif directives in this file. */
-				std::vector<PreProcessor::ElifDirective>    pp_elifs;
-
-				/** @brief A list of all include directives in this file. */
-				std::vector<PreProcessor::IncludeDirective> pp_includes;
-
-				/** @brief A list of all error directives in this file. */
-				std::vector<PreProcessor::ErrorDirective>   pp_errors;
-
-				/** @brief A list of all line directives in this file. */
-				std::vector<PreProcessor::LineDirective>    pp_lines;
-
-				/** @brief A list of all pragma directives in this file. */
-				std::vector<PreProcessor::PragmaDirective>  pp_pragmas;
-
-				std::map<std::string,Feature> file_scope;
-
-				Artifact* artifact;
+				OutFiles::Artifact* artifact;
 			};
 
 			/** @brief An abstract model of a header file in C++
@@ -3231,7 +2326,7 @@ public:
 			};
 
 
-			struct OutFiles {
+			namespace OutFiles {
 			/** @brief A C++ Output file
 			 *
 			 */
@@ -3248,7 +2343,7 @@ public:
 			 *  accessed, stored, and used iteratively by upcasting to this base.
 			 *
 			 */
-			struct Object_base : public File::OutFile {
+			struct Object_base : public OutFile {
 
 				/** @brief Default constructor for all specializations of @c CppObject.
 				 *  @author FlowerGenius
@@ -3349,8 +2444,8 @@ public:
 				static std::vector<std::string> this_object_modified;
 
 
-				static std::vector<File::Header*> this_object_headers;
-				static File::Source*              this_object_source;
+				static std::vector<Files::InFiles::Header*> this_object_headers;
+				static Files::InFiles::Source*              this_object_source;
 
 			#endif
 
@@ -3374,8 +2469,8 @@ public:
 				std::vector<std::string> modified;
 
 
-				std::vector<File::Header*> object_headers;
-				File::Source*              object_source;
+				std::vector<Files::InFiles::Header*> object_headers;
+				Files::InFiles::Source*              object_source;
 				static std::map<std::string,Object> all_objects;
 
 			}; /* Object */
@@ -3411,16 +2506,16 @@ public:
 			 *  the objects and libraries to be linked.
 			 *
 			 */
-			struct Artifact : public File::OutFile {
-
+			class Artifact : public OutFile {
+			public:
 				static const std::map<std::string,Artifact>& getAllArtifacts();
 
 				Artifact();
 				virtual ~Artifact();
 
-				void addMacro(Cpp::PreProcessor::Macro *m) {
-					global_scope.insert({m->getIdentifier(),m});
-				}
+//				void addMacro(Cpp::PreProcessor::Macro *m) {
+//					global_scope.insert({m->getIdentifier(),m});
+//				}
 
 				/** @brief Get all of the C++ features contained by this scope
 				 *
@@ -3484,352 +2579,335 @@ public:
 		 */
 		virtual ~Project();
 
-
-		class Artifact;
-
-
-
 	protected:
-		std::map<std::string,Artifact> artifacts;
+		std::map<std::string,Structure::Files::OutFiles::Artifact> artifacts;
 		std::string                    project_name;
 	private:
 		static std::map<std::string,Project> all_projects;
 	}; /* Project */
 
-	static bool isReservedWord(std::string);
-	static std::string accessLevel(AccessLevel);
-	static std::string storageClass(StorageClass);
-	static std::string fundamentalType(FundamentalType);
-
-	Cpp() {};
-	virtual ~Cpp() {};
-
-private:
-
-	static std::vector<std::string> reserved_words;
-
 };
-
-/** @brief C++ Preprocessor directive specialization for a define directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type DEFINE that represents an abstract
- *  model of a C++ preprocessor define directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::DEFINE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-
-	/** @brief	Creates a model of a C++ define directive and a macro object.
-	 *	@author	FlowerGenius
-	 *	@param	feat		Pointer to the C++ feature that comes immediately
-	 *	before this directive in the source code.
-	 *	@param	id			String that is a (typically) valid macro identifier.
-	 *	@param	statement	String that is a (typically) valid macro expression.
-	 *	@param	args		Vector of 0 or more strings for the macro arguments.
-	 *
-	 *	This constructor generates an abstract model of a C++ define
-	 *	directive. It also creates a new macro object representing the
-	 *	macro that has been defined by the directive.
-	 *
-	 */
-	Directive(Cpp::Project::Artifact* artifact, std::string id, Cpp::Feature *feat = nullptr,
-			std::string statement = "",
-			std::vector<std::string> args = {}) {
-		before = feat;
-
-		try {
-			macro = new Cpp::PreProcessor::Macro((void*)artifact,id,statement,args);
-		}
-		catch (std::bad_alloc &exception) {
-
-		}
-
-	}
-
-	virtual ~Directive();
-
-	std::string cpp_str() {
-		std::string s = "#"+T(Cpp::PreProcessor::DirectiveType::DEFINE)+macro->getIdentifier();
-		if (macro->getArguments().size() > 0) {
-			s.append("(");
-			for (auto const& value: macro->getArguments()) {
-				s.append(value + ",");
-			}
-			s.replace(s.rfind(','),1,1,')');
-		}
-
-		s.append(" " + macro->getStatement());
-		return s;
-	};
-
-	std::string xml_str() {
-		std::string s;
-		if (macro->getArguments().size() > 0) {
-			s.append("[");
-			for (auto const& value: macro->getArguments()) {
-				s.append(value + ",");
-			}
-			s.replace(s.rfind(','),1,1,']');
-		}
-
-		return "<"+T(Cpp::PreProcessor::DirectiveType::DEFINE)
-				+" id="+macro->getIdentifier()
-				+" arguments="+s
-				+" statement="+macro->getStatement()+" />";
-	}
-
-private:
-	Cpp::PreProcessor::Macro	*macro;	/** Pointer to the macro that this object defines */
-};
-
-/** @brief C++ Preprocessor directive specialization for an undef directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type UNDEF that represents an abstract
- *  model of a C++ preprocessor undef directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::UNDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-
-	/** @brief Creates a model of a C++ undef directive and marks a macro
-	 * 	as undefined (destroying it's contents).
-	 *  @author FlowerGenius
-	 *  @param	macro	Reference to the macro object to undefine.
-	 *
-	 */
-	Directive(Macro &macro) {
-		this->macro = &macro;
-		this->macro->undefine();
-	}
-
-	/** @brief Creates a model of a C++ undef directive and marks a macro
-	 * 	as undefined (destroying it's contents).
-	 *  @author FlowerGenius
-	 *  @param	macro	Pointer to the macro object to undefine.
-	 *
-	 */
-	Directive(Macro *macro) {
-		this->macro = macro;
-		this->macro->undefine();
-	}
-
-	virtual ~Directive();
-private:
-	Macro	*macro;	/** Pointer to the macro that this object undefines */
-};
-
-/** @brief C++ Preprocessor directive specialization for an ifdef directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type IFDEF that represents an abstract
- *  model of a C++ preprocessor ifdef directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IFDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-
-	/** @brief Creates a model of a C++ ifdef directive
-	 *  @author FlowerGenius
-	 *  @param	macro	Reference to the macro being tested for existence.
-	 *
-	 */
-	Directive(Macro &macro) {
-		this->macro = &macro;
-	}
-
-	/** @brief Creates a model of a C++ ifdef directive
-	 *  @author FlowerGenius
-	 *  @param	macro	Pointer to the macro being tested for existence.
-	 *
-	 */
-	Directive(Macro *macro) {
-		this->macro = macro;
-	}
-
-	virtual ~Directive();
-private:
-	Macro    *macro;
-};
-
-/** @brief C++ Preprocessor directive specialization for an ifndef directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type IFNDEF that represents an abstract
- *  model of a C++ preprocessor ifndef directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IFNDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-	Macro    *macro;
-};
-
-/** @brief C++ Preprocessor directive specialization for an else directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type ELSE that represents an abstract
- *  model of a C++ preprocessor else directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ELSE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-
-};
-
-/** @brief C++ Preprocessor directive specialization for an endif directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type ENDIF that represents an abstract
- *  model of a C++ preprocessor endif directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ENDIF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-
-};
-
-/** @brief C++ Preprocessor directive specialization for an if directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type IF that represents an abstract
- *  model of a C++ preprocessor if directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-
-};
-
-/** @brief C++ Preprocessor directive specialization for an include directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type INCLUDE that represents an abstract
- *  model of a C++ preprocessor include directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::INCLUDE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive() {
-		file_ptr = nullptr;
-		standard = false;
-	}
-
-	Directive(Cpp::Project::File::Header *header_ptr) {
-		file_ptr = header_ptr;
-		if (file_ptr->isStandard()){
-			standard = true;
-		} else {
-			standard = false;
-		}
-	}
-
-	Directive(Cpp::Project::File::Header &header) {
-		file_ptr = &header;
-		if (file_ptr->isStandard()){
-			standard = true;
-		} else {
-			standard = false;
-		}
-	}
-
-	virtual ~Directive();
-
-	std::string cpp_str() {
-
-		if (file_ptr == nullptr) { return ""; }
-
-		std::string ret;
-		const char enclosers[] = {'<','>','\"'};
-
-		if (standard) {
-
-		}
-
-		return ret;
-	}
-
-	std::string xml_str() {
-		;
-	}
-
-private:
-	bool        standard;
-	Cpp::Project::File::Header   *file_ptr;
-};
-
-/** @brief C++ Preprocessor directive specialization for an elif directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type ELIF that represents an abstract
- *  model of a C++ preprocessor elif directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ELIF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-
-};
-
-/** @brief C++ Preprocessor directive specialization for an error directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type ERROR that represents an abstract
- *  model of a C++ preprocessor error directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ERROR> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-	std::string error_message;
-};
-
-/** @brief C++ Preprocessor directive specialization for an line directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type LINE that represents an abstract
- *  model of a C++ preprocessor line directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::LINE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-	int line_number;
-	std::string new_filename;
-};
-
-/** @brief C++ Preprocessor directive specialization for an pragma directive.
- *  @author FlowerGenius
- *
- *  An explicit specialization of the type PRAGMA that represents an abstract
- *  model of a C++ preprocessor pragma directive.
- */
-template<>
-class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::PRAGMA> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
-public:
-	Directive();
-	virtual ~Directive();
-private:
-	std::vector<std::string> parameters;
-};
+//
+///** @brief C++ Preprocessor directive specialization for a define directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type DEFINE that represents an abstract
+// *  model of a C++ preprocessor define directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::DEFINE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//
+//	/** @brief	Creates a model of a C++ define directive and a macro object.
+//	 *	@author	FlowerGenius
+//	 *	@param	feat		Pointer to the C++ feature that comes immediately
+//	 *	before this directive in the source code.
+//	 *	@param	id			String that is a (typically) valid macro identifier.
+//	 *	@param	statement	String that is a (typically) valid macro expression.
+//	 *	@param	args		Vector of 0 or more strings for the macro arguments.
+//	 *
+//	 *	This constructor generates an abstract model of a C++ define
+//	 *	directive. It also creates a new macro object representing the
+//	 *	macro that has been defined by the directive.
+//	 *
+//	 */
+//	Directive(Cpp::Project::Artifact* artifact, std::string id, Cpp::Feature *feat = nullptr,
+//			std::string statement = "",
+//			std::vector<std::string> args = {}) {
+//		before = feat;
+//
+//		try {
+//			macro = new Cpp::PreProcessor::Macro((void*)artifact,id,statement,args);
+//		}
+//		catch (std::bad_alloc &exception) {
+//
+//		}
+//
+//	}
+//
+//	virtual ~Directive();
+//
+//	std::string cpp_str() {
+//		std::string s = "#"+T(Cpp::PreProcessor::DirectiveType::DEFINE)+macro->getIdentifier();
+//		if (macro->getArguments().size() > 0) {
+//			s.append("(");
+//			for (auto const& value: macro->getArguments()) {
+//				s.append(value + ",");
+//			}
+//			s.replace(s.rfind(','),1,1,')');
+//		}
+//
+//		s.append(" " + macro->getStatement());
+//		return s;
+//	};
+//
+//	std::string xml_str() {
+//		std::string s;
+//		if (macro->getArguments().size() > 0) {
+//			s.append("[");
+//			for (auto const& value: macro->getArguments()) {
+//				s.append(value + ",");
+//			}
+//			s.replace(s.rfind(','),1,1,']');
+//		}
+//
+//		return "<"+T(Cpp::PreProcessor::DirectiveType::DEFINE)
+//				+" id="+macro->getIdentifier()
+//				+" arguments="+s
+//				+" statement="+macro->getStatement()+" />";
+//	}
+//
+//private:
+//	Cpp::PreProcessor::Macro	*macro;	/** Pointer to the macro that this object defines */
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an undef directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type UNDEF that represents an abstract
+// *  model of a C++ preprocessor undef directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::UNDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//
+//	/** @brief Creates a model of a C++ undef directive and marks a macro
+//	 * 	as undefined (destroying it's contents).
+//	 *  @author FlowerGenius
+//	 *  @param	macro	Reference to the macro object to undefine.
+//	 *
+//	 */
+//	Directive(Macro &macro) {
+//		this->macro = &macro;
+//		this->macro->undefine();
+//	}
+//
+//	/** @brief Creates a model of a C++ undef directive and marks a macro
+//	 * 	as undefined (destroying it's contents).
+//	 *  @author FlowerGenius
+//	 *  @param	macro	Pointer to the macro object to undefine.
+//	 *
+//	 */
+//	Directive(Macro *macro) {
+//		this->macro = macro;
+//		this->macro->undefine();
+//	}
+//
+//	virtual ~Directive();
+//private:
+//	Macro	*macro;	/** Pointer to the macro that this object undefines */
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an ifdef directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type IFDEF that represents an abstract
+// *  model of a C++ preprocessor ifdef directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IFDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//
+//	/** @brief Creates a model of a C++ ifdef directive
+//	 *  @author FlowerGenius
+//	 *  @param	macro	Reference to the macro being tested for existence.
+//	 *
+//	 */
+//	Directive(Macro &macro) {
+//		this->macro = &macro;
+//	}
+//
+//	/** @brief Creates a model of a C++ ifdef directive
+//	 *  @author FlowerGenius
+//	 *  @param	macro	Pointer to the macro being tested for existence.
+//	 *
+//	 */
+//	Directive(Macro *macro) {
+//		this->macro = macro;
+//	}
+//
+//	virtual ~Directive();
+//private:
+//	Macro    *macro;
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an ifndef directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type IFNDEF that represents an abstract
+// *  model of a C++ preprocessor ifndef directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IFNDEF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//	Macro    *macro;
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an else directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type ELSE that represents an abstract
+// *  model of a C++ preprocessor else directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ELSE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an endif directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type ENDIF that represents an abstract
+// *  model of a C++ preprocessor endif directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ENDIF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an if directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type IF that represents an abstract
+// *  model of a C++ preprocessor if directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::IF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an include directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type INCLUDE that represents an abstract
+// *  model of a C++ preprocessor include directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::INCLUDE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive() {
+//		file_ptr = nullptr;
+//		standard = false;
+//	}
+//
+//	Directive(Cpp::Project::File::Header *header_ptr) {
+//		file_ptr = header_ptr;
+//		if (file_ptr->isStandard()){
+//			standard = true;
+//		} else {
+//			standard = false;
+//		}
+//	}
+//
+//	Directive(Cpp::Project::File::Header &header) {
+//		file_ptr = &header;
+//		if (file_ptr->isStandard()){
+//			standard = true;
+//		} else {
+//			standard = false;
+//		}
+//	}
+//
+//	virtual ~Directive();
+//
+//	std::string cpp_str() {
+//
+//		if (file_ptr == nullptr) { return ""; }
+//
+//		std::string ret;
+//		const char enclosers[] = {'<','>','\"'};
+//
+//		if (standard) {
+//
+//		}
+//
+//		return ret;
+//	}
+//
+//	std::string xml_str() {
+//		;
+//	}
+//
+//private:
+//	bool        standard;
+//	Cpp::Project::File::Header   *file_ptr;
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an elif directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type ELIF that represents an abstract
+// *  model of a C++ preprocessor elif directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ELIF> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an error directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type ERROR that represents an abstract
+// *  model of a C++ preprocessor error directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::ERROR> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//	std::string error_message;
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an line directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type LINE that represents an abstract
+// *  model of a C++ preprocessor line directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::LINE> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//	int line_number;
+//	std::string new_filename;
+//};
+//
+///** @brief C++ Preprocessor directive specialization for an pragma directive.
+// *  @author FlowerGenius
+// *
+// *  An explicit specialization of the type PRAGMA that represents an abstract
+// *  model of a C++ preprocessor pragma directive.
+// */
+//template<>
+//class Cpp::PreProcessor::Directive<Cpp::PreProcessor::DirectiveType::PRAGMA> : public Cpp::PreProcessor::Directive_base, public Cpp::Feature {
+//public:
+//	Directive();
+//	virtual ~Directive();
+//private:
+//	std::vector<std::string> parameters;
+//};
 
 } /* namespace cpp */
 } /* namespace sheila */

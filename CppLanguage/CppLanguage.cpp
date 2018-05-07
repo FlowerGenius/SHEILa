@@ -9,7 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include "Cpp.h"
+#include "CppLanguage.h"
 
 
 
@@ -48,154 +48,7 @@ template<class _N>
 std::vector<Cpp::Structure::Files::InFiles::Header*>  Cpp::Structure::Files::OutFiles::Object<_N>::this_object_headers;
 #endif
 
-std::vector<std::string> Cpp::reserved_words = {
-		"and",
-		"and_eq",
-		"asm",
-		"auto",
-		"bitand",
-		"bitor",
-		"bool",
-		"break",
-		"case",
-		"catch",
-		"char",
-		"class",
-		"compl",
-		"const",
-		"const_cast",
-		"continue",
-		"default",
-		"delete",
-		"do",
-		"double",
-		"dynamic_cast",
-		"else",
-		"enum",
-		"explicit",
-		"export",
-		"extern",
-		"false",
-		"float",
-		"for",
-		"friend",
-		"goto",
-		"if",
-		"inline",
-		"int",
-		"long",
-		"mutable",
-		"namespace",
-		"new",
-		"not",
-		"not_eq",
-		"operator",
-		"or",
-		"or_eq",
-		"private",
-		"protected",
-		"public",
-		"register",
-		"reinterpret_cast",
-		"return",
-		"short",
-		"signed",
-		"sizeof",
-		"static",
-		"static_cast",
-		"struct",
-		"switch",
-		"template",
-		"this",
-		"throw",
-		"true",
-		"try",
-		"typedef",
-		"typeid",
-		"typename",
-		"union",
-		"unsigned",
-		"using",
-		"virtual",
-		"void",
-		"volatile",
-		"wchar_t",
-		"while",
-		"xor",
-		"xor_eq"
-};
 
-bool Cpp::isReservedWord(std::string word) {
-	for (std::vector<std::string>::iterator it = reserved_words.begin();
-			it != reserved_words.end(); ++it) {
-		if ((*it) == word) {
-			return true;
-		}
-	}
-
-	return false;
-}
-
-std::string Cpp::accessLevel(AccessLevel lvl) {
-
-	switch(lvl) {
-	case PRIVATE:
-		return "private";
-	case PROTECTED:
-		return "protected";
-	case PUBLIC:
-		return "public";
-	}
-
-	return "";
-}
-
-std::string Cpp::storageClass(StorageClass cla) {
-
-	switch(cla) {
-	case STATIC:
-		return "static";
-	case EXTERN:
-		return "extern";
-	case MUTABLE:
-		return "mutable";
-	case AUTO:
-		return "auto";
-	case REGISTER:
-		return "register";
-	}
-
-	return "";
-}
-
-std::string Cpp::fundamentalType(FundamentalType typ) {
-
-	switch(typ) {
-	case VOID:
-		return "void";
-	case BOOL:
-		return "bool";
-	case CHAR:
-		return "char";
-	case WCHAR:
-		return "wchar_t";
-	case SHORT:
-		return "short";
-	case INT:
-		return "int";
-	case LONG:
-		return "long";
-	case FLOAT:
-		return "float";
-	case DOUBLE:
-		return "double";
-	case LONG_DOUBLE:
-		return "long double";
-	}
-
-	return "void";
-
-}
 //
 //static Header std_stl_algorithm = Header("algorithm", true);
 //static Header std_bitset        = Header("bitset", true);
@@ -230,12 +83,6 @@ std::string Cpp::fundamentalType(FundamentalType typ) {
 //static Header std_valarray      = Header("valarray",true);
 //static Header std_stl_vector    = Header("vector",true);
 
-//Cpp::PreProcessor::Macro::Macro() {
-//
-//	std::cerr << "C++ macro object initialized without being declared" << std::endl;
-//	defined = false;
-//
-//}
 
 namespace Cpp {
 namespace Types {
@@ -244,7 +91,7 @@ using namespace LexicalElements::ReservedWords;
 
 std::map<Scopes::Scope*,std::list<Type*> > Type::all_types;
 
-Types::Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
+Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
 	this->type_name = nm;
 	rwords = false;
 	if (scop != nullptr) {
@@ -253,14 +100,14 @@ Types::Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
 	all_types[myscope].push_back(this);
 }
 
-Types::Type::Type(std::initializer_list<rw_ptr> nm) {
+Type::Type(std::initializer_list<rw_ptr> nm) {
 	this->words = nm;
 	rwords = true;
 	myscope = &Scopes::Scope::global_scope;
 	all_types[myscope].push_back(this);
 }
 
-Types::Type::~Type() {
+Type::~Type() {
 	all_types[myscope].remove(this);
 }
 
@@ -330,18 +177,26 @@ CharacterType::~CharacterType() {
 }
 
 const CharacterType CharacterType::Char =
-		CharacterType({&ReservedTypeWord::R_char},{&ReservedTypeWord::R_signed});
+		CharacterType({&ReservedTypeWord::R_char},
+				{&ReservedTypeWord::R_signed});
 
+#ifdef CPP_SUPPORT_WIDE_CHAR
 const CharacterType CharacterType::WideChar =
-		CharacterType({&ReservedTypeWord::R_wchar_t},{&ReservedTypeWord::R_signed});
+		CharacterType({&ReservedTypeWord::R_wchar_t},
+				{&ReservedTypeWord::R_signed});
+#endif
 
 const CharacterType CharacterType::UnsignedChar =
-		CharacterType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_char},
+		CharacterType({&ReservedTypeWord::R_unsigned,
+	&ReservedTypeWord::R_char},
 				{},false);
 
+#ifdef CPP_SUPPORT_WIDE_CHAR
 const CharacterType CharacterType::UnsignedWideChar =
-		CharacterType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_wchar_t},
+		CharacterType({&ReservedTypeWord::R_unsigned,
+	&ReservedTypeWord::R_wchar_t},
 				{},false);
+#endif
 
 } /* namespace CharacterTypes */
 
@@ -367,29 +222,37 @@ const IntegerType IntegerType::ShortInteger =
 const IntegerType IntegerType::BasicInteger =
 		IntegerType({&ReservedTypeWord::R_int},{&ReservedTypeWord::R_signed});
 
+#ifdef CPP_SUPPORT_LONG_INT
 const IntegerType IntegerType::LongInteger =
 		IntegerType({&ReservedTypeWord::R_long},
 				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_INT
 const IntegerType IntegerType::LongLongInteger =
 		IntegerType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long},
 				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
+#endif
 
 const IntegerType IntegerType::UnsignedShortInteger =
 		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_short},
 				{&ReservedTypeWord::R_int},false);
 
 const IntegerType IntegerType::UnsignedBasicInteger =
-		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_int},{},false);
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_int},
+				{},false);
 
+#ifdef CPP_SUPPORT_LONG_INT
 const IntegerType IntegerType::UnsignedLongInteger =
 		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long},
 				{&ReservedTypeWord::R_int},false);
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_INT
 const IntegerType IntegerType::UnsignedLongLongInteger =
 		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long,
 	&ReservedTypeWord::R_long},{&ReservedTypeWord::R_int},false);
-
+#endif
 
 } /* namespace IntegerTypes */
 
@@ -416,12 +279,17 @@ const FloatingPointType FloatingPointType::Float =
 const FloatingPointType FloatingPointType::Double =
 		FloatingPointType({&ReservedTypeWord::R_double});
 
+#ifdef CPP_SUPPORT_LONG_DOUBLE
 const FloatingPointType FloatingPointType::LongDouble =
-		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_double});
+		FloatingPointType({&ReservedTypeWord::R_long,
+	&ReservedTypeWord::R_double});
+#endif
 
+#ifdef CPP_SUPPORT_LONGLONG_DOUBLE
 const FloatingPointType FloatingPointType::LongLongDouble =
 		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long,
 	&ReservedTypeWord::R_double});
+#endif
 
 } /* namespace FloatingPointTypes */
 } /* namespace ArithmeticTypes */
@@ -459,6 +327,7 @@ EnumerationType::~EnumerationType() {
 
 }
 
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 ScopedEnumType::ScopedEnumType(
 		const Types::ClassType *scopetype,
 		std::string nm,
@@ -471,7 +340,7 @@ ScopedEnumType::ScopedEnumType(
 ScopedEnumType::~ScopedEnumType() {
 
 }
-
+#endif
 
 
 } /* namespace EnumerationTypes */
@@ -500,15 +369,19 @@ StringType::~StringType() {
 const StringType StringType::T_CharString =
 		StringType(&Types::CharacterType::Char);
 
+#ifdef CPP_SUPPORT_WIDE_CHAR
 const StringType StringType::T_WideCharString =
 		StringType(&Types::CharacterType::WideChar);
+#endif
+
 
 const StringType StringType::T_UnsignedCharString =
 		StringType(&Types::CharacterType::UnsignedChar);
 
+#ifdef CPP_SUPPORT_WIDE_CHAR
 const StringType StringType::T_UnsignedWideCharString =
 		StringType(&Types::CharacterType::UnsignedWideChar);
-
+#endif
 
 PointerType::PointerType(Types::Type *target) :
 	CompoundType({target->getName().front()+"*"}) {
@@ -768,9 +641,9 @@ Scope::~Scope() {
 
 
 Cpp::Variable::Variable(std::string proposed_id,Types::Type *typ,
-		LexicalElements::Expression *val) {
+		LexicalElements::Expression *val) : id(LexicalElements::Identifier(proposed_id)) {
 
-	id = LexicalElements::Identifier(proposed_id);
+//	id = LexicalElements::Identifier(proposed_id);
 	type = typ;
 	value = val;
 
@@ -797,8 +670,7 @@ namespace Enumerations {
 
 Enumeration::Enumeration(std::string nm,
 		const Types::IntegralType *etype,
-		std::map<std::string,LexicalElements::Literals::Literal> mp) :
-				Token(nm) {
+		std::map<std::string,LexicalElements::Literals::Literal> mp) {
 
 	enumerator_type = etype;
 
@@ -830,8 +702,54 @@ Enumeration::~Enumeration() {
 
 namespace Classes {
 
+
+BasicClass::BasicClass(const AccessLevel* acc, std::string prop_name){
+
 }
 
+BasicClass::~BasicClass() {
+
+}
+
+UnionClass::UnionClass(std::string prop_name) :
+		BasicClass(&AccessLevel::R_public, prop_name) {
+
+}
+
+UnionClass::~UnionClass() {
+
+}
+
+CppClass::CppClass(const AccessLevel* acc, std::string prop_name,
+		parent_list mp) : BasicClass(acc,prop_name) {
+
+}
+
+CppClass::~CppClass() {
+
+}
+
+ClassClass::ClassClass(std::string prop_name, parent_list mp) :
+		Classes::CppClass(&AccessLevel::R_private, prop_name, mp) {
+
+}
+
+ClassClass::~ClassClass() {
+
+}
+
+StructClass::StructClass(std::string prop_name, parent_list mp) :
+		Classes::CppClass(&AccessLevel::R_public, prop_name, mp) {
+
+}
+
+StructClass::~StructClass() {
+
+}
+
+} /* namespace Classes */
+
+#ifdef CPP_SUPPORT_SCOPED_ENUM
 namespace Enumerations {
 
 ScopedEnumeration::ScopedEnumeration(const Types::ClassType scopetype,
@@ -848,7 +766,7 @@ ScopedEnumeration::~ScopedEnumeration() {
 
 
 } /* namespace Enumerations */
-
+#endif
 
 } /* namespace Cpp */
 
@@ -873,40 +791,40 @@ ScopedEnumeration::~ScopedEnumeration() {
 
 
 
-
-Cpp::PreProcessor::Macro::Macro(void *scope,
-		std::string id, std::string value,
-		std::vector<std::string> allocator) {
-	this->identifier = id;
-	this->statement = value;
-
-	if (allocator.size() > 0) {
-		arguments = std::vector<std::string>(allocator);
-	}
-
-	this->defined = true;
-
-	Cpp::Project::Artifact *a = static_cast<Cpp::Project::Artifact *>(scope);
-
-	a->addMacro(this);
-}
-
-std::string Cpp::PreProcessor::Macro::cpp_str() {
-
-	return "";
-}
-
-std::string Cpp::PreProcessor::Macro::xml_str() {
-
-	// TODO xml_str for CppMacro
-
-	return "";
-}
-
-
-Cpp::PreProcessor::Macro::~Macro() {
-	// TODO Auto-generated destructor stub
-}
+//
+//Cpp::PreProcessor::Macro::Macro(void *scope,
+//		std::string id, std::string value,
+//		std::vector<std::string> allocator) {
+//	this->identifier = id;
+//	this->statement = value;
+//
+//	if (allocator.size() > 0) {
+//		arguments = std::vector<std::string>(allocator);
+//	}
+//
+//	this->defined = true;
+//
+//	Cpp::Project::Artifact *a = static_cast<Cpp::Project::Artifact *>(scope);
+//
+//	a->addMacro(this);
+//}
+//
+//std::string Cpp::PreProcessor::Macro::cpp_str() {
+//
+//	return "";
+//}
+//
+//std::string Cpp::PreProcessor::Macro::xml_str() {
+//
+//	// TODO xml_str for CppMacro
+//
+//	return "";
+//}
+//
+//
+//Cpp::PreProcessor::Macro::~Macro() {
+//	// TODO Auto-generated destructor stub
+//}
 
 /*========================= Variables ========================================*/
 #ifdef LANG_CPP_CLASS_VARIABLE
@@ -1071,25 +989,25 @@ Cpp::Project::Project(std::string) {
 Cpp::Project::~Project(){
 }
 
-Cpp::Project::Artifact::Artifact() {
-}
-
-const std::map<std::string, Cpp::Feature*>&
-Cpp::Project::Artifact::scopeFeatures() const {
-	return global_scope;
-}
-
-std::map<std::string, Cpp::Feature*>
-Cpp::Project::Artifact::accessibleFeatures() {
-	std::map<std::string, Cpp::Feature*> all_features;
-	all_features.insert(global_scope.begin(),global_scope.end());
-
-	return all_features;
-}
-
-Cpp::Project::Artifact::~Artifact() {
-
-}
+//Cpp::Project::Artifact::Artifact() {
+//}
+//
+//const std::map<std::string, Cpp::Feature*>&
+//Cpp::Project::Artifact::scopeFeatures() const {
+//	return global_scope;
+//}
+//
+//std::map<std::string, Cpp::Feature*>
+//Cpp::Project::Artifact::accessibleFeatures() {
+//	std::map<std::string, Cpp::Feature*> all_features;
+//	all_features.insert(global_scope.begin(),global_scope.end());
+//
+//	return all_features;
+//}
+//
+//Cpp::Project::Artifact::~Artifact() {
+//
+//}
 
 
 

@@ -14,10 +14,10 @@
 
 
 
+#include <ProgrammingLanguage/Cpp/Cpp.h>
+#include <ProgrammingLanguage/Cpp/CppClass/CppClass.h>
+#include <ProgrammingLanguage/Cpp/CppCompiler/CppCompiler.h>
 #include <SHEILa.h>
-#include <Cpp/Cpp.h>
-#include <Cpp/CppCompiler/CppCompiler.h>
-#include <Cpp/CppClass/CppClass.h>
 #include <iostream>
 
 #define SHEILA_ENTITY_INSTANCE_LOC "/home/erin/Documents/SHEILa/config"
