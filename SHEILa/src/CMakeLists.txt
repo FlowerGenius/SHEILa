@@ -10,4 +10,12 @@
 #==============================================================================#
 cmake_minimum_required(VERSION 3.5)
 
-add_subdirectory("Entity" "Cpp" "C")
+#project(SHEILalib VERSION 0.0.0 LANGUAGES CXX)
+
+add_subdirectory(
+	"Entity" 
+)
+
+add_library(SHEILalib SHARED
+	main.cpp
+)

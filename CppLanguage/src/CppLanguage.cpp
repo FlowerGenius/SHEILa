@@ -9,7 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include "../include/CppLanguage.h"
+#include <CppLanguage.h>
 
 #if (BUILD_FOR_SHEILA_DAEMON == 1)
 template<class _N>

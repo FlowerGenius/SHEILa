@@ -28,10 +28,10 @@ template<class _Te>
 std::vector<std::string>				Entity<_Te>::this_object_cv_filters;
 
 template<class _Te>
-std::vector<cpp::Cpp::Structure::Files::OutFiles::Object_base> 	Entity<_Te>::this_object_parents;
+std::vector<Cpp::Structure::Files::OutFiles::Object_base> 	Entity<_Te>::this_object_parents;
 
 template<class _Te>
-std::vector<cpp::Cpp::Structure::Files::OutFiles::Object_base> 	Entity<_Te>::this_object_children;
+std::vector<Cpp::Structure::Files::OutFiles::Object_base> 	Entity<_Te>::this_object_children;
 #endif
 
 

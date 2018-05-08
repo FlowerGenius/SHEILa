@@ -3,15 +3,14 @@
 #  Author      : FlowerGenius<justanortherngirl58@gmail.com>                   #
 #  Version     : 0.0.0                                                         #
 #  Copyright   :                                                               #
-#  Description : cmake configuration file                                      #
-#  Module      : SHEILa                                                        #
-#  Created     : Apr 14, 2018                                                  #
+#  Description : CMake configuration file                                      #
+#  Module      : CppLanguage                                                   #
+#  Created     : May  7, 2018                                                  #
 #  Modified    :                                                               #
 #==============================================================================#
-cmake_minimum_required(VERSION 3.5)
-
-add_subdirectory(GLOB .)
-
-add_library(SHEILalib SHARED
-	Entity.cpp
+target_sources( CppLanguage
+	PUBLIC
+		"${CMAKE_CURRENT_LIST_DIR}/CppLanguage.h"
 )
+
+target_include_directories(CppLanguage PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
