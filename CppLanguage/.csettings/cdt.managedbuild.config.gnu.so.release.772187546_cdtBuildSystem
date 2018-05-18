@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 5.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage2">
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.so.release.772187546" name="Release" parent="cdt.managedbuild.config.gnu.so.release">
+			<folderInfo id="cdt.managedbuild.config.gnu.so.release.772187546." name="/" resourcePath="">
+				<toolChain id="cdt.managedbuild.toolchain.gnu.so.release.1180795789" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.so.release">
+					<targetPlatform id="cdt.managedbuild.target.gnu.platform.so.release.1336699832" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.so.release"/>
+					<builder buildPath="${workspace_loc:/CppLanguage}/Release" id="cdt.managedbuild.target.gnu.builder.so.release.1663598801" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.so.release"/>
+					<tool id="cdt.managedbuild.tool.gnu.archiver.base.796845036" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
+					<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.so.release.2137923400" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.release">
+						<option id="gnu.cpp.compiler.so.release.option.optimization.level.1660040922" name="Optimization Level" superClass="gnu.cpp.compiler.so.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+						<option id="gnu.cpp.compiler.so.release.option.debugging.level.977299589" name="Debug Level" superClass="gnu.cpp.compiler.so.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
+						<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2121278020" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+					</tool>
+					<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.release.1129856622" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release">
+						<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.so.release.option.optimization.level.2101440591" name="Optimization Level" superClass="gnu.c.compiler.so.release.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+						<option id="gnu.c.compiler.so.release.option.debugging.level.221712473" name="Debug Level" superClass="gnu.c.compiler.so.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+						<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1068755935" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+					</tool>
+					<tool id="cdt.managedbuild.tool.gnu.c.linker.so.release.2089163485" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.release">
+						<option defaultValue="true" id="gnu.c.link.so.release.option.shared.76381670" name="Shared (-shared)" superClass="gnu.c.link.so.release.option.shared" valueType="boolean"/>
+					</tool>
+					<tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.release.1856843244" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.release">
+						<option defaultValue="true" id="gnu.cpp.link.so.release.option.shared.101676586" name="Shared (-shared)" superClass="gnu.cpp.link.so.release.option.shared" valueType="boolean"/>
+						<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1643328503" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+							<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+							<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+						</inputType>
+					</tool>
+					<tool id="cdt.managedbuild.tool.gnu.assembler.so.release.1042493053" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.release">
+						<inputType id="cdt.managedbuild.tool.gnu.assembler.input.198659670" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+					</tool>
+				</toolChain>
+			</folderInfo>
+		</configuration>
+	</storageModule>
+</cproject>

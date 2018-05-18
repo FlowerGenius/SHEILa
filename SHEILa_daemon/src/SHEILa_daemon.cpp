@@ -108,13 +108,17 @@ int main() {
 //	}
 	buildDaemon();
 
-	sheila::Emotion e1 = sheila::Emotion();
-	sheila::Emotion e2 = sheila::Emotion();
+	std::cout << Cpp::Types::FundamentalTypes::FundamentalType::getFundamentalTypes().front()->getName().front() << std::endl;
+
+//	Cpp::LexicalElements::ReservedWords::Words::add(&Cpp::LexicalElements::ReservedWords::Words::R_and);
+
+//	sheila::Emotion e1 = sheila::Emotion();
+//	sheila::Emotion e2 = sheila::Emotion();
 
 
-	sheila::cpp::CppSharedLib l;
-
-	std::cout << l.getName() << std::endl;
+//	sheila::cpp::CppSharedLib l;
+//
+//	std::cout << l.getName() << std::endl;
 
 //while (true){
 //	std::cout << e2._getName()[0] << std::endl;

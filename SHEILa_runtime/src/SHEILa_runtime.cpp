@@ -10,7 +10,7 @@
 //============================================================================
 
 
-#include <SHEILa.h>
+#include <SHEILa_library/SHEILa.h>
 
 #include "headers.h"
 #include <typeinfo>

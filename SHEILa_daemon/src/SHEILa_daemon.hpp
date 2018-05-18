@@ -12,11 +12,6 @@
 #ifndef SHEILA_DAEMON_HPP_
 #define SHEILA_DAEMON_HPP_
 
-
-
-#include <ProgrammingLanguage/Cpp/Cpp.h>
-#include <ProgrammingLanguage/Cpp/CppClass/CppClass.h>
-#include <ProgrammingLanguage/Cpp/CppCompiler/CppCompiler.h>
 #include <SHEILa.h>
 #include <iostream>
 

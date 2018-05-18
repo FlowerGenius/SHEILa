@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 5.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage2">
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;de.marw.cdt.cmake.core.CMakeErrorParser" id="cdt.managedbuild.config.gnu.so.debug.326580649" name="Debug" parent="cdt.managedbuild.config.gnu.so.debug">
+			<folderInfo id="cdt.managedbuild.config.gnu.so.debug.326580649." name="/" resourcePath="">
+				<toolChain errorParsers="" id="cdt.managedbuild.toolchain.gnu.so.debug.117929341" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.so.debug">
+					<targetPlatform id="cdt.managedbuild.target.gnu.platform.so.debug.287313271" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.so.debug"/>
+					<builder buildPath="/CppLanguage/build/Debug" errorParsers="org.eclipse.cdt.core.MakeErrorParser" id="de.marw.cdt.cmake.core.genmakebuilder.1382891534" keepEnvironmentInBuildfile="false" name="CMake Builder (GNU Make)" parallelBuildOn="false" superClass="de.marw.cdt.cmake.core.genmakebuilder"/>
+					<tool id="cdt.managedbuild.tool.gnu.archiver.base.1438584534" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
+					<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.922201945" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug">
+						<option id="gnu.cpp.compiler.so.debug.option.optimization.level.98591841" name="Optimization Level" superClass="gnu.cpp.compiler.so.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+						<option id="gnu.cpp.compiler.so.debug.option.debugging.level.4830383" name="Debug Level" superClass="gnu.cpp.compiler.so.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+						<option id="gnu.cpp.compiler.option.other.pic.35376270" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+						<option id="gnu.cpp.compiler.option.dialect.std.376994589" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
+						<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.225010870" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+					</tool>
+					<tool errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.1230040882" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug">
+						<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.so.debug.option.optimization.level.417736021" name="Optimization Level" superClass="gnu.c.compiler.so.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+						<option id="gnu.c.compiler.so.debug.option.debugging.level.1629829143" name="Debug Level" superClass="gnu.c.compiler.so.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+						<option id="gnu.c.compiler.option.misc.pic.1481888496" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+						<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1525632760" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+					</tool>
+					<tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.707244578" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug">
+						<option defaultValue="true" id="gnu.c.link.so.debug.option.shared.1718886257" name="Shared (-shared)" superClass="gnu.c.link.so.debug.option.shared" valueType="boolean"/>
+					</tool>
+					<tool errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.905424877" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
+						<option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.1753286314" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" useByScannerDiscovery="false" valueType="boolean"/>
+						<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.695095792" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+							<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+							<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+						</inputType>
+					</tool>
+					<tool errorParsers="org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.tool.gnu.assembler.so.debug.955865941" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.so.debug">
+						<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1074517061" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+					</tool>
+				</toolChain>
+			</folderInfo>
+		</configuration>
+	</storageModule>
+</cproject>

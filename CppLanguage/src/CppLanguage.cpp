@@ -9,40 +9,7 @@
 // Modified    :
 //==============================================================================
 
-#include <CppLanguage.h>
-
-#if (BUILD_FOR_SHEILA_DAEMON == 1)
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_names;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_authors;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_versions;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_copyrights;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_descriptions;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_modules;
-
-template<class _N>
-std::string              Cpp::Structure::Files::OutFiles::Object<_N>::this_object_created;
-
-template<class _N>
-std::vector<std::string> Cpp::Structure::Files::OutFiles::Object<_N>::this_object_modified;
-
-template<class _N>
-Cpp::Structure::Files::InFiles::Source* 				 Cpp::Structure::Files::OutFiles::Object<_N>::this_object_source;
-
-template<class _N>
-std::vector<Cpp::Structure::Files::InFiles::Header*>  Cpp::Structure::Files::OutFiles::Object<_N>::this_object_headers;
-#endif
-
+#include "CppLanguage/CppLanguage.h"
 
 //
 //static Header std_stl_algorithm = Header("algorithm", true);
@@ -80,13 +47,136 @@ std::vector<Cpp::Structure::Files::InFiles::Header*>  Cpp::Structure::Files::Out
 
 
 namespace Cpp {
+
+namespace LexicalElements { namespace ReservedWords {
+
+const rwid ReservedWord::R_and    = rwid("and");
+const rwid ReservedWord::R_and_eq = rwid("and_eq");
+const rwid ReservedWord::R_not    = rwid("not");
+const rwid ReservedWord::R_not_eq = rwid("not_eq");
+
+const rwid ReservedWord::R_asm    = rwid("asm");
+const rwid ReservedWord::R_bitand = rwid("bitand");
+const rwid ReservedWord::R_bitor  = rwid("bitor");
+const rwid ReservedWord::R_break  = rwid("break");
+const rwid ReservedWord::R_case   = rwid("case");
+const rwid ReservedWord::R_catch  = rwid("catch");
+const rwid ReservedWord::R_compl  = rwid("compl");
+const rwid ReservedWord::R_const_cast= rwid("const_cast");
+const rwid ReservedWord::R_continue= rwid("continue");
+const rwid ReservedWord::R_default= rwid("default");
+const rwid ReservedWord::R_delete= rwid("default");
+const rwid ReservedWord::R_do= rwid("do");
+const rwid ReservedWord::R_dynamic_cast= rwid("dynamic_cast");
+const rwid ReservedWord::R_else= rwid("else");
+const rwid ReservedWord::R_explicit= rwid("explicit");
+const rwid ReservedWord::R_export= rwid("export");
+const rwid ReservedWord::R_false= rwid("false");
+const rwid ReservedWord::R_for= rwid("for");
+const rwid ReservedWord::R_friend= rwid("friend");
+const rwid ReservedWord::R_goto= rwid("goto");
+const rwid ReservedWord::R_if= rwid("if");
+const rwid ReservedWord::R_inline= rwid("inline");
+const rwid ReservedWord::R_namespace= rwid("namespace");
+const rwid ReservedWord::R_new= rwid("new");
+
+const rwid ReservedWord::R_operator= rwid("operator");
+const rwid ReservedWord::R_or= rwid("or");
+const rwid ReservedWord::R_or_eq= rwid("or_eq");
+
+const rwid ReservedWord::R_reinterpret_cast= rwid("reinterpret_cast");
+const rwid ReservedWord::R_return= rwid("return");
+const rwid ReservedWord::R_sizeof= rwid("sizeof");
+const rwid ReservedWord::R_static_cast= rwid("static_cast");
+const rwid ReservedWord::R_switch= rwid("switch");
+const rwid ReservedWord::R_template= rwid("template");
+const rwid ReservedWord::R_this= rwid("this");
+const rwid ReservedWord::R_throw= rwid("throw");
+const rwid ReservedWord::R_true= rwid("true");
+const rwid ReservedWord::R_try= rwid("try");
+const rwid ReservedWord::R_typedef= rwid("typedef");
+const rwid ReservedWord::R_typeid= rwid("typeid");
+const rwid ReservedWord::R_using= rwid("using");
+const rwid ReservedWord::R_virtual= rwid("virtual");
+const rwid ReservedWord::R_while= rwid("while");
+const rwid ReservedWord::R_xor= rwid("xor");
+const rwid ReservedWord::R_xor_eq= rwid("xor_eq");
+
+const rtwid ReservedTypeWord::R_void        = rtwid("void");
+const rtwid ReservedTypeWord::R_bool        = rtwid("bool");
+const rtwid ReservedTypeWord::R_char        = rtwid("char");
+const rtwid ReservedTypeWord::R_wchar_t     = rtwid("wchar_t");
+const rtwid ReservedTypeWord::R_short       = rtwid("short");
+const rtwid ReservedTypeWord::R_int         = rtwid("int");
+const rtwid ReservedTypeWord::R_long        = rtwid("long");
+const rtwid ReservedTypeWord::R_float       = rtwid("float");
+const rtwid ReservedTypeWord::R_double      = rtwid("double");
+const rtwid ReservedTypeWord::R_enum        = rtwid("enum");
+const rtwid ReservedTypeWord::R_class       = rtwid("class");
+const rtwid ReservedTypeWord::R_struct      = rtwid("struct");
+const rtwid ReservedTypeWord::R_union       = rtwid("union");
+const rtwid ReservedTypeWord::R_signed      = rtwid("signed");
+const rtwid ReservedTypeWord::R_unsigned    = rtwid("unsigned");
+const rtwid ReservedTypeWord::R_typename    = rtwid("typename");
+
+const qid Qualifier::R_const        = qid("const");
+const qid Qualifier::R_volatile     = qid("volatile");
+
+const scid StorageClass::R_auto     = scid("auto");
+const scid StorageClass::R_extern   = scid("extern");
+const scid StorageClass::R_mutable  = scid("mutable");
+const scid StorageClass::R_register = scid("register");
+const scid StorageClass::R_static   = scid("static");
+
+const alid AccessLevel::R_private   = alid("private");
+const alid AccessLevel::R_protected = alid("protected");
+const alid AccessLevel::R_public    = alid("public");
+
+} } /* namespace LexicalElements::ReservedWords */
+
+#if CPP_SUPPORT_CXX11_ATTR
+namespace Attributes {
+
+const anid AttrNamespace::STD_ATTR_NS_GNU = anid("gnu");
+const anid AttrNamespace::STD_ATTR_NS_CC  = anid("CC");
+
+const atid Attribute::STD_ATTR_NORETURN   = atid("noreturn");
+const atid Attribute::STD_ATTR_CARRIES_DEPENDENCY = atid("carries_dependency");
+
+#if CXX_CHECK_VER(14)
+const atid Attribute::STD_ATTR_DEPRECATED = atid("deprecated");
+#endif
+
+#if CXX_CHECK_VER(17)
+const AttrIdentifier Attribute::STD_ATTR_FALLTHROUGH;
+const AttrIdentifier Attribute::STD_ATTR_NODISCARD;
+const AttrIdentifier Attribute::STD_ATTR_MAYBE_UNUSED;
+#endif
+
+#if CXX_CHECK_VER(20)
+const AttrIdentifier Attribute::STD_ATTR_LIKELY;
+const AttrIdentifier Attribute::STD_ATTR_UNLIKELY;
+const AttrIdentifier Attribute::STD_ATTR_NO_UNIQUE_ADDRESS;
+#endif
+
+}
+#endif
+
 namespace Types {
 
 using namespace LexicalElements::ReservedWords;
 
 std::map<Scopes::Scope*,std::list<Type*> > Type::all_types;
 
-Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
+#if REQUIRES_NOARG_CONSTRUCTOR
+Type::Type() {
+	rwords = false;
+	this->words = {};
+	this->myscope = &Scopes::Scope::global_scope;
+}
+#endif
+
+Type::Type(INIT_LIST<std::string> nm, Scopes::Scope *scop) {
 	this->type_name = nm;
 	rwords = false;
 	if (scop != nullptr) {
@@ -95,7 +185,7 @@ Type::Type(std::initializer_list<std::string> nm, Scopes::Scope *scop) {
 	all_types[myscope].push_back(this);
 }
 
-Type::Type(std::initializer_list<rw_ptr> nm) {
+Type::Type(res_words nm) {
 	this->words = nm;
 	rwords = true;
 	myscope = &Scopes::Scope::global_scope;
@@ -112,8 +202,14 @@ namespace FundamentalTypes { /*===============================================*/
 
 std::list<const FundamentalType*> FundamentalType::all_fundamental_types;
 
-FundamentalType::FundamentalType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt) : Type(req){
+#if REQUIRES_NOARG_CONSTRUCTOR
+FundamentalType::FundamentalType() : Type() {
+
+}
+#endif
+
+FundamentalType::FundamentalType(res_words req,
+		res_words opt) : Type(req){
 
 	words.insert(words.end(), opt);
 	all_fundamental_types.push_back(this);
@@ -130,8 +226,14 @@ namespace ArithmeticTypes { /*================================================*/
 
 std::list<const ArithmeticType*> ArithmeticType::all_arithmetic_types;
 
-ArithmeticType::ArithmeticType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt) :
+#if REQUIRES_NOARG_CONSTRUCTOR
+ArithmeticType::ArithmeticType() : FundamentalType() {
+
+}
+#endif
+
+ArithmeticType::ArithmeticType(res_words req,
+		res_words opt) :
 				FundamentalType(req,opt) {
 	all_arithmetic_types.push_back(this);
 }
@@ -144,8 +246,14 @@ namespace IntegralTypes { /*==================================================*/
 
 std::list<const IntegralType*> IntegralType::all_integral_types;
 
-IntegralType::IntegralType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt, bool sgn) :
+#if REQUIRES_NOARG_CONSTRUCTOR
+IntegralType::IntegralType() : ArithmeticType() {
+	_signed_ = true;
+}
+#endif
+
+IntegralType::IntegralType(res_words req,
+		res_words opt, bool sgn) :
 				ArithmeticType(req,opt), _signed_(sgn) {
 	all_integral_types.push_back(this);
 }
@@ -161,8 +269,14 @@ namespace CharacterTypes { /*=================================================*/
 
 std::list<const CharacterType*> CharacterType::all_character_types;
 
-CharacterType::CharacterType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt,bool sgn) :
+#if REQUIRES_NOARG_CONSTRUCTOR
+CharacterType::CharacterType() : IntegralType() {
+
+}
+#endif
+
+CharacterType::CharacterType(res_words req,
+		res_words opt,bool sgn) :
 				IntegralType(req,opt,sgn) {
 	all_character_types.push_back(this);
 }
@@ -172,25 +286,19 @@ CharacterType::~CharacterType() {
 }
 
 const CharacterType CharacterType::Char =
-		CharacterType({&ReservedTypeWord::R_char},
-				{&ReservedTypeWord::R_signed});
+		CharacterType({&ReservedTypeWord::R_char},{&ReservedTypeWord::R_signed});
 
 #ifdef CPP_SUPPORT_WIDE_CHAR
 const CharacterType CharacterType::WideChar =
-		CharacterType({&ReservedTypeWord::R_wchar_t},
-				{&ReservedTypeWord::R_signed});
+		CharacterType({&R_wchar_t},{&R_signed});
 #endif
 
 const CharacterType CharacterType::UnsignedChar =
-		CharacterType({&ReservedTypeWord::R_unsigned,
-	&ReservedTypeWord::R_char},
-				{},false);
+		CharacterType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_char},res_words({}),false);
 
 #ifdef CPP_SUPPORT_WIDE_CHAR
 const CharacterType CharacterType::UnsignedWideChar =
-		CharacterType({&ReservedTypeWord::R_unsigned,
-	&ReservedTypeWord::R_wchar_t},
-				{},false);
+		CharacterType({&R_unsigned,&R_wchar_t},{},false);
 #endif
 
 } /* namespace CharacterTypes */
@@ -199,9 +307,14 @@ namespace IntegerTypes { /*===================================================*/
 
 std::list<const IntegerType*> IntegerType::all_integer_types;
 
+#if REQUIRES_NOARG_CONSTRUCTOR
+IntegerType::IntegerType() : IntegralType() {
 
-IntegerType::IntegerType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt, bool sgn) :
+}
+#endif
+
+IntegerType::IntegerType(res_words req,
+		res_words opt, bool sgn) :
 				IntegralType(req,opt,sgn) {
 	all_integer_types.push_back(this);
 }
@@ -211,42 +324,35 @@ IntegerType::~IntegerType() {
 }
 
 const IntegerType IntegerType::ShortInteger =
-		IntegerType({&ReservedTypeWord::R_short},
-				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
+		IntegerType({&ReservedTypeWord::R_short},{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 
 const IntegerType IntegerType::BasicInteger =
 		IntegerType({&ReservedTypeWord::R_int},{&ReservedTypeWord::R_signed});
 
 #ifdef CPP_SUPPORT_LONG_INT
 const IntegerType IntegerType::LongInteger =
-		IntegerType({&ReservedTypeWord::R_long},
-				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
+		IntegerType({&ReservedTypeWord::R_long},{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 #endif
 
 #ifdef CPP_SUPPORT_LONGLONG_INT
 const IntegerType IntegerType::LongLongInteger =
-		IntegerType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long},
-				{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
+		IntegerType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long},{&ReservedTypeWord::R_signed,&ReservedTypeWord::R_int});
 #endif
 
 const IntegerType IntegerType::UnsignedShortInteger =
-		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_short},
-				{&ReservedTypeWord::R_int},false);
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_short},{&ReservedTypeWord::R_int},false);
 
 const IntegerType IntegerType::UnsignedBasicInteger =
-		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_int},
-				{},false);
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_int},res_words({}),false);
 
 #ifdef CPP_SUPPORT_LONG_INT
 const IntegerType IntegerType::UnsignedLongInteger =
-		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long},
-				{&ReservedTypeWord::R_int},false);
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long},{&ReservedTypeWord::R_int},false);
 #endif
 
 #ifdef CPP_SUPPORT_LONGLONG_INT
 const IntegerType IntegerType::UnsignedLongLongInteger =
-		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long,
-	&ReservedTypeWord::R_long},{&ReservedTypeWord::R_int},false);
+		IntegerType({&ReservedTypeWord::R_unsigned,&ReservedTypeWord::R_long,&ReservedTypeWord::R_long},{&ReservedTypeWord::R_int},false);
 #endif
 
 } /* namespace IntegerTypes */
@@ -257,9 +363,15 @@ namespace FloatingPointTypes { /*=============================================*/
 
 std::list<const FloatingPointType*> FloatingPointType::all_floating_point_types;
 
+#if REQUIRES_NOARG_CONSTRUCTOR
+FloatingPointType::FloatingPointType() : ArithmeticType() {
 
-FloatingPointType::FloatingPointType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt) :
+}
+
+#endif
+
+FloatingPointType::FloatingPointType(res_words req,
+		res_words opt) :
 		ArithmeticType(req,opt) {
 	all_floating_point_types.push_back(this);
 }
@@ -276,14 +388,13 @@ const FloatingPointType FloatingPointType::Double =
 
 #ifdef CPP_SUPPORT_LONG_DOUBLE
 const FloatingPointType FloatingPointType::LongDouble =
-		FloatingPointType({&ReservedTypeWord::R_long,
-	&ReservedTypeWord::R_double});
+		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_double});
 #endif
 
 #ifdef CPP_SUPPORT_LONGLONG_DOUBLE
 const FloatingPointType FloatingPointType::LongLongDouble =
-		FloatingPointType({&ReservedTypeWord::R_long,&ReservedTypeWord::R_long,
-	&ReservedTypeWord::R_double});
+		FloatingPointType({&R_long,&R_long,
+	&R_double});
 #endif
 
 } /* namespace FloatingPointTypes */
@@ -292,13 +403,16 @@ const FloatingPointType FloatingPointType::LongLongDouble =
 
 namespace CompoundTypes { /*==================================================*/
 
-CompoundType::CompoundType(std::initializer_list<res_word_ptr> req,
-		std::initializer_list<res_word_ptr> opt) : Type(req) {
+CompoundType::CompoundType(res_words req,
+		res_words opt) : Type(req) {
 	words.insert(words.end(),opt);
+
+	contents_type = nullptr;
 }
 
-CompoundType::CompoundType(std::initializer_list<std::string> nm) : Type(nm) {
+CompoundType::CompoundType(INIT_LIST<std::string> nm) : Type(nm) {
 
+	contents_type = nullptr;
 }
 
 CompoundType::~CompoundType() {
@@ -310,13 +424,12 @@ const CompoundType CompoundType::T_Enum =
 
 #ifdef CPP_SUPPORT_SCOPED_ENUM
 const CompoundType CompoundType::T_ScopedEnum =
-		CompoundType({&ReservedTypeWord::R_enum},{&ReservedTypeWord::R_class,
-		&ReservedTypeWord::R_struct});
+		CompoundType({&ReservedTypeWord::R_enum},{&ReservedTypeWord::R_class,&ReservedTypeWord::R_struct});
 #endif
 
 namespace EnumerationTypes {
 
-EnumerationType::EnumerationType(std::string nm) : CompoundType({nm}) {
+EnumerationType::EnumerationType(std::string nm) : CompoundType(INIT_LIST<std::string>({nm})) {
 
 }
 
@@ -343,20 +456,18 @@ ScopedEnumType::~ScopedEnumType() {
 } /* namespace EnumerationTypes */
 
 
-ArrayType::ArrayType(const Types::Type *target) :
-		CompoundType({target->getName().front()+"[]"}) {
-	contents_type = const_cast<Types::Type*>(target);
+ArrayType::ArrayType(const Types::Type& target) :
+		CompoundType(INIT_LIST<std::string>({target.getName().front()+"[]"})) {
+	contents_type = &const_cast<Types::Type&>(target);
 }
 
 ArrayType::~ArrayType() {
 
 }
 
-
-
-StringType::StringType(const Types::CharacterType *string_of) :
-			CompoundType({string_of->getName().front()+"[]"}) {
-	contents_type = const_cast<Types::CharacterType*>(string_of);
+StringType::StringType(const Types::CharacterType& string_of) :
+			CompoundType(INIT_LIST<std::string>({"[]"})) {
+	contents_type = &const_cast<Types::CharacterType&>(string_of);
 }
 
 StringType::~StringType() {
@@ -364,25 +475,25 @@ StringType::~StringType() {
 }
 
 const StringType StringType::T_CharString =
-		StringType(&Types::CharacterType::Char);
+		StringType(Types::CharacterType::Char);
 
 #ifdef CPP_SUPPORT_WIDE_CHAR
 const StringType StringType::T_WideCharString =
-		StringType(&Types::CharacterType::WideChar);
+		StringType(Types::CharacterType::WideChar);
 #endif
 
 
 const StringType StringType::T_UnsignedCharString =
-		StringType(&Types::CharacterType::UnsignedChar);
+		StringType(Types::CharacterType::UnsignedChar);
 
 #ifdef CPP_SUPPORT_WIDE_CHAR
 const StringType StringType::T_UnsignedWideCharString =
-		StringType(&Types::CharacterType::UnsignedWideChar);
+		StringType(Types::CharacterType::UnsignedWideChar);
 #endif
 
-PointerType::PointerType(Types::Type *target) :
-	CompoundType({target->getName().front()+"*"}) {
-	contents_type = target;
+PointerType::PointerType(const Types::Type& target) :
+	CompoundType(INIT_LIST<std::string>({"*"})) {
+	contents_type = &const_cast<Types::Type&>(target);
 }
 
 PointerType::~PointerType() {
@@ -390,7 +501,7 @@ PointerType::~PointerType() {
 }
 
 
-PointerToMemberType::PointerToMemberType(Types::Type *member) :
+PointerToMemberType::PointerToMemberType(const Types::Type& member) :
 	CompoundType() {
 
 }
@@ -399,9 +510,9 @@ PointerToMemberType::~PointerToMemberType() {
 
 }
 
-ReferenceType::ReferenceType(Types::Type *target) :
-		CompoundType({target->getName().front()+"&"}) {
-	contents_type = target;
+ReferenceType::ReferenceType(const Types::Type& target) :
+		CompoundType(INIT_LIST<std::string>({"&"})) {
+	contents_type = &const_cast<Types::Type&>(target);
 
 }
 
@@ -411,7 +522,7 @@ ReferenceType::~ReferenceType() {
 
 namespace ClassTypes {
 
-ClassType::ClassType(std::initializer_list<res_word_ptr> req) :
+ClassType::ClassType(res_words req) :
 		CompoundType(req) {
 
 }
@@ -419,6 +530,7 @@ ClassType::ClassType(std::initializer_list<res_word_ptr> req) :
 ClassType::~ClassType() {
 
 }
+
 
 const ClassType ClassType::T_Class =
 		ClassType({&ReservedTypeWord::R_class});
@@ -429,7 +541,7 @@ const ClassType ClassType::T_Struct =
 const ClassType ClassType::T_Union =
 		ClassType({&ReservedTypeWord::R_union});
 
-CppUnionType::CppUnionType(std::string nm) : Type({nm}) {
+CppUnionType::CppUnionType(std::string nm) : Type(INIT_LIST<std::string>({nm})) {
 
 }
 
@@ -437,7 +549,7 @@ CppUnionType::~CppUnionType() {
 
 }
 
-CppClassType::CppClassType(std::string nm) : Type({nm}) {
+CppClassType::CppClassType(std::string nm) : Type(INIT_LIST<std::string>({nm})) {
 
 }
 
@@ -479,11 +591,17 @@ Comment::~Comment() {
 
 Identifier::Identifier(std::string unf, Types::Type *typ) {
 	this->name = unf;
-	this->t = typ;
+
+	if (typ != nullptr) {
+		this->t = typ;
+	}
 }
 
-void Identifier::declare(Types::Type *t) {
-	this->t = t;
+void Identifier::declare(Types::Type *typ) {
+
+	if (typ != nullptr) {
+		this->t = typ;
+	}
 }
 
 Identifier::~Identifier() {
@@ -500,61 +618,95 @@ Typename::~Typename() {
 
 namespace ReservedWords {
 
-std::list<const ReservedWord*> ReservedWord::all_words;;
+RWordIdentifier::RWordIdentifier(std::string str) : Identifier(str) {
 
-ReservedWord::ReservedWord(std::string str) : name(str) {
-	all_words.push_back(this);
+}
+
+RWordIdentifier::~RWordIdentifier() {
+
+}
+
+ReservedWord::ReservedWord(const RWordIdentifier& id) : name(id) {
+
 }
 
 ReservedWord::~ReservedWord() {
-	all_words.remove(this);
+	//remove_word(this);
 }
 
-std::list<const ReservedTypeWord*> ReservedTypeWord::all_type_words;
+RTypeWordIdentifier::RTypeWordIdentifier(std::string str) : RWordIdentifier(str) {
 
-ReservedTypeWord::ReservedTypeWord(std::string str) : ReservedWord(str) {
-	all_type_words.push_back(this);
+}
+
+RTypeWordIdentifier::~RTypeWordIdentifier() {
+
+}
+
+ReservedTypeWord::ReservedTypeWord(const RTypeWordIdentifier& id) : ReservedWord(id) {
+	//add_word(this);
 }
 
 ReservedTypeWord::~ReservedTypeWord() {
-	all_type_words.remove(this);
+	//remove_word(this);
 }
 
-std::list<const Qualifier*> Qualifier::all_qualifiers;
+QualifierIdentifier::QualifierIdentifier(std::string str)  : RWordIdentifier(str) {
 
-Qualifier::Qualifier(std::string str) : ReservedWord(str) {
-	all_qualifiers.push_back(this);
+}
+
+QualifierIdentifier::~QualifierIdentifier() {
+
+}
+
+Qualifier::Qualifier(const QualifierIdentifier& id) : ReservedWord(id) {
+	//add_word(this);
 }
 
 Qualifier::~Qualifier() {
-	all_qualifiers.remove(this);
+	//remove_word(this);
 }
 
-std::list<const StorageClass*> StorageClass::all_storage_classes;
+StorageClassIdentifier::StorageClassIdentifier(std::string str) : RWordIdentifier(str) {
 
-StorageClass::StorageClass(std::string str) : ReservedWord(str) {
-	all_storage_classes.push_back(this);
+}
+
+StorageClassIdentifier::~StorageClassIdentifier() {
+
+}
+
+StorageClass::StorageClass(const StorageClassIdentifier& id) : ReservedWord(id) {
+	//add_word(this);
 }
 
 StorageClass::~StorageClass() {
-	all_storage_classes.remove(this);
+	//remove_word(this);
 }
 
-std::list<const AccessLevel*> AccessLevel::all_access_levels;
+AccessLevelIdentifier::AccessLevelIdentifier(std::string str) : RWordIdentifier(str) {
 
-AccessLevel::AccessLevel(std::string str) : ReservedWord(str) {
-	all_access_levels.push_back(this);
 }
 
 AccessLevel::~AccessLevel() {
-	all_access_levels.remove(this);
+
+}
+
+AccessLevel::AccessLevel(const AccessLevelIdentifier& id) : ReservedWord(id) {
+	//add_word(this);
+}
+
+AccessLevel::~AccessLevel() {
+	//remove_word(this);
 }
 
 
 } /* namespace ReservedWords */
 
-Expression::Expression(std::initializer_list<LexicalElement> expr) {
+Expression::Expression(INIT_LIST<LexicalElement> expr) {
 
+}
+
+void *Expression::yields() {
+	return nullptr;
 }
 
 Expression::~Expression() {
@@ -601,7 +753,7 @@ Literal::Literal(std::string str, const Types::Type *typ) {
 }
 
 Literal::~Literal() {
-	delete data;
+	//delete data;
 }
 
 } /* namespace Literals */
@@ -626,7 +778,7 @@ std::list<Scope*> Scope::scopes;
 
 Scope Scope::global_scope = Scope();
 
-Scope::Scope(std::initializer_list<LexicalElements::Identifier> ls) {
+Scope::Scope(INIT_LIST<LexicalElements::Identifier> ls) {
 	scopes.push_back(this);
 }
 
@@ -636,6 +788,40 @@ Scope::~Scope() {
 
 } /* namespace Scopes */
 
+
+namespace Attributes {
+
+AttrNamespace::AttrNamespace(AttrNamespaceIdentifier id) {
+
+}
+
+AttrNamespace::~AttrNamespace() {
+
+}
+
+Attribute::Attribute(AttrIdentifier id) {
+
+}
+
+Attribute::Attribute(AttrIdentifier id, AttrNamespace nspace) {
+
+}
+
+Attribute::Attribute(AttrIdentifier id, LexicalElements::arglist args) {
+
+}
+
+Attribute::Attribute(AttrIdentifier id, AttrNamespace nspace,
+		LexicalElements::arglist args) {
+
+}
+
+Attribute::~Attribute() {
+
+}
+
+
+} /* namespace Attributes */
 
 Cpp::Variable::Variable(std::string proposed_id,Types::Type *typ,
 		LexicalElements::Expression *val) : id(LexicalElements::Identifier(proposed_id)) {
@@ -654,6 +840,7 @@ std::string Cpp::Variable::cpp_str() {
 }
 
 std::string Cpp::Variable::xml_str() {
+
 
 }
 
@@ -687,11 +874,11 @@ Enumeration::Enumeration(std::string nm,
 }
 
 Enumeration::~Enumeration() {
-	delete new_type;
-
-	for (auto&& val : enumerators) {
-		delete val;
-	}
+//	delete new_type;
+//
+//	for (auto&& val : enumerators) {
+//		delete val;
+//	}
 }
 
 } /* namespace Enumerations */
@@ -699,17 +886,18 @@ Enumeration::~Enumeration() {
 
 namespace Classes {
 
-
-BasicClass::BasicClass(const AccessLevel* acc, std::string prop_name){
-
+BasicClass::BasicClass(AccessLevel* acc, std::string prop_name){
+	if (acc != nullptr) {
+		default_access = acc;
+	} else { default_access = new AccessLevel(AccessLevel::R_public); }
 }
 
 BasicClass::~BasicClass() {
-
+	delete default_access;
 }
 
 UnionClass::UnionClass(std::string prop_name) :
-		BasicClass(&AccessLevel::R_public, prop_name) {
+		BasicClass(new AccessLevel(AccessLevel::R_public), prop_name) {
 
 }
 
@@ -717,7 +905,7 @@ UnionClass::~UnionClass() {
 
 }
 
-CppClass::CppClass(const AccessLevel* acc, std::string prop_name,
+CppClass::CppClass(AccessLevel* acc, std::string prop_name,
 		parent_list mp) : BasicClass(acc,prop_name) {
 
 }
@@ -727,7 +915,7 @@ CppClass::~CppClass() {
 }
 
 ClassClass::ClassClass(std::string prop_name, parent_list mp) :
-		Classes::CppClass(&AccessLevel::R_private, prop_name, mp) {
+		Classes::CppClass(new AccessLevel(AccessLevel::R_private), prop_name, mp) {
 
 }
 
@@ -736,7 +924,7 @@ ClassClass::~ClassClass() {
 }
 
 StructClass::StructClass(std::string prop_name, parent_list mp) :
-		Classes::CppClass(&AccessLevel::R_public, prop_name, mp) {
+		Classes::CppClass(new AccessLevel(AccessLevel::R_public), prop_name, mp) {
 
 }
 
@@ -765,243 +953,109 @@ ScopedEnumeration::~ScopedEnumeration() {
 } /* namespace Enumerations */
 #endif
 
+namespace Structure {
+
+namespace Files {
+
+File::File(std::string pth) : Scopes::Scope() {
+	this->path = pth;
+}
+
+File::~File() {
+
+}
+
+namespace InFiles {
+
+InFile::InFile(std::string pth) : File(pth) {
+
+}
+
+InFile::~InFile() {
+
+}
+
+Header::Header(std::string pth, bool standard) : InFile(pth) {
+	this->standard = standard;
+}
+
+std::string Header::xml_str() {
+
+}
+
+std::string Header::cpp_str() {
+
+}
+
+Header::~Header() {
+
+}
+
+Source::Source(std::string pth) : InFile(pth) {
+
+}
+
+Source::~Source() {
+
+}
+
+} /* namespace InFiles */
+
+namespace OutFiles {
+
+OutFile::OutFile(std::string pth) : File(pth) {
+
+}
+
+OutFile::~OutFile() {
+
+}
+
+#if (BUILD_FOR_SHEILA_DAEMON == 1)
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_names;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_authors;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_versions;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_copyrights;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_descriptions;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_modules;
+
+template<class _N>
+std::string              Object<_N>::this_object_created;
+
+template<class _N>
+std::vector<std::string> Object<_N>::this_object_modified;
+
+template<class _N>
+Cpp::Structure::Files::InFiles::Source* Object<_N>::this_object_source;
+
+template<class _N>
+std::vector<Cpp::Structure::Files::InFiles::Header*>  Object<_N>::this_object_headers;
+#endif
+
+Artifact::Artifact() {
+
+}
+
+Artifact::~Artifact() {
+
+}
+
+} /* namespace OutFiles */
+
+} /* namespace Files */
+
+} /* namespace Structure */
+
 } /* namespace Cpp */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//Cpp::PreProcessor::Macro::Macro(void *scope,
-//		std::string id, std::string value,
-//		std::vector<std::string> allocator) {
-//	this->identifier = id;
-//	this->statement = value;
-//
-//	if (allocator.size() > 0) {
-//		arguments = std::vector<std::string>(allocator);
-//	}
-//
-//	this->defined = true;
-//
-//	Cpp::Project::Artifact *a = static_cast<Cpp::Project::Artifact *>(scope);
-//
-//	a->addMacro(this);
-//}
-//
-//std::string Cpp::PreProcessor::Macro::cpp_str() {
-//
-//	return "";
-//}
-//
-//std::string Cpp::PreProcessor::Macro::xml_str() {
-//
-//	// TODO xml_str for CppMacro
-//
-//	return "";
-//}
-//
-//
-//Cpp::PreProcessor::Macro::~Macro() {
-//	// TODO Auto-generated destructor stub
-//}
-
-/*========================= Variables ========================================*/
-#ifdef LANG_CPP_CLASS_VARIABLE
-
-
-
-#endif
-/*========================= Functions ========================================*/
-
-
-
-/*========================= Enums ============================================*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef LANG_CPP_CLASS_ENUMERATOR
-
-Cpp::Enumerator::Enumerator(EnumeratorDefinition* enumerator,
-		std::string id,ENUM_INT_SIZE val) :
-				Variable(val,id), enumerator_def(enumerator) {}
-
-std::string Cpp::Enumerator::cpp_str() {
-	return getAbsoluteIdentifier();
-}
-
-std::string Cpp::Enumerator::xml_str() {
-
-}
-
-Cpp::Enumerator::~Enumerator() {
-}
-
-
-Cpp::EnumeratorDefinition::EnumeratorDefinition(
-		EnumerationDefinition* enum_ptr, std::string id) {
-	enumeration_def = enum_ptr;
-	data = Enumerator(this,id,enum_ptr->next());
-	explicit_enumerator = false;
-}
-
-Cpp::EnumeratorDefinition::EnumeratorDefinition(
-		EnumerationDefinition* enum_ptr, std::string id, ENUM_INT_SIZE n) {
-	enumeration_def = enum_ptr;
-	data = Enumerator(this,id,n);
-	explicit_enumerator = true;
-}
-
-std::string Cpp::EnumeratorDefinition::cpp_str() {
-	if (explicit_enumerator) {
-		return this->data.getIdentifier() + " = " +
-				std::string(this->data.getValue());
-	} else {
-		return this->data.getIdentifier();
-	}
-}
-
-std::string Cpp::EnumeratorDefinition::xml_str() {
-	if (explicit_enumerator) {
-		return "<enumeratordef id='" + this->data.getIdentifier() +
-				"' value='" + std::string(this->data.getValue()) + "' />";
-	} else {
-		return "<enumeratordef id='" + this->data.getIdentifier() + "' />";
-	}
-
-}
-
-Cpp::EnumeratorDefinition::~EnumeratorDefinition() {
-	//Destroys @a data automatically
-}
-
-#endif
-#ifdef LANG_CPP_CLASS_ENUMERATION
-
-Cpp::Enumeration::Enumeration() {
-
-}
-
-std::string Cpp::Enumeration::cpp_str() {
-
-}
-
-std::string Cpp::Enumeration::xml_str() {
-
-}
-
-Cpp::Enumeration::~Enumeration() {
-}
-
-Cpp::EnumerationDefinition::EnumerationDefinition(bool anonymous,
-		std::string id) {
-
-	data = Enumeration();
-}
-
-ENUM_INT_SIZE Cpp::EnumerationDefinition::next() {
-	if (enumerator_definitions.size() > 0) {
-		return enumerator_definitions.back().data.getValue() + 1;
-	} else {
-		return 0;
-	}
-}
-
-void Cpp::EnumerationDefinition::addEnumerator(std::string id) {
-	;
-}
-
-void Cpp::EnumerationDefinition::addEnumerator(std::string id,ENUM_INT_SIZE n) {
-	;
-}
-
-std::string Cpp::EnumerationDefinition::cpp_str() {
-	std::stringstream ss;
-
-	ss << "enum ";
-	if (!this->data.isAnonymous()) { ss << this->getIdentifier(); }
-	ss << " {\n";
-	for (auto&& enumerator_def : enumerator_definitions) {
-		ss << enumerator_def.cpp_str() + ",\n";
-	}
-	ss << "} ";
-
-	return ss.str();
-}
-
-std::string Cpp::EnumerationDefinition::xml_str() {
-
-}
-
-Cpp::EnumerationDefinition::~EnumerationDefinition() {
-
-	delete enumeration;
-}
-
-#endif
-
-#ifdef LANG_CPP_CLASS_SCOPED_ENUMERATION
-
-
-
-#endif
-/*========================== Project =========================================*/
-
-Cpp::Project::Project(std::string) {
-
-}
-
-Cpp::Project::~Project(){
-}
-
-//Cpp::Project::Artifact::Artifact() {
-//}
-//
-//const std::map<std::string, Cpp::Feature*>&
-//Cpp::Project::Artifact::scopeFeatures() const {
-//	return global_scope;
-//}
-//
-//std::map<std::string, Cpp::Feature*>
-//Cpp::Project::Artifact::accessibleFeatures() {
-//	std::map<std::string, Cpp::Feature*> all_features;
-//	all_features.insert(global_scope.begin(),global_scope.end());
-//
-//	return all_features;
-//}
-//
-//Cpp::Project::Artifact::~Artifact() {
-//
-//}

@@ -8,10 +8,19 @@
 #  Created     : May  7, 2018                                                  #
 #  Modified    :                                                               #
 #==============================================================================#
-target_sources( CppLanguage
-	PRIVATE
+
+target_sources( ${CppLanguage_NAME}
+	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/CppLanguage.cpp"
-		"${CMAKE_CURRENT_LIST_DIR}/CppLanguage.hpp"
 )
 
-#target_include_directories(CppLanguage PRIVATE "${CMAKE_CURRENT_LIST_DIR}")
+#if(WIN32)
+target_sources( ${CppLanguage_NAME}
+	PRIVATE
+		"${CMAKE_CURRENT_LIST_DIR}/dllmain.cpp"
+		"${CMAKE_CURRENT_LIST_DIR}/stdafx.cpp"
+)
+#endif(WIN32)
+
+
+#target_include_directories(${CppLanguage_NAME} PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
