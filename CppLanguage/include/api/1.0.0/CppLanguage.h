@@ -123,29 +123,29 @@
 #endif
 
 namespace Cpp {
-	extern "C" CPPLANGUAGE_API class Feature;
-//	extern "C" CPPLANGUAGE_API const std::string& Feature::getScope() const;
-//	extern "C" CPPLANGUAGE_API const std::string& Feature::getIdentifier() const;
-//	extern "C" CPPLANGUAGE_API std::string Feature::getAbsoluteIdentifier();
-//	extern "C" CPPLANGUAGE_API std::string cpp_str();
-//	extern "C" CPPLANGUAGE_API std::string xml_str();
+	CPPLANGUAGE_API class Feature;
+//	CPPLANGUAGE_API const std::string& Feature::getScope() const;
+//	CPPLANGUAGE_API const std::string& Feature::getIdentifier() const;
+//	CPPLANGUAGE_API std::string Feature::getAbsoluteIdentifier();
+//	CPPLANGUAGE_API std::string cpp_str();
+//	CPPLANGUAGE_API std::string xml_str();
 	namespace Types {
-		extern "C" CPPLANGUAGE_API class Type;
+		CPPLANGUAGE_API class Type;
 		namespace FundamentalTypes {
-			extern "C" CPPLANGUAGE_API class FundamentalType;
+			CPPLANGUAGE_API class FundamentalType;
 			namespace ArithmeticTypes {
-				extern "C" CPPLANGUAGE_API class ArithmeticType;
+				CPPLANGUAGE_API class ArithmeticType;
 				namespace IntegralTypes {
-					extern "C" CPPLANGUAGE_API class IntegralType;
+					CPPLANGUAGE_API class IntegralType;
 					namespace CharacterTypes {
-						extern "C" CPPLANGUAGE_API class CharacterType;
+						CPPLANGUAGE_API class CharacterType;
 					} /* namespace CharacterTypes */
 					namespace IntegerTypes {
-						extern "C" CPPLANGUAGE_API class IntegerType;
+						CPPLANGUAGE_API class IntegerType;
 					} /* namespace IntegerTypes */
 				} /* namespace IntegralTypes */
 				namespace FloatingPointTypes {
-					extern "C" CPPLANGUAGE_API class FloatingPointType;
+					CPPLANGUAGE_API class FloatingPointType;
 				} /* namespace FloatingPointTypes */
 			} /* namespace ArithmeticTypes */
 		} /* namespace FundamentalTypes */
@@ -175,23 +175,23 @@ namespace Cpp {
 		typedef FloatingPointType FloatingPointType;
 
 		namespace CompoundTypes {
-			class CompoundType;
+		    CPPLANGUAGE_API class CompoundType;
 			namespace EnumerationTypes {
-				class EnumerationType;
+			    CPPLANGUAGE_API class EnumerationType;
 #if CPP_SUPPORT_SCOPED_ENUM
-				class ScopedEnumType;
+			    CPPLANGUAGE_API class ScopedEnumType;
 #endif
 			} /* namespace EnumerationTypes */
-			class ArrayType;
-			class StringType;
-			class PointerType;
-			class PointerToMemberType;
-			class ReferenceType;
-			namespace ClassTypes {
-				class ClassType;
-				class CppUnionType;
-				class CppClassType;
-				class CppStructType;
+			CPPLANGUAGE_API class ArrayType;
+			CPPLANGUAGE_API class StringType;
+			CPPLANGUAGE_API class PointerType;
+			CPPLANGUAGE_API class PointerToMemberType;
+			CPPLANGUAGE_API class ReferenceType;
+			CPPLANGUAGE_API namespace ClassTypes {
+				CPPLANGUAGE_API class ClassType;
+				CPPLANGUAGE_API class CppUnionType;
+				CPPLANGUAGE_API class CppClassType;
+				CPPLANGUAGE_API class CppStructType;
 			} /* namespace ClassTypes */
 		} /* namespace CompoundTypes */
 
@@ -221,25 +221,25 @@ namespace Cpp {
 #endif
 	} /* namespace Types */
 	namespace LexicalElements {
-		class LexicalElement;
-		class Comment;
-		class Identifier;
-		class Typename;
+	    CPPLANGUAGE_API class LexicalElement;
+	    CPPLANGUAGE_API class Comment;
+	    CPPLANGUAGE_API class Identifier;
+	    CPPLANGUAGE_API class Typename;
 		namespace ReservedWords {
 			struct RWordIdentifier;
-			class ReservedWord;
+			CPPLANGUAGE_API class ReservedWord;
 
 			struct RTypeWordIdentifier;
-			class ReservedTypeWord;
+			CPPLANGUAGE_API class ReservedTypeWord;
 
 			struct QualifierIdentifier;
-			class Qualifier;
+			CPPLANGUAGE_API class Qualifier;
 
 			struct StorageClassIdentifier;
-			class StorageClass;
+			CPPLANGUAGE_API class StorageClass;
 
 			struct AccessLevelIdentifier;
-			class AccessLevel;
+			CPPLANGUAGE_API class AccessLevel;
 
 			typedef RWordIdentifier rwid;
 			typedef RTypeWordIdentifier rtwid;
@@ -250,22 +250,22 @@ namespace Cpp {
 		} /* namespace ReservedWords */
 		class Expression;
 		namespace Literals {
-			class Literal;
+			CPPLANGUAGE_API class Literal;
 		} /* namespace Literals */
 		namespace Operators {
-			class Operator;
+			CPPLANGUAGE_API class Operator;
 		} /* namespace Operators */
 	} /* namespace LexicalElements */
 	namespace Scopes {
-		class Scope;
+		CPPLANGUAGE_API class Scope;
 	} /* namespace Scopes */
 	class Namespace;
 	namespace Attributes {
 		struct AttrNamespaceIdentifier;
-		class AttrNamespace;
+		CPPLANGUAGE_API class AttrNamespace;
 
 		struct AttrIdentifier;
-		class Attribute;
+		CPPLANGUAGE_API class Attribute;
 
 		typedef AttrNamespaceIdentifier anid;
 		typedef AttrIdentifier          atid;

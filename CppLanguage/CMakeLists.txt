@@ -203,21 +203,21 @@ configure_file (
 )
 
 #if(WIN32)
-	configure_file (
-		"${CMAKE_CURRENT_LIST_DIR}/config/stdafx.h.in"
-		"${CMAKE_CURRENT_LIST_DIR}/include/stdafx.h"
-	)
-	
-	configure_file (
-		"${CMAKE_CURRENT_LIST_DIR}/config/targetver.h.in"
-		"${CMAKE_CURRENT_LIST_DIR}/include/targetver.h"
-	)
+#	configure_file (
+#		"${CMAKE_CURRENT_LIST_DIR}/config/stdafx.h.in"
+#		"${CMAKE_CURRENT_LIST_DIR}/include/stdafx.h"
+#	)
+#	
+#	configure_file (
+#		"${CMAKE_CURRENT_LIST_DIR}/config/targetver.h.in"
+#		"${CMAKE_CURRENT_LIST_DIR}/include/targetver.h"
+#	)
 #endif(WIN32)
-
-configure_file (
-	"${CMAKE_CURRENT_LIST_DIR}/config/${CppLanguage_NAME}.hpp.in"
-	"${CMAKE_CURRENT_LIST_DIR}/include/${CppLanguage_NAME}.hpp"
-)
+#
+#configure_file (
+#	"${CMAKE_CURRENT_LIST_DIR}/config/${CppLanguage_NAME}.hpp.in"
+#	"${CMAKE_CURRENT_LIST_DIR}/include/${CppLanguage_NAME}.hpp"
+#)
 
 #target_sources( ${CppLanguage_NAME}
 #	PUBLIC
